@@ -34,7 +34,7 @@ class AppThemeData extends ChangeNotifier {
   AppThemeData({required this.text, required this.color});
 
   static bool isDarkTheme = true;
-  static AppThemeData currentTheme = darkTheme;
+  static AppThemeData currentTheme = lightTheme;
 
   void toggleTheme() {
     isDarkTheme = !isDarkTheme;
