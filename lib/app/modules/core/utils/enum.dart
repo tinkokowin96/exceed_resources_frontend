@@ -1,11 +1,22 @@
-enum TextType {
-  body,
-  error,
-  title,
-}
+enum EText { body, error, primary, white, subtitle }
 
-enum Device {
+enum EDevice {
   mobile,
   tablet,
   desktop,
 }
+
+enum ERequestMethod {
+  get,
+  post,
+  patch,
+  delete,
+}
+
+enum ESize {
+  sm,
+  md,
+  lg,
+}
+
+enum EAsyncDropdown { tyep1 }

@@ -50,76 +50,60 @@ class AppThemeData extends ChangeNotifier {
     text: AppText(
       h1: ({
         required BuildContext context,
-        type = TextType.title,
+        type = EText.body,
         weight = 400,
         fontFamily = 'Barlow',
       }) =>
           TextStyle(
-        color: type == TextType.title
-            ? const Color(0xFF565656)
-            : type == TextType.error
-                ? const Color(0xFFD1512D)
-                : Colors.black,
-        fontSize: getDevice(context) == Device.mobile
+        color: getTextColor(type, context),
+        fontSize: getDevice(context) == EDevice.mobile
             ? 18
-            : getDevice(context) == Device.tablet
+            : getDevice(context) == EDevice.tablet
                 ? 20
                 : 22,
         fontFamily: AppLocale.locale.languageCode == 'my' ? 'Notosan' : fontFamily,
       ),
       h3: ({
         required BuildContext context,
-        type = TextType.title,
+        type = EText.body,
         weight = 400,
         fontFamily = 'Barlow',
       }) =>
           TextStyle(
-        color: type == TextType.title
-            ? const Color(0xFF565656)
-            : type == TextType.error
-                ? const Color(0xFFD1512D)
-                : Colors.black,
-        fontSize: getDevice(context) == Device.mobile
+        color: getTextColor(type, context),
+        fontSize: getDevice(context) == EDevice.mobile
             ? 14
-            : getDevice(context) == Device.tablet
+            : getDevice(context) == EDevice.tablet
                 ? 16
                 : 18,
         fontFamily: AppLocale.locale.languageCode == 'my' ? 'Notosan' : fontFamily,
       ),
       h4: ({
         required BuildContext context,
-        type = TextType.title,
+        type = EText.body,
         weight = 400,
         fontFamily = 'Barlow',
       }) =>
           TextStyle(
-        color: type == TextType.title
-            ? const Color(0xFF565656)
-            : type == TextType.error
-                ? const Color(0xFFD1512D)
-                : Colors.black,
-        fontSize: getDevice(context) == Device.mobile
+        color: getTextColor(type, context),
+        fontSize: getDevice(context) == EDevice.mobile
             ? 12
-            : getDevice(context) == Device.tablet
+            : getDevice(context) == EDevice.tablet
                 ? 14
                 : 16,
         fontFamily: AppLocale.locale.languageCode == 'my' ? 'Notosan' : fontFamily,
       ),
       h5: ({
         required BuildContext context,
-        type = TextType.title,
+        type = EText.body,
         weight = 400,
         fontFamily = 'Barlow',
       }) =>
           TextStyle(
-        color: type == TextType.title
-            ? const Color(0xFF565656)
-            : type == TextType.error
-                ? const Color(0xFFD1512D)
-                : Colors.black,
-        fontSize: getDevice(context) == Device.mobile
+        color: getTextColor(type, context),
+        fontSize: getDevice(context) == EDevice.mobile
             ? 10
-            : getDevice(context) == Device.tablet
+            : getDevice(context) == EDevice.tablet
                 ? 12
                 : 14,
         fontFamily: AppLocale.locale.languageCode == 'my' ? 'Notosan' : fontFamily,
@@ -127,10 +111,11 @@ class AppThemeData extends ChangeNotifier {
     ),
     color: const AppColor(
       primary: Color(0xFFE38B29),
-      secondary: Color(0xFF565656),
+      subtitle: Color(0xFF565656),
       container: Color(0xFFFAFAFA),
       error: Color(0xFFD1512D),
       background: Colors.white,
+      disabled: Color(0xFF898989),
     ),
   );
 
@@ -138,76 +123,60 @@ class AppThemeData extends ChangeNotifier {
     text: AppText(
       h1: ({
         required BuildContext context,
-        type = TextType.title,
+        type = EText.body,
         weight = 400,
         fontFamily = 'Barlow',
       }) =>
           TextStyle(
-        color: type == TextType.title
-            ? const Color(0xFF565656)
-            : type == TextType.error
-                ? const Color(0xFFD1512D)
-                : Colors.black,
-        fontSize: getDevice(context) == Device.mobile
+        color: getTextColor(type, context),
+        fontSize: getDevice(context) == EDevice.mobile
             ? 18
-            : getDevice(context) == Device.tablet
+            : getDevice(context) == EDevice.tablet
                 ? 20
                 : 22,
         fontFamily: AppLocale.locale.languageCode == 'my' ? 'Notosan' : fontFamily,
       ),
       h3: ({
         required BuildContext context,
-        type = TextType.title,
+        type = EText.body,
         weight = 400,
         fontFamily = 'Barlow',
       }) =>
           TextStyle(
-        color: type == TextType.title
-            ? const Color(0xFF565656)
-            : type == TextType.error
-                ? const Color(0xFFD1512D)
-                : Colors.black,
-        fontSize: getDevice(context) == Device.mobile
+        color: getTextColor(type, context),
+        fontSize: getDevice(context) == EDevice.mobile
             ? 14
-            : getDevice(context) == Device.tablet
+            : getDevice(context) == EDevice.tablet
                 ? 16
                 : 18,
         fontFamily: AppLocale.locale.languageCode == 'my' ? 'Notosan' : fontFamily,
       ),
       h4: ({
         required BuildContext context,
-        type = TextType.title,
+        type = EText.body,
         weight = 400,
         fontFamily = 'Barlow',
       }) =>
           TextStyle(
-        color: type == TextType.title
-            ? const Color(0xFF565656)
-            : type == TextType.error
-                ? const Color(0xFFD1512D)
-                : Colors.black,
-        fontSize: getDevice(context) == Device.mobile
+        color: getTextColor(type, context),
+        fontSize: getDevice(context) == EDevice.mobile
             ? 12
-            : getDevice(context) == Device.tablet
+            : getDevice(context) == EDevice.tablet
                 ? 14
                 : 16,
         fontFamily: AppLocale.locale.languageCode == 'my' ? 'Notosan' : fontFamily,
       ),
       h5: ({
         required BuildContext context,
-        type = TextType.title,
+        type = EText.body,
         weight = 400,
         fontFamily = 'Barlow',
       }) =>
           TextStyle(
-        color: type == TextType.title
-            ? const Color(0xFF565656)
-            : type == TextType.error
-                ? const Color(0xFFD1512D)
-                : Colors.black,
-        fontSize: getDevice(context) == Device.mobile
+        color: getTextColor(type, context),
+        fontSize: getDevice(context) == EDevice.mobile
             ? 10
-            : getDevice(context) == Device.tablet
+            : getDevice(context) == EDevice.tablet
                 ? 12
                 : 14,
         fontFamily: AppLocale.locale.languageCode == 'my' ? 'Notosan' : fontFamily,
@@ -215,10 +184,11 @@ class AppThemeData extends ChangeNotifier {
     ),
     color: const AppColor(
       primary: Color(0xFFE38B29),
-      secondary: Color(0xFF565656),
+      subtitle: Color(0xFF565656),
       container: Color(0xFFFAFAFA),
       error: Color(0xFFD1512D),
       background: Color(0xFF202123),
+      disabled: Color(0xFF898989),
     ),
   );
 }

@@ -4,25 +4,25 @@ import 'package:flutter/material.dart';
 class AppText {
   final TextStyle Function({
     required BuildContext context,
-    TextType type,
+    EText type,
     int weight,
     String fontFamily,
   }) h1;
   final TextStyle Function({
     required BuildContext context,
-    TextType type,
+    EText type,
     int weight,
     String fontFamily,
   }) h3;
   final TextStyle Function({
     required BuildContext context,
-    TextType type,
+    EText type,
     int weight,
     String fontFamily,
   }) h4;
   final TextStyle Function({
     required BuildContext context,
-    TextType type,
+    EText type,
     int weight,
     String fontFamily,
   }) h5;
