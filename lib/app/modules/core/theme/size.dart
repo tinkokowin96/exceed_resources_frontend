@@ -26,4 +26,6 @@ class AppSize {
   static const dH = 120.0;
   static const dL = 100.0; //dropdown loading
 
+  //miscs
+  static const fH = 50.0; //footer
 }
