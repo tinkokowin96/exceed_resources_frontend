@@ -10,14 +10,15 @@ class AppTheme extends InheritedWidget {
 
   static TextStyle text({
     required BuildContext context,
-    size = EText.h3,
-    type = ETextType.body,
-    weight = 400,
-    fontFamily = 'Barlow',
+    EText size = EText.h3,
+    ETextType type = ETextType.body,
+    FontWeight weight = FontWeight.w400,
+    String fontFamily = 'Barlow',
   }) =>
       TextStyle(
         color: getTextColor(type, context),
         fontSize: getFontSize(size, context),
+        fontWeight: weight,
         fontFamily: AppLocale.locale.languageCode == 'my' ? 'Notosan' : fontFamily,
       );
 
@@ -60,7 +61,7 @@ class AppThemeData extends ChangeNotifier {
   static AppThemeData lightTheme = AppThemeData(
     color: const AppColor(
       primary: Color(0xFFE38B29),
-      subtitle: Color(0xFF565656),
+      idle: Color(0xFF565656),
       container: Color(0xFFFAFAFA),
       error: Color(0xFFD1512D),
       background: Colors.white,
@@ -71,7 +72,7 @@ class AppThemeData extends ChangeNotifier {
   static AppThemeData darkTheme = AppThemeData(
     color: const AppColor(
       primary: Color(0xFFE38B29),
-      subtitle: Color(0xFF565656),
+      idle: Color(0xFF565656),
       container: Color(0xFFFAFAFA),
       error: Color(0xFFD1512D),
       background: Color(0xFF202123),

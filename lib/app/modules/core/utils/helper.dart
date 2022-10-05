@@ -20,7 +20,7 @@ Color getTextColor(ETextType type, BuildContext context) {
       return Colors.white;
 
     case ETextType.subtitle:
-      return AppTheme.of(context).color.subtitle;
+      return AppTheme.of(context).color.idle;
 
     default:
       //   return Colors.black;

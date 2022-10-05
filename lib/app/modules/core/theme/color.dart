@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class AppColor {
   final Color primary;
-  final Color subtitle;
+  final Color idle;
   final Color container;
   final Color error;
   final Color background;
@@ -10,7 +10,7 @@ class AppColor {
 
   const AppColor({
     required this.primary,
-    required this.subtitle,
+    required this.idle,
     required this.container,
     required this.error,
     required this.background,
