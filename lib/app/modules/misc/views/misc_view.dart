@@ -1,3 +1,5 @@
+import 'package:exceed_resources_frontend/app/modules/core/layout/index.dart';
+import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -8,17 +10,10 @@ class MiscView extends GetView<MiscController> {
   const MiscView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('MiscView'),
-        centerTitle: true,
-      ),
-      body: Center(
-        child: Text(
-          'MiscView is working',
-          style: TextStyle(fontSize: 20),
-        ),
-      ),
+    return AppLayout(
+      currentMenu: EMenu.misc,
+      content: Container(color: Colors.orangeAccent),
+      noHeader: false,
     );
   }
 }

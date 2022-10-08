@@ -8,8 +8,9 @@ class HomeView extends GetView<HomeController> {
   const HomeView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return const AppLayout(
+    return AppLayout(
       currentMenu: EMenu.home,
+      content: Container(color: Colors.greenAccent),
       noHeader: false,
     );
   }

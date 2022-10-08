@@ -7,6 +7,11 @@ class AppSizeBox {
     height: 0,
   );
 
+  static const xs = SizedBox(
+    width: AppSize.xs,
+    height: AppSize.xs,
+  );
+
   static const sm = SizedBox(
     width: AppSize.sm,
     height: AppSize.sm,

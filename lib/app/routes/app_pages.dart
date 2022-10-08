@@ -23,26 +23,30 @@ class AppPages {
       name: AppRoutes.home,
       page: () => const HomeView(),
       binding: HomeBinding(),
+      transitionDuration: Duration.zero,
     ),
     GetPage(
       name: AppRoutes.task,
       page: () => const TaskView(),
       binding: TaskBinding(),
+      transitionDuration: Duration.zero,
     ),
     GetPage(
       name: AppRoutes.chat,
       page: () => const ChatView(),
       binding: ChatBinding(),
+      transitionDuration: Duration.zero,
     ),
     GetPage(
-      name: AppRoutes.report,
-      page: () => const ReportView(),
-      binding: ReportBinding(),
-    ),
+        name: AppRoutes.report,
+        page: () => const ReportView(),
+        binding: ReportBinding(),
+        transitionDuration: Duration.zero),
     GetPage(
       name: AppRoutes.misc,
       page: () => const MiscView(),
       binding: MiscBinding(),
+      transitionDuration: Duration.zero,
     ),
   ];
 }

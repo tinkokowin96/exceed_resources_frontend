@@ -1,3 +1,5 @@
+import 'package:exceed_resources_frontend/app/modules/core/layout/index.dart';
+import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -8,17 +10,10 @@ class ReportView extends GetView<ReportController> {
   const ReportView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('ReportView'),
-        centerTitle: true,
-      ),
-      body: Center(
-        child: Text(
-          'ReportView is working',
-          style: TextStyle(fontSize: 20),
-        ),
-      ),
+    return AppLayout(
+      currentMenu: EMenu.report,
+      content: Container(color: Colors.purpleAccent),
+      noHeader: false,
     );
   }
 }

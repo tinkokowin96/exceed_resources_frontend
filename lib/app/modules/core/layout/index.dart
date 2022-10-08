@@ -5,10 +5,12 @@ import 'package:flutter/material.dart';
 class AppLayout extends StatelessWidget {
   final EMenu currentMenu;
   final bool noHeader;
+  final Widget content;
   const AppLayout({
     Key? key,
-    required this.currentMenu,
     this.noHeader = true,
+    required this.currentMenu,
+    required this.content,
   }) : super(key: key);
 
   @override
@@ -24,6 +26,7 @@ class AppLayout extends StatelessWidget {
     // }
     return MobileLayout(
       currentMenu: currentMenu,
+      content: content,
       noHeader: noHeader,
     );
   }

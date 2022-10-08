@@ -8,9 +8,11 @@ import 'package:flutter/material.dart';
 
 class MobileLayout extends StatelessWidget {
   final EMenu currentMenu;
+  final Widget content;
   final bool noHeader;
   const MobileLayout({
     Key? key,
+    required this.content,
     required this.currentMenu,
     this.noHeader = true,
   }) : super(key: key);
@@ -24,7 +26,7 @@ class MobileLayout extends StatelessWidget {
           child: Column(
             children: [
               noHeader ? AppSizeBox.zero : const AppHeader(),
-              const AppContent(),
+              AppContent(child: content),
               AppNavigation(
                 currentMenu: currentMenu,
               ),

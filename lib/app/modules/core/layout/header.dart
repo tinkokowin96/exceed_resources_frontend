@@ -56,6 +56,32 @@ class AppHeader extends StatelessWidget {
                       ),
                       AppSizeBox.sm,
                       Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const Icon(
+                            Icons.schedule,
+                            size: AppSize.icoSm,
+                          ),
+                          AppSizeBox.xs,
+                          Text(
+                            '0:45:30',
+                            style: AppTheme.text(
+                              context: context,
+                              size: EText.h5,
+                            ),
+                          ),
+                          AppSizeBox.sm,
+                          Text(
+                            '(Monthly Sync Meeting)',
+                            style: AppTheme.text(
+                              context: context,
+                              size: EText.h5,
+                            ),
+                          ),
+                        ],
+                      ),
+                      AppSizeBox.sm,
+                      Row(
                         children: [
                           RichText(
                             text: TextSpan(
@@ -110,24 +136,6 @@ class AppHeader extends StatelessWidget {
                               ],
                             ),
                           ),
-                        ],
-                      ),
-                      AppSizeBox.sm,
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          const Icon(
-                            Icons.schedule,
-                            size: AppSize.icoSm,
-                          ),
-                          AppSizeBox.sm,
-                          Text(
-                            '0:45:30',
-                            style: AppTheme.text(
-                              context: context,
-                              size: EText.h5,
-                            ),
-                          )
                         ],
                       ),
                     ],

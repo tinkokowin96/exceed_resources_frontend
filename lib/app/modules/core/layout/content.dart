@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
 class AppContent extends StatelessWidget {
-  const AppContent({Key? key}) : super(key: key);
+  final Widget child;
+  const AppContent({
+    Key? key,
+    required this.child,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-        child: Container(
-      color: Colors.greenAccent,
-    ));
+    return Expanded(child: child);
   }
 }

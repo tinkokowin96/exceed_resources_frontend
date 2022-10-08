@@ -1,9 +1,12 @@
+import 'package:exceed_resources_frontend/app/modules/core/models/menu_section.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
+import 'package:exceed_resources_frontend/app/modules/core/extensions/enum_entension.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/route_manager.dart';
 
 class AppNavigation extends StatefulWidget {
   final EMenu currentMenu;
@@ -50,43 +53,24 @@ class _AppNavigationState extends State<AppNavigation> with SingleTickerProvider
     _controller.dispose();
   }
 
-  void pressedMenu(Map menu) {
+  void pressedMenu(MenuSection menu) {
     _controller.reverse().then(
           (value) => setState(
             () {
-              _currentMenuState = menu['type'];
+              _currentMenuState = menu.type;
               _controller.forward();
+              Get.toNamed('/${menu.type.getName()}');
             },
           ),
         );
   }
 
-  final List menuSections = [
-    {
-      "text": "Home",
-      "icon": "assets/icons/home.svg",
-      "type": EMenu.home,
-    },
-    {
-      "text": "Task",
-      "icon": "assets/icons/task.svg",
-      "type": EMenu.task,
-    },
-    {
-      "text": "Chat",
-      "icon": "assets/icons/chat.svg",
-      "type": EMenu.chat,
-    },
-    {
-      "text": "Report",
-      "icon": "assets/icons/report.svg",
-      "type": EMenu.report,
-    },
-    {
-      "text": "Misc",
-      "icon": "assets/icons/misc.svg",
-      "type": EMenu.misc,
-    },
+  final List<MenuSection> menuSections = const [
+    MenuSection(text: "Home", icon: "assets/icons/home.svg", type: EMenu.home),
+    MenuSection(text: "Task", icon: "assets/icons/task.svg", type: EMenu.task),
+    MenuSection(text: "Chat", icon: "assets/icons/chat.svg", type: EMenu.chat),
+    MenuSection(text: "Report", icon: "assets/icons/report.svg", type: EMenu.report),
+    MenuSection(text: "Misc", icon: "assets/icons/misc.svg", type: EMenu.misc),
   ];
 
   @override
@@ -107,7 +91,7 @@ class _AppNavigationState extends State<AppNavigation> with SingleTickerProvider
                       return MenuItemText(
                         key: UniqueKey(),
                         menu: menu,
-                        isCurrentMenu: menu['type'] == _currentMenuState,
+                        isCurrentMenu: menu.type == _currentMenuState,
                         opacity: _opacityAnimation.value,
                       );
                     },
@@ -118,7 +102,7 @@ class _AppNavigationState extends State<AppNavigation> with SingleTickerProvider
                       return MenuItemIcon(
                         key: UniqueKey(),
                         menu: menu,
-                        isCurrentMenu: menu['type'] == _currentMenuState,
+                        isCurrentMenu: menu.type == _currentMenuState,
                         transform: _transformAnimation.value,
                         onPressed: pressedMenu,
                       );
@@ -135,7 +119,7 @@ class _AppNavigationState extends State<AppNavigation> with SingleTickerProvider
 }
 
 class MenuItemText extends StatelessWidget {
-  final Map menu;
+  final MenuSection menu;
   final bool isCurrentMenu;
   final double opacity;
 
@@ -153,7 +137,7 @@ class MenuItemText extends StatelessWidget {
       child: Opacity(
         opacity: isCurrentMenu ? opacity : 0.0,
         child: Text(
-          menu["text"],
+          menu.text,
           style: AppTheme.text(
             context: context,
             size: EText.h5,
@@ -166,10 +150,10 @@ class MenuItemText extends StatelessWidget {
 }
 
 class MenuItemIcon extends StatelessWidget {
-  final Map menu;
+  final MenuSection menu;
   final bool isCurrentMenu;
   final double transform;
-  final Function(Map menu) onPressed;
+  final Function(MenuSection menu) onPressed;
 
   const MenuItemIcon({
     Key? key,
@@ -190,7 +174,7 @@ class MenuItemIcon extends StatelessWidget {
           child: Center(
             child: SizedBox(
               child: SvgPicture.asset(
-                menu['icon'],
+                menu.icon,
                 width: AppSize.icoMd,
                 color: isCurrentMenu
                     ? AppTheme.of(context).color.primary
