@@ -60,23 +60,23 @@ class AppThemeData extends ChangeNotifier {
 
   static AppThemeData lightTheme = AppThemeData(
     color: const AppColor(
-      primary: Color(0xFFE38B29),
-      idle: Color(0xFF565656),
-      container: Color(0xFFFAFAFA),
-      error: Color(0xFFD1512D),
-      background: Colors.white,
-      disabled: Color(0xFF898989),
-    ),
+        primary: Color(0xFFE38B29),
+        idle: Color(0xFF565656),
+        container: Color(0xFFFAFAFA),
+        error: Color(0xFFD1512D),
+        background: Colors.white,
+        disabled: Color(0xFF898989),
+        antiFlashWhite: Color(0xFFF3F3F3)),
   );
 
   static AppThemeData darkTheme = AppThemeData(
     color: const AppColor(
-      primary: Color(0xFFE38B29),
-      idle: Color(0xFF565656),
-      container: Color(0xFFFAFAFA),
-      error: Color(0xFFD1512D),
-      background: Color(0xFF202123),
-      disabled: Color(0xFF898989),
-    ),
+        primary: Color(0xFFE38B29),
+        idle: Color(0xFF565656),
+        container: Color(0xFFFAFAFA),
+        error: Color(0xFFD1512D),
+        background: Color(0xFF202123),
+        disabled: Color(0xFF898989),
+        antiFlashWhite: Color(0xFFF3F3F3)),
   );
 }

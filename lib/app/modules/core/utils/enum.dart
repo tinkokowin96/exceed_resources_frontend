@@ -1,4 +1,4 @@
-enum ETextType { body, error, primary, white, subtitle }
+enum ETextType { body, error, primary, white, subtitle, disabled }
 
 enum EText { h1, h2, h3, h4, h5 }
 

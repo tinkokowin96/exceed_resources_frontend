@@ -7,6 +7,7 @@ class AppColor {
   final Color error;
   final Color background;
   final Color disabled;
+  final Color antiFlashWhite;
 
   const AppColor({
     required this.primary,
@@ -15,5 +16,6 @@ class AppColor {
     required this.error,
     required this.background,
     required this.disabled,
+    required this.antiFlashWhite,
   });
 }

@@ -13,8 +13,8 @@ class AppSize {
   static const icoLg = 50.0;
 
   //button
-  static const btnWMd = 100.0;
-  static const btnHMd = 60.0;
+  static const btnWMd = 110.0;
+  static const btnHMd = 50.0;
 
   //popup
 
@@ -28,4 +28,6 @@ class AppSize {
 
   //miscs
   static const fH = 50.0; //footer
+  static const aiiw = 16.0; //active indicator item's wrapper
+  static const aiii = 8.0; //active indicator item's indicator
 }

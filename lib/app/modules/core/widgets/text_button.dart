@@ -23,10 +23,10 @@ class AppTextButton extends StatelessWidget {
     late final TextStyle textStyle;
     switch (size) {
       case ESize.sm:
-        textStyle = AppTheme.text(size: EText.h4, context: context, type: style);
+        textStyle = AppTheme.text(context: context, type: style, weight: FontWeight.w500);
         break;
       case ESize.md:
-        textStyle = AppTheme.text(context: context, type: style);
+        textStyle = AppTheme.text(context: context, type: style, size: EText.h2, weight: FontWeight.w500);
         break;
       default:
     }

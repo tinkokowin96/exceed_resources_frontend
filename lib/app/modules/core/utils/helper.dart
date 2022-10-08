@@ -22,8 +22,10 @@ Color getTextColor(ETextType type, BuildContext context) {
     case ETextType.subtitle:
       return AppTheme.of(context).color.idle;
 
+    case ETextType.disabled:
+      return AppTheme.of(context).color.disabled;
+
     default:
-      //   return Colors.black;
       return AppTheme.of(context).isDarkTheme ? Colors.white : Colors.black;
   }
 }
