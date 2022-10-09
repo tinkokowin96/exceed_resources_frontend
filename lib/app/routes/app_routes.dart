@@ -2,6 +2,7 @@ part of 'app_pages.dart';
 
 abstract class AppRoutes {
   AppRoutes._();
+  static const permissionDenied = '/permissionDenied';
   static const home = '/home';
   static const task = '/task';
   static const chat = '/chat';

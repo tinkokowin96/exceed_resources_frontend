@@ -4,16 +4,20 @@ import 'package:exceed_resources_frontend/app/modules/core/theme/sizebox.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:flutter/material.dart';
 
-class FieldInput extends StatelessWidget {
+class AppFieldInput extends StatelessWidget {
   final TextEditingController controller;
-  final String? title;
+  final String? label;
+  final String? placeholder;
   final double? width;
+  final ESize? size;
 
-  const FieldInput({
+  const AppFieldInput({
     Key? key,
     required this.controller,
+    this.placeholder,
     this.width,
-    this.title,
+    this.label,
+    this.size,
   }) : super(key: key);
 
   @override
@@ -22,24 +26,32 @@ class FieldInput extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            title != null
-                ? Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(title!, style: AppTheme.text(size: EText.h4, context: context)),
-                      AppSizeBox.sm,
-                    ],
+            label != null
+                ? Padding(
+                    padding: const EdgeInsets.only(right: AppSize.sm),
+                    child: Text(
+                      label!,
+                      style: AppTheme.text(
+                        context: context,
+                        weight: FontWeight.w500,
+                        size: size == ESize.sm ? EText.h4 : EText.h3,
+                      ),
+                    ),
                   )
                 : AppSizeBox.zero,
             Expanded(
               child: TextField(
-                style: AppTheme.text(size: EText.h4, context: context),
+                style: AppTheme.text(
+                  context: context,
+                  size: size == ESize.sm ? EText.h4 : EText.h3,
+                ),
                 controller: controller,
                 decoration: InputDecoration(
                   contentPadding: const EdgeInsets.only(bottom: AppSize.sm),
                   isCollapsed: true,
-                  border: const UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black),
+                  hintText: placeholder,
+                  border: UnderlineInputBorder(
+                    borderSide: BorderSide(color: AppTheme.of(context).color.idle),
                   ),
                   focusedBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: AppTheme.of(context).color.primary),

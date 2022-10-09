@@ -2,11 +2,14 @@ import 'package:exceed_resources_frontend/app/modules/core/lang/locale.dart';
 import 'package:exceed_resources_frontend/app/modules/core/lang/translation.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/config.dart';
+import 'package:exceed_resources_frontend/app/modules/core/utils/request_location_permission.dart';
 import 'package:exceed_resources_frontend/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  locationPermission = await requestLocationPermission();
   runApp(const MyApp());
 }
 

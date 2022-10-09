@@ -1,5 +1,6 @@
+import 'package:exceed_resources_frontend/app/modules/core/utils/config.dart';
+import 'package:exceed_resources_frontend/app/modules/core/views/error_view.dart';
 import 'package:get/get.dart';
-
 import '../modules/chat/bindings/chat_binding.dart';
 import '../modules/chat/views/chat_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -16,9 +17,10 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const initial = AppRoutes.home;
+  static final initial = locationPermission.granted ? AppRoutes.home : AppRoutes.permissionDenied;
 
   static final routes = [
+    ...errorRoutes,
     GetPage(
       name: AppRoutes.home,
       page: () => const HomeView(),
@@ -46,6 +48,16 @@ class AppPages {
       name: AppRoutes.misc,
       page: () => const MiscView(),
       binding: MiscBinding(),
+      transitionDuration: Duration.zero,
+    ),
+  ];
+
+  static final List<GetPage<dynamic>> errorRoutes = [
+    GetPage(
+      name: AppRoutes.permissionDenied,
+      page: () => ErrorView(
+        error: locationPermission.message!,
+      ),
       transitionDuration: Duration.zero,
     ),
   ];

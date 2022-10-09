@@ -20,14 +20,18 @@ class AppSize {
 
   //field
   static fWMd(BuildContext context) => App.width(context) * 0.8;
+  static const fWSmA = 110.0; //absolute width
   static const fHMd = 74.0;
 
   //dropdown
   static const dH = 120.0;
   static const dL = 100.0; //dropdown loading
 
+  //active indicator
+  static const aiiw = 16.0; //wrapper
+  static const aiii = 8.0; //indicator
+
   //miscs
   static const fH = 50.0; //footer
-  static const aiiw = 16.0; //active indicator item's wrapper
-  static const aiii = 8.0; //active indicator item's indicator
+  static const tCMW = 200.0; //table column max width
 }

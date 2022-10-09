@@ -75,40 +75,45 @@ class _AppNavigationState extends State<AppNavigation> with SingleTickerProvider
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: AppSize.fH,
-      child: Row(
-        children: List.from(
-          menuSections.map(
-            (menu) => SizedBox(
-              width: (App.width(context) - 2 * AppSize.md) / menuSections.length,
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  AnimatedBuilder(
-                    animation: _controller,
-                    builder: (BuildContext context, _) {
-                      return MenuItemText(
-                        key: UniqueKey(),
-                        menu: menu,
-                        isCurrentMenu: menu.type == _currentMenuState,
-                        opacity: _opacityAnimation.value,
-                      );
-                    },
+    return Padding(
+      padding: const EdgeInsets.only(bottom: AppSize.sm),
+      child: SizedBox(
+        height: AppSize.fH,
+        child: Row(
+          children: List.from(
+            menuSections.map(
+              (menu) => GestureDetector(
+                onTap: () => pressedMenu(menu),
+                child: SizedBox(
+                  width: (App.width(context) - 2 * AppSize.md) / menuSections.length,
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      AnimatedBuilder(
+                        animation: _controller,
+                        builder: (BuildContext context, _) {
+                          return MenuItemText(
+                            key: UniqueKey(),
+                            menu: menu,
+                            isCurrentMenu: menu.type == _currentMenuState,
+                            opacity: _opacityAnimation.value,
+                          );
+                        },
+                      ),
+                      AnimatedBuilder(
+                        animation: _controller,
+                        builder: (BuildContext context, _) {
+                          return MenuItemIcon(
+                            key: UniqueKey(),
+                            menu: menu,
+                            isCurrentMenu: menu.type == _currentMenuState,
+                            transform: _transformAnimation.value,
+                          );
+                        },
+                      ),
+                    ],
                   ),
-                  AnimatedBuilder(
-                    animation: _controller,
-                    builder: (BuildContext context, _) {
-                      return MenuItemIcon(
-                        key: UniqueKey(),
-                        menu: menu,
-                        isCurrentMenu: menu.type == _currentMenuState,
-                        transform: _transformAnimation.value,
-                        onPressed: pressedMenu,
-                      );
-                    },
-                  ),
-                ],
+                ),
               ),
             ),
           ),
@@ -153,14 +158,12 @@ class MenuItemIcon extends StatelessWidget {
   final MenuSection menu;
   final bool isCurrentMenu;
   final double transform;
-  final Function(MenuSection menu) onPressed;
 
   const MenuItemIcon({
     Key? key,
     required this.menu,
     required this.isCurrentMenu,
     required this.transform,
-    required this.onPressed,
   }) : super(key: key);
 
   @override
@@ -169,17 +172,14 @@ class MenuItemIcon extends StatelessWidget {
       bottom: isCurrentMenu ? null : 0,
       child: Transform(
         transform: Matrix4.identity()..translate(0.0, isCurrentMenu ? transform : 0.0, 0.0),
-        child: GestureDetector(
-          onTap: () => onPressed(menu),
-          child: Center(
-            child: SizedBox(
-              child: SvgPicture.asset(
-                menu.icon,
-                width: AppSize.icoMd,
-                color: isCurrentMenu
-                    ? AppTheme.of(context).color.primary
-                    : AppTheme.of(context).color.primary.withOpacity(0.5),
-              ),
+        child: Center(
+          child: SizedBox(
+            child: SvgPicture.asset(
+              menu.icon,
+              width: AppSize.icoMd,
+              color: isCurrentMenu
+                  ? AppTheme.of(context).color.primary
+                  : AppTheme.of(context).color.primary.withOpacity(0.5),
             ),
           ),
         ),

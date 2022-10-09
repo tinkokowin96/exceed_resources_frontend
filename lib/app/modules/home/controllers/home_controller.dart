@@ -1,23 +1,16 @@
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class HomeController extends GetxController {
-  //TODO: Implement HomeController
+  final currentLocation = Rxn<LatLng>();
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+  Future<void> checkInClickHandler() async {
+    await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best).then(
+      (position) {
+        currentLocation.value = LatLng(position.altitude, position.latitude);
+        currentLocation.refresh();
+      },
+    );
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }
