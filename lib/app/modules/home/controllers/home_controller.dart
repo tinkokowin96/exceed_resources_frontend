@@ -8,7 +8,7 @@ class HomeController extends GetxController {
   Future<void> checkInClickHandler() async {
     await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best).then(
       (position) {
-        currentLocation.value = LatLng(position.altitude, position.latitude);
+        currentLocation.value = LatLng(position.latitude, position.longitude);
         currentLocation.refresh();
       },
     );

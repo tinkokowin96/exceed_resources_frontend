@@ -23,7 +23,7 @@ class HomeView extends GetView<HomeController> {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: AppSize.md),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 AppButton(onPressed: controller.checkInClickHandler, text: 'Check In'),
                 AppButton(onPressed: () {}, text: 'Check Out', disabled: true),
@@ -31,45 +31,51 @@ class HomeView extends GetView<HomeController> {
               ],
             ),
           ),
-          LayoutBuilder(builder: (context, carConstraint) {
-            return Obx(
-              () => controller.currentLocation.value == null
-                  ? AppCarousel(
-                      data: [
-                        Container(
+          LayoutBuilder(
+            builder: (context, carConstraint) {
+              return Obx(
+                () {
+                  return controller.currentLocation.value == null
+                      ? AppCarousel(
+                          data: [
+                            Container(
+                              width: carConstraint.maxWidth,
+                              color: Colors.greenAccent,
+                            ),
+                            Container(
+                              width: carConstraint.maxWidth,
+                              color: Colors.orangeAccent,
+                            ),
+                            Container(
+                              width: carConstraint.maxWidth,
+                              color: Colors.blueAccent,
+                            ),
+                          ],
                           width: carConstraint.maxWidth,
-                          color: Colors.greenAccent,
-                        ),
-                        Container(
+                          height: AppSize.heH,
+                        )
+                      : SizedBox(
                           width: carConstraint.maxWidth,
-                          color: Colors.orangeAccent,
-                        ),
-                        Container(
-                          width: carConstraint.maxWidth,
-                          color: Colors.blueAccent,
-                        ),
-                      ],
-                      width: carConstraint.maxWidth,
-                      height: 220,
-                    )
-                  : SizedBox(
-                      width: carConstraint.maxWidth,
-                      height: 220,
-                      child: GoogleMap(
-                        initialCameraPosition: CameraPosition(
-                          target: controller.currentLocation.value!,
-                          zoom: 16.2,
-                        ),
-                        markers: {
-                          Marker(
-                            markerId: const MarkerId('current_loc'),
-                            position: controller.currentLocation.value!,
-                          )
-                        },
-                      ),
-                    ),
-            );
-          }),
+                          height: AppSize.heH,
+                          child: GoogleMap(
+                            initialCameraPosition: CameraPosition(
+                              target: controller.currentLocation.value!,
+                              zoom: 16,
+                            ),
+                            myLocationButtonEnabled: false,
+                            zoomControlsEnabled: false,
+                            markers: {
+                              Marker(
+                                markerId: const MarkerId('current_loc'),
+                                position: controller.currentLocation.value!,
+                              )
+                            },
+                          ),
+                        );
+                },
+              );
+            },
+          ),
           Expanded(
             child: LayoutBuilder(
               builder: (context, tasConstraint) => Column(

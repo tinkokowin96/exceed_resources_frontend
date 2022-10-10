@@ -1,8 +1,8 @@
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
-import 'package:exceed_resources_frontend/app/modules/core/theme/sizebox.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/field_input.dart';
+import 'package:exceed_resources_frontend/app/modules/core/widgets/table.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/text_button.dart';
 import 'package:exceed_resources_frontend/app/modules/task/controllers/task_table_controller.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +14,10 @@ class TaskTable extends GetView<TaskTableController> {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(TaskTableController());
+    Get.create(
+      () => TaskTableController(context: context),
+      permanent: false,
+    );
     return Expanded(
       child: LayoutBuilder(builder: (context, constraint) {
         return DecoratedBox(
@@ -28,6 +31,7 @@ class TaskTable extends GetView<TaskTableController> {
             padding: const EdgeInsets.symmetric(horizontal: AppSize.sm),
             child: SizedBox(
               width: constraint.maxWidth,
+              height: constraint.maxHeight,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -58,6 +62,12 @@ class TaskTable extends GetView<TaskTableController> {
                       ),
                     ],
                   ),
+                  Expanded(
+                    child: AppTable(
+                      columns: controller.columns,
+                      rows: controller.rows,
+                    ),
+                  )
                 ],
               ),
             ),

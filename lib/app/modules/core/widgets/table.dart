@@ -1,5 +1,6 @@
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
+import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:flutter/material.dart';
 
 class AppTable extends StatelessWidget {
@@ -21,7 +22,11 @@ class AppTable extends StatelessWidget {
             child: Center(
               child: Text(
                 field,
-                style: AppTheme.text(context: context, weight: FontWeight.w500),
+                style: AppTheme.text(
+                  context: context,
+                  weight: FontWeight.w500,
+                  type: ETextType.white,
+                ),
               ),
             ),
           ),
@@ -46,7 +51,7 @@ class AppTable extends StatelessWidget {
                 ),
                 headingRowColor: MaterialStateProperty.resolveWith(
                   (Set states) {
-                    return AppTheme.of(context).color.primary.withOpacity(0.7);
+                    return AppTheme.of(context).color.primary.withOpacity(0.5);
                   },
                 ),
                 columns: tColumns,
