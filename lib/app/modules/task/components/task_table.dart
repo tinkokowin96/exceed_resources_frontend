@@ -14,66 +14,65 @@ class TaskTable extends GetView<TaskTableController> {
 
   @override
   Widget build(BuildContext context) {
-    Get.create(
-      () => TaskTableController(context: context),
-      permanent: false,
-    );
+    Get.put(TaskTableController());
     return Expanded(
-      child: LayoutBuilder(builder: (context, constraint) {
-        return DecoratedBox(
-          decoration: BoxDecoration(
-            color: AppTheme.of(context).color.container,
-            borderRadius: BorderRadius.circular(
-              AppSize.xs,
-            ),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: AppSize.sm),
-            child: SizedBox(
-              width: constraint.maxWidth,
-              height: constraint.maxHeight,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      AppFieldInput(
-                        controller: controller.statusController,
-                        width: AppSize.fWSmA,
-                        label: 'Status',
-                        size: ESize.sm,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          AppTextButton(
-                            onPressed: () {},
-                            disabled: true,
-                            text: 'Due Date',
-                            size: ESize.sm,
-                          ),
-                          AppTextButton(
-                            onPressed: () {},
-                            text: 'Assignment Date',
-                            size: ESize.sm,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  Expanded(
-                    child: AppTable(
-                      columns: controller.columns,
-                      rows: controller.rows,
-                    ),
-                  )
-                ],
+      child: LayoutBuilder(
+        builder: (context, constraint) {
+          return DecoratedBox(
+            decoration: BoxDecoration(
+              color: AppTheme.of(context).color.container,
+              borderRadius: BorderRadius.circular(
+                AppSize.xs,
               ),
             ),
-          ),
-        );
-      }),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: AppSize.sm),
+              child: SizedBox(
+                width: constraint.maxWidth,
+                height: constraint.maxHeight,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        AppFieldInput(
+                          controller: controller.statusController,
+                          width: AppSize.fWSmA,
+                          label: 'Status',
+                          size: ESize.sm,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            AppTextButton(
+                              onPressed: () {},
+                              disabled: true,
+                              text: 'Due Date',
+                              size: ESize.sm,
+                            ),
+                            AppTextButton(
+                              onPressed: () {},
+                              text: 'Assignment Date',
+                              size: ESize.sm,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    Expanded(
+                      child: AppTable(
+                        columns: controller.columns,
+                        rows: controller.getRows(context),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          );
+        },
+      ),
     );
   }
 }

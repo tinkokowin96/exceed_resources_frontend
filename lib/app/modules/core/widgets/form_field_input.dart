@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class FormFieldInput extends StatelessWidget {
-  final String hintText;
+  final String? hintText;
   final double width;
   final bool readOnly;
   final bool obscureText;
@@ -24,8 +24,8 @@ class FormFieldInput extends StatelessWidget {
 
   const FormFieldInput({
     Key? key,
-    required this.hintText,
     required this.width,
+    this.hintText,
     this.controller,
     this.value,
     this.obscureText = false,

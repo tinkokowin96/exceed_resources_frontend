@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'package:exceed_resources_frontend/app/modules/core/models/action_text.dart';
+import 'package:exceed_resources_frontend/app/modules/core/models/dropdown_option.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/miscs.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
@@ -12,31 +14,37 @@ import 'package:lottie/lottie.dart';
 
 class AppDropdown extends StatefulWidget {
   final double width;
-  final String hint;
   final bool loading;
-  final List<Map> items;
-  final TextEditingController dropdownController;
-  final Function({Map? value, bool? checked}) onChanged;
+  final List<DropdownOption> items;
+  final Function({DropdownOption? value, bool? checked}) onChanged;
   final bool isMulti;
   final bool searchable;
   final bool noPadding;
+  final TextEditingController dropdownController;
+  final EText textSize;
+  final String? hint;
+  final DropdownOption? defaultOption;
+  final Widget? customSelector;
   final Function(String value)? onSearched;
-  final List<Map>? initialItems;
+  final List<DropdownOption>? initialItems;
   final List<String>? selected;
-  final Map? addNew;
+  final ActionText? addNew;
   final Function(String? value)? validator;
   final String? title;
   const AppDropdown({
     Key? key,
     required this.width,
-    required this.hint,
     required this.loading,
     required this.items,
     required this.onChanged,
     required this.dropdownController,
+    this.hint,
     this.searchable = false,
     this.noPadding = false,
     this.isMulti = false,
+    this.textSize = EText.h3,
+    this.defaultOption,
+    this.customSelector,
     this.onSearched,
     this.selected,
     this.initialItems,
@@ -54,10 +62,11 @@ class _AppDropdownState extends State<AppDropdown> {
   late final FocusNode _focusNode;
   late final OverlayState? _overlay;
   late final OverlayEntry? _entry;
-  String searchedText = '';
-  Map? _selectedDropdown;
-  Timer? _timer;
   late final List<String> _selected = widget.selected ?? [];
+  String searchedText = '';
+  bool _showDropdown = false;
+  DropdownOption? _selectedDropdown;
+  Timer? _timer;
 
   void debounceSearch(String search) {
     searchedText = search;
@@ -70,20 +79,20 @@ class _AppDropdownState extends State<AppDropdown> {
     );
   }
 
-  void selectDropdownHandler({required Map value, bool? checked}) {
+  void selectDropdownHandler({required DropdownOption value, bool? checked}) {
     setState(() {
       if (checked == null) {
-        widget.dropdownController.text = value['text'];
+        widget.dropdownController.text = value.text;
         _selectedDropdown = value;
         _focusNode.unfocus();
       } else {
         if (checked) {
-          final isAlreadySelected = _selected.contains(value['text']);
+          final isAlreadySelected = _selected.contains(value.text);
           if (!isAlreadySelected) {
-            _selected.add(value['text']);
+            _selected.add(value.text);
           }
         } else {
-          _selected.removeWhere((item) => item == value['text']);
+          _selected.removeWhere((item) => item == value.text);
         }
 
         widget.dropdownController.text = '';
@@ -127,6 +136,7 @@ class _AppDropdownState extends State<AppDropdown> {
               width: widget.width,
               focus: _focusNode,
               addNew: widget.addNew,
+              textSize: widget.textSize,
               selectDropdownHandler: selectDropdownHandler,
               isMulti: widget.isMulti,
               selected: _selected,
@@ -138,6 +148,7 @@ class _AppDropdownState extends State<AppDropdown> {
   }
 
   void showDropdown(bool show) {
+    _showDropdown = show;
     if (show) {
       _overlay!.insert(_entry!);
       setState(() {
@@ -157,6 +168,9 @@ class _AppDropdownState extends State<AppDropdown> {
   @override
   void initState() {
     _focusNode = FocusNode();
+    if (widget.defaultOption != null) {
+      widget.dropdownController.text = widget.defaultOption!.text;
+    }
     WidgetsBinding.instance.addPostFrameCallback((_) => executeAfterBuild(false));
     super.initState();
   }
@@ -191,17 +205,22 @@ class _AppDropdownState extends State<AppDropdown> {
   Widget build(BuildContext context) {
     return CompositedTransformTarget(
       link: _layerLink,
-      child: FormFieldInput(
-        title: widget.title,
-        controller: widget.dropdownController,
-        width: widget.width,
-        hintText: widget.hint,
-        focusNode: _focusNode,
-        readOnly: !widget.searchable,
-        onChanged: (value) => {debounceSearch(value)},
-        onFocusChange: (hasFocus) => showDropdown(hasFocus),
-        validator: (String? value) => widget.validator != null ? widget.validator!(value) : null,
-      ),
+      child: widget.customSelector != null
+          ? GestureDetector(
+              onTap: () => showDropdown(!_showDropdown),
+              child: widget.customSelector,
+            )
+          : FormFieldInput(
+              title: widget.title,
+              controller: widget.dropdownController,
+              width: widget.width,
+              hintText: widget.hint,
+              focusNode: _focusNode,
+              readOnly: !widget.searchable,
+              onChanged: (value) => {debounceSearch(value)},
+              onFocusChange: (hasFocus) => showDropdown(hasFocus),
+              validator: (String? value) => widget.validator != null ? widget.validator!(value) : null,
+            ),
     );
   }
 }
@@ -209,13 +228,14 @@ class _AppDropdownState extends State<AppDropdown> {
 class DopdownItems extends StatelessWidget {
   final bool loading;
   final double width;
-  final List<Map> items;
+  final List<DropdownOption> items;
   final FocusNode focus;
-  final Function({required Map value, bool? checked}) selectDropdownHandler;
+  final Function({required DropdownOption value, bool? checked}) selectDropdownHandler;
   final bool noPadding;
   final bool isMulti;
+  final EText textSize;
   final List<String> selected;
-  final Map? addNew;
+  final ActionText? addNew;
 
   const DopdownItems({
     Key? key,
@@ -227,6 +247,7 @@ class DopdownItems extends StatelessWidget {
     required this.noPadding,
     required this.isMulti,
     required this.selected,
+    required this.textSize,
     this.addNew,
   }) : super(key: key);
 
@@ -242,7 +263,7 @@ class DopdownItems extends StatelessWidget {
           padding: const EdgeInsets.all(AppSize.sm),
           child: SingleChildScrollView(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              //   crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 loading
                     ? SizedBox(
@@ -278,20 +299,20 @@ class DopdownItems extends StatelessWidget {
                                             vertical: noPadding ? 0 : AppSize.sm,
                                           ),
                                           alignment:
-                                              items[index]['type'] != null ? Alignment.centerLeft : Alignment.center,
+                                              items[index].category != null ? Alignment.centerLeft : Alignment.center,
                                           child: Text(
-                                            items[index]['text'],
-                                            style: AppTheme.text(context: context),
+                                            items[index].text,
+                                            style: AppTheme.text(context: context, size: textSize),
                                           ),
                                         ),
                                       ),
-                                      items[index]['type'] != null
+                                      items[index].category != null
                                           ? ColoredBox(
                                               color: AppTheme.of(context).color.primary.withOpacity(0.2),
                                               child: Text(
-                                                items[index]['type'],
+                                                items[index].category!,
                                                 style: AppTheme.text(
-                                                    size: EText.h4, context: context, type: ETextType.primary),
+                                                    size: textSize, context: context, type: ETextType.primary),
                                               ),
                                             )
                                           : AppSizeBox.zero,
@@ -306,14 +327,14 @@ class DopdownItems extends StatelessWidget {
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        items[index]['text'],
-                                        style: AppTheme.text(context: context),
+                                        items[index].text,
+                                        style: AppTheme.text(context: context, size: textSize),
                                       ),
                                       Checkbox(
                                         fillColor: MaterialStateProperty.all<Color>(
                                           AppTheme.of(context).color.primary,
                                         ),
-                                        value: selected.contains(items[index]['text']),
+                                        value: selected.contains(items[index].text),
                                         onChanged: (value) => selectDropdownHandler(
                                           value: items[index],
                                           checked: value,
@@ -333,10 +354,10 @@ class DopdownItems extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             AppTextButton(
-                              text: addNew!['text'],
+                              text: addNew!.text,
                               onPressed: () {
                                 focus.unfocus();
-                                addNew!['onPressed']();
+                                addNew!.action();
                               },
                             )
                           ],

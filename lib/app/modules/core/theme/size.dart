@@ -24,12 +24,16 @@ class AppSize {
   static const fHMd = 74.0;
 
   //dropdown
-  static const dH = 120.0;
+  static const dH = 100.0;
   static const dL = 100.0; //dropdown loading
 
   //active indicator
   static const aiiw = 16.0; //wrapper
   static const aiii = 8.0; //indicator
+
+  //status
+  static const staW = 70.0;
+  static const staH = 24.0;
 
   //miscs
   static const fH = 50.0; //footer height
