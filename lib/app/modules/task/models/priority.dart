@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'status.freezed.dart';
-part 'status.g.dart';
+part 'priority.freezed.dart';
+part 'priority.g.dart';
 
 @freezed
-class Status with _$Status {
-  factory Status({
+class Priority with _$Priority {
+  factory Priority({
     required String id,
     required String text,
     @JsonKey(
@@ -15,9 +15,9 @@ class Status with _$Status {
       toJson: colorToJson,
     )
         required Color color,
-  }) = _Status;
+  }) = _Priority;
 
-  factory Status.fromJson(Map<String, dynamic> json) => _$StatusFromJson(json);
+  factory Priority.fromJson(Map<String, dynamic> json) => _$PriorityFromJson(json);
 }
 
 Color colorFromJson(String json) => Color(int.parse(json));

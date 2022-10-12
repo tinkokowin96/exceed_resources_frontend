@@ -13,7 +13,7 @@ class ReportView extends GetView<ReportController> {
     return AppLayout(
       currentMenu: EMenu.report,
       content: Container(color: Colors.purpleAccent),
-      noHeader: false,
+      header: false,
     );
   }
 }

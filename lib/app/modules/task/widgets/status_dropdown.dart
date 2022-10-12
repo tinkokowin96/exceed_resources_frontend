@@ -1,12 +1,10 @@
-import 'package:exceed_resources_frontend/app/modules/core/models/dropdown_option.dart';
+import 'package:exceed_resources_frontend/app/modules/core/models/option.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/dropdown/dropdown.dart';
-import 'package:exceed_resources_frontend/app/modules/task/controllers/status_dropdown_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/status.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class StatusDropdown extends StatefulWidget {
   final List<Status> status;
@@ -22,9 +20,9 @@ class StatusDropdown extends StatefulWidget {
 }
 
 class _StatusDropdownState extends State<StatusDropdown> {
-  late final List<DropdownOption> _dropdownOptions = List.from(
+  late final List<Option> _dropdownOptions = List.from(
     widget.status.map(
-      (each) => DropdownOption(
+      (each) => Option(
         text: each.text,
         value: each,
       ),
@@ -32,7 +30,7 @@ class _StatusDropdownState extends State<StatusDropdown> {
   );
   late Status _currentStatus = widget.initialStatus;
 
-  void onDropdownChange(DropdownOption? option) {
+  void onDropdownChange(Option? option) {
     if (option != null) {
       setState(() {
         _currentStatus = option.value;

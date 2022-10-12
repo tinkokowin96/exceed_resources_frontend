@@ -1,20 +1,20 @@
 import 'dart:async';
 import 'package:exceed_resources_frontend/app/modules/core/models/action_text.dart';
-import 'package:exceed_resources_frontend/app/modules/core/models/dropdown_option.dart';
+import 'package:exceed_resources_frontend/app/modules/core/models/option.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/dropdown/dropdown.dart';
 import 'package:flutter/material.dart';
 
 class AppSearchableDropdown extends StatefulWidget {
   final double width;
-  final Function({DropdownOption? value, bool? checked}) onChanged;
+  final Function({Option? value, bool? checked}) onChanged;
   final String hint;
   final EAsyncDropdown type;
   final TextEditingController dropdownController;
   final bool isMulti;
   final ActionText? addNew;
   final String? title;
-  final List<DropdownOption>? initialItems;
+  final List<Option>? initialItems;
   final Function(String? value)? validator;
 
   const AppSearchableDropdown({
@@ -38,7 +38,7 @@ class AppSearchableDropdown extends StatefulWidget {
 class _AppSearchableDropdownState extends State<AppSearchableDropdown> {
   bool _isLoading = false;
   Timer? _timer;
-  List<DropdownOption> _items = [];
+  List<Option> _items = [];
 
   @override
   void initState() {
@@ -68,9 +68,9 @@ class _AppSearchableDropdownState extends State<AppSearchableDropdown> {
           () {
             _isLoading = false;
             _items = const [
-              DropdownOption(text: 'one', value: '1'),
-              DropdownOption(text: 'two', value: '2'),
-              DropdownOption(text: 'three', value: '3'),
+              Option(text: 'one', value: '1'),
+              Option(text: 'two', value: '2'),
+              Option(text: 'three', value: '3'),
             ];
           },
         );

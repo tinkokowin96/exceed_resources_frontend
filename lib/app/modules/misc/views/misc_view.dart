@@ -13,7 +13,7 @@ class MiscView extends GetView<MiscController> {
     return AppLayout(
       currentMenu: EMenu.misc,
       content: Container(color: Colors.orangeAccent),
-      noHeader: false,
+      header: false,
     );
   }
 }

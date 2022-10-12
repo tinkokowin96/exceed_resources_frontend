@@ -9,12 +9,12 @@ import 'package:flutter/material.dart';
 class MobileLayout extends StatelessWidget {
   final EMenu currentMenu;
   final Widget content;
-  final bool noHeader;
+  final bool header;
   const MobileLayout({
     Key? key,
     required this.content,
     required this.currentMenu,
-    this.noHeader = true,
+    this.header = false,
   }) : super(key: key);
 
   @override
@@ -25,7 +25,7 @@ class MobileLayout extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: AppSize.md),
           child: Column(
             children: [
-              noHeader ? AppSizeBox.zero : const AppHeader(),
+              header ? const AppHeader() : AppSizeBox.zero,
               AppContent(child: content),
               AppNavigation(
                 currentMenu: currentMenu,

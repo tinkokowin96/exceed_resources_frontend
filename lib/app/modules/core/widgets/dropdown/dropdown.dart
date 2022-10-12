@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:exceed_resources_frontend/app/modules/core/models/action_text.dart';
-import 'package:exceed_resources_frontend/app/modules/core/models/dropdown_option.dart';
+import 'package:exceed_resources_frontend/app/modules/core/models/option.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/miscs.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
@@ -15,18 +15,18 @@ import 'package:lottie/lottie.dart';
 class AppDropdown extends StatefulWidget {
   final double width;
   final bool loading;
-  final List<DropdownOption> items;
-  final Function({DropdownOption? value, bool? checked}) onChanged;
+  final List<Option> items;
+  final Function({Option? value, bool? checked}) onChanged;
   final bool isMulti;
   final bool searchable;
   final bool noPadding;
   final TextEditingController dropdownController;
   final EText textSize;
   final String? hint;
-  final DropdownOption? defaultOption;
+  final Option? defaultOption;
   final Widget? customSelector;
   final Function(String value)? onSearched;
-  final List<DropdownOption>? initialItems;
+  final List<Option>? initialItems;
   final List<String>? selected;
   final ActionText? addNew;
   final Function(String? value)? validator;
@@ -65,7 +65,7 @@ class _AppDropdownState extends State<AppDropdown> {
   late final List<String> _selected = widget.selected ?? [];
   String searchedText = '';
   bool _showDropdown = false;
-  DropdownOption? _selectedDropdown;
+  Option? _selectedDropdown;
   Timer? _timer;
 
   void debounceSearch(String search) {
@@ -79,7 +79,7 @@ class _AppDropdownState extends State<AppDropdown> {
     );
   }
 
-  void selectDropdownHandler({required DropdownOption value, bool? checked}) {
+  void selectDropdownHandler({required Option value, bool? checked}) {
     setState(() {
       if (checked == null) {
         widget.dropdownController.text = value.text;
@@ -228,9 +228,9 @@ class _AppDropdownState extends State<AppDropdown> {
 class DopdownItems extends StatelessWidget {
   final bool loading;
   final double width;
-  final List<DropdownOption> items;
+  final List<Option> items;
   final FocusNode focus;
-  final Function({required DropdownOption value, bool? checked}) selectDropdownHandler;
+  final Function({required Option value, bool? checked}) selectDropdownHandler;
   final bool noPadding;
   final bool isMulti;
   final EText textSize;

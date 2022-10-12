@@ -1,3 +1,4 @@
+import 'package:exceed_resources_frontend/app/modules/core/models/option.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/status.dart';
@@ -8,12 +9,27 @@ import 'package:get/get.dart';
 class TaskTableController extends GetxController {
   late final BuildContext context;
   final statusController = TextEditingController();
+  final detailPage = false.obs;
+  final activePage = 0.obs;
+  final paginatedOptions = List.generate(
+    5,
+    (index) => Option(
+      text: (index + 1).toString(),
+      value: index,
+    ),
+  ).obs;
   final columns = ['Task Name', 'Due Date', 'Project'];
   final status = [
-    Status(text: 'progress', color: const Color(0xFFE78567)),
-    Status(text: 'deploy', color: const Color(0xFFE8CE8E)),
-    Status(text: 'complete', color: const Color(0xFF85B270)),
+    Status(id: '1', text: 'progress', color: const Color(0xFFE78567)),
+    Status(id: '2', text: 'deploy', color: const Color(0xFFE8CE8E)),
+    Status(id: '3', text: 'complete', color: const Color(0xFF85B270)),
   ];
+
+  void updatePage(int page) {
+    final ser = status[0].toJson();
+    activePage.value = page;
+    activePage.refresh();
+  }
 
   List<List<Widget>> getRows(BuildContext context) {
     return [

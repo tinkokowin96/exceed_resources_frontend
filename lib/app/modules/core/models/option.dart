@@ -1,9 +1,9 @@
-class DropdownOption {
+class Option {
   final String text;
   final dynamic value;
   final String? category;
 
-  const DropdownOption({
+  const Option({
     required this.text,
     required this.value,
     this.category,

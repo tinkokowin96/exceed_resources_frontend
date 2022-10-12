@@ -13,7 +13,7 @@ class ChatView extends GetView<ChatController> {
     return AppLayout(
       currentMenu: EMenu.chat,
       content: Container(color: Colors.blueGrey),
-      noHeader: false,
+      header: false,
     );
   }
 }

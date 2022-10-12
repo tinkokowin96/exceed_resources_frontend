@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 
 class AppLayout extends StatelessWidget {
   final EMenu currentMenu;
-  final bool noHeader;
+  final bool header;
   final Widget content;
   const AppLayout({
     Key? key,
-    this.noHeader = true,
+    this.header = true,
     required this.currentMenu,
     required this.content,
   }) : super(key: key);
@@ -27,7 +27,7 @@ class AppLayout extends StatelessWidget {
     return MobileLayout(
       currentMenu: currentMenu,
       content: content,
-      noHeader: noHeader,
+      header: header,
     );
   }
 }

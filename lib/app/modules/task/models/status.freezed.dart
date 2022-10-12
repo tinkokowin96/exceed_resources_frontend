@@ -20,6 +20,7 @@ Status _$StatusFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Status {
+  String get id => throw _privateConstructorUsedError;
   String get text => throw _privateConstructorUsedError;
   @JsonKey(name: 'color', fromJson: colorFromJson, toJson: colorToJson)
   Color get color => throw _privateConstructorUsedError;
@@ -34,7 +35,8 @@ abstract class $StatusCopyWith<$Res> {
   factory $StatusCopyWith(Status value, $Res Function(Status) then) =
       _$StatusCopyWithImpl<$Res>;
   $Res call(
-      {String text,
+      {String id,
+      String text,
       @JsonKey(name: 'color', fromJson: colorFromJson, toJson: colorToJson)
           Color color});
 }
@@ -49,10 +51,15 @@ class _$StatusCopyWithImpl<$Res> implements $StatusCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? text = freezed,
     Object? color = freezed,
   }) {
     return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       text: text == freezed
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -71,7 +78,8 @@ abstract class _$$_StatusCopyWith<$Res> implements $StatusCopyWith<$Res> {
       __$$_StatusCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String text,
+      {String id,
+      String text,
       @JsonKey(name: 'color', fromJson: colorFromJson, toJson: colorToJson)
           Color color});
 }
@@ -87,10 +95,15 @@ class __$$_StatusCopyWithImpl<$Res> extends _$StatusCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? text = freezed,
     Object? color = freezed,
   }) {
     return _then(_$_Status(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       text: text == freezed
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -107,13 +120,16 @@ class __$$_StatusCopyWithImpl<$Res> extends _$StatusCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Status implements _Status {
   _$_Status(
-      {required this.text,
+      {required this.id,
+      required this.text,
       @JsonKey(name: 'color', fromJson: colorFromJson, toJson: colorToJson)
           required this.color});
 
   factory _$_Status.fromJson(Map<String, dynamic> json) =>
       _$$_StatusFromJson(json);
 
+  @override
+  final String id;
   @override
   final String text;
   @override
@@ -122,7 +138,7 @@ class _$_Status implements _Status {
 
   @override
   String toString() {
-    return 'Status(text: $text, color: $color)';
+    return 'Status(id: $id, text: $text, color: $color)';
   }
 
   @override
@@ -130,6 +146,7 @@ class _$_Status implements _Status {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Status &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.text, text) &&
             const DeepCollectionEquality().equals(other.color, color));
   }
@@ -138,6 +155,7 @@ class _$_Status implements _Status {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(text),
       const DeepCollectionEquality().hash(color));
 
@@ -156,12 +174,15 @@ class _$_Status implements _Status {
 
 abstract class _Status implements Status {
   factory _Status(
-      {required final String text,
+      {required final String id,
+      required final String text,
       @JsonKey(name: 'color', fromJson: colorFromJson, toJson: colorToJson)
           required final Color color}) = _$_Status;
 
   factory _Status.fromJson(Map<String, dynamic> json) = _$_Status.fromJson;
 
+  @override
+  String get id;
   @override
   String get text;
   @override
