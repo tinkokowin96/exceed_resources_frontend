@@ -3,37 +3,42 @@ import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/dropdown/dropdown.dart';
+import 'package:exceed_resources_frontend/app/modules/task/models/priority.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/status.dart';
 import 'package:flutter/material.dart';
 
-class StatusDropdown extends StatefulWidget {
-  final List<Status> status;
-  final Status initialStatus;
-  const StatusDropdown({
+class StatusPriorityDropdown extends StatefulWidget {
+  final List<Status>? status;
+  final List<Priority>? priority;
+  final Status? initialStatus;
+  final Priority? initialPriority;
+  const StatusPriorityDropdown({
     Key? key,
-    required this.status,
-    required this.initialStatus,
+    this.status,
+    this.priority,
+    this.initialStatus,
+    this.initialPriority,
   }) : super(key: key);
 
   @override
-  State<StatusDropdown> createState() => _StatusDropdownState();
+  State<StatusPriorityDropdown> createState() => _StatusPriorityDropdownState();
 }
 
-class _StatusDropdownState extends State<StatusDropdown> {
+class _StatusPriorityDropdownState extends State<StatusPriorityDropdown> {
   late final List<Option> _dropdownOptions = List.from(
-    widget.status.map(
+    (widget.status ?? widget.priority!).map(
       (each) => Option(
-        text: each.text,
+        text: (each as dynamic).name,
         value: each,
       ),
     ),
   );
-  late Status _currentStatus = widget.initialStatus;
+  late dynamic _currentOption = widget.initialStatus ?? widget.initialPriority!;
 
   void onDropdownChange(Option? option) {
     if (option != null) {
       setState(() {
-        _currentStatus = option.value;
+        _currentOption = option.value;
       });
     }
   }
@@ -48,7 +53,7 @@ class _StatusDropdownState extends State<StatusDropdown> {
       dropdownController: TextEditingController(),
       customSelector: DecoratedBox(
         decoration: BoxDecoration(
-          color: _currentStatus.color,
+          color: _currentOption.color,
           borderRadius: BorderRadius.circular(AppSize.lg),
         ),
         child: SizedBox(
@@ -56,7 +61,7 @@ class _StatusDropdownState extends State<StatusDropdown> {
           height: AppSize.staH,
           child: Center(
             child: Text(
-              _currentStatus.text,
+              _currentOption.name,
               style: AppTheme.text(
                 context: context,
                 size: EText.h5,

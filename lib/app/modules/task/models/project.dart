@@ -11,8 +11,8 @@ class Project with _$Project {
   factory Project({
     required String id,
     required String name,
-    required List<Quotation> quotations,
-    required List<Collaborator> collaborators,
+    @Default([]) List<Quotation> quotations,
+    @Default([]) List<Collaborator> collaborators,
     @Default([]) List<String> resources,
     String? remark,
   }) = _Project;

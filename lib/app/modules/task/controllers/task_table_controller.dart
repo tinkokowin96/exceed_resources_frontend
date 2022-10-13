@@ -1,8 +1,13 @@
 import 'package:exceed_resources_frontend/app/modules/core/models/option.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
+import 'package:exceed_resources_frontend/app/modules/core/utils/helper.dart';
+import 'package:exceed_resources_frontend/app/modules/task/models/comment.dart';
+import 'package:exceed_resources_frontend/app/modules/task/models/priority.dart';
+import 'package:exceed_resources_frontend/app/modules/task/models/project.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/status.dart';
-import 'package:exceed_resources_frontend/app/modules/task/widgets/status_dropdown.dart';
+import 'package:exceed_resources_frontend/app/modules/task/models/task.dart';
+import 'package:exceed_resources_frontend/app/modules/task/widgets/status_priority_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -18,129 +23,133 @@ class TaskTableController extends GetxController {
       value: index,
     ),
   ).obs;
-  final columns = ['Task Name', 'Due Date', 'Project'];
+  final columns = ['Priority', 'Task Name', 'Due Date', 'Project'];
   final status = [
-    Status(id: '1', text: 'progress', color: const Color(0xFFE78567)),
-    Status(id: '2', text: 'deploy', color: const Color(0xFFE8CE8E)),
-    Status(id: '3', text: 'complete', color: const Color(0xFF85B270)),
+    Status(id: 'sta_1', name: 'progress', color: const Color(0xFFE78567)),
+    Status(id: 'sta_2', name: 'deploy', color: const Color(0xFFE8CE8E)),
+    Status(id: 'sta_3', name: 'complete', color: const Color(0xFF85B270)),
+  ];
+  final priority = [
+    Priority(id: 'pri_1', name: 'High', color: const Color.fromARGB(255, 240, 137, 99)),
+    Priority(id: 'pri_2', name: 'Medium', color: const Color.fromARGB(255, 226, 190, 99)),
+    Priority(id: 'pri_3', name: 'Low', color: const Color.fromARGB(255, 125, 129, 106)),
+  ];
+  final projects = [
+    Project(
+      id: 'pro_1',
+      name: 'Myanmar Eastern Project',
+    ),
+    Project(
+      id: 'pro_2',
+      name: 'Super Boy Project',
+    ),
+  ];
+  late final tasks = [
+    Task(
+      id: 'tas_1',
+      title: 'Change hero image',
+      description:
+          'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of',
+      status: status[0],
+      priority: priority[0],
+      project: projects[0],
+      assignedDate: DateTime.utc(2022, 10, 22),
+      dueDate: DateTime.utc(2022, 10, 25),
+      comments: [
+        Comment(id: 'cmt_1', userId: 'usr_1', text: 'Can I get help from <men>usr_3:Htoo Aung</men>', numLike: 2),
+        Comment(id: 'cmt_2', userId: 'usr_2', text: 'Yes sure.', numLike: 0),
+        Comment(id: 'cmt_3', userId: 'usr_3', text: 'Shall we call ?', numLike: 2),
+      ],
+    ),
+    Task(
+      id: 'tas_2',
+      title: 'Clear padding in the home page and follow the instructions',
+      description:
+          'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of',
+      status: status[0],
+      priority: priority[1],
+      project: projects[0],
+      assignedDate: DateTime.utc(2022, 10, 22),
+      dueDate: DateTime.utc(2022, 10, 25),
+      comments: [
+        Comment(id: 'cmt_1', userId: 'usr_1', text: 'Can I get help from <men>usr_3:Htoo Aung</men>', numLike: 2),
+        Comment(id: 'cmt_2', userId: 'usr_2', text: 'Yes sure.', numLike: 0),
+      ],
+    ),
+    Task(
+      id: 'tas_3',
+      title: 'There are many variations of passages of Lorem Ipsum available',
+      description:
+          'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of',
+      status: status[1],
+      priority: priority[2],
+      project: projects[0],
+      assignedDate: DateTime.utc(2022, 10, 22),
+      dueDate: DateTime.utc(2022, 10, 25),
+      comments: [
+        Comment(id: 'cmt_1', userId: 'usr_1', text: 'Can I get help from <men>usr_3:Htoo Aung</men>', numLike: 2),
+        Comment(id: 'cmt_2', userId: 'usr_2', text: 'Yes sure.', numLike: 0),
+        Comment(id: 'cmt_3', userId: 'usr_3', text: 'Shall we call ?', numLike: 2),
+      ],
+    ),
+    Task(
+      id: 'tas_4',
+      title: 'There are many variations of passages of Lorem Ipsum available',
+      description:
+          'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of',
+      status: status[2],
+      priority: priority[0],
+      project: projects[0],
+      assignedDate: DateTime.utc(2022, 10, 22),
+      dueDate: DateTime.utc(2022, 10, 25),
+      comments: [
+        Comment(id: 'cmt_1', userId: 'usr_1', text: 'Can I get help from <men>usr_3:Htoo Aung</men>', numLike: 2),
+        Comment(id: 'cmt_2', userId: 'usr_2', text: 'Yes sure.', numLike: 0),
+        Comment(id: 'cmt_3', userId: 'usr_3', text: 'Shall we call ?', numLike: 2),
+      ],
+    ),
   ];
 
   void updatePage(int page) {
-    final ser = status[0].toJson();
     activePage.value = page;
     activePage.refresh();
   }
 
   List<List<Widget>> getRows(BuildContext context) {
-    return [
-      [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Flexible(
-              child: Text(
-                'Change hero image',
-                overflow: TextOverflow.ellipsis,
-                style: AppTheme.text(context: context, size: EText.h4),
+    return List.from(
+      tasks.map(
+        (each) => [
+          StatusPriorityDropdown(
+            priority: priority,
+            initialPriority: each.priority,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Flexible(
+                child: Text(
+                  each.title,
+                  overflow: TextOverflow.ellipsis,
+                  style: AppTheme.text(context: context, size: EText.h4),
+                ),
               ),
-            ),
-            StatusDropdown(
-              status: status,
-              initialStatus: status[0],
-            )
-          ],
-        ),
-        Text(
-          'Mon, 7/12/22',
-          style: AppTheme.text(context: context, size: EText.h4),
-        ),
-        Text(
-          'Myanamar Eastern Project',
-          overflow: TextOverflow.ellipsis,
-          style: AppTheme.text(context: context, size: EText.h4),
-        ),
-      ],
-      [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Flexible(
-              child: Text(
-                'Clear padding in the home page and follow the instructions',
-                overflow: TextOverflow.ellipsis,
-                style: AppTheme.text(context: context, size: EText.h4),
-              ),
-            ),
-            StatusDropdown(
-              status: status,
-              initialStatus: status[0],
-            ),
-          ],
-        ),
-        Text(
-          'Mon, 7/12/22',
-          style: AppTheme.text(context: context, size: EText.h4),
-        ),
-        Text(
-          'Super Boys Project',
-          overflow: TextOverflow.ellipsis,
-          style: AppTheme.text(context: context, size: EText.h4),
-        ),
-      ],
-      [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Flexible(
-              child: Text(
-                "Lorem Ipsum has been the industry's standard",
-                overflow: TextOverflow.ellipsis,
-                style: AppTheme.text(context: context, size: EText.h4),
-              ),
-            ),
-            StatusDropdown(
-              status: status,
-              initialStatus: status[1],
-            ),
-          ],
-        ),
-        Text(
-          'Mon, 7/12/22',
-          style: AppTheme.text(context: context, size: EText.h4),
-        ),
-        Text(
-          'Myanamar Eastern Project',
-          overflow: TextOverflow.ellipsis,
-          style: AppTheme.text(context: context, size: EText.h4),
-        ),
-      ],
-      [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Flexible(
-              child: Text(
-                'There are many variations of passages of Lorem Ipsum available',
-                overflow: TextOverflow.ellipsis,
-                style: AppTheme.text(context: context, size: EText.h4),
-              ),
-            ),
-            StatusDropdown(
-              status: status,
-              initialStatus: status[2],
-            ),
-          ],
-        ),
-        Text(
-          'Mon, 7/12/22',
-          style: AppTheme.text(context: context, size: EText.h4),
-        ),
-        Text(
-          'Myanamar Eastern Project',
-          overflow: TextOverflow.ellipsis,
-          style: AppTheme.text(context: context, size: EText.h4),
-        ),
-      ],
-    ];
+              StatusPriorityDropdown(
+                status: status,
+                initialStatus: each.status,
+              )
+            ],
+          ),
+          Text(
+            formatDate(date: each.dueDate),
+            style: AppTheme.text(context: context, size: EText.h4),
+          ),
+          Text(
+            each.project.name,
+            overflow: TextOverflow.ellipsis,
+            style: AppTheme.text(context: context, size: EText.h4),
+          ),
+        ],
+      ),
+    );
   }
 }

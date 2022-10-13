@@ -8,12 +8,12 @@ part of 'status.dart';
 
 _$_Status _$$_StatusFromJson(Map<String, dynamic> json) => _$_Status(
       id: json['id'] as String,
-      text: json['text'] as String,
+      name: json['name'] as String,
       color: colorFromJson(json['color'] as String),
     );
 
 Map<String, dynamic> _$$_StatusToJson(_$_Status instance) => <String, dynamic>{
       'id': instance.id,
-      'text': instance.text,
+      'name': instance.name,
       'color': colorToJson(instance.color),
     };

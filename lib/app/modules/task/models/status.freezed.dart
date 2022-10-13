@@ -21,7 +21,7 @@ Status _$StatusFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Status {
   String get id => throw _privateConstructorUsedError;
-  String get text => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
   @JsonKey(name: 'color', fromJson: colorFromJson, toJson: colorToJson)
   Color get color => throw _privateConstructorUsedError;
 
@@ -36,7 +36,7 @@ abstract class $StatusCopyWith<$Res> {
       _$StatusCopyWithImpl<$Res>;
   $Res call(
       {String id,
-      String text,
+      String name,
       @JsonKey(name: 'color', fromJson: colorFromJson, toJson: colorToJson)
           Color color});
 }
@@ -52,7 +52,7 @@ class _$StatusCopyWithImpl<$Res> implements $StatusCopyWith<$Res> {
   @override
   $Res call({
     Object? id = freezed,
-    Object? text = freezed,
+    Object? name = freezed,
     Object? color = freezed,
   }) {
     return _then(_value.copyWith(
@@ -60,9 +60,9 @@ class _$StatusCopyWithImpl<$Res> implements $StatusCopyWith<$Res> {
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      text: text == freezed
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
       color: color == freezed
           ? _value.color
@@ -79,7 +79,7 @@ abstract class _$$_StatusCopyWith<$Res> implements $StatusCopyWith<$Res> {
   @override
   $Res call(
       {String id,
-      String text,
+      String name,
       @JsonKey(name: 'color', fromJson: colorFromJson, toJson: colorToJson)
           Color color});
 }
@@ -96,7 +96,7 @@ class __$$_StatusCopyWithImpl<$Res> extends _$StatusCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? text = freezed,
+    Object? name = freezed,
     Object? color = freezed,
   }) {
     return _then(_$_Status(
@@ -104,9 +104,9 @@ class __$$_StatusCopyWithImpl<$Res> extends _$StatusCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      text: text == freezed
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
       color: color == freezed
           ? _value.color
@@ -121,7 +121,7 @@ class __$$_StatusCopyWithImpl<$Res> extends _$StatusCopyWithImpl<$Res>
 class _$_Status implements _Status {
   _$_Status(
       {required this.id,
-      required this.text,
+      required this.name,
       @JsonKey(name: 'color', fromJson: colorFromJson, toJson: colorToJson)
           required this.color});
 
@@ -131,14 +131,14 @@ class _$_Status implements _Status {
   @override
   final String id;
   @override
-  final String text;
+  final String name;
   @override
   @JsonKey(name: 'color', fromJson: colorFromJson, toJson: colorToJson)
   final Color color;
 
   @override
   String toString() {
-    return 'Status(id: $id, text: $text, color: $color)';
+    return 'Status(id: $id, name: $name, color: $color)';
   }
 
   @override
@@ -147,7 +147,7 @@ class _$_Status implements _Status {
         (other.runtimeType == runtimeType &&
             other is _$_Status &&
             const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.text, text) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.color, color));
   }
 
@@ -156,7 +156,7 @@ class _$_Status implements _Status {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(text),
+      const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(color));
 
   @JsonKey(ignore: true)
@@ -175,7 +175,7 @@ class _$_Status implements _Status {
 abstract class _Status implements Status {
   factory _Status(
       {required final String id,
-      required final String text,
+      required final String name,
       @JsonKey(name: 'color', fromJson: colorFromJson, toJson: colorToJson)
           required final Color color}) = _$_Status;
 
@@ -184,7 +184,7 @@ abstract class _Status implements Status {
   @override
   String get id;
   @override
-  String get text;
+  String get name;
   @override
   @JsonKey(name: 'color', fromJson: colorFromJson, toJson: colorToJson)
   Color get color;

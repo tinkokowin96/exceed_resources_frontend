@@ -8,7 +8,7 @@ part 'status.g.dart';
 class Status with _$Status {
   factory Status({
     required String id,
-    required String text,
+    required String name,
     @JsonKey(
       name: 'color',
       fromJson: colorFromJson,

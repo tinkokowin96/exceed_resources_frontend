@@ -8,7 +8,7 @@ part 'priority.g.dart';
 class Priority with _$Priority {
   factory Priority({
     required String id,
-    required String text,
+    required String name,
     @JsonKey(
       name: 'color',
       fromJson: colorFromJson,
