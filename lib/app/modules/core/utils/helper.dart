@@ -26,7 +26,7 @@ Color getTextColor(ETextType type, BuildContext context) {
       return AppTheme.of(context).color.disabled;
 
     default:
-      return AppTheme.of(context).isDarkTheme ? Colors.white : Colors.black;
+      return AppTheme.of(context).color.body;
   }
 }
 
@@ -54,16 +54,16 @@ double getFontSize(EText size, BuildContext context) {
               : 18;
     case EText.h5:
       return device == EDevice.mobile
-          ? 12
-          : device == EDevice.tablet
-              ? 14
-              : 16;
-    default:
-      return device == EDevice.mobile
           ? 10
           : device == EDevice.tablet
               ? 12
               : 14;
+    default:
+      return device == EDevice.mobile
+          ? 12
+          : device == EDevice.tablet
+              ? 14
+              : 16;
   }
 }
 

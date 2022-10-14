@@ -15,6 +15,8 @@ class HomeView extends GetView<HomeController> {
   const HomeView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    Get.put(HomeController(context: context));
+
     return AppLayout(
       header: true,
       currentMenu: EMenu.home,
@@ -90,7 +92,7 @@ class HomeView extends GetView<HomeController> {
                       AppTextButton(text: 'See All', onPressed: () {}),
                     ],
                   ),
-                  const TaskTable(paginator: false)
+                  Obx(() => TaskTable(rows: controller.taskRows.value))
                 ],
               ),
             ),

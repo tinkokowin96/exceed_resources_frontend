@@ -44,14 +44,14 @@ class AppTable extends StatelessWidget {
               ),
               child: DataTable(
                 border: const TableBorder(
-                  verticalInside: BorderSide(color: Colors.white),
+                  verticalInside: BorderSide(width: 0.5, color: Colors.white),
                   borderRadius: BorderRadius.all(
                     Radius.circular(AppSize.sm),
                   ),
                 ),
                 headingRowColor: MaterialStateProperty.resolveWith(
                   (Set states) {
-                    return AppTheme.of(context).color.primary.withOpacity(0.5);
+                    return AppTheme.of(context).color.primary.withOpacity(0.7);
                   },
                 ),
                 columns: tColumns,
@@ -66,7 +66,7 @@ class AppTable extends StatelessWidget {
                             (field) => DataCell(
                               ConstrainedBox(
                                 constraints: const BoxConstraints(
-                                  maxWidth: AppSize.tCMW,
+                                  maxWidth: AppSize.tcMW,
                                 ),
                                 child: Center(child: field),
                               ),
@@ -75,10 +75,10 @@ class AppTable extends StatelessWidget {
                         ],
                         color: index % 2 == 0
                             ? MaterialStateProperty.resolveWith(
-                                (Set states) => Colors.white,
+                                (Set states) => AppTheme.of(context).color.primary.withOpacity(0.3),
                               )
                             : MaterialStateProperty.resolveWith(
-                                (Set states) => AppTheme.of(context).color.primary.withOpacity(0.2),
+                                (Set states) => AppTheme.of(context).color.primary.withOpacity(0.1),
                               ),
                       );
                     },

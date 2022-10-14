@@ -9,7 +9,6 @@ import '../modules/misc/bindings/misc_binding.dart';
 import '../modules/misc/views/misc_view.dart';
 import '../modules/report/bindings/report_binding.dart';
 import '../modules/report/views/report_view.dart';
-import '../modules/task/bindings/task_binding.dart';
 import '../modules/task/views/task_view.dart';
 
 part 'app_routes.dart';
@@ -30,7 +29,6 @@ class AppPages {
     GetPage(
       name: AppRoutes.task,
       page: () => const TaskView(),
-      binding: TaskBinding(),
       transitionDuration: Duration.zero,
     ),
     GetPage(

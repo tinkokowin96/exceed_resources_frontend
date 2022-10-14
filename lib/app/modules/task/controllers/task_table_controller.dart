@@ -3,6 +3,7 @@ import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/helper.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/comment.dart';
+import 'package:exceed_resources_frontend/app/modules/task/models/phase.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/priority.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/project.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/status.dart';
@@ -12,17 +13,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class TaskTableController extends GetxController {
-  late final BuildContext context;
   final statusController = TextEditingController();
   final detailPage = false.obs;
-  final activePage = 0.obs;
-  final paginatedOptions = List.generate(
-    5,
-    (index) => Option(
-      text: (index + 1).toString(),
-      value: index,
-    ),
-  ).obs;
+
   final columns = ['Priority', 'Task Name', 'Due Date', 'Project'];
   final status = [
     Status(id: 'sta_1', name: 'progress', color: const Color(0xFFE78567)),
@@ -38,10 +31,20 @@ class TaskTableController extends GetxController {
     Project(
       id: 'pro_1',
       name: 'Myanmar Eastern Project',
+      phase: Phase(id: 'pha_1', name: 'Phase - 1'),
+      numNewTask: 12,
+      numProgressTask: 48,
+      numCompletedTask: 60,
+      numOverdueTask: 5,
     ),
     Project(
       id: 'pro_2',
       name: 'Super Boy Project',
+      phase: Phase(id: 'pha_2', name: 'Phase - 2'),
+      numNewTask: 6,
+      numProgressTask: 32,
+      numCompletedTask: 48,
+      numOverdueTask: 3,
     ),
   ];
   late final tasks = [
@@ -68,7 +71,7 @@ class TaskTableController extends GetxController {
           'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of',
       status: status[0],
       priority: priority[1],
-      project: projects[0],
+      project: projects[1],
       assignedDate: DateTime.utc(2022, 10, 22),
       dueDate: DateTime.utc(2022, 10, 25),
       comments: [
@@ -94,12 +97,12 @@ class TaskTableController extends GetxController {
     ),
     Task(
       id: 'tas_4',
-      title: 'There are many variations of passages of Lorem Ipsum available',
+      title: 'Refactor and optimize map page to boost user experience',
       description:
           'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of',
       status: status[2],
       priority: priority[0],
-      project: projects[0],
+      project: projects[1],
       assignedDate: DateTime.utc(2022, 10, 22),
       dueDate: DateTime.utc(2022, 10, 25),
       comments: [
@@ -110,46 +113,49 @@ class TaskTableController extends GetxController {
     ),
   ];
 
-  void updatePage(int page) {
-    activePage.value = page;
-    activePage.refresh();
-  }
+  List<List<Widget>> getRows({
+    required BuildContext context,
+    Project? activeProject,
+  }) {
+    final List<List<Widget>> rowList = [];
 
-  List<List<Widget>> getRows(BuildContext context) {
-    return List.from(
-      tasks.map(
-        (each) => [
-          StatusPriorityDropdown(
-            priority: priority,
-            initialPriority: each.priority,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Flexible(
-                child: Text(
-                  each.title,
-                  overflow: TextOverflow.ellipsis,
-                  style: AppTheme.text(context: context, size: EText.h4),
+    for (var each in tasks) {
+      if (activeProject == null || activeProject.id == each.project.id) {
+        rowList.add(
+          [
+            StatusPriorityDropdown(
+              priority: priority,
+              initialPriority: each.priority,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Flexible(
+                  child: Text(
+                    each.title,
+                    overflow: TextOverflow.ellipsis,
+                    style: AppTheme.text(context: context, size: EText.h4),
+                  ),
                 ),
-              ),
-              StatusPriorityDropdown(
-                status: status,
-                initialStatus: each.status,
-              )
-            ],
-          ),
-          Text(
-            formatDate(date: each.dueDate),
-            style: AppTheme.text(context: context, size: EText.h4),
-          ),
-          Text(
-            each.project.name,
-            overflow: TextOverflow.ellipsis,
-            style: AppTheme.text(context: context, size: EText.h4),
-          ),
-        ],
-      ),
-    );
+                StatusPriorityDropdown(
+                  status: status,
+                  initialStatus: each.status,
+                )
+              ],
+            ),
+            Text(
+              formatDate(date: each.dueDate),
+              style: AppTheme.text(context: context, size: EText.h4),
+            ),
+            Text(
+              each.project.name,
+              overflow: TextOverflow.ellipsis,
+              style: AppTheme.text(context: context, size: EText.h4),
+            ),
+          ],
+        );
+      }
+    }
+    return rowList;
   }
 }

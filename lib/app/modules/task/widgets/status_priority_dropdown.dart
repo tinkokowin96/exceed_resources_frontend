@@ -34,6 +34,11 @@ class _StatusPriorityDropdownState extends State<StatusPriorityDropdown> {
     ),
   );
   late dynamic _currentOption = widget.initialStatus ?? widget.initialPriority!;
+//   void initState() {
+//     print('send.. ${widget.initialStatus} - ${widget.initialPriority}');
+//     _currentOption = widget.initialStatus ?? widget.initialPriority!;
+//     super.initState();
+//   }
 
   void onDropdownChange(Option? option) {
     if (option != null) {
@@ -41,6 +46,14 @@ class _StatusPriorityDropdownState extends State<StatusPriorityDropdown> {
         _currentOption = option.value;
       });
     }
+  }
+
+  @override
+  void didUpdateWidget(StatusPriorityDropdown oldWidget) {
+    setState(() {
+      _currentOption = widget.initialStatus ?? widget.initialPriority!;
+    });
+    super.didUpdateWidget(oldWidget);
   }
 
   @override

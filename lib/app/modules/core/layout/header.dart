@@ -79,13 +79,14 @@ class AppHeader extends StatelessWidget {
                   text: '5/12',
                   style: AppTheme.text(
                     context: context,
-                    size: EText.h5,
                     type: ETextType.primary,
                   ),
                   children: [
                     TextSpan(
                       text: '  L',
-                      style: AppTheme.text(context: context, size: EText.h5),
+                      style: AppTheme.text(
+                        context: context,
+                      ),
                     )
                   ],
                 ),
@@ -96,13 +97,13 @@ class AppHeader extends StatelessWidget {
                   text: '24',
                   style: AppTheme.text(
                     context: context,
-                    size: EText.h5,
+                    size: EText.h4,
                     type: ETextType.primary,
                   ),
                   children: [
                     TextSpan(
                       text: ' T',
-                      style: AppTheme.text(context: context, size: EText.h5),
+                      style: AppTheme.text(context: context, size: EText.h4),
                     )
                   ],
                 ),
@@ -113,7 +114,7 @@ class AppHeader extends StatelessWidget {
                   text: '12',
                   style: AppTheme.text(
                     context: context,
-                    size: EText.h5,
+                    size: EText.h4,
                     type: ETextType.error,
                   ),
                   children: [
@@ -121,7 +122,7 @@ class AppHeader extends StatelessWidget {
                       text: '  O',
                       style: AppTheme.text(
                         context: context,
-                        size: EText.h5,
+                        size: EText.h4,
                       ),
                     )
                   ],
@@ -142,7 +143,7 @@ class AppHeader extends StatelessWidget {
                         '0:45:30',
                         style: AppTheme.text(
                           context: context,
-                          size: EText.h5,
+                          size: EText.h4,
                         ),
                       ),
                       AppSizeBox.sm,
@@ -152,7 +153,7 @@ class AppHeader extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                           style: AppTheme.text(
                             context: context,
-                            size: EText.h5,
+                            size: EText.h4,
                           ),
                         ),
                       ),

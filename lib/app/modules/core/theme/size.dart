@@ -37,6 +37,14 @@ class AppSize {
 
   //miscs
   static const fH = 50.0; //footer height
-  static const tCMW = 200.0; //table column max width
+  static const tcMW = 200.0; //table column max width
   static const heH = 220.0; //home event section height
+
+  //project card
+  static const pcW = 200.0;
+  static const pcH = 100.0;
+  static const pcnW = 150.0;
+  static const pcsW = 50.0;
+  static const pccwW = 14.0; //project card circle wrapper width
+  static const pccW = 12.0;
 }

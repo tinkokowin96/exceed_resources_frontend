@@ -1,26 +1,22 @@
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
-import 'package:exceed_resources_frontend/app/modules/core/theme/sizebox.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/field_input.dart';
-import 'package:exceed_resources_frontend/app/modules/core/widgets/paginator.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/table.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/text_button.dart';
 import 'package:exceed_resources_frontend/app/modules/task/controllers/task_table_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:get/instance_manager.dart';
 
 class TaskTable extends GetView<TaskTableController> {
-  final bool paginator;
+  final List<List<Widget>> rows;
   const TaskTable({
     Key? key,
-    this.paginator = true,
+    required this.rows,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Get.put(TaskTableController());
     return Expanded(
       child: LayoutBuilder(
         builder: (context, constraint) {
@@ -75,11 +71,10 @@ class TaskTable extends GetView<TaskTableController> {
                                   ],
                                 ),
                                 Expanded(
-                                  child: AppTable(
-                                    columns: controller.columns,
-                                    rows: controller.getRows(context),
-                                  ),
-                                )
+                                    child: AppTable(
+                                  columns: controller.columns,
+                                  rows: rows,
+                                ))
                               ],
                             ),
                           ),
@@ -88,20 +83,20 @@ class TaskTable extends GetView<TaskTableController> {
                     },
                   ),
                 ),
-                paginator
-                    ? Padding(
-                        padding: const EdgeInsets.symmetric(vertical: AppSize.md),
-                        child: Obx(
-                          () {
-                            return AppPaginator(
-                              paginatedOptions: controller.paginatedOptions,
-                              callback: controller.updatePage,
-                              activePage: controller.activePage.value,
-                            );
-                          },
-                        ),
-                      )
-                    : AppSizeBox.zero,
+                // paginator
+                //     ? Padding(
+                //         padding: const EdgeInsets.symmetric(vertical: AppSize.md),
+                //         child: Obx(
+                //           () {
+                //             return AppPaginator(
+                //               paginatedOptions: controller.paginatedOptions,
+                //               callback: controller.updatePage,
+                //               activePage: controller.activePage.value,
+                //             );
+                //           },
+                //         ),
+                //       )
+                //     : AppSizeBox.zero,
               ],
             ),
           );
