@@ -9,7 +9,9 @@ import 'package:get/get.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  locationPermission = await requestLocationPermission();
+  if (permissions.firstWhere((each) => each.name == 'home').option!["location"]) {
+    locationPermission = await requestLocationPermission();
+  }
   runApp(const MyApp());
 }
 

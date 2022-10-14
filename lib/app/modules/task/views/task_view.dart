@@ -4,9 +4,11 @@ import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/sizebox.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/paginator.dart';
+import 'package:exceed_resources_frontend/app/modules/core/widgets/text_button.dart';
 import 'package:exceed_resources_frontend/app/modules/task/components/task_table.dart';
 import 'package:exceed_resources_frontend/app/modules/task/controllers/task_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/task/widgets/project_card.dart';
+import 'package:exceed_resources_frontend/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -23,16 +25,22 @@ class TaskView extends GetView<TaskController> {
           return Column(
             children: [
               AppSizeBox.md,
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Projects',
-                  style: AppTheme.text(
-                    context: context,
-                    size: EText.h2,
-                    weight: FontWeight.w500,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Projects',
+                    style: AppTheme.text(
+                      context: context,
+                      size: EText.h2,
+                      weight: FontWeight.w500,
+                    ),
                   ),
-                ),
+                  AppTextButton(
+                    text: 'New Project',
+                    onPressed: () => Get.toNamed(AppRoutes.newProject),
+                  )
+                ],
               ),
               Padding(
                 padding: const EdgeInsets.only(top: AppSize.md, bottom: AppSize.lg),

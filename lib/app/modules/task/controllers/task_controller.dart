@@ -1,4 +1,5 @@
 import 'package:exceed_resources_frontend/app/modules/core/models/option.dart';
+import 'package:exceed_resources_frontend/app/modules/core/utils/config.dart';
 import 'package:exceed_resources_frontend/app/modules/task/controllers/task_table_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/project.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +8,7 @@ import 'package:get/get.dart';
 class TaskController extends GetxController {
   final BuildContext context;
   TaskController({required this.context});
+  final permission = permissions.firstWhere((each) => each.name == "task");
   final taskController = Get.find<TaskTableController>();
   final paginatedOptions = List.generate(
     5,
