@@ -7,7 +7,7 @@ import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/sizebox.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/container/hoverable_container.dart';
-import 'package:exceed_resources_frontend/app/modules/core/widgets/form_field_input.dart';
+import 'package:exceed_resources_frontend/app/modules/core/widgets/form_field.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/text_button.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -210,7 +210,7 @@ class _AppDropdownState extends State<AppDropdown> {
               onTap: () => showDropdown(!_showDropdown),
               child: widget.customSelector,
             )
-          : FormFieldInput(
+          : AppFromField(
               title: widget.title,
               controller: widget.dropdownController,
               width: widget.width,

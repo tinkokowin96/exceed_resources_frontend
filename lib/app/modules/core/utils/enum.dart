@@ -11,3 +11,7 @@ enum ERequestMethod { get, post, patch, delete }
 enum ESize { sm, md, lg }
 
 enum EAsyncDropdown { tyep1 }
+
+enum EExpandable { minimize, expand, form }
+
+enum EInputStyle { line, primary }

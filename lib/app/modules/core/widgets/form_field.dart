@@ -1,40 +1,47 @@
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
+import 'package:exceed_resources_frontend/app/modules/core/theme/miscs.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/sizebox.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class FormFieldInput extends StatelessWidget {
-  final String? hintText;
+class AppFromField extends StatelessWidget {
   final double width;
   final bool readOnly;
   final bool obscureText;
+  final EInputStyle style;
   final TextEditingController? controller;
+  final TextStyle? inputStyle;
+  final String? hintText;
+  final TextStyle? hintStyle;
   final String? value;
   final List<TextInputFormatter>? inputFormat;
   final String? suffix;
   final FocusNode? focusNode;
   final String? title;
-  final bool? smallText;
+  final TextStyle? titleStyle;
   final String? Function(String? value)? validator;
   final Function()? onTap;
   final Function(String value)? onChanged;
   final Function(bool hasFocus)? onFocusChange;
 
-  const FormFieldInput({
+  const AppFromField({
     Key? key,
     required this.width,
-    this.hintText,
-    this.controller,
-    this.value,
     this.obscureText = false,
     this.readOnly = false,
+    this.style = EInputStyle.line,
+    this.inputStyle,
+    this.hintText,
+    this.hintStyle,
+    this.controller,
+    this.value,
     this.inputFormat,
     this.focusNode,
     this.suffix,
     this.title,
-    this.smallText,
+    this.titleStyle,
     this.validator,
     this.onTap,
     this.onChanged,
@@ -46,9 +53,7 @@ class FormFieldInput extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        title != null
-            ? Text(title!, style: smallText != null ? AppTheme.text(context: context) : AppTheme.text(context: context))
-            : AppSizeBox.zero,
+        title != null ? Text(title!, style: titleStyle ?? AppTheme.text(context: context)) : AppSizeBox.zero,
         Column(
           children: [
             SizedBox(
@@ -64,30 +69,18 @@ class FormFieldInput extends StatelessWidget {
                   inputFormatters: inputFormat,
                   focusNode: focusNode,
                   onTap: onTap,
-                  style: smallText != null
-                      ? AppTheme.text(size: EText.h4, context: context)
-                      : AppTheme.text(context: context),
-                  decoration: InputDecoration(
+                  style: inputStyle ??
+                      AppTheme.text(
+                        context: context,
+                        type: style == EInputStyle.primary ? ETextType.primary : ETextType.body,
+                        weight: FontWeight.w500,
+                      ),
+                  decoration: AppThemeMiscs.inputStyle(
+                    context: context,
+                    style: style,
                     hintText: hintText,
-                    suffix: suffix != null
-                        ? ColoredBox(
-                            color: AppTheme.of(context).color.primary.withOpacity(0.2),
-                            child: Padding(
-                              padding: const EdgeInsets.all(AppSize.sm),
-                              child: Text(
-                                suffix!,
-                                style: AppTheme.text(size: EText.h4, context: context, type: ETextType.primary),
-                              ),
-                            ),
-                          )
-                        : AppSizeBox.zero,
-                    hintStyle: smallText != null
-                        ? AppTheme.text(size: EText.h4, context: context, type: ETextType.subtitle)
-                        : AppTheme.text(context: context, type: ETextType.subtitle),
-                    border: const UnderlineInputBorder(borderSide: BorderSide(color: Colors.black)),
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: AppTheme.of(context).color.primary),
-                    ),
+                    hintStyle: hintStyle,
+                    suffix: suffix,
                   ),
                   onChanged: onChanged,
                   validator: validator,

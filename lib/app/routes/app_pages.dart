@@ -1,4 +1,5 @@
 import 'package:exceed_resources_frontend/app/modules/core/utils/config.dart';
+import 'package:exceed_resources_frontend/app/modules/core/utils/test.dart';
 import 'package:exceed_resources_frontend/app/modules/core/views/error_view.dart';
 import 'package:exceed_resources_frontend/app/modules/task/bindings/task_binding.dart';
 import 'package:exceed_resources_frontend/app/modules/task/views/new_project.dart';
@@ -25,7 +26,8 @@ class AppPages {
     ...errorRoutes,
     GetPage(
       name: AppRoutes.home,
-      page: () => const HomeView(),
+      page: () => const Test(),
+      //   page: () => const HomeView(),
       binding: HomeBinding(),
       transitionDuration: Duration.zero,
     ),
