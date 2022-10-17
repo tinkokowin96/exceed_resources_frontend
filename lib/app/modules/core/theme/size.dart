@@ -21,7 +21,7 @@ class AppSize {
   //field
   static fWMd(BuildContext context) => App.width(context) * 0.8;
   static const fWSmA = 110.0; //absolute width
-  static const fHMd = 74.0;
+  static const fP = 16.0; //field padding vertical
 
   //dropdown
   static const dH = 100.0;
@@ -39,6 +39,10 @@ class AppSize {
   static const fH = 50.0; //footer height
   static const tcMW = 200.0; //table column max width
   static const heH = 220.0; //home event section height
+
+  //add button
+  static const abtn = 40.0;
+  static const abtnIco = 30.0;
 
   //project card
   static const pcW = 200.0;

@@ -3,6 +3,7 @@ import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/sizebox.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 
 class AppThemeMiscs {
   static final shadow1 = BoxShadow(
@@ -25,6 +26,8 @@ class AppThemeMiscs {
     TextStyle? hintStyle,
   }) =>
       InputDecoration(
+        isCollapsed: true,
+        contentPadding: const EdgeInsets.all(AppSize.fP),
         hintText: hintText,
         filled: style == EInputStyle.primary ? true : false,
         fillColor: style == EInputStyle.primary ? AppTheme.of(context).color.primary.withOpacity(0.1) : null,

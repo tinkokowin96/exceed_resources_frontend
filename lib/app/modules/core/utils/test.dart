@@ -1,5 +1,7 @@
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
+import 'package:exceed_resources_frontend/app/modules/core/theme/sizebox.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/helper.dart';
+import 'package:exceed_resources_frontend/app/modules/core/widgets/button/item_button.dart';
 import 'package:exceed_resources_frontend/app/modules/task/components/project_phase.dart';
 import 'package:exceed_resources_frontend/app/modules/task/components/project_quotation.dart';
 import 'package:exceed_resources_frontend/app/modules/task/controllers/project_controller.dart';
@@ -17,9 +19,15 @@ class Test extends StatelessWidget {
         width: App.width(context),
         child: Padding(
           padding: const EdgeInsets.all(AppSize.md),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [ProjectPhase()],
+          child: LayoutBuilder(
+            builder: (context, constraint) {
+              return SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [AppSizeBox.lg, AppSizeBox.lg, ProjectPhase(maxWidth: constraint.maxWidth)],
+                ),
+              );
+            },
           ),
         ),
       ),

@@ -11,6 +11,7 @@ class AppFromField extends StatelessWidget {
   final bool readOnly;
   final bool obscureText;
   final EInputStyle style;
+  final int? maxLines;
   final TextEditingController? controller;
   final TextStyle? inputStyle;
   final String? hintText;
@@ -32,6 +33,7 @@ class AppFromField extends StatelessWidget {
     this.obscureText = false,
     this.readOnly = false,
     this.style = EInputStyle.line,
+    this.maxLines,
     this.inputStyle,
     this.hintText,
     this.hintStyle,
@@ -58,11 +60,11 @@ class AppFromField extends StatelessWidget {
           children: [
             SizedBox(
               width: width,
-              height: AppSize.fHMd,
               child: Focus(
                 onFocusChange: ((bool hasFocus) => onFocusChange != null ? onFocusChange!(hasFocus) : null),
                 child: TextFormField(
                   readOnly: readOnly,
+                  maxLines: maxLines,
                   obscureText: obscureText,
                   controller: controller,
                   initialValue: value,

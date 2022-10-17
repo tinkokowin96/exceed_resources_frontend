@@ -68,6 +68,7 @@ class AppThemeData extends ChangeNotifier {
       body: Colors.black,
       idle: Color(0xFF565656),
       disabled: Color(0xFF898989),
+      disabledPrimary: Color.fromARGB(120, 255, 172, 64),
     ),
   );
 
@@ -81,6 +82,7 @@ class AppThemeData extends ChangeNotifier {
       body: Colors.white,
       idle: Colors.white60,
       disabled: Colors.white38,
+      disabledPrimary: Color.fromARGB(120, 255, 171, 64),
     ),
   );
 }

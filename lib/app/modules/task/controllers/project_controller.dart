@@ -1,20 +1,35 @@
-import 'package:exceed_resources_frontend/app/modules/core/mixins/attachment_mixin.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
+import 'package:exceed_resources_frontend/app/modules/task/controllers/phase_form_controller.dart';
+import 'package:exceed_resources_frontend/app/modules/task/controllers/quotation_form_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ProjectController extends GetxController with AttachmentMixin {
+class ProjectController extends GetxController {
   final nameController = TextEditingController();
   final phase = Rx<EExpandable>(EExpandable.minimize);
-  final quotation = Rx<EExpandable>(EExpandable.minimize);
+  final quotation = Rx<EExpandable>(EExpandable.form);
 
   void updateExpandable({required String type, required EExpandable expandable}) {
     switch (type) {
       case 'phase':
+        if (phase.value == EExpandable.form) {
+          Get.delete<PhaseFormController>();
+        }
+        if (expandable != EExpandable.minimize && quotation.value != EExpandable.minimize) {
+          quotation.value = EExpandable.minimize;
+          quotation.refresh();
+        }
         phase.value = expandable;
         phase.refresh();
         break;
       case 'quotation':
+        if (quotation.value == EExpandable.form) {
+          Get.delete<QuotationFormController>();
+        }
+        if (expandable != EExpandable.minimize && phase.value != EExpandable.minimize) {
+          phase.value = EExpandable.minimize;
+          phase.refresh();
+        }
         quotation.value = expandable;
         quotation.refresh();
         break;
