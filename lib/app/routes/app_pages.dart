@@ -2,7 +2,7 @@ import 'package:exceed_resources_frontend/app/modules/core/utils/config.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/test.dart';
 import 'package:exceed_resources_frontend/app/modules/core/views/error_view.dart';
 import 'package:exceed_resources_frontend/app/modules/task/bindings/task_binding.dart';
-import 'package:exceed_resources_frontend/app/modules/task/views/new_project.dart';
+import 'package:exceed_resources_frontend/app/modules/task/views/project.dart';
 import 'package:get/get.dart';
 import '../modules/chat/bindings/chat_binding.dart';
 import '../modules/chat/views/chat_view.dart';
@@ -38,7 +38,7 @@ class AppPages {
     ),
     GetPage(
       name: AppRoutes.newProject,
-      page: () => const NewProject(),
+      page: () => const Project(),
       binding: TaskBinding(),
       transitionDuration: Duration.zero,
     ),
