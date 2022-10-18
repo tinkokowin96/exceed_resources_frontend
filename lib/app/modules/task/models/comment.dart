@@ -10,7 +10,7 @@ part 'comment.g.dart';
 class Comment with _$Comment {
   factory Comment({
     required String id,
-    @JsonKey(name: 'user_id') required String userId,
+    @JsonKey(name: 'employee_id') required String employeeId,
     required String text,
     @JsonKey(name: 'num_like') required int numLike,
   }) = _Comment;

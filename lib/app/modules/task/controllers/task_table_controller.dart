@@ -1,7 +1,9 @@
-import 'package:exceed_resources_frontend/app/modules/core/models/option.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/helper.dart';
+import 'package:exceed_resources_frontend/app/modules/misc/models/employee.dart';
+import 'package:exceed_resources_frontend/app/modules/misc/models/position.dart';
+import 'package:exceed_resources_frontend/app/modules/task/components/status_priority.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/comment.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/phase.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/priority.dart';
@@ -27,6 +29,32 @@ class TaskTableController extends GetxController {
     Priority(id: 'pri_2', name: 'Medium', color: const Color.fromARGB(255, 226, 190, 99)),
     Priority(id: 'pri_3', name: 'Low', color: const Color.fromARGB(255, 125, 129, 106)),
   ];
+  final employee = [
+    Employee(
+      id: 'emp_1',
+      name: 'Myo Thant',
+      image: 'assets/images/emp.jpg',
+      position: Position(id: 'pos_1', name: 'Frontend Developer', basicSalary: 1000),
+    ),
+    Employee(
+      id: 'emp_2',
+      name: 'Tun Kyaw',
+      image: 'assets/images/emp.jpg',
+      position: Position(id: 'pos_1', name: 'Frontend Developer', basicSalary: 1000),
+    ),
+    Employee(
+      id: 'emp_3',
+      name: 'Lin Lin',
+      image: 'assets/images/emp.jpg',
+      position: Position(id: 'pos_2', name: 'Backend Developer', basicSalary: 1000),
+    ),
+    Employee(
+      id: 'emp_4',
+      name: 'Thiri Myo Thant',
+      image: 'assets/images/emp.jpg',
+      position: Position(id: 'pos_1', name: 'Project Manager', basicSalary: 1000),
+    ),
+  ];
   final projects = [
     Project(
       id: 'pro_1',
@@ -50,7 +78,7 @@ class TaskTableController extends GetxController {
   late final tasks = [
     Task(
       id: 'tas_1',
-      title: 'Change hero image',
+      name: 'Change hero image',
       description:
           'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of',
       status: status[0],
@@ -66,7 +94,7 @@ class TaskTableController extends GetxController {
     ),
     Task(
       id: 'tas_2',
-      title: 'Clear padding in the home page and follow the instructions',
+      name: 'Clear padding in the home page and follow the instructions',
       description:
           'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of',
       status: status[0],
@@ -81,7 +109,7 @@ class TaskTableController extends GetxController {
     ),
     Task(
       id: 'tas_3',
-      title: 'There are many variations of passages of Lorem Ipsum available',
+      name: 'There are many variations of passages of Lorem Ipsum available',
       description:
           'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of',
       status: status[1],
@@ -97,7 +125,7 @@ class TaskTableController extends GetxController {
     ),
     Task(
       id: 'tas_4',
-      title: 'Refactor and optimize map page to boost user experience',
+      name: 'Refactor and optimize map page to boost user experience',
       description:
           'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of',
       status: status[2],
@@ -113,47 +141,39 @@ class TaskTableController extends GetxController {
     ),
   ];
 
-  List<List<Widget>> getRows({
+  Map<String, List<Widget>> getRows({
     required BuildContext context,
     Project? activeProject,
   }) {
-    final List<List<Widget>> rowList = [];
+    final Map<String, List<Widget>> rowList = {};
 
     for (var each in tasks) {
       if (activeProject == null || activeProject.id == each.project.id) {
-        rowList.add(
-          [
-            StatusPriorityDropdown(
-              priority: priority,
-              initialPriority: each.priority,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Flexible(
-                  child: Text(
-                    each.title,
-                    overflow: TextOverflow.ellipsis,
-                    style: AppTheme.text(context: context, size: EText.h4),
-                  ),
+        rowList[each.id] = [
+          StatusPriority(option: each.priority),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Flexible(
+                child: Text(
+                  each.name,
+                  overflow: TextOverflow.ellipsis,
+                  style: AppTheme.text(context: context, size: EText.h4),
                 ),
-                StatusPriorityDropdown(
-                  status: status,
-                  initialStatus: each.status,
-                )
-              ],
-            ),
-            Text(
-              formatDate(date: each.dueDate),
-              style: AppTheme.text(context: context, size: EText.h4),
-            ),
-            Text(
-              each.project.name,
-              overflow: TextOverflow.ellipsis,
-              style: AppTheme.text(context: context, size: EText.h4),
-            ),
-          ],
-        );
+              ),
+              StatusPriority(option: each.status),
+            ],
+          ),
+          Text(
+            formatDate(date: each.dueDate),
+            style: AppTheme.text(context: context, size: EText.h4),
+          ),
+          Text(
+            each.project.name,
+            overflow: TextOverflow.ellipsis,
+            style: AppTheme.text(context: context, size: EText.h4),
+          ),
+        ];
       }
     }
     return rowList;

@@ -11,7 +11,7 @@ class HomeController extends GetxController {
   final permission = permissions.firstWhere((each) => each.name == 'home');
   final currentLocation = Rxn<LatLng>();
   final taskController = Get.find<TaskTableController>();
-  final taskRows = Rx<List<List<Widget>>>([]);
+  final taskRows = Rx<Map<String, List<Widget>>>({});
 
   @override
   void onInit() {

@@ -2,7 +2,9 @@ import 'package:exceed_resources_frontend/app/modules/core/utils/config.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/test.dart';
 import 'package:exceed_resources_frontend/app/modules/core/views/error_view.dart';
 import 'package:exceed_resources_frontend/app/modules/task/bindings/task_binding.dart';
+import 'package:exceed_resources_frontend/app/modules/task/components/task_detail.dart';
 import 'package:exceed_resources_frontend/app/modules/task/views/project_view.dart';
+import 'package:exceed_resources_frontend/app/modules/task/views/task_detail_view.dart';
 import 'package:get/get.dart';
 import '../modules/chat/bindings/chat_binding.dart';
 import '../modules/chat/views/chat_view.dart';
@@ -26,13 +28,19 @@ class AppPages {
     ...errorRoutes,
     GetPage(
       name: AppRoutes.home,
-      page: () => const HomeView(),
-      binding: HomeBinding(),
+      page: () => const TaskDetailView(),
+      //   page: () => const HomeView(),
+      //   binding: HomeBinding(),
       transitionDuration: Duration.zero,
     ),
     GetPage(
       name: AppRoutes.task,
       page: () => const TaskView(),
+      transitionDuration: Duration.zero,
+    ),
+    GetPage(
+      name: AppRoutes.taskDetail,
+      page: () => const TaskDetailView(),
       transitionDuration: Duration.zero,
     ),
     GetPage(

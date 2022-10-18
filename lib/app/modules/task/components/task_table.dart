@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
 class TaskTable extends GetView<TaskTableController> {
-  final List<List<Widget>> rows;
+  final Map<String, List<Widget>> rows;
   const TaskTable({
     Key? key,
     required this.rows,
@@ -71,10 +71,11 @@ class TaskTable extends GetView<TaskTableController> {
                                   ],
                                 ),
                                 Expanded(
-                                    child: AppTable(
-                                  columns: controller.columns,
-                                  rows: rows,
-                                ))
+                                  child: AppTable(
+                                    columns: controller.columns,
+                                    rows: rows,
+                                  ),
+                                )
                               ],
                             ),
                           ),

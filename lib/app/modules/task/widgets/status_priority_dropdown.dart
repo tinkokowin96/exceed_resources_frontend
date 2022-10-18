@@ -1,8 +1,7 @@
 import 'package:exceed_resources_frontend/app/modules/core/models/option.dart';
-import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
-import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/dropdown/dropdown.dart';
+import 'package:exceed_resources_frontend/app/modules/task/components/status_priority.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/priority.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/status.dart';
 import 'package:flutter/material.dart';
@@ -34,11 +33,6 @@ class _StatusPriorityDropdownState extends State<StatusPriorityDropdown> {
     ),
   );
   late dynamic _currentOption = widget.initialStatus ?? widget.initialPriority!;
-//   void initState() {
-//     print('send.. ${widget.initialStatus} - ${widget.initialPriority}');
-//     _currentOption = widget.initialStatus ?? widget.initialPriority!;
-//     super.initState();
-//   }
 
   void onDropdownChange(Option? option) {
     if (option != null) {
@@ -64,26 +58,7 @@ class _StatusPriorityDropdownState extends State<StatusPriorityDropdown> {
       items: _dropdownOptions,
       onChanged: ({checked, value}) => onDropdownChange(value),
       dropdownController: TextEditingController(),
-      customSelector: DecoratedBox(
-        decoration: BoxDecoration(
-          color: _currentOption.color,
-          borderRadius: BorderRadius.circular(AppSize.lg),
-        ),
-        child: SizedBox(
-          width: AppSize.staW,
-          height: AppSize.staH,
-          child: Center(
-            child: Text(
-              _currentOption.name,
-              style: AppTheme.text(
-                context: context,
-                size: EText.h5,
-                type: ETextType.white,
-              ),
-            ),
-          ),
-        ),
-      ),
+      customSelector: StatusPriority(option: _currentOption),
     );
   }
 }
