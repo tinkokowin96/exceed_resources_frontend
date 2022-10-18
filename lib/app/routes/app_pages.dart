@@ -48,10 +48,11 @@ class AppPages {
       transitionDuration: Duration.zero,
     ),
     GetPage(
-        name: AppRoutes.report,
-        page: () => const ReportView(),
-        binding: ReportBinding(),
-        transitionDuration: Duration.zero),
+      name: AppRoutes.report,
+      page: () => const ReportView(),
+      binding: ReportBinding(),
+      transitionDuration: Duration.zero,
+    ),
     GetPage(
       name: AppRoutes.misc,
       page: () => const MiscView(),

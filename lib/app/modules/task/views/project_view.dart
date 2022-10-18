@@ -19,7 +19,7 @@ class ProjectView extends GetView<ProjectController> {
   Widget build(BuildContext context) {
     Get.put(ProjectController());
     return AppLayout(
-      header: false,
+      title: 'Create New Project',
       currentMenu: EMenu.task,
       content: Padding(
         padding: const EdgeInsets.only(top: AppSize.md),
@@ -28,26 +28,6 @@ class ProjectView extends GetView<ProjectController> {
             constraints: BoxConstraints(maxHeight: constraint.maxHeight),
             child: Column(
               children: [
-                Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: AppAnimatedPress(
-                        onPressed: () => Get.back(),
-                        child: const Icon(Icons.navigate_before),
-                      ),
-                    ),
-                    Text(
-                      'Create New Project',
-                      style: AppTheme.text(
-                        context: context,
-                        size: EText.h2,
-                        weight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
-                ),
                 Expanded(
                   child: LayoutBuilder(builder: (context, formConstraint) {
                     return ConstrainedBox(

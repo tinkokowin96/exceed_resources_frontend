@@ -5,12 +5,14 @@ import 'package:flutter/material.dart';
 class AppLayout extends StatelessWidget {
   final EMenu currentMenu;
   final bool header;
+  final String? title;
   final Widget content;
   const AppLayout({
     Key? key,
-    this.header = true,
     required this.currentMenu,
     required this.content,
+    this.header = false,
+    this.title,
   }) : super(key: key);
 
   @override
@@ -28,6 +30,7 @@ class AppLayout extends StatelessWidget {
       currentMenu: currentMenu,
       content: content,
       header: header,
+      title: title,
     );
   }
 }

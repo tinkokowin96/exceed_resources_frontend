@@ -5,8 +5,8 @@ import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class AppHeader extends StatelessWidget {
-  const AppHeader({Key? key}) : super(key: key);
+class UserHeader extends StatelessWidget {
+  const UserHeader({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

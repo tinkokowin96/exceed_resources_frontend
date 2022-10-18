@@ -1,5 +1,6 @@
 import 'package:exceed_resources_frontend/app/modules/core/layout/content.dart';
-import 'package:exceed_resources_frontend/app/modules/core/layout/header.dart';
+import 'package:exceed_resources_frontend/app/modules/core/layout/page_header.dart';
+import 'package:exceed_resources_frontend/app/modules/core/layout/user_header.dart';
 import 'package:exceed_resources_frontend/app/modules/core/layout/navigation.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/sizebox.dart';
@@ -10,11 +11,13 @@ class MobileLayout extends StatelessWidget {
   final EMenu currentMenu;
   final Widget content;
   final bool header;
+  final String? title;
   const MobileLayout({
     Key? key,
     required this.content,
     required this.currentMenu,
-    this.header = false,
+    required this.header,
+    this.title,
   }) : super(key: key);
 
   @override
@@ -25,11 +28,15 @@ class MobileLayout extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: AppSize.md),
           child: Column(
             children: [
-              header ? const AppHeader() : AppSizeBox.zero,
+              title != null
+                  ? PageHeader(
+                      title: title!,
+                    )
+                  : header
+                      ? const UserHeader()
+                      : AppSizeBox.zero,
               AppContent(child: content),
-              AppNavigation(
-                currentMenu: currentMenu,
-              ),
+              AppNavigation(currentMenu: currentMenu),
             ],
           ),
         ),
