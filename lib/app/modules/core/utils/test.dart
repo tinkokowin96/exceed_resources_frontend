@@ -24,7 +24,11 @@ class Test extends StatelessWidget {
               return SingleChildScrollView(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [AppSizeBox.lg, AppSizeBox.lg, ProjectPhase(maxWidth: constraint.maxWidth)],
+                  children: [
+                    AppSizeBox.lg,
+                    AppSizeBox.lg,
+                    ProjectPhase(maxWidth: constraint.maxWidth),
+                  ],
                 ),
               );
             },

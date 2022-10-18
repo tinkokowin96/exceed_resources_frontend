@@ -60,29 +60,31 @@ class AppThemeData extends ChangeNotifier {
 
   static AppThemeData lightTheme = AppThemeData(
     color: const AppColor(
-      primary: Colors.orangeAccent,
-      container: Color(0xFFFAFAFA),
+      primary: Colors.black,
+      secondary: Colors.orangeAccent,
+      background: Color(0xFFFAFAFA),
       error: Color(0xFFD1512D),
-      background: Colors.white,
+      tabeRow: Colors.white,
+      container: Colors.white,
       antiFlashWhite: Color(0xFFF3F3F3),
       body: Colors.black,
       idle: Color(0xFF565656),
-      disabled: Color(0xFF898989),
-      disabledPrimary: Color.fromARGB(120, 255, 172, 64),
+      disabled: Color.fromARGB(120, 255, 172, 64),
     ),
   );
 
   static AppThemeData darkTheme = AppThemeData(
     color: const AppColor(
-      primary: Colors.orangeAccent,
+      primary: Colors.white,
+      secondary: Colors.orangeAccent,
       container: Colors.white24,
       error: Color(0xFFD1512D),
+      tabeRow: Colors.black,
       background: Color(0xFF202123),
       antiFlashWhite: Color(0xFFF3F3F3),
       body: Colors.white,
       idle: Colors.white60,
-      disabled: Colors.white38,
-      disabledPrimary: Color.fromARGB(120, 255, 171, 64),
+      disabled: Color.fromARGB(120, 255, 171, 64),
     ),
   );
 }

@@ -44,6 +44,9 @@ class AppSize {
   static const abtn = 40.0;
   static const abtnIco = 30.0;
 
+  //table
+  static const thH = 40.0; //heading height
+
   //project card
   static const pcW = 200.0;
   static const pcH = 100.0;

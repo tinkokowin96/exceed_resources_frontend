@@ -29,7 +29,7 @@ class AppPaginator extends StatelessWidget {
                 style: AppTheme.text(
                   context: context,
                   weight: FontWeight.w500,
-                  type: each.value == activePage ? ETextType.body : ETextType.disabled,
+                  type: each.value == activePage ? ETextType.body : ETextType.subtitle,
                 ),
               ),
             ),

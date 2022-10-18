@@ -7,7 +7,6 @@ class AppButton extends StatelessWidget {
   final Size size;
   final String text;
   final bool disabled;
-  final EButtonStyle style;
   final TextStyle? buttonTextStyle;
   final Function() onPressed;
 
@@ -15,7 +14,6 @@ class AppButton extends StatelessWidget {
     Key? key,
     required this.onPressed,
     required this.text,
-    this.style = EButtonStyle.def,
     this.disabled = false,
     this.buttonTextStyle,
     this.size = const Size(AppSize.btnWMd, AppSize.btnHMd),
@@ -31,11 +29,7 @@ class AppButton extends StatelessWidget {
             ),
           ),
           fixedSize: MaterialStateProperty.all(size),
-          backgroundColor: MaterialStateProperty.all(
-            style == EButtonStyle.def
-                ? AppTheme.of(context).color.container
-                : AppTheme.of(context).color.primary.withOpacity(0.1),
-          ),
+          backgroundColor: MaterialStateProperty.all(AppTheme.of(context).color.secondary.withOpacity(0.1)),
           shadowColor: MaterialStateProperty.all(Colors.transparent),
         ),
         child: Center(
@@ -44,9 +38,7 @@ class AppButton extends StatelessWidget {
             style: buttonTextStyle ??
                 AppTheme.text(
                   context: context,
-                  type: disabled
-                      ? (style == EButtonStyle.def ? ETextType.disabled : ETextType.disabledPrimary)
-                      : (style == EButtonStyle.def ? ETextType.subtitle : ETextType.primary),
+                  type: disabled ? ETextType.disabled : ETextType.primary,
                   weight: FontWeight.w500,
                 ),
           ),

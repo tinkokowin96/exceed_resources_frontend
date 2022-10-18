@@ -242,7 +242,6 @@ class QuotationForm extends GetView<QuotationFormController> {
                   child: AppButton(
                     onPressed: () {},
                     text: 'Create',
-                    style: EButtonStyle.primary,
                     disabled: true,
                   ),
                 )

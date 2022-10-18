@@ -16,7 +16,7 @@ class AddButton extends StatelessWidget {
       onPressed: onPressed,
       child: DecoratedBox(
         decoration: BoxDecoration(
-          color: AppTheme.of(context).color.primary.withOpacity(0.1),
+          color: AppTheme.of(context).color.secondary.withOpacity(0.1),
           borderRadius: BorderRadius.circular(AppSize.abtn / 2),
         ),
         child: SizedBox(
@@ -28,7 +28,7 @@ class AddButton extends StatelessWidget {
               Icon(
                 Icons.add,
                 size: AppSize.abtnIco,
-                color: AppTheme.of(context).color.primary,
+                color: AppTheme.of(context).color.secondary,
               ),
             ],
           ),

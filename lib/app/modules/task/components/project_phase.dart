@@ -41,30 +41,45 @@ class ProjectPhase extends GetView<ProjectController> {
                   Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
+                      Obx(() => controller.phase.value == EExpandable.minimize
+                          ? Text(
+                              '4 Phases',
+                              style: AppTheme.text(context: context),
+                            )
+                          : AppSizeBox.zero),
                       Obx(
-                        () => controller.phase.value == EExpandable.expand
-                            ? AppSizeBox.zero
-                            : Text(
-                                '4 Phases',
-                                style: AppTheme.text(context: context),
-                              ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: AppSize.md),
-                        child: IconButton(
-                          onPressed: () => controller.updateExpandable(
+                        () => InkWell(
+                          onTap: () => controller.updateExpandable(
                             type: 'phase',
                             expandable: controller.phase.value == EExpandable.expand
                                 ? EExpandable.minimize
                                 : EExpandable.expand,
                           ),
-                          icon: Obx(
-                            () => Icon(
-                              controller.phase.value == EExpandable.expand ? Icons.expand_more : Icons.expand_less,
-                            ),
+                          child: Icon(
+                            controller.phase.value == EExpandable.expand
+                                ? Icons.expand_more
+                                : controller.phase.value == EExpandable.minimize
+                                    ? Icons.expand_less
+                                    : Icons.navigate_before,
                           ),
                         ),
-                      )
+                      ),
+                      //   Padding(
+                      //     padding: const EdgeInsets.only(left: AppSize.md),
+                      //     child: IconButton(
+                      //       onPressed: () => controller.updateExpandable(
+                      //         type: 'phase',
+                      //         expandable: controller.phase.value == EExpandable.expand
+                      //             ? EExpandable.minimize
+                      //             : EExpandable.expand,
+                      //       ),
+                      //       icon: Obx(
+                      //         () => Icon(
+                      //           controller.phase.value == EExpandable.expand ? Icons.expand_more : Icons.expand_less,
+                      //         ),
+                      //       ),
+                      //     ),
+                      //   )
                     ],
                   )
                 ],

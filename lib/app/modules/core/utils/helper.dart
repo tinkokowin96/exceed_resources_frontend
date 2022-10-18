@@ -14,7 +14,7 @@ Color getTextColor(ETextType type, BuildContext context) {
       return AppTheme.of(context).color.error;
 
     case ETextType.primary:
-      return AppTheme.of(context).color.primary;
+      return AppTheme.of(context).color.secondary;
 
     case ETextType.white:
       return Colors.white;
@@ -24,9 +24,6 @@ Color getTextColor(ETextType type, BuildContext context) {
 
     case ETextType.disabled:
       return AppTheme.of(context).color.disabled;
-
-    case ETextType.disabledPrimary:
-      return AppTheme.of(context).color.disabledPrimary;
 
     default:
       return AppTheme.of(context).color.body;

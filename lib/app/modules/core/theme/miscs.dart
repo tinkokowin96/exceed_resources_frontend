@@ -30,10 +30,10 @@ class AppThemeMiscs {
         contentPadding: const EdgeInsets.all(AppSize.fP),
         hintText: hintText,
         filled: style == EInputStyle.primary ? true : false,
-        fillColor: style == EInputStyle.primary ? AppTheme.of(context).color.primary.withOpacity(0.1) : null,
+        fillColor: style == EInputStyle.primary ? AppTheme.of(context).color.secondary.withOpacity(0.1) : null,
         suffix: suffix != null
             ? ColoredBox(
-                color: AppTheme.of(context).color.primary.withOpacity(0.1),
+                color: AppTheme.of(context).color.secondary.withOpacity(0.1),
                 child: Padding(
                   padding: const EdgeInsets.all(AppSize.sm),
                   child: Text(
@@ -52,7 +52,8 @@ class AppThemeMiscs {
               context: context,
               weight: FontWeight.w500,
             ).copyWith(
-              color: style == EInputStyle.primary ? AppTheme.of(context).color.primary.withOpacity(0.7) : Colors.black,
+              color:
+                  style == EInputStyle.primary ? AppTheme.of(context).color.secondary.withOpacity(0.7) : Colors.black,
             ),
         enabledBorder: style == EInputStyle.line
             ? const UnderlineInputBorder(
@@ -60,18 +61,18 @@ class AppThemeMiscs {
               )
             : OutlineInputBorder(
                 borderSide: BorderSide(
-                  color: AppTheme.of(context).color.primary.withOpacity(0.2),
+                  color: AppTheme.of(context).color.secondary.withOpacity(0.2),
                 ),
               ),
         focusedBorder: style == EInputStyle.line
             ? UnderlineInputBorder(
                 borderSide: BorderSide(
-                  color: AppTheme.of(context).color.primary,
+                  color: AppTheme.of(context).color.secondary,
                 ),
               )
             : OutlineInputBorder(
                 borderSide: BorderSide(
-                  color: AppTheme.of(context).color.primary,
+                  color: AppTheme.of(context).color.secondary,
                 ),
               ),
       );

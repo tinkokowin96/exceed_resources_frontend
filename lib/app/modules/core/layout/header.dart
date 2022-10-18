@@ -80,12 +80,14 @@ class AppHeader extends StatelessWidget {
                   style: AppTheme.text(
                     context: context,
                     type: ETextType.primary,
+                    size: EText.h4,
                   ),
                   children: [
                     TextSpan(
                       text: '  L',
                       style: AppTheme.text(
                         context: context,
+                        size: EText.h4,
                       ),
                     )
                   ],
@@ -103,7 +105,10 @@ class AppHeader extends StatelessWidget {
                   children: [
                     TextSpan(
                       text: ' T',
-                      style: AppTheme.text(context: context, size: EText.h4),
+                      style: AppTheme.text(
+                        context: context,
+                        size: EText.h4,
+                      ),
                     )
                   ],
                 ),

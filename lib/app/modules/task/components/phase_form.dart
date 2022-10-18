@@ -214,7 +214,6 @@ class PhaseForm extends GetView<PhaseFormController> {
                   child: AppButton(
                     onPressed: () {},
                     text: 'Create',
-                    style: EButtonStyle.primary,
                     disabled: true,
                   ),
                 )

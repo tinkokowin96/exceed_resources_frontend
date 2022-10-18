@@ -146,7 +146,6 @@ class MenuItemText extends StatelessWidget {
           style: AppTheme.text(
             context: context,
             size: EText.h5,
-            type: ETextType.primary,
           ),
         ),
       ),

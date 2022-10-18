@@ -19,7 +19,7 @@ class ItemButton extends StatelessWidget {
       onPressed: onPressed,
       child: DecoratedBox(
         decoration: BoxDecoration(
-          color: AppTheme.of(context).color.primary.withOpacity(0.1),
+          color: AppTheme.of(context).color.secondary.withOpacity(0.1),
           borderRadius: BorderRadius.circular(AppSize.lg),
         ),
         child: Padding(

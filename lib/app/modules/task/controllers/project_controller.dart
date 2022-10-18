@@ -5,9 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ProjectController extends GetxController {
+  final formKey = GlobalKey<FormState>();
   final nameController = TextEditingController();
   final phase = Rx<EExpandable>(EExpandable.minimize);
-  final quotation = Rx<EExpandable>(EExpandable.form);
+  final quotation = Rx<EExpandable>(EExpandable.minimize);
 
   void updateExpandable({required String type, required EExpandable expandable}) {
     switch (type) {

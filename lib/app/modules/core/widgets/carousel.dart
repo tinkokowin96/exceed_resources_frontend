@@ -112,7 +112,7 @@ class ActiveIndicator extends StatelessWidget {
                 ),
                 DecoratedBox(
                   decoration: BoxDecoration(
-                    color: index == activePage ? AppTheme.of(context).color.primary : Colors.white,
+                    color: index == activePage ? AppTheme.of(context).color.secondary : Colors.white,
                     borderRadius: BorderRadius.circular(AppSize.aiii / 2),
                   ),
                   child: const SizedBox(

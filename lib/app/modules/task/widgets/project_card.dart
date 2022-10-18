@@ -26,14 +26,14 @@ class ProjectCard extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             DecoratedBox(
-              decoration: const BoxDecoration(
-                color: Colors.orangeAccent,
-                borderRadius: BorderRadius.only(
+              decoration: BoxDecoration(
+                color: AppTheme.of(context).color.secondary,
+                borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(
-                    AppSize.md,
+                    AppSize.sm,
                   ),
                   bottomLeft: Radius.circular(
-                    AppSize.md,
+                    AppSize.sm,
                   ),
                 ),
               ),
@@ -108,13 +108,13 @@ class ProjectCard extends StatelessWidget {
             ),
             DecoratedBox(
               decoration: BoxDecoration(
-                color: AppTheme.of(context).color.container,
+                color: AppTheme.of(context).color.secondary.withOpacity(0.1),
                 borderRadius: const BorderRadius.only(
                   topRight: Radius.circular(
-                    AppSize.md,
+                    AppSize.sm,
                   ),
                   bottomRight: Radius.circular(
-                    AppSize.md,
+                    AppSize.sm,
                   ),
                 ),
               ),

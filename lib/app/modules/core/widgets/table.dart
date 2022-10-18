@@ -25,7 +25,7 @@ class AppTable extends StatelessWidget {
                 style: AppTheme.text(
                   context: context,
                   weight: FontWeight.w500,
-                  type: ETextType.white,
+                  type: ETextType.subtitle,
                 ),
               ),
             ),
@@ -43,23 +43,24 @@ class AppTable extends StatelessWidget {
                 minWidth: constraints.maxWidth,
               ),
               child: DataTable(
-                border: const TableBorder(
-                  verticalInside: BorderSide(width: 0.5, color: Colors.white),
-                  borderRadius: BorderRadius.all(
+                border: TableBorder(
+                  bottom: BorderSide(width: 0.5, color: AppTheme.of(context).color.background),
+                  horizontalInside: BorderSide(width: 0.5, color: AppTheme.of(context).color.background),
+                  borderRadius: const BorderRadius.all(
                     Radius.circular(AppSize.sm),
                   ),
                 ),
                 headingRowColor: MaterialStateProperty.resolveWith(
                   (Set states) {
-                    return AppTheme.of(context).color.primary.withOpacity(0.7);
+                    return AppTheme.of(context).color.background;
                   },
                 ),
+                headingRowHeight: AppSize.thH,
                 columns: tColumns,
                 rows: List.from(
                   rows.asMap().entries.map(
                     (item) {
                       final row = item.value;
-                      final index = item.key;
                       return DataRow(
                         cells: [
                           ...row.map(
@@ -73,13 +74,9 @@ class AppTable extends StatelessWidget {
                             ),
                           ),
                         ],
-                        color: index % 2 == 0
-                            ? MaterialStateProperty.resolveWith(
-                                (Set states) => AppTheme.of(context).color.primary.withOpacity(0.3),
-                              )
-                            : MaterialStateProperty.resolveWith(
-                                (Set states) => AppTheme.of(context).color.primary.withOpacity(0.1),
-                              ),
+                        color: MaterialStateProperty.resolveWith(
+                          (Set states) => AppTheme.of(context).color.tabeRow,
+                        ),
                       );
                     },
                   ),
