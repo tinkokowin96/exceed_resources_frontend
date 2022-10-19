@@ -20,6 +20,10 @@ class Status with _$Status {
   factory Status.fromJson(Map<String, dynamic> json) => _$StatusFromJson(json);
 }
 
-Color colorFromJson(String json) => Color(int.parse(json));
+Color colorFromJson(String json) => Color(
+      int.parse(
+        json.replaceFirst('#', '0xFF'),
+      ),
+    );
 
 String colorToJson(Color color) => color.toString().replaceAll('Color(', '').replaceAll(')', '');

@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 class HomeBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<TaskTableController>(
-      () => TaskTableController(),
-    );
+    // Get.lazyPut<TaskTableController>(
+    //   () => TaskTableController(),
+    // );
   }
 }

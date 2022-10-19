@@ -13,9 +13,8 @@ class Phase with _$Phase {
     @Default([]) List<Role> roles,
     @Default([]) List<Collaborator> collaborators,
     @Default([]) List<String> resources,
-    @JsonKey(name: 'start_date') String? startDate,
-    @JsonKey(name: 'end_date') String? endDate,
-    int? duration,
+    @JsonKey(name: 'start_date') DateTime? startDate,
+    @JsonKey(name: 'end_date') DateTime? endDate,
     String? remark,
   }) = _Phase;
 

@@ -84,20 +84,6 @@ class TaskTable extends GetView<TaskTableController> {
                     },
                   ),
                 ),
-                // paginator
-                //     ? Padding(
-                //         padding: const EdgeInsets.symmetric(vertical: AppSize.md),
-                //         child: Obx(
-                //           () {
-                //             return AppPaginator(
-                //               paginatedOptions: controller.paginatedOptions,
-                //               callback: controller.updatePage,
-                //               activePage: controller.activePage.value,
-                //             );
-                //           },
-                //         ),
-                //       )
-                //     : AppSizeBox.zero,
               ],
             ),
           );

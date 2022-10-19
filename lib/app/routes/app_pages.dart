@@ -35,7 +35,8 @@ class AppPages {
     ),
     GetPage(
       name: AppRoutes.task,
-      page: () => const TaskView(),
+      page: () => const TaskDetailView(),
+      //   page: () => const TaskView(),
       transitionDuration: Duration.zero,
     ),
     GetPage(
