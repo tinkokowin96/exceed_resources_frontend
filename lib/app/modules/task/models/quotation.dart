@@ -1,5 +1,7 @@
 import 'package:exceed_resources_frontend/app/modules/task/models/collaborator.dart';
+import 'package:exceed_resources_frontend/app/modules/task/models/collaborator_m.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/role.dart';
+import 'package:exceed_resources_frontend/app/modules/task/models/role_m.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'quotation.freezed.dart';
@@ -12,12 +14,11 @@ class Quotation with _$Quotation {
     required String name,
     required double budget,
     required double expense,
-    @Default([]) List<Role> roles,
-    @Default([]) List<Collaborator> collaborators,
+    @Default([]) List<RoleM> roles,
+    @Default([]) List<CollaboratorM> collaborators,
     @Default([]) List<String> resources,
-    int? duration,
-    @JsonKey(name: 'start_date') String? startDate,
-    @JsonKey(name: 'end_date') String? endDate,
+    @JsonKey(name: 'start_date') DateTime? startDate,
+    @JsonKey(name: 'end_date') DateTime? endDate,
     String? remark,
   }) = _Quotation;
 

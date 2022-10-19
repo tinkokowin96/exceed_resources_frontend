@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 
 PermissionRequestResponse? locationPermission;
 final AppThemeData currentTheme = AppThemeData.currentTheme;
+const minimunLoading = 1500;
 final AppLocale locale = AppLocale();
 final List<Permission> permissions = [
   Permission(name: 'home', write: true, option: {

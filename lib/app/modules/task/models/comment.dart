@@ -1,3 +1,4 @@
+import 'package:exceed_resources_frontend/app/modules/misc/models/employee_m.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'comment.freezed.dart';
@@ -10,7 +11,7 @@ part 'comment.g.dart';
 class Comment with _$Comment {
   factory Comment({
     required String id,
-    @JsonKey(name: 'employee_id') required String employeeId,
+    @JsonKey(name: 'commented_by') required EmployeeM commentedBy,
     required String text,
     @JsonKey(name: 'num_like') required int numLike,
   }) = _Comment;

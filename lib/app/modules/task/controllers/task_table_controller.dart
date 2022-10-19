@@ -1,18 +1,20 @@
 import 'dart:convert';
-import 'dart:io';
-
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
+import 'package:exceed_resources_frontend/app/modules/core/utils/config.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/helper.dart';
 import 'package:exceed_resources_frontend/app/modules/task/components/status_priority.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/project.dart';
+import 'package:exceed_resources_frontend/app/modules/task/models/task.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class TaskTableController extends GetxController {
   final statusController = TextEditingController();
+  final stopwatch = Stopwatch();
   final detailPage = false.obs;
+  final loading = true.obs;
   final columns = ['Priority', 'Task Name', 'Due Date', 'Project'];
   final projects = [];
   final tasks = [];
@@ -56,24 +58,27 @@ class TaskTableController extends GetxController {
   }
 
   Future<void> readJsonFile() async {
-    final dataString = await rootBundle.loadString('assets/mock/project.json');
-    final data = jsonDecode(dataString);
-    for (final item in data) {
-      //   final project = Project(
-      //     id: item.id,
-      //     name: item.name,
-      //     phase: item.phase,
-      //     numNewTask: item.numNewTask,
-      //     numProgressTask: item.numProgressTask,
-      //     numOverdueTask: item.numOverdueTask,
-      //     numCompletedTask: item.numCompletedTask,
-      //   );
-      final project = Project.fromJson(item);
+    final projectDataString = await rootBundle.loadString('assets/mock/project.json');
+    final taskDataString = await rootBundle.loadString('assets/mock/task.json');
+    final projectData = jsonDecode(projectDataString);
+    final taskData = jsonDecode(taskDataString);
+    for (final item in projectData) {
+      projects.add(Project.fromJson(item));
     }
+    for (final item in taskData) {
+      tasks.add(Task.fromJson(item));
+    }
+    final elapsed = stopwatch.elapsed.inMilliseconds;
+    if (elapsed < minimunLoading) {
+      await Future.delayed(Duration(milliseconds: minimunLoading - elapsed));
+    }
+    loading.value = false;
+    update();
   }
 
   @override
   void onInit() {
+    stopwatch.start();
     readJsonFile();
     super.onInit();
   }
