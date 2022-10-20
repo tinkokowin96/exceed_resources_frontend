@@ -95,29 +95,29 @@ class ActiveIndicator extends StatelessWidget {
         (index) => Padding(
           padding: EdgeInsets.only(right: index + 1 == numPage ? 0 : AppSize.xs),
           child: SizedBox(
-            width: AppSize.aiiw,
-            height: AppSize.aiiw,
+            width: AppSize.aiw,
+            height: AppSize.aiw,
             child: Stack(
               alignment: Alignment.center,
               children: [
                 DecoratedBox(
                   decoration: BoxDecoration(
                     color: AppTheme.of(context).color.antiFlashWhite,
-                    borderRadius: BorderRadius.circular(AppSize.aiiw / 2),
+                    borderRadius: BorderRadius.circular(AppSize.aiw / 2),
                   ),
                   child: const SizedBox(
-                    width: AppSize.aiiw,
-                    height: AppSize.aiiw,
+                    width: AppSize.aiw,
+                    height: AppSize.aiw,
                   ),
                 ),
                 DecoratedBox(
                   decoration: BoxDecoration(
                     color: index == activePage ? AppTheme.of(context).color.secondary : Colors.white,
-                    borderRadius: BorderRadius.circular(AppSize.aiii / 2),
+                    borderRadius: BorderRadius.circular(AppSize.aii / 2),
                   ),
                   child: const SizedBox(
-                    width: AppSize.aiii,
-                    height: AppSize.aiii,
+                    width: AppSize.aii,
+                    height: AppSize.aii,
                   ),
                 )
               ],

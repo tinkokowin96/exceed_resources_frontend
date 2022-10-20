@@ -1,20 +1,16 @@
 import 'package:exceed_resources_frontend/app/modules/core/utils/config.dart';
-import 'package:exceed_resources_frontend/app/modules/core/utils/test.dart';
 import 'package:exceed_resources_frontend/app/modules/core/views/error_view.dart';
+import 'package:exceed_resources_frontend/app/modules/core/views/web_view.dart';
 import 'package:exceed_resources_frontend/app/modules/task/bindings/task_binding.dart';
-import 'package:exceed_resources_frontend/app/modules/task/components/task_detail.dart';
 import 'package:exceed_resources_frontend/app/modules/task/views/project_view.dart';
 import 'package:exceed_resources_frontend/app/modules/task/views/task_detail_view.dart';
 import 'package:get/get.dart';
 import '../modules/chat/bindings/chat_binding.dart';
 import '../modules/chat/views/chat_view.dart';
-import '../modules/home/bindings/home_binding.dart';
-import '../modules/home/views/home_view.dart';
 import '../modules/misc/bindings/misc_binding.dart';
 import '../modules/misc/views/misc_view.dart';
 import '../modules/report/bindings/report_binding.dart';
 import '../modules/report/views/report_view.dart';
-import '../modules/task/views/task_view.dart';
 
 part 'app_routes.dart';
 
@@ -31,6 +27,11 @@ class AppPages {
       page: () => const TaskDetailView(),
       //   page: () => const HomeView(),
       //   binding: HomeBinding(),
+      transitionDuration: Duration.zero,
+    ),
+    GetPage(
+      name: AppRoutes.webview,
+      page: () => const AppWebView(),
       transitionDuration: Duration.zero,
     ),
     GetPage(

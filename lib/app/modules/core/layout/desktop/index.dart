@@ -5,7 +5,6 @@ class DesktopLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('desktop layout');
     return Scaffold(
       body: Container(),
     );

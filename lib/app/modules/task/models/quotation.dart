@@ -1,6 +1,4 @@
-import 'package:exceed_resources_frontend/app/modules/task/models/collaborator.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/collaborator_m.dart';
-import 'package:exceed_resources_frontend/app/modules/task/models/role.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/role_m.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

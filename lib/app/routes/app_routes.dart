@@ -4,6 +4,7 @@ abstract class AppRoutes {
   AppRoutes._();
   static const permissionDenied = '/permissionDenied';
   static const home = '/home';
+  static const webview = '/webview';
   static const task = '/task';
   static const taskDetail = '/taskDetail';
   static const newProject = '/newProject';

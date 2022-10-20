@@ -5,7 +5,6 @@ class TabletLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('tablet layout');
     return Scaffold(
       body: Container(),
     );

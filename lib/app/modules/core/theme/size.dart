@@ -28,8 +28,8 @@ class AppSize {
   static const dL = 100.0; //dropdown loading
 
   //active indicator
-  static const aiiw = 16.0; //wrapper
-  static const aiii = 8.0; //indicator
+  static const aiw = 16.0; //wrapper
+  static const aii = 8.0; //indicator
 
   //status
   static const staW = 70.0;
@@ -39,6 +39,7 @@ class AppSize {
   static const fH = 50.0; //footer height
   static const tcMW = 200.0; //table column max width
   static const heH = 220.0; //home event section height
+  static const emp = 35.0; //employee width
 
   //add button
   static const abtn = 40.0;

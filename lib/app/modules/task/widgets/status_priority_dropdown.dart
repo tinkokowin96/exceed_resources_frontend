@@ -7,14 +7,14 @@ import 'package:exceed_resources_frontend/app/modules/task/models/status.dart';
 import 'package:flutter/material.dart';
 
 class StatusPriorityDropdown extends StatefulWidget {
-  final List<Status>? status;
-  final List<Priority>? priority;
+  final List<Status>? statuses;
+  final List<Priority>? priorities;
   final Status? initialStatus;
   final Priority? initialPriority;
   const StatusPriorityDropdown({
     Key? key,
-    this.status,
-    this.priority,
+    this.statuses,
+    this.priorities,
     this.initialStatus,
     this.initialPriority,
   }) : super(key: key);
@@ -25,7 +25,7 @@ class StatusPriorityDropdown extends StatefulWidget {
 
 class _StatusPriorityDropdownState extends State<StatusPriorityDropdown> {
   late final List<Option> _dropdownOptions = List.from(
-    (widget.status ?? widget.priority!).map(
+    (widget.statuses ?? widget.priorities!).map(
       (each) => Option(
         text: (each as dynamic).name,
         value: each,

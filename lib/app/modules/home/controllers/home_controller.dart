@@ -10,12 +10,12 @@ class HomeController extends GetxController {
   HomeController({required this.context});
   final permission = permissions.firstWhere((each) => each.name == 'home');
   final currentLocation = Rxn<LatLng>();
-//   final taskController = Get.find<TaskTableController>();
+  final taskController = Get.find<TaskTableController>();
   final taskRows = Rx<Map<String, List<Widget>>>({});
 
   @override
   void onInit() {
-    // taskRows.value = taskController.getRows(context: context);
+    taskRows.value = taskController.getRows(context: context);
     taskRows.refresh();
     super.onInit();
   }

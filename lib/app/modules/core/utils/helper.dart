@@ -114,6 +114,8 @@ String formatDate({DateTime? date, String? dateString}) {
   return formattedDate;
 }
 
+String transfromName(String name) => name[0] + RegExp(r' (.)').firstMatch(name)!.group(1)!.toUpperCase();
+
 class App {
   static width(BuildContext context) => MediaQuery.of(context).size.width;
   static height(BuildContext context) => MediaQuery.of(context).size.height;

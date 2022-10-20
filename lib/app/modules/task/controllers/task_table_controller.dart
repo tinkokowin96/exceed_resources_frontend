@@ -4,6 +4,7 @@ import 'package:exceed_resources_frontend/app/modules/core/utils/config.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/helper.dart';
 import 'package:exceed_resources_frontend/app/modules/task/components/status_priority.dart';
+import 'package:exceed_resources_frontend/app/modules/task/controllers/task_detail_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/project.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/task.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,8 @@ class TaskTableController extends GetxController {
   final columns = ['Priority', 'Task Name', 'Due Date', 'Project'];
   final projects = [];
   final tasks = [];
+  final statuses = [];
+  final priorities = [];
 
   Map<String, List<Widget>> getRows({
     required BuildContext context,
@@ -58,28 +61,36 @@ class TaskTableController extends GetxController {
   }
 
   Future<void> readJsonFile() async {
+    stopwatch.start();
     final projectDataString = await rootBundle.loadString('assets/mock/project.json');
     final taskDataString = await rootBundle.loadString('assets/mock/task.json');
     final projectData = jsonDecode(projectDataString);
     final taskData = jsonDecode(taskDataString);
+
     for (final item in projectData) {
       projects.add(Project.fromJson(item));
     }
     for (final item in taskData) {
       tasks.add(Task.fromJson(item));
     }
+
     final elapsed = stopwatch.elapsed.inMilliseconds;
     if (elapsed < minimunLoading) {
       await Future.delayed(Duration(milliseconds: minimunLoading - elapsed));
     }
     loading.value = false;
+    //delete after ui
+    final detailController = Get.find<TaskDetailController>();
+    detailController.loading.value = false;
+    detailController.task.value = tasks.first;
+    detailController.update();
     update();
   }
 
-  @override
-  void onInit() {
-    stopwatch.start();
-    readJsonFile();
-    super.onInit();
-  }
+//   @override
+//   void onInit() {
+//     // stopwatch.start();
+//     // readJsonFile();
+//     super.onInit();
+//   }
 }
