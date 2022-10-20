@@ -230,7 +230,7 @@ class TaskDetailView extends GetView<TaskDetailController> {
                                   Padding(
                                     padding: const EdgeInsets.only(top: AppSize.sm),
                                     child: TaskAttachments(
-                                      attachments: controller.attachments,
+                                      attachments: controller.attachments.value,
                                       width: constraint.maxWidth,
                                     ),
                                   ),

@@ -5,9 +5,10 @@ import 'package:exceed_resources_frontend/app/modules/core/widgets/carousel.dart
 import 'package:exceed_resources_frontend/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pdfx/pdfx.dart';
 
 class TaskAttachments extends StatelessWidget {
-  final List<String> attachments;
+  final List<Map> attachments;
   final double width;
   const TaskAttachments({
     Key? key,
@@ -21,21 +22,29 @@ class TaskAttachments extends StatelessWidget {
       data: List.from(
         attachments.map(
           (each) {
-            const imgTypes = ['jpg', 'jpeg', 'png'];
-            final fileName = RegExp(r'([^\/]*\.[a-z]{3,4})\?.*$').firstMatch(each)!.group(1);
-            final fileType = RegExp(r'([a-z]{3,4})$').firstMatch(fileName!)!.group(1);
-            if (imgTypes.contains(fileType)) {
+            if (each['type'] == EAttachmentType.image) {
               return CachedNetworkImage(
-                imageUrl: each,
+                imageUrl: each['data'],
                 width: width,
                 height: 300,
+              );
+            }
+            if (each['type'] == EAttachmentType.pdf) {
+              return SizedBox(
+                width: width,
+                height: 300,
+                child: PdfView(
+                  controller: PdfController(
+                    document: PdfDocument.openData(each['data']),
+                  ),
+                ),
               );
             }
             return Center(
               child: TextButton(
                 onPressed: () => Get.toNamed(AppRoutes.webview, arguments: each),
                 child: Text(
-                  fileName,
+                  each['data'],
                   style: AppTheme.text(
                     context: context,
                     type: ETextType.primary,

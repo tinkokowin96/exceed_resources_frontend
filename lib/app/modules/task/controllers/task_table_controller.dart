@@ -15,7 +15,7 @@ class TaskTableController extends GetxController {
   final statusController = TextEditingController();
   final stopwatch = Stopwatch();
   final detailPage = false.obs;
-  final loading = true.obs;
+//   final loading = true.obs;
   final columns = ['Priority', 'Task Name', 'Due Date', 'Project'];
   final projects = [];
   final tasks = [];
@@ -74,17 +74,15 @@ class TaskTableController extends GetxController {
       tasks.add(Task.fromJson(item));
     }
 
-    final elapsed = stopwatch.elapsed.inMilliseconds;
-    if (elapsed < minimunLoading) {
-      await Future.delayed(Duration(milliseconds: minimunLoading - elapsed));
-    }
-    loading.value = false;
+    // final elapsed = stopwatch.elapsed.inMilliseconds;
+    // if (elapsed < minimunLoading) {
+    //   await Future.delayed(Duration(milliseconds: minimunLoading - elapsed));
+    // }
+    // loading.value = false;
+    // update();
     //delete after ui
     final detailController = Get.find<TaskDetailController>();
-    detailController.loading.value = false;
     detailController.task.value = tasks.first;
-    detailController.update();
-    update();
   }
 
 //   @override
