@@ -17,8 +17,7 @@ class TaskView extends GetView<TaskController> {
   @override
   Widget build(BuildContext context) {
     Get.put(TaskController(context: context));
-    return AppLayout(
-      header: false,
+    return AppLayout.core(
       currentMenu: EMenu.task,
       content: LayoutBuilder(
         builder: (context, constriant) {

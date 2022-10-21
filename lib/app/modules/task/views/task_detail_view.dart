@@ -21,7 +21,7 @@ class TaskDetailView extends GetView<TaskDetailController> {
     Get.put(TaskDetailController());
     return GetBuilder<TaskDetailController>(
       builder: (_) {
-        return AppLayout(
+        return AppLayout.core(
           currentMenu: EMenu.task,
           loading: _.loading.value,
           title: _.task.value != null ? _.task.value!.name : null,

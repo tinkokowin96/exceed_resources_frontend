@@ -10,10 +10,9 @@ class MiscView extends GetView<MiscController> {
   const MiscView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return AppLayout(
+    return AppLayout.core(
       currentMenu: EMenu.misc,
       content: Container(color: Colors.orangeAccent),
-      header: false,
     );
   }
 }

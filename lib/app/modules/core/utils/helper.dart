@@ -133,9 +133,10 @@ String formatDate({DateTime? date, String? dateString}) {
 
 String transfromName(String name) => name[0] + RegExp(r' (.)').firstMatch(name)!.group(1)!.toUpperCase();
 
-Future<void> download({String? url, FutureOr<Uint8List>? data}) async {
-  late final FutureOr<Uint8List> bytes;
+Future<void> download({required String name, String? url, Uint8List? data}) async {
+  late final Uint8List bytes;
   late final Directory? directory;
+  late final File file;
   if (url == null && data == null) {
     throw const FormatException("Required url or byte data");
   }
@@ -149,8 +150,16 @@ Future<void> download({String? url, FutureOr<Uint8List>? data}) async {
     directory = Directory('/storage/emulated/0/Download');
   } else if (Platform.isIOS) {
     directory = await getApplicationDocumentsDirectory();
-  } else if (Platform.isMacOS) {
-  } else if (Platform.isWindows) {}
+  } else if (Platform.isMacOS || Platform.isWindows) {
+    directory = await getDownloadsDirectory();
+  }
+
+  void downloadFile() => File('${directory!.path}/$name').writeAsBytes(bytes);
+
+  if (await File('${directory!.path}/$name').exists()) {
+  } else {
+    downloadFile();
+  }
 }
 
 class App {

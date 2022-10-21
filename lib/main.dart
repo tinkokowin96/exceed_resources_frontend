@@ -7,6 +7,7 @@ import 'package:exceed_resources_frontend/app/modules/core/utils/request_permiss
 import 'package:exceed_resources_frontend/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 Future<void> main() async {

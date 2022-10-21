@@ -1,15 +1,11 @@
-import 'package:dio/dio.dart';
+import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
+import 'package:flutter/foundation.dart';
 
 class Attachment {
-  final String? name;
-  final String? value;
-  final MultipartFile? file;
-  bool delete;
+  final EAttachmentType type;
+  final String name;
+  final String? url;
+  final Uint8List? data;
 
-  Attachment({
-    this.name,
-    this.value,
-    this.file,
-    this.delete = false,
-  });
+  Attachment({required this.type, required this.name, this.url, this.data});
 }

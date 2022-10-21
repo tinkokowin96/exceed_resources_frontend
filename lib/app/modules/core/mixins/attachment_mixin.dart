@@ -1,10 +1,10 @@
-import 'package:exceed_resources_frontend/app/modules/core/models/attachment.dart';
+import 'package:exceed_resources_frontend/app/modules/core/models/attachment_field.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:dio/dio.dart' as dio;
 import 'package:get/get.dart';
 
 mixin AttachmentMixin on GetxController {
-  final attachments = Rx<List<Attachment>>([]);
+  final attachments = Rx<List<AttachmentField>>([]);
 
   Future<void> updateAttachment({
     required Function(String? data) updateError,
@@ -15,7 +15,7 @@ mixin AttachmentMixin on GetxController {
       if (file != null) {
         attachments.value.removeWhere((each) => each.value == value);
       } else {
-        Attachment removedFile = attachments.value.firstWhere((each) => each.value == value);
+        AttachmentField removedFile = attachments.value.firstWhere((each) => each.value == value);
         removedFile.delete = true;
       }
     } else if (attachments.value.length < 10) {
@@ -28,7 +28,7 @@ mixin AttachmentMixin on GetxController {
           updateError('Maximum Of 5MB Is Allowed');
         } else {
           attachments.value.add(
-            Attachment(
+            AttachmentField(
               name: result.files.first.name,
               value: result.files.first.name,
               file: await dio.MultipartFile.fromFile(

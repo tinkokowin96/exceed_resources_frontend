@@ -17,7 +17,7 @@ class ProjectView extends GetView<ProjectController> {
   @override
   Widget build(BuildContext context) {
     Get.put(ProjectController());
-    return AppLayout(
+    return AppLayout.core(
       title: 'Create New Project',
       currentMenu: EMenu.task,
       content: Padding(

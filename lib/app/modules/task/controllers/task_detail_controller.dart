@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
+import 'package:exceed_resources_frontend/app/modules/core/models/attachment.dart';
 import 'package:exceed_resources_frontend/app/modules/core/services/byte_response_service.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/config.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
@@ -23,7 +24,7 @@ class TaskDetailController extends GetxController {
     'https://firebasestorage.googleapis.com/v0/b/exceed-resources-365004.appspot.com/o/pro_3.jpg?alt=media&token=8ae71fee-b2af-4621-ac9f-9b34a7b3c8dc',
     'https://firebasestorage.googleapis.com/v0/b/exceed-resources-365004.appspot.com/o/you_reached_sam.pdf?alt=media&token=8ae71fee-b2af-4621-ac9f-9b34a7b3c8dc'
   ];
-  final attachments = Rx<List<Map>>([]);
+  final attachments = Rx<List<Attachment>>([]);
 
   void updateStatus() {}
   void updatePriority() {}
@@ -49,11 +50,29 @@ class TaskDetailController extends GetxController {
       final fileName = RegExp(r'([^\/]*\.[a-z]{3,4})\?.*$').firstMatch(attachment)!.group(1);
       final fileType = RegExp(r'([a-z]{3,4})$').firstMatch(fileName!)!.group(1);
       if (imgTypes.contains(fileType)) {
-        attachments.value.add({'type': EAttachmentType.image, 'data': attachment});
+        attachments.value.add(
+          Attachment(
+            type: EAttachmentType.image,
+            name: fileName,
+            url: attachment,
+          ),
+        );
       } else if (fileType == 'pdf') {
-        attachments.value.add({'type': EAttachmentType.pdf, 'data': await byteResponse(attachment)});
+        attachments.value.add(
+          Attachment(
+            type: EAttachmentType.pdf,
+            name: fileName,
+            data: await byteResponse(attachment),
+          ),
+        );
       } else {
-        attachments.value.add({'type': EAttachmentType.others, 'data': attachment});
+        attachments.value.add(
+          Attachment(
+            type: EAttachmentType.others,
+            name: fileName,
+            url: attachment,
+          ),
+        );
       }
     }
     final elapsed = stopwatch.elapsed.inMilliseconds;

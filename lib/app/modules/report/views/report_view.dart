@@ -10,10 +10,9 @@ class ReportView extends GetView<ReportController> {
   const ReportView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return AppLayout(
+    return AppLayout.core(
       currentMenu: EMenu.report,
       content: Container(color: Colors.purpleAccent),
-      header: false,
     );
   }
 }

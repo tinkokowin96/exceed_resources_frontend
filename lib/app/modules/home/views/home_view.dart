@@ -17,7 +17,7 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     Get.put(HomeController(context: context));
 
-    return AppLayout(
+    return AppLayout.core(
       header: true,
       currentMenu: EMenu.home,
       content: Column(

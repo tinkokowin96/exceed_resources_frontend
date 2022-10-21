@@ -1,29 +1,25 @@
-import 'dart:async';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:exceed_resources_frontend/app/modules/core/animations/animated_press.dart';
+import 'package:exceed_resources_frontend/app/modules/core/models/attachment.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
+import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/helper.dart';
-import 'package:flutter/foundation.dart';
+import 'package:exceed_resources_frontend/app/modules/core/widgets/popup.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pdfx/pdfx.dart';
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class AttachmentFullscreen extends StatelessWidget {
-  final String? url;
-  final FutureOr<Uint8List>? data;
-  const AttachmentFullscreen({
-    Key? key,
-    this.url,
-    this.data,
-  }) : super(key: key);
+  final Attachment attachment;
+  final AppPopup? popup;
+  const AttachmentFullscreen({Key? key, required this.attachment, this.popup}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: AppSize.sm, right: AppSize.sm, top: AppSize.sm),
+          padding: const EdgeInsets.symmetric(horizontal: AppSize.sm, vertical: AppSize.sm),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -32,20 +28,20 @@ class AttachmentFullscreen extends StatelessWidget {
                 child: const Icon(Icons.navigate_before),
               ),
               AppAnimatedPress(
-                onPressed: () => download(),
+                onPressed: () => download(
+                  name: attachment.name,
+                  url: attachment.url,
+                  data: attachment.data,
+                ),
                 child: const Icon(Icons.download),
               ),
             ],
           ),
         ),
         Expanded(
-          child: url != null
-              ? CachedNetworkImage(imageUrl: url!)
-              : PdfView(
-                  controller: PdfController(
-                    document: PdfDocument.openData(data!),
-                  ),
-                ),
+          child: attachment.type == EAttachmentType.image
+              ? CachedNetworkImage(imageUrl: attachment.url!)
+              : SfPdfViewer.memory(attachment.data!),
         ),
       ],
     );
