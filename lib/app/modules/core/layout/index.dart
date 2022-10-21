@@ -49,25 +49,27 @@ class Layout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Opacity(
-          opacity: popup != null || loading ? 0.5 : 1,
-          child: AbsorbPointer(
-            absorbing: popup != null || loading ? true : false,
-            child: SafeArea(
-              child: child,
+    return Scaffold(
+      body: Stack(
+        children: [
+          Opacity(
+            opacity: popup != null || loading ? 0.5 : 1,
+            child: AbsorbPointer(
+              absorbing: popup != null || loading ? true : false,
+              child: SafeArea(
+                child: child,
+              ),
             ),
           ),
-        ),
-        popup != null || loading
-            ? SizedBox(
-                width: double.infinity,
-                height: double.infinity,
-                child: popup ?? Lottie.asset('assets/animation/loading.json'),
-              )
-            : AppSizeBox.zero
-      ],
+          popup != null || loading
+              ? SizedBox(
+                  width: double.infinity,
+                  height: double.infinity,
+                  child: popup ?? Lottie.asset('assets/animation/loading.json'),
+                )
+              : AppSizeBox.zero
+        ],
+      ),
     );
   }
 }

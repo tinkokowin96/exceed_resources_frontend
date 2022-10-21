@@ -1,11 +1,13 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:exceed_resources_frontend/app/modules/core/controllers/app_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/core/models/permission_request_response.dart';
 import 'package:exceed_resources_frontend/app/modules/core/services/byte_response_service.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/config.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
+import 'package:exceed_resources_frontend/app/modules/core/widgets/popup/info_popup.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
@@ -133,7 +135,7 @@ String formatDate({DateTime? date, String? dateString}) {
 
 String transfromName(String name) => name[0] + RegExp(r' (.)').firstMatch(name)!.group(1)!.toUpperCase();
 
-Future<void> download({required String name, String? url, Uint8List? data}) async {
+Future<void> download({required String name, required AppController controller, String? url, Uint8List? data}) async {
   late final Uint8List bytes;
   late final Directory? directory;
   late final File file;
@@ -157,6 +159,14 @@ Future<void> download({required String name, String? url, Uint8List? data}) asyn
   void downloadFile() => File('${directory!.path}/$name').writeAsBytes(bytes);
 
   if (await File('${directory!.path}/$name').exists()) {
+    controller.showPopup(
+      popupWidget: InfoPopup(
+        controller: controller,
+        title: 'Attachment already downloaded',
+        info: 'This attachment is already downloaded before.\nAre you sure you want to downlaod again.',
+      ),
+      confirm: () => downloadFile(),
+    );
   } else {
     downloadFile();
   }

@@ -1,7 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:exceed_resources_frontend/app/modules/core/controllers/app_controller.dart';
 
-class FullscreenController extends GetxController {
-  final loading = false.obs;
-  final popup = Rxn<Widget>();
-}
+class FullscreenController extends AppController {}

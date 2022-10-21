@@ -22,24 +22,20 @@ class MobileLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: AppSize.md),
-          child: Column(
-            children: [
-              title != null
-                  ? PageHeader(
-                      title: title!,
-                    )
-                  : header
-                      ? const UserHeader()
-                      : AppSizeBox.zero,
-              AppContent(child: content),
-              AppNavigation(currentMenu: currentMenu),
-            ],
-          ),
-        ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: AppSize.md),
+      child: Column(
+        children: [
+          title != null
+              ? PageHeader(
+                  title: title!,
+                )
+              : header
+                  ? const UserHeader()
+                  : AppSizeBox.zero,
+          AppContent(child: content),
+          AppNavigation(currentMenu: currentMenu),
+        ],
       ),
     );
   }
