@@ -1,16 +1,21 @@
+import 'dart:io';
 import 'package:exceed_resources_frontend/app/modules/core/lang/locale.dart';
 import 'package:exceed_resources_frontend/app/modules/core/lang/translation.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/config.dart';
-import 'package:exceed_resources_frontend/app/modules/core/utils/request_location_permission.dart';
+import 'package:exceed_resources_frontend/app/modules/core/utils/request_permission.dart';
 import 'package:exceed_resources_frontend/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  if (permissions.firstWhere((each) => each.name == 'home').option!["location"]) {
-    // locationPermission = await requestLocationPermission();
+//   if (permissions.firstWhere((each) => each.name == 'home').option!["location"]) {
+//     permissionRequests['location'] = await requestPermission(permission: Permission.location, type: 'Location');
+//   }
+  if (Platform.isAndroid) {
+    permissionRequests['storage'] = await requestPermission(permission: Permission.storage, type: 'Storage');
   }
   runApp(const MyApp());
 }

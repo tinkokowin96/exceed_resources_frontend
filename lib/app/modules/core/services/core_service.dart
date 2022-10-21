@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
+import 'package:exceed_resources_frontend/app/modules/core/services/client.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -17,25 +18,11 @@ Future<dynamic> request({
 }) async {
   final Dio client = Dio();
   try {
-    client.options.baseUrl = 'http://localhost:4000/';
-    client.options.connectTimeout = 15000;
-    client.options.receiveTimeout = 60000;
-
+    final Dio client = await coreClient();
     if (query != null) {
       client.options.queryParameters = query;
     }
-
-    Directory appDocDir = await getApplicationDocumentsDirectory();
-    String appDocPath = appDocDir.path;
-    final cj = PersistCookieJar(
-      storage: FileStorage('$appDocPath/.cookies/'),
-    );
-    client.interceptors.add(
-      CookieManager(cj),
-    );
-
     final List<Map> responses = [];
-
     for (final path in paths) {
       switch (method) {
         case ERequestMethod.get:

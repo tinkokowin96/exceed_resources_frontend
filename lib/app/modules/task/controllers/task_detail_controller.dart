@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
+import 'package:exceed_resources_frontend/app/modules/core/services/byte_response_service.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/config.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/task/controllers/task_table_controller.dart';
@@ -50,10 +51,7 @@ class TaskDetailController extends GetxController {
       if (imgTypes.contains(fileType)) {
         attachments.value.add({'type': EAttachmentType.image, 'data': attachment});
       } else if (fileType == 'pdf') {
-        final Dio client = Dio();
-        client.options.responseType = ResponseType.bytes;
-        final response = await client.get(attachment);
-        attachments.value.add({'type': EAttachmentType.pdf, 'data': response.data});
+        attachments.value.add({'type': EAttachmentType.pdf, 'data': await byteResponse(attachment)});
       } else {
         attachments.value.add({'type': EAttachmentType.others, 'data': attachment});
       }

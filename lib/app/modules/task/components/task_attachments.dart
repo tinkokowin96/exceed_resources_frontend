@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
+import 'package:exceed_resources_frontend/app/modules/core/widgets/attachment_fullscreen.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/carousel.dart';
 import 'package:exceed_resources_frontend/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
@@ -23,19 +24,35 @@ class TaskAttachments extends StatelessWidget {
         attachments.map(
           (each) {
             if (each['type'] == EAttachmentType.image) {
-              return CachedNetworkImage(
-                imageUrl: each['data'],
-                width: width,
-                height: 300,
+              return InkWell(
+                onTap: () => Get.toNamed(
+                  AppRoutes.fullscreen,
+                  arguments: AttachmentFullscreen(
+                    url: each['data'],
+                  ),
+                ),
+                child: CachedNetworkImage(
+                  imageUrl: each['data'],
+                  width: width,
+                  height: 300,
+                ),
               );
             }
             if (each['type'] == EAttachmentType.pdf) {
-              return SizedBox(
-                width: width,
-                height: 300,
-                child: PdfView(
-                  controller: PdfController(
-                    document: PdfDocument.openData(each['data']),
+              return InkWell(
+                onTap: () => Get.toNamed(
+                  AppRoutes.fullscreen,
+                  arguments: AttachmentFullscreen(
+                    data: each['data'],
+                  ),
+                ),
+                child: SizedBox(
+                  width: width,
+                  height: 300,
+                  child: PdfView(
+                    controller: PdfController(
+                      document: PdfDocument.openData(each['data']),
+                    ),
                   ),
                 ),
               );

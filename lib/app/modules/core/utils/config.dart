@@ -5,7 +5,7 @@ import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-PermissionRequestResponse? locationPermission;
+final Map<String, PermissionRequestResponse?> permissionRequests = {'location': null, 'storage': null};
 final AppThemeData currentTheme = AppThemeData.currentTheme;
 const minimunLoading = 1500;
 final AppLocale locale = AppLocale();

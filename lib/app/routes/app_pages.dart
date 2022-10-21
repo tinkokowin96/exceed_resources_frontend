@@ -1,8 +1,12 @@
 import 'package:exceed_resources_frontend/app/modules/core/utils/config.dart';
+import 'package:exceed_resources_frontend/app/modules/core/utils/helper.dart';
 import 'package:exceed_resources_frontend/app/modules/core/views/error_view.dart';
+import 'package:exceed_resources_frontend/app/modules/core/views/fullscreen_view.dart';
+import 'package:exceed_resources_frontend/app/modules/home/bindings/home_binding.dart';
 import 'package:exceed_resources_frontend/app/modules/task/bindings/task_binding.dart';
 import 'package:exceed_resources_frontend/app/modules/task/views/project_view.dart';
 import 'package:exceed_resources_frontend/app/modules/task/views/task_detail_view.dart';
+import 'package:exceed_resources_frontend/app/modules/task/views/task_view.dart';
 import 'package:get/get.dart';
 import '../modules/chat/bindings/chat_binding.dart';
 import '../modules/chat/views/chat_view.dart';
@@ -16,24 +20,34 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static final initial =
-      (locationPermission == null || locationPermission!.granted) ? AppRoutes.home : AppRoutes.permissionDenied;
+  static final initial = isPermissionsGranted().granted ? AppRoutes.home : AppRoutes.permissionDenied;
 
   static final routes = [
     ...errorRoutes,
     GetPage(
+      name: AppRoutes.fullscreen,
+      page: () => const FullscreenView(),
+      binding: HomeBinding(),
+      transitionDuration: Duration.zero,
+    ),
+    GetPage(
       name: AppRoutes.home,
       page: () => const TaskDetailView(),
       //   page: () => const HomeView(),
-      //   binding: HomeBinding(),
+      binding: HomeBinding(),
       transitionDuration: Duration.zero,
     ),
     GetPage(
       name: AppRoutes.task,
-      page: () => const TaskDetailView(),
-      //   page: () => const TaskView(),
+      page: () => const TaskView(),
       transitionDuration: Duration.zero,
     ),
+    // GetPage(
+    //   name: AppRoutes.taskDetail,
+    //   page: () => const TaskDetailView(),
+    //   binding: TaskBinding(),
+    //   transitionDuration: Duration.zero,
+    // ),
     GetPage(
       name: AppRoutes.taskDetail,
       page: () => const TaskDetailView(),
@@ -69,7 +83,7 @@ class AppPages {
     GetPage(
       name: AppRoutes.permissionDenied,
       page: () => ErrorView(
-        error: locationPermission != null ? locationPermission!.message! : '',
+        error: isPermissionsGranted().message!,
       ),
       transitionDuration: Duration.zero,
     ),

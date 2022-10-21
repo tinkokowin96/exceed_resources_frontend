@@ -1,12 +1,29 @@
+import 'dart:async';
+import 'dart:io';
+
+import 'package:exceed_resources_frontend/app/modules/core/models/permission_request_response.dart';
+import 'package:exceed_resources_frontend/app/modules/core/services/byte_response_service.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
+import 'package:exceed_resources_frontend/app/modules/core/utils/config.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
 
 EDevice getDevice(BuildContext context) => MediaQuery.of(context).size.width <= 576
     ? EDevice.mobile
     : MediaQuery.of(context).size.width <= 768
         ? EDevice.tablet
         : EDevice.desktop;
+
+PermissionRequestResponse isPermissionsGranted() {
+  for (final permission in permissionRequests.values) {
+    if (permission != null && !permission.granted) {
+      return PermissionRequestResponse(granted: false, message: permission.message);
+    }
+  }
+  return const PermissionRequestResponse(granted: true);
+}
 
 Color getTextColor(ETextType type, BuildContext context) {
   switch (type) {
@@ -115,6 +132,26 @@ String formatDate({DateTime? date, String? dateString}) {
 }
 
 String transfromName(String name) => name[0] + RegExp(r' (.)').firstMatch(name)!.group(1)!.toUpperCase();
+
+Future<void> download({String? url, FutureOr<Uint8List>? data}) async {
+  late final FutureOr<Uint8List> bytes;
+  late final Directory? directory;
+  if (url == null && data == null) {
+    throw const FormatException("Required url or byte data");
+  }
+  if (url != null) {
+    bytes = await byteResponse(url);
+  } else {
+    bytes = data!;
+  }
+
+  if (Platform.isAndroid) {
+    directory = Directory('/storage/emulated/0/Download');
+  } else if (Platform.isIOS) {
+    directory = await getApplicationDocumentsDirectory();
+  } else if (Platform.isMacOS) {
+  } else if (Platform.isWindows) {}
+}
 
 class App {
   static width(BuildContext context) => MediaQuery.of(context).size.width;
