@@ -1,4 +1,3 @@
-import 'package:exceed_resources_frontend/app/modules/core/animations/animated_press.dart';
 import 'package:exceed_resources_frontend/app/modules/core/layout/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
@@ -8,6 +7,7 @@ import 'package:exceed_resources_frontend/app/modules/core/utils/helper.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/button/text_button.dart';
 import 'package:exceed_resources_frontend/app/modules/task/components/task_attachments.dart';
 import 'package:exceed_resources_frontend/app/modules/task/components/task_collaborator.dart';
+import 'package:exceed_resources_frontend/app/modules/task/components/task_comment.dart';
 import 'package:exceed_resources_frontend/app/modules/task/controllers/task_detail_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/task/controllers/task_table_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/task/widgets/status_priority_dropdown.dart';
@@ -249,6 +249,44 @@ class TaskDetailView extends GetView<TaskDetailController> {
                                     ),
                                   ),
                                 ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: AppSize.md),
+                              child: Divider(
+                                color: AppTheme.of(context).color.idle,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: AppSize.sm),
+                              child: Text(
+                                'Comments',
+                                style: AppTheme.text(
+                                  context: context,
+                                  weight: FontWeight.w500,
+                                  type: ETextType.subtitle,
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: AppSize.sm),
+                              child: TaskComment(
+                                comment: controller.task.value!.comments[0],
+                                divider: false,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: AppSize.md),
+                              child: InkWell(
+                                onTap: () => '',
+                                child: Text(
+                                  'See all ${controller.task.value!.comments.length} comments',
+                                  style: AppTheme.text(
+                                    context: context,
+                                    type: ETextType.subtitle,
+                                    weight: FontWeight.w500,
+                                  ),
+                                ),
                               ),
                             ),
                           ],

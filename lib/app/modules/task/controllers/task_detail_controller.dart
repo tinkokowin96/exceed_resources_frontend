@@ -5,7 +5,10 @@ import 'package:exceed_resources_frontend/app/modules/core/models/attachment.dar
 import 'package:exceed_resources_frontend/app/modules/core/services/byte_response_service.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/config.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
+import 'package:exceed_resources_frontend/app/modules/misc/models/employee_m.dart';
 import 'package:exceed_resources_frontend/app/modules/task/controllers/task_table_controller.dart';
+import 'package:exceed_resources_frontend/app/modules/task/models/comment.dart';
+import 'package:exceed_resources_frontend/app/modules/task/models/comment_type.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/priority.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/status.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/task.dart';
@@ -15,7 +18,6 @@ import 'package:get/get.dart';
 class TaskDetailController extends AppController {
   final taskTableController = Get.find<TaskTableController>();
   final stopwatch = Stopwatch();
-  final loading = true.obs;
   late final task = Rxn<Task>(taskTableController.tasks.isNotEmpty ? taskTableController.tasks.first : null);
   final statuses = Rx<List<Status>>([]);
   final priorities = Rx<List<Priority>>([]);
@@ -26,6 +28,23 @@ class TaskDetailController extends AppController {
     'https://firebasestorage.googleapis.com/v0/b/exceed-resources-365004.appspot.com/o/you_reached_sam.pdf?alt=media&token=8ae71fee-b2af-4621-ac9f-9b34a7b3c8dc'
   ];
   final attachments = Rx<List<Attachment>>([]);
+  final comments = [
+    Comment(
+      id: 'cmt_1',
+      comment: [
+        CommentType(text: 'Can I get help from '),
+        CommentType(text: 'Htoo Aung', employeeId: 'emp_11'),
+        CommentType(text: ' bro?')
+      ],
+      commentedBy: EmployeeM(
+        id: 'emp_1',
+        name: 'Moe Kyaw',
+        image:
+            'https://firebasestorage.googleapis.com/v0/b/exceed-resources-365004.appspot.com/o/emp_1.jpg?alt=media&token=758555e1-fb5a-4905-84a9-205bad38415a',
+      ),
+      numLike: 1,
+    )
+  ];
 
   void updateStatus() {}
   void updatePriority() {}

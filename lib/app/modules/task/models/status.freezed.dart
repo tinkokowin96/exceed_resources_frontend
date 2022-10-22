@@ -33,7 +33,8 @@ mixin _$Status {
 /// @nodoc
 abstract class $StatusCopyWith<$Res> {
   factory $StatusCopyWith(Status value, $Res Function(Status) then) =
-      _$StatusCopyWithImpl<$Res>;
+      _$StatusCopyWithImpl<$Res, Status>;
+  @useResult
   $Res call(
       {String id,
       String name,
@@ -42,33 +43,36 @@ abstract class $StatusCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$StatusCopyWithImpl<$Res> implements $StatusCopyWith<$Res> {
+class _$StatusCopyWithImpl<$Res, $Val extends Status>
+    implements $StatusCopyWith<$Res> {
   _$StatusCopyWithImpl(this._value, this._then);
 
-  final Status _value;
   // ignore: unused_field
-  final $Res Function(Status) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? name = freezed,
-    Object? color = freezed,
+    Object? id = null,
+    Object? name = null,
+    Object? color = null,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      color: color == freezed
+      color: null == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
               as Color,
-    ));
+    ) as $Val);
   }
 }
 
@@ -77,6 +81,7 @@ abstract class _$$_StatusCopyWith<$Res> implements $StatusCopyWith<$Res> {
   factory _$$_StatusCopyWith(_$_Status value, $Res Function(_$_Status) then) =
       __$$_StatusCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String id,
       String name,
@@ -85,30 +90,29 @@ abstract class _$$_StatusCopyWith<$Res> implements $StatusCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_StatusCopyWithImpl<$Res> extends _$StatusCopyWithImpl<$Res>
+class __$$_StatusCopyWithImpl<$Res>
+    extends _$StatusCopyWithImpl<$Res, _$_Status>
     implements _$$_StatusCopyWith<$Res> {
   __$$_StatusCopyWithImpl(_$_Status _value, $Res Function(_$_Status) _then)
-      : super(_value, (v) => _then(v as _$_Status));
+      : super(_value, _then);
 
-  @override
-  _$_Status get _value => super._value as _$_Status;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? name = freezed,
-    Object? color = freezed,
+    Object? id = null,
+    Object? name = null,
+    Object? color = null,
   }) {
     return _then(_$_Status(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      color: color == freezed
+      color: null == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
               as Color,
@@ -146,21 +150,18 @@ class _$_Status implements _Status {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Status &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.color, color));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.color, color) || other.color == color));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(color));
+  int get hashCode => Object.hash(runtimeType, id, name, color);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_StatusCopyWith<_$_Status> get copyWith =>
       __$$_StatusCopyWithImpl<_$_Status>(this, _$identity);
 
