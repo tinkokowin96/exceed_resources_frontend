@@ -41,7 +41,7 @@ class AppTextButton extends StatelessWidget {
       onPressed: () => disabled ? null : onPressed(),
       style: ButtonStyle(
         overlayColor: MaterialStateProperty.all(
-          disabled ? Colors.transparent : AppTheme.of(context).color.primary.withOpacity(0.2),
+          disabled ? Colors.transparent : AppTheme.of(context).color.secondary.withOpacity(0.2),
         ),
       ),
       child: Text(

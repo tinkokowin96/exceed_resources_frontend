@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 
 final Map<String, PermissionRequestResponse?> permissionRequests = {'location': null, 'storage': null};
 final AppThemeData currentTheme = AppThemeData.currentTheme;
+String? directory;
 const minimunLoading = 1500;
 final AppLocale locale = AppLocale();
 final List<Permission> permissions = [

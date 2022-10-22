@@ -27,6 +27,7 @@ dependencies:
     google_maps_flutter: ^2.2.1
     permission_handler: ^10.2.0
     syncfusion_flutter_pdfviewer: ^20.3.50
+    archive: ^3.3.2
 
 dev_dependencies:
     flutter_test:

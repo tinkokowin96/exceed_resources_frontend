@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
+import 'package:exceed_resources_frontend/app/modules/core/controllers/app_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/core/models/attachment.dart';
 import 'package:exceed_resources_frontend/app/modules/core/services/byte_response_service.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/config.dart';
@@ -11,7 +12,7 @@ import 'package:exceed_resources_frontend/app/modules/task/models/task.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-class TaskDetailController extends GetxController {
+class TaskDetailController extends AppController {
   final taskTableController = Get.find<TaskTableController>();
   final stopwatch = Stopwatch();
   final loading = true.obs;

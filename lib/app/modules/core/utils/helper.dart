@@ -1,15 +1,18 @@
 import 'dart:async';
 import 'dart:io';
-
+import 'package:archive/archive_io.dart';
 import 'package:exceed_resources_frontend/app/modules/core/controllers/app_controller.dart';
+import 'package:exceed_resources_frontend/app/modules/core/models/attachment.dart';
 import 'package:exceed_resources_frontend/app/modules/core/models/permission_request_response.dart';
 import 'package:exceed_resources_frontend/app/modules/core/services/byte_response_service.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/config.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/popup/info_popup.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 import 'package:path_provider/path_provider.dart';
 
 EDevice getDevice(BuildContext context) => MediaQuery.of(context).size.width <= 576
@@ -135,35 +138,69 @@ String formatDate({DateTime? date, String? dateString}) {
 
 String transfromName(String name) => name[0] + RegExp(r' (.)').firstMatch(name)!.group(1)!.toUpperCase();
 
-Future<void> download({required String name, required AppController controller, String? url, Uint8List? data}) async {
-  late final Uint8List bytes;
-  late final Directory? directory;
-  late final File file;
-  if (url == null && data == null) {
-    throw const FormatException("Required url or byte data");
-  }
-  if (url != null) {
-    bytes = await byteResponse(url);
-  } else {
-    bytes = data!;
-  }
-
-  if (Platform.isAndroid) {
-    directory = Directory('/storage/emulated/0/Download');
-  } else if (Platform.isIOS) {
-    directory = await getApplicationDocumentsDirectory();
-  } else if (Platform.isMacOS || Platform.isWindows) {
-    directory = await getDownloadsDirectory();
+Future<void> download({
+  required List<Attachment> attachments,
+  required AppController controller,
+}) async {
+  if (directory == null) {
+    if (Platform.isIOS) {
+      final appDoc = await getApplicationDocumentsDirectory();
+      directory = appDoc.path;
+    } else {
+      final pickerRes = await FilePicker.platform.getDirectoryPath();
+      directory = pickerRes;
+    }
   }
 
-  void downloadFile() => File('${directory!.path}/$name').writeAsBytes(bytes);
+  Future<void> downloadFile() async {
+    controller.updateLoading(true);
+    late final Uint8List bytes;
+    late final String name;
+    if (attachments.length == 1) {
+      name = attachments[0].name;
+      if (attachments[0].url == null) {
+        bytes = attachments[0].data!;
+      } else {
+        bytes = await byteResponse(attachments[0].url!);
+      }
+    } else {
+      final encoder = ZipEncoder();
+      final archive = Archive();
+      for (final file in attachments) {
+        late final Uint8List fileByte;
+        if (file.data != null) {
+          fileByte = file.data!;
+        } else {
+          fileByte = await byteResponse(file.url!);
+        }
+        ArchiveFile archiveFile = ArchiveFile.stream(
+          file.name,
+          fileByte.lengthInBytes,
+          InputStream(fileByte),
+        );
+        archive.addFile(archiveFile);
+      }
+      name = 'attachments.zip';
+      bytes = encoder.encode(archive, level: Deflate.BEST_COMPRESSION, output: OutputStream(byteOrder: LITTLE_ENDIAN))
+          as Uint8List;
+    }
 
-  if (await File('${directory!.path}/$name').exists()) {
+    await File('$directory/$name').writeAsBytes(bytes);
+    controller.updateLoading(false);
+    Get.showSnackbar(
+      GetSnackBar(
+        title: 'Attachment Downloaded',
+        message: '$name is download ${!Platform.isIOS ? 'into $directory' : ''}',
+      ),
+    );
+  }
+
+  if (attachments.length == 1 && await File('$directory/${attachments[0].name}').exists()) {
     controller.showPopup(
       popupWidget: InfoPopup(
         controller: controller,
         title: 'Attachment already downloaded',
-        info: 'This attachment is already downloaded before.\nAre you sure you want to downlaod again.',
+        info: 'This attachment is already downloaded before.\nAre you sure you want to download again.',
       ),
       confirm: () => downloadFile(),
     );

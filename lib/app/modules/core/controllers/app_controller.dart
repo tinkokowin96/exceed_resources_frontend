@@ -7,6 +7,11 @@ class AppController extends GetxController {
   final confirmCallback = Rxn<Function()>();
   final cancelCallback = Rxn<Function()>();
 
+  void updateLoading(bool value) {
+    loading.value = value;
+    update();
+  }
+
   void exitPopup() {
     popup.value = null;
     update();

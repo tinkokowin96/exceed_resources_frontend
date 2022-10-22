@@ -7,7 +7,6 @@ import 'package:exceed_resources_frontend/app/modules/core/utils/request_permiss
 import 'package:exceed_resources_frontend/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 Future<void> main() async {
@@ -17,6 +16,10 @@ Future<void> main() async {
 //   }
   if (Platform.isAndroid) {
     permissionRequests['storage'] = await requestPermission(permission: Permission.storage, type: 'Storage');
+    permissionRequests['mediaLocation'] =
+        await requestPermission(permission: Permission.accessMediaLocation, type: 'Media Location');
+    permissionRequests['manageStorage'] =
+        await requestPermission(permission: Permission.manageExternalStorage, type: 'Manage Storage');
   }
   runApp(const MyApp());
 }

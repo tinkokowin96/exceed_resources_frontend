@@ -1,9 +1,11 @@
+import 'package:exceed_resources_frontend/app/modules/core/animations/animated_press.dart';
 import 'package:exceed_resources_frontend/app/modules/core/layout/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/sizebox.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/helper.dart';
+import 'package:exceed_resources_frontend/app/modules/core/widgets/button/text_button.dart';
 import 'package:exceed_resources_frontend/app/modules/task/components/task_attachments.dart';
 import 'package:exceed_resources_frontend/app/modules/task/components/task_collaborator.dart';
 import 'package:exceed_resources_frontend/app/modules/task/controllers/task_detail_controller.dart';
@@ -219,13 +221,25 @@ class TaskDetailView extends GetView<TaskDetailController> {
                                 mainAxisSize: MainAxisSize.min,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    'Attachments',
-                                    style: AppTheme.text(
-                                      context: context,
-                                      weight: FontWeight.w500,
-                                      type: ETextType.subtitle,
-                                    ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        'Attachments',
+                                        style: AppTheme.text(
+                                          context: context,
+                                          weight: FontWeight.w500,
+                                          type: ETextType.subtitle,
+                                        ),
+                                      ),
+                                      AppTextButton(
+                                        onPressed: () => download(
+                                          controller: controller,
+                                          attachments: controller.attachments.value,
+                                        ),
+                                        text: 'Download',
+                                      ),
+                                    ],
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.only(top: AppSize.sm),

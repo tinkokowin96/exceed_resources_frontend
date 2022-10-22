@@ -31,9 +31,7 @@ class AttachmentFullscreen extends GetView<FullscreenController> {
               AppAnimatedPress(
                 onPressed: () => download(
                   controller: controller,
-                  name: attachment.name,
-                  url: attachment.url,
-                  data: attachment.data,
+                  attachments: [attachment],
                 ),
                 child: const Icon(Icons.download),
               ),
