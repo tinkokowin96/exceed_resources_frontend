@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:archive/archive_io.dart';
 import 'package:exceed_resources_frontend/app/modules/core/controllers/app_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/core/models/attachment.dart';
-import 'package:exceed_resources_frontend/app/modules/core/models/permission_request_response.dart';
 import 'package:exceed_resources_frontend/app/modules/core/services/byte_response_service.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/config.dart';
@@ -20,15 +19,6 @@ EDevice getDevice(BuildContext context) => MediaQuery.of(context).size.width <= 
     : MediaQuery.of(context).size.width <= 768
         ? EDevice.tablet
         : EDevice.desktop;
-
-PermissionRequestResponse isPermissionsGranted() {
-  for (final permission in permissionRequests.values) {
-    if (permission != null && !permission.granted) {
-      return PermissionRequestResponse(granted: false, message: permission.message);
-    }
-  }
-  return const PermissionRequestResponse(granted: true);
-}
 
 Color getTextColor(ETextType type, BuildContext context) {
   switch (type) {
@@ -146,6 +136,12 @@ Future<void> download({
     if (Platform.isIOS) {
       final appDoc = await getApplicationDocumentsDirectory();
       directory = appDoc.path;
+    } else if (Platform.isAndroid) {
+      final appDir = Directory('/storage/emulated/0/Download/exceed_resources');
+      if (!await appDir.exists()) {
+        appDir.create(recursive: true);
+      }
+      directory = appDir.path;
     } else {
       final pickerRes = await FilePicker.platform.getDirectoryPath();
       directory = pickerRes;

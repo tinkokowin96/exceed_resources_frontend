@@ -4,11 +4,13 @@ import 'package:exceed_resources_frontend/app/modules/core/models/permission_req
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-final Map<String, PermissionRequestResponse?> permissionRequests = {'location': null, 'storage': null};
-final AppThemeData currentTheme = AppThemeData.currentTheme;
 String? directory;
+late final PermissionRequestResponse permissionResponse;
 const minimunLoading = 1500;
+const platform = MethodChannel('exceed_resources');
+final AppThemeData currentTheme = AppThemeData.currentTheme;
 final AppLocale locale = AppLocale();
 final List<Permission> permissions = [
   Permission(name: 'home', write: true, option: {

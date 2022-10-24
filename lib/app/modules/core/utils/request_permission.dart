@@ -1,29 +1,32 @@
+import 'dart:io';
+
 import 'package:exceed_resources_frontend/app/modules/core/models/permission_request_response.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:permission_handler/permission_handler.dart';
+import 'package:exceed_resources_frontend/app/modules/core/utils/config.dart';
+import 'package:exceed_resources_frontend/app/modules/core/extensions/string_extension.dart';
 
-Future<PermissionRequestResponse> requestPermission({
-  required Permission permission,
-  required String type,
-}) async {
-//   const Permission permission = Permission.storage;
-  if (type == 'Location') {
-    bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
-
-    if (!serviceEnabled) {
-      return const PermissionRequestResponse(
-          granted: false, message: 'Please enable location services to be able to use Exceed Resources');
+Future<PermissionRequestResponse> requestPermission() async {
+  if (permissions.firstWhere((each) => each.name == 'home').option!["location"]) {
+    if (Platform.isAndroid || Platform.isIOS) {
+      final result = await platform.invokeMethod('location');
+      if (!result['granted'].toString().parseBool()) {
+        return PermissionRequestResponse(granted: false, message: result['message']);
+      }
     }
   }
-  if (await permission.status == PermissionStatus.denied) {
-    final status = await permission.request();
-    if (status != PermissionStatus.granted) {
-      return PermissionRequestResponse(granted: false, message: '$type permission is denied.');
-    } else {
-      return const PermissionRequestResponse(granted: true);
+  if (Platform.isAndroid) {
+    final read = await platform.invokeMethod('read');
+    if (!read['granted'].toString().parseBool()) {
+      return PermissionRequestResponse(granted: false, message: read['message']);
     }
-  } else if (await permission.status == PermissionStatus.permanentlyDenied) {
-    return PermissionRequestResponse(granted: false, message: '$type permission is denied permanently.');
+    final write = await platform.invokeMethod('write');
+    if (!write['granted'].toString().parseBool()) {
+      return PermissionRequestResponse(granted: false, message: write['message']);
+    }
+    final mediaLocation = await platform.invokeMethod('mediaLocation');
+    if (!mediaLocation['granted'].toString().parseBool()) {
+      return PermissionRequestResponse(granted: false, message: mediaLocation['message']);
+    }
   }
+
   return const PermissionRequestResponse(granted: true);
 }
