@@ -7,7 +7,7 @@ import 'package:exceed_resources_frontend/app/modules/core/services/byte_respons
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/config.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
-import 'package:exceed_resources_frontend/app/modules/core/widgets/popup/info_popup.dart';
+import 'package:exceed_resources_frontend/app/modules/core/widgets/popup.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -128,10 +128,8 @@ String formatDate({DateTime? date, String? dateString}) {
 
 String transfromName(String name) => name[0] + RegExp(r' (.)').firstMatch(name)!.group(1)!.toUpperCase();
 
-Future<void> download({
-  required List<Attachment> attachments,
-  required AppController controller,
-}) async {
+Future<void> download(
+    {required List<Attachment> attachments, required AppController controller, required BuildContext context}) async {
   if (directory == null) {
     if (Platform.isIOS) {
       final appDoc = await getApplicationDocumentsDirectory();
@@ -193,7 +191,8 @@ Future<void> download({
 
   if (attachments.length == 1 && await File('$directory/${attachments[0].name}').exists()) {
     controller.showPopup(
-      popupWidget: InfoPopup(
+      popupWidget: AppPopup.info(
+        context: context,
         controller: controller,
         title: 'Attachment already downloaded',
         info: 'This attachment is already downloaded before.\nAre you sure you want to download again.',

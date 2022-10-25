@@ -27,6 +27,7 @@ dependencies:
     permission_handler: ^10.2.0
     syncfusion_flutter_pdfviewer: ^20.3.50
     archive: ^3.3.2
+    geolocator: ^9.0.2
 
 dev_dependencies:
     flutter_test:

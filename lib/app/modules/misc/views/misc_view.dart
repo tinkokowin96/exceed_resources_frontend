@@ -1,4 +1,4 @@
-import 'package:exceed_resources_frontend/app/modules/core/layout/index.dart';
+import 'package:exceed_resources_frontend/app/modules/core/layout/layout.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:flutter/material.dart';
 

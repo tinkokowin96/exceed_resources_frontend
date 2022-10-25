@@ -1,10 +1,6 @@
-import 'dart:io';
-import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
-import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:exceed_resources_frontend/app/modules/core/services/client.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
-import 'package:path_provider/path_provider.dart';
 
 Future<dynamic> request({
   dynamic body,

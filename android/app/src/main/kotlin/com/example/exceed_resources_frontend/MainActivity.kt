@@ -1,11 +1,10 @@
 package com.example.exceed_resources_frontend
 
 import android.Manifest
+import android.content.Context
 import android.content.pm.PackageManager
+import android.location.LocationManager
 import android.os.Build
-import android.os.Bundle
-import android.os.PersistableBundle
-import android.util.Log
 import androidx.annotation.NonNull
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -25,17 +24,21 @@ class MainActivity : FlutterActivity() {
             channelResult = result
             when (call.method) {
                 "location" -> {
-                    requestPermission(Manifest.permission.ACCESS_FINE_LOCATION,  101)
+                    if (!isLocationEnabled()) {
+                        channelResult.success(mapOf("granted" to false, "message" to "Location and network need to enable to use Exceed Resources"))
+                    } else {
+                        requestPermission(Manifest.permission.ACCESS_FINE_LOCATION, 101)
+                    }
                 }
-                "read"-> {
-                    requestPermission(Manifest.permission.READ_EXTERNAL_STORAGE,  102)
+                "read" -> {
+                    requestPermission(Manifest.permission.READ_EXTERNAL_STORAGE, 102)
                 }
                 "write" -> {
-                    requestPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE,  103)
+                    requestPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, 103)
                 }
                 "mediaLocation" -> {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                        requestPermission(Manifest.permission.ACCESS_MEDIA_LOCATION,  105)
+                        requestPermission(Manifest.permission.ACCESS_MEDIA_LOCATION, 105)
                     } else {
                         channelResult.success(mapOf("granted" to true, "message" to ""))
                     }
@@ -44,25 +47,29 @@ class MainActivity : FlutterActivity() {
         }
     }
 
+    private fun isLocationEnabled(): Boolean {
+        val locationManager: LocationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) && locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
+    }
+
     private fun requestPermission(permission: String, requestCode: Int) {
         val status = ContextCompat.checkSelfPermission(this, permission)
-         if (status == PackageManager.PERMISSION_DENIED) {
+        if (status == PackageManager.PERMISSION_DENIED) {
             ActivityCompat.requestPermissions(this, arrayOf(permission), requestCode)
         } else {
             channelResult.success(mapOf("granted" to true, "message" to ""))
-         }
+        }
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
+        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             channelResult.success(mapOf("granted" to true, "message" to ""))
-        }
-        else {
+        } else {
             lateinit var name: String
-            when(requestCode){
+            when (requestCode) {
                 101 -> name = "Location"
-                102, 103, 104,105 -> name = "Storage"
+                102, 103, 104, 105 -> name = "Storage"
             }
             channelResult.success(mapOf("granted" to false, "message" to "$name permission denied"))
         }

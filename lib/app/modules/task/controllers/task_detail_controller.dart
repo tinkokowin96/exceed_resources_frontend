@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:dio/dio.dart';
 import 'package:exceed_resources_frontend/app/modules/core/controllers/app_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/core/models/attachment.dart';
 import 'package:exceed_resources_frontend/app/modules/core/services/byte_response_service.dart';

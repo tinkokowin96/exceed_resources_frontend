@@ -1,4 +1,4 @@
-import 'package:exceed_resources_frontend/app/modules/core/layout/index.dart';
+import 'package:exceed_resources_frontend/app/modules/core/layout/layout.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/sizebox.dart';
@@ -27,6 +27,8 @@ class TaskDetailView extends GetView<TaskDetailController> {
           currentMenu: EMenu.task,
           loading: _.loading.value,
           title: _.task.value != null ? _.task.value!.name : null,
+          drawer: _.drawer.value,
+          controller: controller,
           content: _.task.value == null
               ? AppSizeBox.zero
               : Padding(
@@ -236,6 +238,7 @@ class TaskDetailView extends GetView<TaskDetailController> {
                                         onPressed: () => download(
                                           controller: controller,
                                           attachments: controller.attachments.value,
+                                          context: context,
                                         ),
                                         text: 'Download',
                                       ),

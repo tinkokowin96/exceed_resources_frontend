@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
-import 'package:exceed_resources_frontend/app/modules/core/utils/config.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/helper.dart';
 import 'package:exceed_resources_frontend/app/modules/task/components/status_priority.dart';

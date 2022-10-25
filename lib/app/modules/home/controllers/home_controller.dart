@@ -22,9 +22,12 @@ class HomeController extends GetxController {
 
   Future<void> checkInClickHandler() async {
     if (permission.option!['location']) {
-      final result = await platform.invokeMethod('current');
-      currentLocation.value = LatLng(result['lat'], result['lng']);
-      currentLocation.refresh();
+      await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best).then(
+        (position) {
+          currentLocation.value = LatLng(position.latitude, position.longitude);
+          currentLocation.refresh();
+        },
+      );
     }
   }
 }

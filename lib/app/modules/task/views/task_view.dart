@@ -1,4 +1,4 @@
-import 'package:exceed_resources_frontend/app/modules/core/layout/index.dart';
+import 'package:exceed_resources_frontend/app/modules/core/layout/layout.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/sizebox.dart';

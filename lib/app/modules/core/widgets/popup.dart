@@ -3,6 +3,7 @@ import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/miscs.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/sizebox.dart';
+import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/helper.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/button/button.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,38 @@ class AppPopup extends StatefulWidget {
 
   @override
   State<AppPopup> createState() => _AppPopupState();
+
+  factory AppPopup.info({
+    required String info,
+    required String title,
+    required AppController controller,
+    required BuildContext context,
+  }) =>
+      AppPopup(
+        controller: controller,
+        cancel: true,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              title,
+              style: AppTheme.text(
+                context: context,
+                weight: FontWeight.w500,
+                size: EText.h2,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: AppSize.sm),
+              child: Text(
+                info,
+                textAlign: TextAlign.center,
+                style: AppTheme.text(context: context),
+              ),
+            ),
+          ],
+        ),
+      );
 }
 
 class _AppPopupState extends State<AppPopup> with SingleTickerProviderStateMixin {
@@ -56,7 +89,7 @@ class _AppPopupState extends State<AppPopup> with SingleTickerProviderStateMixin
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 800),
+      duration: const Duration(milliseconds: 600),
     );
     _controller.forward();
   }

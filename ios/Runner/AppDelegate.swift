@@ -22,15 +22,6 @@ import GoogleMaps
             case "location":
                 self?.checkLocation(manager: self!.locationManager);
                 break;
-            case "current":
-                if(self?.locationManager.location != nil){
-                    result(
-                        ["lat": self?.locationManager.location?.coordinate.latitude, "lng":  self?.locationManager.location?.coordinate.longitude]
-                    )
-                } else {
-                    self?.locationManager.startUpdatingLocation();
-                }
-                break;
             default:
                 result(FlutterMethodNotImplemented);
                 break;
@@ -80,10 +71,4 @@ import GoogleMaps
         checkLocation(manager: manager)
     }
     
-    
-    func locationManager(_ manager: CLLocationManager,didUpdateLocations locations: [CLLocation]) {
-        let location = locations.last! as CLLocation;
-        channelResult!(["lat": location.coordinate.latitude, "lng": location.coordinate.longitude])
-        manager.stopUpdatingLocation();
-    }
 }
