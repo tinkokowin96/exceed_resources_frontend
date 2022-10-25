@@ -10,6 +10,7 @@ String? directory;
 late final PermissionRequestResponse permissionResponse;
 const minimunLoading = 1500;
 const platform = MethodChannel('exceed_resources');
+const imgTypes = ['jpg', 'jpeg', 'png'];
 final AppThemeData currentTheme = AppThemeData.currentTheme;
 final AppLocale locale = AppLocale();
 final List<Permission> permissions = [

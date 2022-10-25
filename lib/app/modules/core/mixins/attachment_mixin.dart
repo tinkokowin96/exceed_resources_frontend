@@ -1,45 +1,42 @@
+import 'dart:io';
+
+import 'package:exceed_resources_frontend/app/modules/core/controllers/app_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/core/models/attachment_field.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:dio/dio.dart' as dio;
 import 'package:get/get.dart';
 
-mixin AttachmentMixin on GetxController {
-  final attachments = Rx<List<AttachmentField>>([]);
-
-  Future<void> updateAttachment({
-    required Function(String? data) updateError,
+mixin AttachmentMixin on AppController {
+  Future<List<AttachmentField>?> updateAttachment({
+    required List<AttachmentField> attachments,
     FilePickerResult? file,
     String? value,
   }) async {
     if (value != null) {
       if (file != null) {
-        attachments.value.removeWhere((each) => each.value == value);
+        attachments.removeWhere((each) => each.value == value);
       } else {
-        AttachmentField removedFile = attachments.value.firstWhere((each) => each.value == value);
+        AttachmentField removedFile = attachments.firstWhere((each) => each.value == value);
         removedFile.delete = true;
       }
-    } else if (attachments.value.length < 10) {
-      FilePickerResult? result = await FilePicker.platform.pickFiles(
-        type: FileType.custom,
-        allowedExtensions: ['png', 'jpg', 'jpeg', 'csv', 'pdf', 'xls'],
-      );
+    } else if (attachments.length < 10) {
+      FilePickerResult? result = await FilePicker.platform.pickFiles();
       if (result != null) {
-        if (result.files.first.size.isGreaterThan(5242880)) {
-          updateError('Maximum Of 5MB Is Allowed');
+        if (result.files.first.size.isGreaterThan(10485760)) {
+          updateError('Maximum Of 10MB Is Allowed');
+          return null;
         } else {
-          attachments.value.add(
+          final type = RegExp(r'([a-z]{3,4})$').firstMatch(result.files.first.name)!.group(1);
+          attachments.add(
             AttachmentField(
+              type: type!,
               name: result.files.first.name,
               value: result.files.first.name,
-              file: await dio.MultipartFile.fromFile(
-                result.files.first.path ?? '',
-                filename: result.files.first.name,
-              ),
+              file: File(result.files.first.path!),
             ),
           );
         }
       }
     }
-    attachments.refresh();
+    return attachments;
   }
 }

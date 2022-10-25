@@ -1,12 +1,14 @@
-import 'package:dio/dio.dart';
+import 'dart:io';
 
 class AttachmentField {
+  final String type;
   final String? name;
   final String? value;
-  final MultipartFile? file;
+  final File? file;
   bool delete;
 
   AttachmentField({
+    required this.type,
     this.name,
     this.value,
     this.file,

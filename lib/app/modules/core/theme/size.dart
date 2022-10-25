@@ -18,10 +18,12 @@ class AppSize {
 
   //popup
 
-  //field
+  //input field
   static fWMd(BuildContext context) => App.width(context) * 0.8;
   static const fWSmA = 110.0; //absolute width
-  static const fP = 16.0; //field padding vertical
+  static const fP = 16.0; //field padding
+  static const mP = 12.0; //message padding
+  static const ma = 80.0;
 
   //dropdown
   static const dH = 100.0;

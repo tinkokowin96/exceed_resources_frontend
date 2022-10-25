@@ -1,3 +1,4 @@
+import 'package:exceed_resources_frontend/app/modules/core/animations/animated_press.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/sizebox.dart';
@@ -20,16 +21,30 @@ class AppThemeMiscs {
   static inputStyle({
     required BuildContext context,
     required EInputStyle style,
+    Function()? sendAttachment,
     String? hintText,
     String? suffix,
     TextStyle? hintStyle,
   }) =>
       InputDecoration(
+        suffixIcon: style == EInputStyle.message
+            ? AppAnimatedPress(
+                onPressed: sendAttachment!,
+                child: Icon(
+                  Icons.attach_file,
+                  color: AppTheme.of(context).color.idle,
+                ),
+              )
+            : null,
         isCollapsed: true,
-        contentPadding: const EdgeInsets.all(AppSize.fP),
+        contentPadding: EdgeInsets.all(style == EInputStyle.message ? AppSize.mP : AppSize.fP),
         hintText: hintText,
-        filled: style == EInputStyle.primary ? true : false,
-        fillColor: style == EInputStyle.primary ? AppTheme.of(context).color.secondary.withOpacity(0.1) : null,
+        filled: style == EInputStyle.line ? false : true,
+        fillColor: style == EInputStyle.primary
+            ? AppTheme.of(context).color.secondary.withOpacity(0.1)
+            : style == EInputStyle.message
+                ? AppTheme.of(context).color.container
+                : null,
         suffix: suffix != null
             ? ColoredBox(
                 color: AppTheme.of(context).color.secondary.withOpacity(0.1),
@@ -59,8 +74,11 @@ class AppThemeMiscs {
                 borderSide: BorderSide(color: Colors.black),
               )
             : OutlineInputBorder(
+                borderRadius: BorderRadius.circular(style == EInputStyle.message ? 100 : 0),
                 borderSide: BorderSide(
-                  color: AppTheme.of(context).color.secondary.withOpacity(0.2),
+                  color: style == EInputStyle.message
+                      ? AppTheme.of(context).color.idle.withOpacity(0.1)
+                      : AppTheme.of(context).color.secondary.withOpacity(0.2),
                 ),
               ),
         focusedBorder: style == EInputStyle.line
@@ -70,8 +88,11 @@ class AppThemeMiscs {
                 ),
               )
             : OutlineInputBorder(
+                borderRadius: BorderRadius.circular(style == EInputStyle.message ? 100 : 0),
                 borderSide: BorderSide(
-                  color: AppTheme.of(context).color.secondary,
+                  color: style == EInputStyle.message
+                      ? AppTheme.of(context).color.idle.withOpacity(0.3)
+                      : AppTheme.of(context).color.secondary,
                 ),
               ),
       );

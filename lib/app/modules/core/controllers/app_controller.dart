@@ -5,22 +5,20 @@ import 'package:get/get.dart';
 
 class AppController extends GetxController {
   final loading = false.obs;
+  final error = Rxn<String>();
   final popup = Rxn<AppPopup>();
-  final drawerWidget = Rxn<Widget>(Container());
-//   final drawerWidget = Rxn<Widget>();
-  late final drawer = Rxn<AppDrawer>(
-    AppDrawer(
-      exit: exitDrawer,
-      child: Container(),
-    ),
-  );
-//   final drawer = Rxn<AppDrawer>();
-//   final drawerExitRequest = false.obs;
+  final drawerWidget = Rxn<Widget>();
+  final drawer = Rxn<AppDrawer>();
   final confirmCallback = Rxn<Function()>();
   final cancelCallback = Rxn<Function()>();
 
   void updateLoading(bool value) {
     loading.value = value;
+    update();
+  }
+
+  void updateError(String? updatedError) {
+    error.value = updatedError;
     update();
   }
 

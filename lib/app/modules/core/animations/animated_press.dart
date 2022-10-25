@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class AppAnimatedPress extends StatefulWidget {
-  final Widget child;
   final Function() onPressed;
+  final Widget child;
   const AppAnimatedPress({
     Key? key,
     required this.child,

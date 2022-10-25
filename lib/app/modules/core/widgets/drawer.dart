@@ -61,15 +61,14 @@ class _AppDrawerState extends State<AppDrawer> with SingleTickerProviderStateMix
   }
 
   @override
-  Widget build(BuildContext context) => AnimatedBuilder(
-        animation: _controller,
-        builder: (BuildContext content, _) {
-          return Dismissible(
-            key: const Key('drawer'),
-            direction: DismissDirection.down,
-            onUpdate: (details) => setState(() {}),
-            onDismissed: (_) => widget.exit(),
-            child: Transform.translate(
+  Widget build(BuildContext context) => Dismissible(
+        key: const Key('drawer'),
+        direction: DismissDirection.down,
+        onDismissed: (_) => widget.exit(),
+        child: AnimatedBuilder(
+          animation: _controller,
+          builder: (BuildContext content, _) {
+            return Transform.translate(
               offset: Offset(0, _transfromAnimation.value),
               child: Center(
                 child: DecoratedBox(
@@ -91,8 +90,8 @@ class _AppDrawerState extends State<AppDrawer> with SingleTickerProviderStateMix
                   ),
                 ),
               ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       );
 }

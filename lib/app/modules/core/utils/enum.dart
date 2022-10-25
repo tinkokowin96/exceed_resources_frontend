@@ -14,6 +14,6 @@ enum EAsyncDropdown { tyep1 }
 
 enum EExpandable { minimize, expand, form }
 
-enum EInputStyle { line, primary }
+enum EInputStyle { line, primary, message }
 
 enum EAttachmentType { image, pdf, others }
