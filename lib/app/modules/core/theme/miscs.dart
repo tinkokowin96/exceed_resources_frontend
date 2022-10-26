@@ -21,21 +21,11 @@ class AppThemeMiscs {
   static inputStyle({
     required BuildContext context,
     required EInputStyle style,
-    Function()? sendAttachment,
     String? hintText,
     String? suffix,
     TextStyle? hintStyle,
   }) =>
       InputDecoration(
-        suffixIcon: style == EInputStyle.message
-            ? AppAnimatedPress(
-                onPressed: sendAttachment!,
-                child: Icon(
-                  Icons.attach_file,
-                  color: AppTheme.of(context).color.idle,
-                ),
-              )
-            : null,
         isCollapsed: true,
         contentPadding: EdgeInsets.all(style == EInputStyle.message ? AppSize.mP : AppSize.fP),
         hintText: hintText,
@@ -43,7 +33,7 @@ class AppThemeMiscs {
         fillColor: style == EInputStyle.primary
             ? AppTheme.of(context).color.secondary.withOpacity(0.1)
             : style == EInputStyle.message
-                ? AppTheme.of(context).color.container
+                ? Colors.transparent
                 : null,
         suffix: suffix != null
             ? ColoredBox(
@@ -74,7 +64,7 @@ class AppThemeMiscs {
                 borderSide: BorderSide(color: Colors.black),
               )
             : OutlineInputBorder(
-                borderRadius: BorderRadius.circular(style == EInputStyle.message ? 100 : 0),
+                borderRadius: BorderRadius.circular(style == EInputStyle.message ? AppSize.md : 0),
                 borderSide: BorderSide(
                   color: style == EInputStyle.message
                       ? AppTheme.of(context).color.idle.withOpacity(0.1)
@@ -88,7 +78,7 @@ class AppThemeMiscs {
                 ),
               )
             : OutlineInputBorder(
-                borderRadius: BorderRadius.circular(style == EInputStyle.message ? 100 : 0),
+                borderRadius: BorderRadius.circular(style == EInputStyle.message ? AppSize.md : 0),
                 borderSide: BorderSide(
                   color: style == EInputStyle.message
                       ? AppTheme.of(context).color.idle.withOpacity(0.3)

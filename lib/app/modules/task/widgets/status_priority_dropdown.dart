@@ -54,7 +54,6 @@ class _StatusPriorityDropdownState extends State<StatusPriorityDropdown> {
   Widget build(BuildContext context) {
     return AppDropdown(
       width: AppSize.staW,
-      loading: false,
       items: _dropdownOptions,
       onChanged: ({checked, value}) => onDropdownChange(value),
       dropdownController: TextEditingController(),

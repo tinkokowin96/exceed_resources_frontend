@@ -307,18 +307,24 @@ class TaskDetailView extends GetView<TaskDetailController> {
                             ),
                             Padding(
                               padding: const EdgeInsets.symmetric(vertical: AppSize.md),
-                              child: Obx(() {
-                                return MessageInput(
-                                  width: constraint.maxWidth,
-                                  focus: controller.messageFocus,
-                                  onFocusChange: controller.onMessageFocusChange,
-                                  controller: controller.messageController,
-                                  sendMessage: controller.onSendMessage,
-                                  listenMessage: controller.listenMessage,
-                                  sendAttachment: controller.sendAttachment,
-                                  attachments: controller.messageAttachments.value,
-                                );
-                              }),
+                              child: Obx(
+                                () {
+                                  return MessageInput(
+                                    width: constraint.maxWidth,
+                                    focus: controller.messageFocus,
+                                    onFocusChange: controller.onMessageFocusChange,
+                                    controller: controller.messageController,
+                                    sendMessage: controller.onSendMessage,
+                                    listenMessage: controller.listenMessage,
+                                    updateAttachment: controller.updateMessageAttachment,
+                                    attachments: controller.messageAttachments.value,
+                                    employeeOptions: controller.employeeOptions,
+                                    dropdown: controller.employeeDropdown.value,
+                                    onDropdownChange: controller.onEmployeeDropdownChange,
+                                    messageText: controller.messageText.value,
+                                  );
+                                },
+                              ),
                             ),
                           ],
                         ),

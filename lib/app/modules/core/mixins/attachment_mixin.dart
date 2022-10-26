@@ -8,21 +8,20 @@ import 'package:get/get.dart';
 mixin AttachmentMixin on AppController {
   Future<List<AttachmentField>?> updateAttachment({
     required List<AttachmentField> attachments,
-    FilePickerResult? file,
-    String? value,
+    String? name,
   }) async {
-    if (value != null) {
-      if (file != null) {
-        attachments.removeWhere((each) => each.value == value);
-      } else {
-        AttachmentField removedFile = attachments.firstWhere((each) => each.value == value);
+    if (name != null) {
+      AttachmentField removedFile = attachments.firstWhere((each) => each.name == name);
+      if (removedFile.file == null) {
         removedFile.delete = true;
+      } else {
+        attachments.removeWhere((each) => each.name == removedFile.name);
       }
     } else if (attachments.length < 10) {
       FilePickerResult? result = await FilePicker.platform.pickFiles();
       if (result != null) {
         if (result.files.first.size.isGreaterThan(10485760)) {
-          updateError('Maximum Of 10MB Is Allowed');
+          updateError('Maximum of 10MB is allowed');
           return null;
         } else {
           final type = RegExp(r'([a-z]{3,4})$').firstMatch(result.files.first.name)!.group(1);
@@ -36,6 +35,8 @@ mixin AttachmentMixin on AppController {
           );
         }
       }
+    } else {
+      updateError('Maximum of 10 resources is allowed');
     }
     return attachments;
   }

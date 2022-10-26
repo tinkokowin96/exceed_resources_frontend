@@ -14,14 +14,15 @@ import 'package:lottie/lottie.dart';
 
 class AppDropdown extends StatefulWidget {
   final double width;
-  final bool loading;
   final List<Option> items;
   final Function({Option? value, bool? checked}) onChanged;
+  final bool? attach;
   final bool isMulti;
   final bool searchable;
   final bool noPadding;
-  final TextEditingController dropdownController;
+  final bool loading;
   final EText textSize;
+  final TextEditingController? dropdownController;
   final String? hint;
   final Option? defaultOption;
   final Widget? customSelector;
@@ -34,15 +35,16 @@ class AppDropdown extends StatefulWidget {
   const AppDropdown({
     Key? key,
     required this.width,
-    required this.loading,
     required this.items,
     required this.onChanged,
-    required this.dropdownController,
-    this.hint,
+    this.loading = false,
     this.searchable = false,
     this.noPadding = false,
     this.isMulti = false,
     this.textSize = EText.h3,
+    this.dropdownController,
+    this.attach,
+    this.hint,
     this.defaultOption,
     this.customSelector,
     this.onSearched,
@@ -82,7 +84,9 @@ class _AppDropdownState extends State<AppDropdown> {
   void selectDropdownHandler({required Option value, bool? checked}) {
     setState(() {
       if (checked == null) {
-        widget.dropdownController.text = value.text;
+        if (widget.dropdownController != null) {
+          widget.dropdownController!.text = value.text;
+        }
         _selectedDropdown = value;
         _focusNode.unfocus();
       } else {
@@ -95,12 +99,14 @@ class _AppDropdownState extends State<AppDropdown> {
           _selected.removeWhere((item) => item == value.text);
         }
 
-        widget.dropdownController.text = '';
-        for (final item in _selected) {
-          if (widget.dropdownController.text.isEmpty) {
-            widget.dropdownController.text += item;
-          } else {
-            widget.dropdownController.text += ', $item';
+        if (widget.dropdownController != null) {
+          widget.dropdownController!.text = '';
+          for (final item in _selected) {
+            if (widget.dropdownController!.text.isEmpty) {
+              widget.dropdownController!.text += item;
+            } else {
+              widget.dropdownController!.text += ', $item';
+            }
           }
         }
         _entry!.markNeedsBuild();
@@ -145,6 +151,10 @@ class _AppDropdownState extends State<AppDropdown> {
         ),
       );
     }
+
+    if (widget.attach != null && widget.attach != _showDropdown) {
+      showDropdown(widget.attach!);
+    }
   }
 
   void showDropdown(bool show) {
@@ -155,8 +165,8 @@ class _AppDropdownState extends State<AppDropdown> {
         _selectedDropdown = null;
       });
     } else {
-      if (widget.searchable) {
-        widget.dropdownController.text = '';
+      if (widget.searchable && widget.dropdownController != null) {
+        widget.dropdownController!.text = '';
       }
       _entry!.remove();
       if (_selectedDropdown == null) {
@@ -168,8 +178,8 @@ class _AppDropdownState extends State<AppDropdown> {
   @override
   void initState() {
     _focusNode = FocusNode();
-    if (widget.defaultOption != null) {
-      widget.dropdownController.text = widget.defaultOption!.text;
+    if (widget.defaultOption != null && widget.dropdownController != null) {
+      widget.dropdownController!.text = widget.defaultOption!.text;
     }
     WidgetsBinding.instance.addPostFrameCallback((_) => executeAfterBuild(false));
     super.initState();
@@ -177,11 +187,6 @@ class _AppDropdownState extends State<AppDropdown> {
 
   @override
   void didUpdateWidget(AppDropdown oldWidget) {
-    // WidgetsBinding.instance.addPersistentFrameCallback((timeStamp) {
-    //   //   if (_entry != null) {
-    //   //     _entry!.markNeedsBuild();
-    //   //   }
-    // }); NOTE: directly manipulating like this will tirgger Concurrent modification during iteration: error
     WidgetsBinding.instance.addPostFrameCallback((_) => executeAfterBuild(true));
     super.didUpdateWidget(oldWidget);
   }
@@ -207,7 +212,7 @@ class _AppDropdownState extends State<AppDropdown> {
       link: _layerLink,
       child: widget.customSelector != null
           ? GestureDetector(
-              onTap: () => showDropdown(!_showDropdown),
+              onTap: () => widget.attach != null ? null : showDropdown(!_showDropdown),
               child: widget.customSelector,
             )
           : AppFromField(

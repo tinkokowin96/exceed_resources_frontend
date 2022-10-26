@@ -3,6 +3,7 @@ import 'package:exceed_resources_frontend/app/modules/core/controllers/app_contr
 import 'package:exceed_resources_frontend/app/modules/core/mixins/attachment_mixin.dart';
 import 'package:exceed_resources_frontend/app/modules/core/models/attachment.dart';
 import 'package:exceed_resources_frontend/app/modules/core/models/attachment_field.dart';
+import 'package:exceed_resources_frontend/app/modules/core/models/option.dart';
 import 'package:exceed_resources_frontend/app/modules/core/services/byte_response_service.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/config.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
@@ -26,14 +27,16 @@ class TaskDetailController extends AppController with AttachmentMixin {
   final messageController = TextEditingController();
   final messageFocus = FocusNode();
   final messageHasFoucus = false.obs;
-  late final messageAttachments = Rx<List<AttachmentField>>([]);
+  final messageAttachments = Rx<List<AttachmentField>>([]);
+  final employeeDropdown = false.obs;
+  final attachments = Rx<List<Attachment>>([]);
+  final messageText = Rx<List<CommentType>>([]);
   final data = [
     'https://firebasestorage.googleapis.com/v0/b/exceed-resources-365004.appspot.com/o/pro_1.jpg?alt=media&token=8ae71fee-b2af-4621-ac9f-9b34a7b3c8dc',
     'https://firebasestorage.googleapis.com/v0/b/exceed-resources-365004.appspot.com/o/pro_2.jpg?alt=media&token=8ae71fee-b2af-4621-ac9f-9b34a7b3c8dc',
     'https://firebasestorage.googleapis.com/v0/b/exceed-resources-365004.appspot.com/o/pro_3.jpg?alt=media&token=8ae71fee-b2af-4621-ac9f-9b34a7b3c8dc',
     'https://firebasestorage.googleapis.com/v0/b/exceed-resources-365004.appspot.com/o/you_reached_sam.pdf?alt=media&token=8ae71fee-b2af-4621-ac9f-9b34a7b3c8dc'
   ];
-  final attachments = Rx<List<Attachment>>([]);
   final comments = [
     Comment(
       id: 'cmt_1',
@@ -51,20 +54,80 @@ class TaskDetailController extends AppController with AttachmentMixin {
       numLike: 1,
     )
   ];
+  final employeeOptions = const [
+    Option(text: 'one', value: 1),
+    Option(text: 'two', value: 2),
+    Option(text: 'three', value: 3),
+  ];
+  String previousMessage = '';
+  String messageBeforeLastChunk = '';
 
   void onSendMessage() {
     messageController.clear();
   }
 
+  void removeLastMessageChunk() {
+    messageText.value.removeLast();
+    messageBeforeLastChunk = '';
+    for (int i = 0; i < messageText.value.length; i++) {
+      messageBeforeLastChunk += messageText.value[i].text;
+    }
+    messageController.text = messageBeforeLastChunk;
+    messageController.selection = TextSelection.fromPosition(
+      TextPosition(
+        offset: messageController.text.length,
+      ),
+    );
+    previousMessage = messageController.text;
+  }
+
   void listenMessage(String value) {
     final regex = RegExp(r'@');
     if (regex.hasMatch(value)) {
-      print(value);
+      if (!employeeDropdown.value) {
+        employeeDropdown.value = true;
+        employeeDropdown.refresh();
+      }
+    } else {
+      if (employeeDropdown.value) {
+        employeeDropdown.value = false;
+        employeeDropdown.refresh();
+      }
+      if (value.length != previousMessage.length) {
+        final isDelete = value.length < previousMessage.length;
+        final lastChunkMessage = value.replaceFirst(messageBeforeLastChunk, '');
+        if (isDelete) {
+          if (messageText.value.last.employeeId == null) {
+            if (lastChunkMessage.isEmpty) {
+              removeLastMessageChunk();
+            } else {
+              messageText.value.last.text = lastChunkMessage;
+            }
+          } else {
+            removeLastMessageChunk();
+          }
+        } else {
+          if (messageText.value.isEmpty) {
+            messageText.value.add(CommentType(text: lastChunkMessage));
+          } else {
+            if (messageText.value.last.employeeId == null) {
+              messageText.value.last.text = lastChunkMessage;
+            } else {
+              messageText.value.add(CommentType(text: lastChunkMessage));
+            }
+          }
+        }
+        previousMessage = value;
+      }
     }
+    messageText.refresh();
   }
 
-  Future<void> sendAttachment() async {
-    final updatedAttachments = await updateAttachment(attachments: messageAttachments.value);
+  Future<void> updateMessageAttachment({String? name}) async {
+    final updatedAttachments = await updateAttachment(
+      attachments: messageAttachments.value,
+      name: name,
+    );
     if (updatedAttachments != null) {
       messageAttachments.value = updatedAttachments;
       messageAttachments.refresh();
@@ -74,6 +137,25 @@ class TaskDetailController extends AppController with AttachmentMixin {
   void onMessageFocusChange(bool hasFocus) {
     messageHasFoucus.value = hasFocus;
     update();
+  }
+
+  void onEmployeeDropdownChange(Option? value) {
+    if (value != null) {
+      employeeDropdown.value = false;
+      messageController.text = messageController.text.replaceFirst('@', value.text);
+      employeeDropdown.refresh();
+      messageController.selection = TextSelection.fromPosition(
+        TextPosition(
+          offset: messageController.text.length,
+        ),
+      );
+
+      messageText.value.add(
+        CommentType(text: value.text, employeeId: value.value.toString()),
+      );
+      messageBeforeLastChunk = messageController.text;
+      previousMessage = messageController.text;
+    }
   }
 
   void updateStatus() {}

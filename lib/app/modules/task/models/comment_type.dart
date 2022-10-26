@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'comment_type.freezed.dart';
 part 'comment_type.g.dart';
 
-@freezed
+@unfreezed
 class CommentType with _$CommentType {
   factory CommentType({
     required String text,
