@@ -6,6 +6,7 @@ import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/helper.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/button/text_button.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/message_input.dart';
+import 'package:exceed_resources_frontend/app/modules/task/components/task_all_comments.dart';
 import 'package:exceed_resources_frontend/app/modules/task/components/task_attachments.dart';
 import 'package:exceed_resources_frontend/app/modules/task/components/task_collaborator.dart';
 import 'package:exceed_resources_frontend/app/modules/task/components/task_comment.dart';
@@ -290,7 +291,9 @@ class TaskDetailView extends GetView<TaskDetailController> {
                                     Padding(
                                       padding: const EdgeInsets.only(top: AppSize.md),
                                       child: InkWell(
-                                        onTap: () => '',
+                                        onTap: () => controller.showDrawer(
+                                          widget: TaskAllComments(comments: controller.task.value!.comments),
+                                        ),
                                         child: Text(
                                           'See all ${controller.task.value!.comments.length} comments',
                                           style: AppTheme.text(

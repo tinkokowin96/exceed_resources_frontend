@@ -1,3 +1,5 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
 enum ETextType { body, error, primary, white, subtitle, disabled, disabledPrimary }
 
 enum EText { h1, h2, h3, h4, h5 }
@@ -16,4 +18,11 @@ enum EExpandable { minimize, expand, form }
 
 enum EInputStyle { line, primary, message }
 
-enum EAttachmentType { image, pdf, others }
+enum EAttachmentType {
+  @JsonValue('Image')
+  image,
+  @JsonValue('Pdf')
+  pdf,
+  @JsonValue('Others')
+  others
+}

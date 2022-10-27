@@ -1,11 +1,18 @@
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:flutter/foundation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class Attachment {
-  final EAttachmentType type;
-  final String name;
-  final String? url;
-  final Uint8List? data;
+part 'attachment.freezed.dart';
+part 'attachment.g.dart';
 
-  Attachment({required this.type, required this.name, this.url, this.data});
+@freezed
+class Attachment with _$Attachment {
+  factory Attachment({
+    required EAttachmentType type,
+    required String name,
+    String? url,
+    dynamic data, //null on data comes from api
+  }) = _Attachment;
+
+  factory Attachment.fromJson(Map<String, dynamic> json) => _$AttachmentFromJson(json);
 }

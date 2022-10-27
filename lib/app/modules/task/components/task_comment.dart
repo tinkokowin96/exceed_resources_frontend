@@ -7,6 +7,7 @@ import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/comment.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:timeago/timeago.dart';
 
 class TaskComment extends StatefulWidget {
   final Comment comment;
@@ -61,9 +62,19 @@ class _TaskCommentState extends State<TaskComment> {
             Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                AppAnimatedPress(
-                  onPressed: () => null,
-                  child: Icon(widget.comment.liked ? Icons.favorite : Icons.favorite_border),
+                Text(
+                  format(widget.comment.updatedAt!, locale: 'en_short'),
+                  style: AppTheme.text(
+                    context: context,
+                    type: ETextType.subtitle,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: AppSize.sm),
+                  child: AppAnimatedPress(
+                    onPressed: () => null,
+                    child: Icon(widget.comment.liked ? Icons.favorite : Icons.favorite_border),
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: AppSize.sm),
@@ -78,24 +89,26 @@ class _TaskCommentState extends State<TaskComment> {
         ),
         Padding(
           padding: const EdgeInsets.only(top: AppSize.xs),
-          child: RichText(
-            text: TextSpan(
-              children: List.from(
-                widget.comment.comment.map(
-                  (each) => TextSpan(
-                    text: each.text,
-                    style: AppTheme.text(
-                      context: context,
-                      type: each.employeeId != null ? ETextType.primary : ETextType.body,
+          child: widget.comment.textComment != null
+              ? RichText(
+                  text: TextSpan(
+                    children: List.from(
+                      widget.comment.textComment!.map(
+                        (each) => TextSpan(
+                          text: each.text,
+                          style: AppTheme.text(
+                            context: context,
+                            type: each.employeeId != null ? ETextType.primary : ETextType.body,
+                          ),
+                          recognizer: each.employeeId == null
+                              ? null
+                              : (TapGestureRecognizer()..onTap = () => print('pressed ${each.text}')),
+                        ),
+                      ),
                     ),
-                    recognizer: each.employeeId == null
-                        ? null
-                        : (TapGestureRecognizer()..onTap = () => print('pressed ${each.text}')),
                   ),
-                ),
-              ),
-            ),
-          ),
+                )
+              : AppSizeBox.zero,
         ),
         widget.divider
             ? Padding(

@@ -39,20 +39,20 @@ class TaskDetailController extends AppController with AttachmentMixin {
   ];
   final comments = [
     Comment(
-      id: 'cmt_1',
-      comment: [
-        CommentType(text: 'Can I get help from '),
-        CommentType(text: 'Htoo Aung', employeeId: 'emp_11'),
-        CommentType(text: ' bro?')
-      ],
-      commentedBy: EmployeeM(
-        id: 'emp_1',
-        name: 'Moe Kyaw',
-        image:
-            'https://firebasestorage.googleapis.com/v0/b/exceed-resources-365004.appspot.com/o/emp_1.jpg?alt=media&token=758555e1-fb5a-4905-84a9-205bad38415a',
-      ),
-      numLike: 1,
-    )
+        id: 'cmt_1',
+        textComment: [
+          CommentType(text: 'Can I get help from '),
+          CommentType(text: 'Htoo Aung', employeeId: 'emp_11'),
+          CommentType(text: ' bro?')
+        ],
+        commentedBy: EmployeeM(
+          id: 'emp_1',
+          name: 'Moe Kyaw',
+          image:
+              'https://firebasestorage.googleapis.com/v0/b/exceed-resources-365004.appspot.com/o/emp_1.jpg?alt=media&token=758555e1-fb5a-4905-84a9-205bad38415a',
+        ),
+        numLike: 1,
+        updatedAt: DateTime.now().subtract(const Duration(minutes: 30)))
   ];
   final employeeOptions = const [
     Option(text: 'one', value: 1),
@@ -61,6 +61,7 @@ class TaskDetailController extends AppController with AttachmentMixin {
   ];
   String previousMessage = '';
   String messageBeforeLastChunk = '';
+  late final Comment attachmentComment;
 
   void onSendMessage() {
     messageController.clear();
@@ -211,6 +212,17 @@ class TaskDetailController extends AppController with AttachmentMixin {
       await Future.delayed(Duration(milliseconds: minimunLoading - elapsed));
     }
     loading.value = false;
+    attachmentComment = Comment(
+      attachments: attachments.value,
+      liked: true,
+      commentedBy: EmployeeM(
+        id: 'emp_11',
+        name: 'Kyaw Thura',
+        image: data[1],
+      ),
+      numLike: 2,
+      updatedAt: DateTime.now().subtract(const Duration(hours: 2)),
+    );
     update();
   }
 
