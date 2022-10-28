@@ -147,7 +147,7 @@ Future<void> download(
   }
 
   Future<void> downloadFile() async {
-    controller.updateLoading(true);
+    controller.updateLoading(value: true);
     late final Uint8List bytes;
     late final String name;
     if (attachments.length == 1) {
@@ -180,7 +180,7 @@ Future<void> download(
     }
 
     await File('$directory/$name').writeAsBytes(bytes);
-    controller.updateLoading(false);
+    controller.updateLoading(value:false);
     Get.showSnackbar(
       GetSnackBar(
         title: 'Attachment Downloaded',

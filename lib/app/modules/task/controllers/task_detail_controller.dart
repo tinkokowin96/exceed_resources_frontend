@@ -20,8 +20,8 @@ import 'package:get/get.dart';
 
 class TaskDetailController extends AppController with AttachmentMixin {
   final taskTableController = Get.find<TaskTableController>();
-  final stopwatch = Stopwatch();
-  late final task = Rxn<Task>(taskTableController.tasks.isNotEmpty ? taskTableController.tasks.first : null);
+  late final task =
+      Rxn<Task>(taskTableController.tasks.value.isNotEmpty ? taskTableController.tasks.value.first : null);
   final statuses = Rx<List<Status>>([]);
   final priorities = Rx<List<Priority>>([]);
   final messageController = TextEditingController();

@@ -1,9 +1,11 @@
+import 'package:exceed_resources_frontend/app/modules/core/utils/config.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/drawer.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/popup.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AppController extends GetxController {
+  final stopwatch = Stopwatch();
   final loading = false.obs;
   final error = Rxn<String>();
   final popup = Rxn<AppPopup>();
@@ -12,8 +14,16 @@ class AppController extends GetxController {
   final confirmCallback = Rxn<Function()>();
   final cancelCallback = Rxn<Function()>();
 
-  void updateLoading(bool value) {
+  Future<void> updateLoading({
+    required bool value,
+    int? elapsed,
+  }) async {
     loading.value = value;
+    if (elapsed != null) {
+      if (elapsed < minimunLoading) {
+        await Future.delayed(Duration(milliseconds: minimunLoading - elapsed));
+      }
+    }
     update();
   }
 

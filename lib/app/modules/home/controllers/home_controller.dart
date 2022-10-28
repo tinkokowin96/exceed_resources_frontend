@@ -15,8 +15,8 @@ class HomeController extends GetxController {
 
   @override
   void onInit() {
-    taskRows.value = taskController.getRows(context: context);
-    taskRows.refresh();
+    // taskRows.value = taskController.getRows(context: context);
+    // taskRows.refresh();
     super.onInit();
   }
 

@@ -49,7 +49,7 @@ class TaskView extends GetView<TaskController> {
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       children: List.from(
-                        controller.taskController.projects.map(
+                        controller.taskController.projects.value.map(
                           (each) => Obx(
                             () {
                               return ProjectCard(

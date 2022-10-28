@@ -2,6 +2,7 @@ import 'package:exceed_resources_frontend/app/modules/core/utils/config.dart';
 import 'package:exceed_resources_frontend/app/modules/core/views/error_view.dart';
 import 'package:exceed_resources_frontend/app/modules/core/views/fullscreen_view.dart';
 import 'package:exceed_resources_frontend/app/modules/home/bindings/home_binding.dart';
+import 'package:exceed_resources_frontend/app/modules/home/views/home_view.dart';
 import 'package:exceed_resources_frontend/app/modules/task/bindings/task_binding.dart';
 import 'package:exceed_resources_frontend/app/modules/task/views/project_view.dart';
 import 'package:exceed_resources_frontend/app/modules/task/views/task_detail_view.dart';
@@ -31,8 +32,7 @@ class AppPages {
     ),
     GetPage(
       name: AppRoutes.home,
-      page: () => const TaskDetailView(),
-      //   page: () => const HomeView(),
+      page: () => const HomeView(),
       binding: HomeBinding(),
       transitionDuration: Duration.zero,
     ),
@@ -41,12 +41,12 @@ class AppPages {
       page: () => const TaskView(),
       transitionDuration: Duration.zero,
     ),
-    // GetPage(
-    //   name: AppRoutes.taskDetail,
-    //   page: () => const TaskDetailView(),
-    //   binding: TaskBinding(),
-    //   transitionDuration: Duration.zero,
-    // ),
+    GetPage(
+      name: AppRoutes.taskDetail,
+      page: () => const TaskDetailView(),
+      binding: TaskBinding(),
+      transitionDuration: Duration.zero,
+    ),
     GetPage(
       name: AppRoutes.taskDetail,
       page: () => const TaskDetailView(),

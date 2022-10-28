@@ -26,8 +26,8 @@ class TaskController extends GetxController {
 
   @override
   void onInit() {
-    taskRows.value = taskController.getRows(context: context);
-    taskRows.refresh();
+    // taskRows.value = taskController.getRows(context: context);
+    // taskRows.refresh();
     super.onInit();
   }
 
@@ -37,17 +37,17 @@ class TaskController extends GetxController {
   }
 
   void updateActiveProject(String id) {
-    activeProject.value = taskController.projects.firstWhere((each) => each.id == id);
+    activeProject.value = taskController.projects.value.firstWhere((each) => each.id == id);
     activeProject.refresh();
-    taskRows.value = taskController.getRows(
-      context: context,
-      activeProject: activeProject.value,
-    );
-    taskRows.refresh();
+    // taskRows.value = taskController.getRows(
+    //   context: context,
+    //   activeProject: activeProject.value,
+    // );
+    // taskRows.refresh();
   }
 
   void updateActiveTask(String id) {
-    activeTask.value = taskController.tasks.firstWhere((each) => each.id == id);
+    activeTask.value = taskController.tasks.value.firstWhere((each) => each.id == id);
     activeTask.refresh();
     Get.toNamed(AppRoutes.taskDetail);
   }

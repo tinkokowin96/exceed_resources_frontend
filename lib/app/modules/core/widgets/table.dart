@@ -5,18 +5,24 @@ import 'package:flutter/material.dart';
 
 class AppTable extends StatelessWidget {
   final List<String> columns;
-  final Map<String, List<Widget>> rows;
+  final List data;
+  final Map<String, List<Widget>> Function(
+    BuildContext context,
+    List<dynamic> data,
+  ) transformRows;
   final Function(String id)? onRowPressed;
 
   const AppTable({
     Key? key,
     required this.columns,
-    required this.rows,
+    required this.data,
+    required this.transformRows,
     this.onRowPressed,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final rows = transformRows(context, data);
     final List<DataColumn> tColumns = [
       ...columns.map(
         (field) => DataColumn(
@@ -64,11 +70,12 @@ class AppTable extends StatelessWidget {
                     (item) {
                       final row = item.value;
                       return DataRow(
-                        onSelectChanged: (selected) {
-                          if (selected != null && selected && onRowPressed != null) {
-                            onRowPressed!(item.key);
-                          }
-                        },
+                        // onSelectChanged: (selected) {
+                        //   if (selected != null && selected && onRowPressed != null) {
+                        //     onRowPressed!(item.key);
+                        //   }
+                        // },
+
                         cells: [
                           ...row.map(
                             (field) => DataCell(

@@ -1,60 +1,65 @@
 import 'dart:convert';
+import 'package:exceed_resources_frontend/app/modules/core/controllers/app_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/helper.dart';
 import 'package:exceed_resources_frontend/app/modules/task/components/status_priority.dart';
-import 'package:exceed_resources_frontend/app/modules/task/controllers/task_detail_controller.dart';
+import 'package:exceed_resources_frontend/app/modules/task/models/priority.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/project.dart';
+import 'package:exceed_resources_frontend/app/modules/task/models/status.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/task.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-class TaskTableController extends GetxController {
+class TaskTableController extends AppController {
   final statusController = TextEditingController();
-  final stopwatch = Stopwatch();
-  final detailPage = false.obs;
-//   final loading = true.obs;
-  final columns = ['Priority', 'Task Name', 'Due Date', 'Project'];
-  final projects = [];
-  final tasks = [];
-  final statuses = [];
-  final priorities = [];
+  final columns = ['Task Name', 'Priority', 'Due Date', 'Project'];
+  final projects = Rx<List<Project>>([]);
+  final tasks = Rx<List<Task>>([]);
+  final statuses = Rx<List<Status>>([]);
+  final priorities = Rx<List<Priority>>([]);
 
-  Map<String, List<Widget>> getRows({
+  Map<String, List<Widget>> transformRows({
     required BuildContext context,
-    Project? activeProject,
+    required List<dynamic> taskList,
   }) {
     final Map<String, List<Widget>> rowList = {};
 
-    for (var each in tasks) {
-      if (activeProject == null || activeProject.id == each.project.id) {
-        rowList[each.id] = [
-          StatusPriority(option: each.priority),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Flexible(
+    for (final each in taskList) {
+      rowList[each.id] = [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Flexible(
+              child: TextButton(
+                onPressed: () => '',
+                style: ButtonStyle(
+                  overlayColor: MaterialStateProperty.all(
+                    AppTheme.of(context).color.secondary.withOpacity(0.2),
+                  ),
+                ),
                 child: Text(
                   each.name,
                   overflow: TextOverflow.ellipsis,
-                  style: AppTheme.text(context: context, size: EText.h4),
+                  style: AppTheme.text(context: context, size: EText.h4, type: ETextType.primary),
                 ),
               ),
-              StatusPriority(option: each.status),
-            ],
-          ),
-          Text(
-            formatDate(date: each.dueDate),
-            style: AppTheme.text(context: context, size: EText.h4),
-          ),
-          Text(
-            each.project.name,
-            overflow: TextOverflow.ellipsis,
-            style: AppTheme.text(context: context, size: EText.h4),
-          ),
-        ];
-      }
+            ),
+            StatusPriority(option: each.status),
+          ],
+        ),
+        StatusPriority(option: each.priority),
+        Text(
+          formatDate(date: each.dueDate),
+          style: AppTheme.text(context: context, size: EText.h4),
+        ),
+        Text(
+          each.project.name,
+          overflow: TextOverflow.ellipsis,
+          style: AppTheme.text(context: context, size: EText.h4),
+        ),
+      ];
     }
     return rowList;
   }
@@ -62,32 +67,36 @@ class TaskTableController extends GetxController {
   Future<void> readJsonFile() async {
     stopwatch.start();
     final projectDataString = await rootBundle.loadString('assets/mock/project.json');
-    final taskDataString = await rootBundle.loadString('assets/mock/task.json');
     final projectData = jsonDecode(projectDataString);
-    final taskData = jsonDecode(taskDataString);
+    final statusDataString = await rootBundle.loadString('assets/mock/status.json');
+    final statusData = jsonDecode(statusDataString);
+    final priorityDataString = await rootBundle.loadString('assets/mock/priority.json');
+    final priorityData = jsonDecode(priorityDataString);
 
     for (final item in projectData) {
-      projects.add(Project.fromJson(item));
-    }
-    for (final item in taskData) {
-      tasks.add(Task.fromJson(item));
+      final project = Project.fromJson(item);
+      projects.value.add(project);
+      for (final task in project.tasks) {
+        tasks.value.add(task);
+      }
     }
 
-    // final elapsed = stopwatch.elapsed.inMilliseconds;
-    // if (elapsed < minimunLoading) {
-    //   await Future.delayed(Duration(milliseconds: minimunLoading - elapsed));
-    // }
-    // loading.value = false;
-    // update();
-    //delete after ui
-    final detailController = Get.find<TaskDetailController>();
-    detailController.task.value = tasks.first;
+    for (final status in statusData) {
+      statuses.value.add(Status.fromJson(status));
+    }
+
+    for (final priority in priorityData) {
+      priorities.value.add(Priority.fromJson(priority));
+    }
+
+    updateLoading(value: false, elapsed: stopwatch.elapsedMilliseconds);
   }
 
-//   @override
-//   void onInit() {
-//     // stopwatch.start();
-//     // readJsonFile();
-//     super.onInit();
-//   }
+  @override
+  void onInit() {
+    stopwatch.start();
+    updateLoading(value: true);
+    readJsonFile();
+    super.onInit();
+  }
 }
