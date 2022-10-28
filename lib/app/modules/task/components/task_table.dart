@@ -4,16 +4,13 @@ import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/table.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/button/text_button.dart';
 import 'package:exceed_resources_frontend/app/modules/task/controllers/task_table_controller.dart';
-import 'package:exceed_resources_frontend/app/modules/task/widgets/status_priority_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:lottie/lottie.dart';
 
 class TaskTable extends GetView<TaskTableController> {
-  final Map<String, List<Widget>> rows;
   const TaskTable({
     Key? key,
-    required this.rows,
   }) : super(key: key);
 
   @override

@@ -11,7 +11,6 @@ import 'package:exceed_resources_frontend/app/modules/task/components/task_attac
 import 'package:exceed_resources_frontend/app/modules/task/components/task_collaborator.dart';
 import 'package:exceed_resources_frontend/app/modules/task/components/task_comment.dart';
 import 'package:exceed_resources_frontend/app/modules/task/controllers/task_detail_controller.dart';
-import 'package:exceed_resources_frontend/app/modules/task/controllers/task_table_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/task/widgets/status_priority_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -21,17 +20,15 @@ class TaskDetailView extends GetView<TaskDetailController> {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(TaskTableController());
-    Get.put(TaskDetailController());
     return GetBuilder<TaskDetailController>(
       builder: (_) {
         return AppLayout.core(
           currentMenu: EMenu.task,
           loading: _.loading.value,
-          title: _.task.value != null ? _.task.value!.name : null,
+          title: _.task!.name,
           drawer: _.drawer.value,
           controller: controller,
-          content: _.task.value == null
+          content: _.task == null
               ? AppSizeBox.zero
               : Padding(
                   padding: const EdgeInsets.only(top: AppSize.lg),
@@ -73,7 +70,7 @@ class TaskDetailView extends GetView<TaskDetailController> {
                                                   spacing: AppSize.sm,
                                                   runSpacing: AppSize.xs,
                                                   children: List.from(
-                                                    _.task.value!.collaborators.map(
+                                                    _.task!.collaborators.map(
                                                       (each) => TaskCollaborator(
                                                         collaborator: each,
                                                       ),
@@ -101,7 +98,7 @@ class TaskDetailView extends GetView<TaskDetailController> {
                                               child: ConstrainedBox(
                                                 constraints: BoxConstraints(maxWidth: constraint.maxWidth / 2),
                                                 child: TaskCollaborator(
-                                                  collaborator: _.task.value!.assignedBy,
+                                                  collaborator: _.task!.assignedBy,
                                                 ),
                                               ),
                                             )
@@ -125,7 +122,7 @@ class TaskDetailView extends GetView<TaskDetailController> {
                                           Padding(
                                             padding: const EdgeInsets.only(left: AppSize.md),
                                             child: Text(
-                                              _.task.value!.project.name,
+                                              _.task!.project.name,
                                               style: AppTheme.text(context: context, type: ETextType.primary),
                                             ),
                                           ),
@@ -148,7 +145,7 @@ class TaskDetailView extends GetView<TaskDetailController> {
                                           Padding(
                                             padding: const EdgeInsets.only(left: AppSize.md),
                                             child: Text(
-                                              formatDate(date: _.task.value!.dueDate),
+                                              formatDate(date: _.task!.dueDate),
                                               style: AppTheme.text(context: context, type: ETextType.primary),
                                             ),
                                           ),
@@ -175,7 +172,7 @@ class TaskDetailView extends GetView<TaskDetailController> {
                                                 padding: const EdgeInsets.only(left: AppSize.md),
                                                 child: StatusPriorityDropdown(
                                                   statuses: controller.statuses.value,
-                                                  initialStatus: _.task.value!.status,
+                                                  initialStatus: _.task!.status,
                                                 ),
                                               )
                                             ],
@@ -197,7 +194,7 @@ class TaskDetailView extends GetView<TaskDetailController> {
                                                   padding: const EdgeInsets.only(left: AppSize.md),
                                                   child: StatusPriorityDropdown(
                                                     priorities: controller.priorities.value,
-                                                    initialPriority: _.task.value!.priority,
+                                                    initialPriority: _.task!.priority,
                                                   ),
                                                 )
                                               ],
@@ -220,7 +217,7 @@ class TaskDetailView extends GetView<TaskDetailController> {
                                           Padding(
                                             padding: const EdgeInsets.only(top: AppSize.xs),
                                             child: Text(
-                                              _.task.value!.description,
+                                              _.task!.description,
                                               style: AppTheme.text(context: context),
                                             ),
                                           )
@@ -284,7 +281,7 @@ class TaskDetailView extends GetView<TaskDetailController> {
                                     Padding(
                                       padding: const EdgeInsets.only(top: AppSize.sm),
                                       child: TaskComment(
-                                        comment: controller.task.value!.comments[0],
+                                        comment: controller.task!.comments[0],
                                         divider: false,
                                       ),
                                     ),
@@ -292,10 +289,10 @@ class TaskDetailView extends GetView<TaskDetailController> {
                                       padding: const EdgeInsets.only(top: AppSize.md),
                                       child: InkWell(
                                         onTap: () => controller.showDrawer(
-                                          widget: TaskAllComments(comments: controller.task.value!.comments),
+                                          widget: TaskAllComments(comments: controller.task!.comments),
                                         ),
                                         child: Text(
-                                          'See all ${controller.task.value!.comments.length} comments',
+                                          'See all ${controller.task!.comments.length} comments',
                                           style: AppTheme.text(
                                             context: context,
                                             type: ETextType.subtitle,

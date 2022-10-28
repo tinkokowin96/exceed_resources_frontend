@@ -12,11 +12,29 @@ import 'package:exceed_resources_frontend/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class TaskView extends GetView<TaskController> {
+class TaskView extends StatefulWidget {
   const TaskView({Key? key}) : super(key: key);
+
+  @override
+  State<TaskView> createState() => _TaskViewState();
+}
+
+class _TaskViewState extends State<TaskView> {
+  final _controller = Get.find<TaskController>();
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _controller.activeProject.value = null;
+      _controller.activeProject.refresh();
+      _controller.tableController.resetTasks();
+    });
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    Get.put(TaskController(context: context));
     return AppLayout.core(
       currentMenu: EMenu.task,
       content: LayoutBuilder(
@@ -49,15 +67,15 @@ class TaskView extends GetView<TaskController> {
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       children: List.from(
-                        controller.taskController.projects.value.map(
+                        _controller.tableController.projects.value.map(
                           (each) => Obx(
                             () {
                               return ProjectCard(
-                                callback: () => controller.updateActiveProject(each.id),
+                                callback: () => _controller.updateActiveProject(each),
                                 project: each,
-                                active: controller.activeProject.value == null
+                                active: _controller.activeProject.value == null
                                     ? false
-                                    : controller.activeProject.value!.id == each.id,
+                                    : _controller.activeProject.value!.id == each.id,
                               );
                             },
                           ),
@@ -67,19 +85,15 @@ class TaskView extends GetView<TaskController> {
                   ),
                 ),
               ),
-              Obx(
-                () => TaskTable(
-                  rows: controller.taskRows.value,
-                ),
-              ),
+              const TaskTable(),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: AppSize.md),
                 child: Obx(
                   () {
                     return AppPaginator(
-                      paginatedOptions: controller.paginatedOptions,
-                      callback: controller.updatePage,
-                      activePage: controller.activePage.value,
+                      paginatedOptions: _controller.paginatedOptions,
+                      callback: _controller.updatePage,
+                      activePage: _controller.activePage.value,
                     );
                   },
                 ),

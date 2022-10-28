@@ -6,17 +6,31 @@ import 'package:exceed_resources_frontend/app/modules/core/widgets/button/button
 import 'package:exceed_resources_frontend/app/modules/core/widgets/carousel.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/button/text_button.dart';
 import 'package:exceed_resources_frontend/app/modules/task/components/task_table.dart';
+import 'package:exceed_resources_frontend/app/modules/task/controllers/task_table_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../controllers/home_controller.dart';
 
-class HomeView extends GetView<HomeController> {
+class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  final _controller = Get.find<HomeController>();
+  final _tableController = Get.find<TaskTableController>();
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) => _tableController.resetTasks());
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    Get.put(HomeController(context: context));
-
     return AppLayout.core(
       header: true,
       currentMenu: EMenu.home,
@@ -27,7 +41,7 @@ class HomeView extends GetView<HomeController> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AppButton(onPressed: controller.checkInClickHandler, text: 'Check In'),
+                AppButton(onPressed: _controller.checkInClickHandler, text: 'Check In'),
                 AppButton(onPressed: () {}, text: 'Check Out', disabled: true),
                 AppButton(onPressed: () {}, text: 'Lunch Break', disabled: true),
               ],
@@ -37,7 +51,7 @@ class HomeView extends GetView<HomeController> {
             builder: (context, carConstraint) {
               return Obx(
                 () {
-                  return controller.currentLocation.value == null
+                  return _controller.currentLocation.value == null
                       ? AppCarousel(
                           data: [
                             Container(
@@ -61,7 +75,7 @@ class HomeView extends GetView<HomeController> {
                           height: AppSize.heH,
                           child: GoogleMap(
                             initialCameraPosition: CameraPosition(
-                              target: controller.currentLocation.value!,
+                              target: _controller.currentLocation.value!,
                               zoom: 16,
                             ),
                             myLocationButtonEnabled: false,
@@ -69,7 +83,7 @@ class HomeView extends GetView<HomeController> {
                             markers: {
                               Marker(
                                 markerId: const MarkerId('current_loc'),
-                                position: controller.currentLocation.value!,
+                                position: _controller.currentLocation.value!,
                               )
                             },
                           ),
@@ -92,7 +106,7 @@ class HomeView extends GetView<HomeController> {
                       AppTextButton(text: 'See All', onPressed: () {}),
                     ],
                   ),
-                  Obx(() => TaskTable(rows: controller.taskRows.value))
+                  const TaskTable()
                 ],
               ),
             ),

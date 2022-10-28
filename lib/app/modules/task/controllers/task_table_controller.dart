@@ -8,6 +8,7 @@ import 'package:exceed_resources_frontend/app/modules/task/models/priority.dart'
 import 'package:exceed_resources_frontend/app/modules/task/models/project.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/status.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/task.dart';
+import 'package:exceed_resources_frontend/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -19,6 +20,8 @@ class TaskTableController extends AppController {
   final tasks = Rx<List<Task>>([]);
   final statuses = Rx<List<Status>>([]);
   final priorities = Rx<List<Priority>>([]);
+  final selectedTask = Rxn<Task>();
+  List<Task> allTasks = [];
 
   Map<String, List<Widget>> transformRows({
     required BuildContext context,
@@ -33,7 +36,10 @@ class TaskTableController extends AppController {
           children: [
             Flexible(
               child: TextButton(
-                onPressed: () => '',
+                onPressed: () {
+                  selectedTask.value = each;
+                  Get.toNamed(AppRoutes.taskDetail);
+                },
                 style: ButtonStyle(
                   overlayColor: MaterialStateProperty.all(
                     AppTheme.of(context).color.secondary.withOpacity(0.2),
@@ -64,6 +70,11 @@ class TaskTableController extends AppController {
     return rowList;
   }
 
+  void filterTask(Project project) {
+    tasks.value = List.from(allTasks.where((each) => each.project.id == project.id));
+    update();
+  }
+
   Future<void> readJsonFile() async {
     stopwatch.start();
     final projectDataString = await rootBundle.loadString('assets/mock/project.json');
@@ -89,7 +100,13 @@ class TaskTableController extends AppController {
       priorities.value.add(Priority.fromJson(priority));
     }
 
+    allTasks = tasks.value;
     updateLoading(value: false, elapsed: stopwatch.elapsedMilliseconds);
+  }
+
+  void resetTasks() {
+    tasks.value = allTasks;
+    update();
   }
 
   @override

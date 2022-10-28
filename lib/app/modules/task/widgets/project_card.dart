@@ -75,14 +75,17 @@ class ProjectCard extends StatelessWidget {
                               ],
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: AppSize.md),
-                            child: Text(
-                              project.phase.name,
-                              style: AppTheme.text(
-                                context: context,
-                                type: ETextType.white,
-                                weight: FontWeight.w500,
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: AppSize.md),
+                              child: Text(
+                                project.phase.name,
+                                overflow: TextOverflow.ellipsis,
+                                style: AppTheme.text(
+                                  context: context,
+                                  type: ETextType.white,
+                                  weight: FontWeight.w500,
+                                ),
                               ),
                             ),
                           ),
@@ -92,6 +95,7 @@ class ProjectCard extends StatelessWidget {
                         child: Center(
                           child: Text(
                             project.name,
+                            overflow: TextOverflow.ellipsis,
                             style: AppTheme.text(
                               context: context,
                               size: EText.h2,

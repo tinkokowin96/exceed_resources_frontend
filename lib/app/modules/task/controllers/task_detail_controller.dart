@@ -13,15 +13,13 @@ import 'package:exceed_resources_frontend/app/modules/task/models/comment.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/comment_type.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/priority.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/status.dart';
-import 'package:exceed_resources_frontend/app/modules/task/models/task.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class TaskDetailController extends AppController with AttachmentMixin {
-  final taskTableController = Get.find<TaskTableController>();
-  late final task =
-      Rxn<Task>(taskTableController.tasks.value.isNotEmpty ? taskTableController.tasks.value.first : null);
+  final tableController = Get.find<TaskTableController>();
+  late final task = tableController.selectedTask.value;
   final statuses = Rx<List<Status>>([]);
   final priorities = Rx<List<Priority>>([]);
   final messageController = TextEditingController();
@@ -174,7 +172,6 @@ class TaskDetailController extends AppController with AttachmentMixin {
     for (final item in priorityData) {
       priorities.value.add(Priority.fromJson(item));
     }
-    await taskTableController.readJsonFile();
   }
 
   Future<void> transformAttachments() async {
@@ -207,11 +204,7 @@ class TaskDetailController extends AppController with AttachmentMixin {
         );
       }
     }
-    final elapsed = stopwatch.elapsed.inMilliseconds;
-    if (elapsed < minimunLoading) {
-      await Future.delayed(Duration(milliseconds: minimunLoading - elapsed));
-    }
-    loading.value = false;
+
     attachmentComment = Comment(
       attachments: attachments.value,
       liked: true,
@@ -231,6 +224,7 @@ class TaskDetailController extends AppController with AttachmentMixin {
     stopwatch.start();
     readJsonFile();
     transformAttachments();
+    updateLoading(value: false, elapsed: stopwatch.elapsedMilliseconds);
     super.onInit();
   }
 
