@@ -10,9 +10,6 @@ class ChatView extends GetView<ChatController> {
   const ChatView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return AppLayout.core(
-      currentMenu: EMenu.chat,
-      content: Container(color: Colors.blueGrey),
-    );
+    return AppLayout.core(currentMenu: EMenu.chat, content: Container());
   }
 }

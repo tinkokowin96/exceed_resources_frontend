@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:exceed_resources_frontend/app/modules/core/animations/animated_press.dart';
 import 'package:exceed_resources_frontend/app/modules/core/controllers/fullscreen_controller.dart';
-import 'package:exceed_resources_frontend/app/modules/core/models/attachment.dart';
+import 'package:exceed_resources_frontend/app/modules/core/models/attachment_model.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/helper.dart';
@@ -11,7 +11,7 @@ import 'package:get/get.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class AttachmentFullscreen extends GetView<FullscreenController> {
-  final Attachment attachment;
+  final MAttachment attachment;
   final AppPopup? popup;
   const AttachmentFullscreen({Key? key, required this.attachment, this.popup}) : super(key: key);
 

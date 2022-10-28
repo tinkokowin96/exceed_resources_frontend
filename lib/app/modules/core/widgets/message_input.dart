@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:exceed_resources_frontend/app/modules/core/animations/animated_press.dart';
-import 'package:exceed_resources_frontend/app/modules/core/models/attachment_field.dart';
-import 'package:exceed_resources_frontend/app/modules/core/models/option.dart';
+import 'package:exceed_resources_frontend/app/modules/core/models/attachment_field_model.dart';
+import 'package:exceed_resources_frontend/app/modules/core/models/option_model.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/miscs.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
@@ -9,24 +9,24 @@ import 'package:exceed_resources_frontend/app/modules/core/theme/sizebox.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/config.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/dropdown/dropdown.dart';
-import 'package:exceed_resources_frontend/app/modules/task/models/comment_type.dart';
+import 'package:exceed_resources_frontend/app/modules/task/models/comment_type_model.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class MessageInput extends StatelessWidget {
   final double width;
-  final List<Option> employeeOptions;
+  final List<MOption> employeeOptions;
   final FocusNode focus;
   final Function(bool hasFocus) onFocusChange;
   final Function() sendMessage;
   final Function({String? name}) updateAttachment;
   final Function(String value) listenMessage;
-  final List<AttachmentField> attachments;
+  final List<MAttachmentField> attachments;
   final TextEditingController controller;
   final bool dropdown;
-  final Function(Option? value) onDropdownChange;
-  final List<CommentType> messageText;
+  final Function(MOption? value) onDropdownChange;
+  final List<MCommentType> messageText;
   const MessageInput({
     Key? key,
     required this.width,
@@ -148,8 +148,7 @@ class MessageInput extends StatelessWidget {
                                               ),
                                               recognizer: each.employeeId == null
                                                   ? null
-                                                  : (TapGestureRecognizer()
-                                                    ..onTap = () => print('pressed ${each.text}')),
+                                                  : (TapGestureRecognizer()..onTap = () => ''),
                                             ),
                                           ),
                                         ),

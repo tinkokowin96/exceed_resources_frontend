@@ -1,6 +1,5 @@
 import 'package:exceed_resources_frontend/app/modules/core/utils/config.dart';
 import 'package:exceed_resources_frontend/app/modules/task/controllers/task_table_controller.dart';
-import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -19,11 +18,5 @@ class HomeController extends GetxController {
         },
       );
     }
-  }
-
-  @override
-  void onClose() {
-    print('on close called');
-    super.onClose();
   }
 }

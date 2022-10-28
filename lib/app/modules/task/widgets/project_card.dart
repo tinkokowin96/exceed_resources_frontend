@@ -2,13 +2,13 @@ import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/sizebox.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
-import 'package:exceed_resources_frontend/app/modules/task/models/project.dart';
+import 'package:exceed_resources_frontend/app/modules/task/models/project_model.dart';
 import 'package:flutter/material.dart';
 
 class ProjectCard extends StatelessWidget {
   final bool active;
   final Function() callback;
-  final Project project;
+  final MProject project;
   const ProjectCard({
     Key? key,
     required this.callback,

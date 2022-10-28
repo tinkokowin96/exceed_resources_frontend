@@ -6,12 +6,12 @@ import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/helper.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/button/text_button.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/message_input.dart';
-import 'package:exceed_resources_frontend/app/modules/task/components/task_all_comments.dart';
-import 'package:exceed_resources_frontend/app/modules/task/components/task_attachments.dart';
-import 'package:exceed_resources_frontend/app/modules/task/components/task_collaborator.dart';
-import 'package:exceed_resources_frontend/app/modules/task/components/task_comment.dart';
 import 'package:exceed_resources_frontend/app/modules/task/controllers/task_detail_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/task/widgets/status_priority_dropdown.dart';
+import 'package:exceed_resources_frontend/app/modules/task/widgets/task_all_comments.dart';
+import 'package:exceed_resources_frontend/app/modules/task/widgets/task_attachments.dart';
+import 'package:exceed_resources_frontend/app/modules/task/widgets/task_collaborator.dart';
+import 'package:exceed_resources_frontend/app/modules/task/widgets/task_comment.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -161,7 +161,7 @@ class TaskDetailView extends GetView<TaskDetailController> {
                                             mainAxisSize: MainAxisSize.min,
                                             children: [
                                               Text(
-                                                'Status',
+                                                'MStatus',
                                                 style: AppTheme.text(
                                                   context: context,
                                                   weight: FontWeight.w500,
@@ -183,7 +183,7 @@ class TaskDetailView extends GetView<TaskDetailController> {
                                               mainAxisSize: MainAxisSize.min,
                                               children: [
                                                 Text(
-                                                  'Priority',
+                                                  'MPriority',
                                                   style: AppTheme.text(
                                                     context: context,
                                                     weight: FontWeight.w500,

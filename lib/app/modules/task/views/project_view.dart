@@ -5,9 +5,9 @@ import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/button/button.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/button/text_button.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/form_field.dart';
-import 'package:exceed_resources_frontend/app/modules/task/components/project_phase.dart';
-import 'package:exceed_resources_frontend/app/modules/task/components/project_quotation.dart';
 import 'package:exceed_resources_frontend/app/modules/task/controllers/project_controller.dart';
+import 'package:exceed_resources_frontend/app/modules/task/widgets/project_phase.dart';
+import 'package:exceed_resources_frontend/app/modules/task/widgets/project_quotation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -26,3 +26,14 @@ enum EAttachmentType {
   @JsonValue('Others')
   others
 }
+
+enum EChat {
+  @JsonValue('Project')
+  project,
+  @JsonValue('Department')
+  department,
+  @JsonValue('Group')
+  group,
+  @JsonValue('Colleague')
+  colleague
+}

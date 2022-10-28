@@ -2,7 +2,7 @@ import 'package:exceed_resources_frontend/app/modules/core/controllers/app_contr
 import 'package:exceed_resources_frontend/app/modules/core/mixins/attachment_mixin.dart';
 import 'package:flutter/material.dart';
 
-class QuotationFormController extends AppController with AttachmentMixin {
+class MQuotationFormController extends AppController with AttachmentMixin {
   final formKey = GlobalKey<FormState>();
   final nameController = TextEditingController();
   final budgetController = TextEditingController();

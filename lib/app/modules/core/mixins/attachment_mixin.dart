@@ -1,17 +1,17 @@
 import 'dart:io';
 
 import 'package:exceed_resources_frontend/app/modules/core/controllers/app_controller.dart';
-import 'package:exceed_resources_frontend/app/modules/core/models/attachment_field.dart';
+import 'package:exceed_resources_frontend/app/modules/core/models/attachment_field_model.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart';
 
 mixin AttachmentMixin on AppController {
-  Future<List<AttachmentField>?> updateAttachment({
-    required List<AttachmentField> attachments,
+  Future<List<MAttachmentField>?> updateAttachment({
+    required List<MAttachmentField> attachments,
     String? name,
   }) async {
     if (name != null) {
-      AttachmentField removedFile = attachments.firstWhere((each) => each.name == name);
+      MAttachmentField removedFile = attachments.firstWhere((each) => each.name == name);
       if (removedFile.file == null) {
         removedFile.delete = true;
       } else {
@@ -26,7 +26,7 @@ mixin AttachmentMixin on AppController {
         } else {
           final type = RegExp(r'([a-z]{3,4})$').firstMatch(result.files.first.name)!.group(1);
           attachments.add(
-            AttachmentField(
+            MAttachmentField(
               type: type!,
               name: result.files.first.name,
               value: result.files.first.name,

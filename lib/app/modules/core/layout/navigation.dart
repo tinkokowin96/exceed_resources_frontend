@@ -1,4 +1,4 @@
-import 'package:exceed_resources_frontend/app/modules/core/models/menu_section.dart';
+import 'package:exceed_resources_frontend/app/modules/core/models/menu_section_model.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
@@ -34,7 +34,7 @@ class _AppNavigationState extends State<AppNavigation> with SingleTickerProvider
     _currentMenuState = widget.currentMenu;
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 150),
+      duration: const Duration(milliseconds: 75),
     );
 
     _curve = CurvedAnimation(parent: _controller, curve: Curves.easeInOutExpo);
@@ -53,7 +53,7 @@ class _AppNavigationState extends State<AppNavigation> with SingleTickerProvider
     _controller.dispose();
   }
 
-  void pressedMenu(MenuSection menu) {
+  void pressedMenu(MMenuSection menu) {
     _controller.reverse().then(
           (value) => setState(
             () {
@@ -65,12 +65,12 @@ class _AppNavigationState extends State<AppNavigation> with SingleTickerProvider
         );
   }
 
-  final List<MenuSection> menuSections = const [
-    MenuSection(text: "Home", icon: "assets/icons/home.svg", type: EMenu.home),
-    MenuSection(text: "Task", icon: "assets/icons/task.svg", type: EMenu.task),
-    MenuSection(text: "Chat", icon: "assets/icons/chat.svg", type: EMenu.chat),
-    MenuSection(text: "Report", icon: "assets/icons/report.svg", type: EMenu.report),
-    MenuSection(text: "Misc", icon: "assets/icons/misc.svg", type: EMenu.misc),
+  final List<MMenuSection> menuSections = const [
+    MMenuSection(text: "Home", icon: "assets/icons/home.svg", type: EMenu.home),
+    MMenuSection(text: "Task", icon: "assets/icons/task.svg", type: EMenu.task),
+    MMenuSection(text: "Chat", icon: "assets/icons/chat.svg", type: EMenu.chat),
+    MMenuSection(text: "Report", icon: "assets/icons/report.svg", type: EMenu.report),
+    MMenuSection(text: "Misc", icon: "assets/icons/misc.svg", type: EMenu.misc),
   ];
 
   @override
@@ -124,7 +124,7 @@ class _AppNavigationState extends State<AppNavigation> with SingleTickerProvider
 }
 
 class MenuItemText extends StatelessWidget {
-  final MenuSection menu;
+  final MMenuSection menu;
   final bool isCurrentMenu;
   final double opacity;
 
@@ -154,7 +154,7 @@ class MenuItemText extends StatelessWidget {
 }
 
 class MenuItemIcon extends StatelessWidget {
-  final MenuSection menu;
+  final MMenuSection menu;
   final bool isCurrentMenu;
   final double transform;
 

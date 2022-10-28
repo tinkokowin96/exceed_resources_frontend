@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:archive/archive_io.dart';
 import 'package:exceed_resources_frontend/app/modules/core/controllers/app_controller.dart';
-import 'package:exceed_resources_frontend/app/modules/core/models/attachment.dart';
+import 'package:exceed_resources_frontend/app/modules/core/models/attachment_model.dart';
 import 'package:exceed_resources_frontend/app/modules/core/services/byte_response_service.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/config.dart';
@@ -129,7 +129,7 @@ String formatDate({DateTime? date, String? dateString}) {
 String transfromName(String name) => name[0] + RegExp(r' (.)').firstMatch(name)!.group(1)!.toUpperCase();
 
 Future<void> download(
-    {required List<Attachment> attachments, required AppController controller, required BuildContext context}) async {
+    {required List<MAttachment> attachments, required AppController controller, required BuildContext context}) async {
   if (directory == null) {
     if (Platform.isIOS) {
       final appDoc = await getApplicationDocumentsDirectory();
@@ -180,10 +180,10 @@ Future<void> download(
     }
 
     await File('$directory/$name').writeAsBytes(bytes);
-    controller.updateLoading(value:false);
+    controller.updateLoading(value: false);
     Get.showSnackbar(
       GetSnackBar(
-        title: 'Attachment Downloaded',
+        title: 'MAttachment Downloaded',
         message: '$name is download ${!Platform.isIOS ? 'into $directory' : ''}',
       ),
     );
@@ -194,7 +194,7 @@ Future<void> download(
       popupWidget: AppPopup.info(
         context: context,
         controller: controller,
-        title: 'Attachment already downloaded',
+        title: 'MAttachment already downloaded',
         info: 'This attachment is already downloaded before.\nAre you sure you want to download again.',
       ),
       confirm: () => downloadFile(),

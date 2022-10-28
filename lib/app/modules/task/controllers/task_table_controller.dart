@@ -3,11 +3,11 @@ import 'package:exceed_resources_frontend/app/modules/core/controllers/app_contr
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/helper.dart';
-import 'package:exceed_resources_frontend/app/modules/task/components/status_priority.dart';
-import 'package:exceed_resources_frontend/app/modules/task/models/priority.dart';
-import 'package:exceed_resources_frontend/app/modules/task/models/project.dart';
-import 'package:exceed_resources_frontend/app/modules/task/models/status.dart';
-import 'package:exceed_resources_frontend/app/modules/task/models/task.dart';
+import 'package:exceed_resources_frontend/app/modules/task/models/priority_model.dart';
+import 'package:exceed_resources_frontend/app/modules/task/models/project_model.dart';
+import 'package:exceed_resources_frontend/app/modules/task/models/status_model.dart';
+import 'package:exceed_resources_frontend/app/modules/task/models/task_model.dart';
+import 'package:exceed_resources_frontend/app/modules/task/widgets/status_priority.dart';
 import 'package:exceed_resources_frontend/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -15,13 +15,13 @@ import 'package:get/get.dart';
 
 class TaskTableController extends AppController {
   final statusController = TextEditingController();
-  final columns = ['Task Name', 'Priority', 'Due Date', 'Project'];
-  final projects = Rx<List<Project>>([]);
-  final tasks = Rx<List<Task>>([]);
-  final statuses = Rx<List<Status>>([]);
-  final priorities = Rx<List<Priority>>([]);
-  final selectedTask = Rxn<Task>();
-  List<Task> allTasks = [];
+  final columns = ['Task Name', 'MPriority', 'Due Date', 'MProject'];
+  final projects = Rx<List<MProject>>([]);
+  final tasks = Rx<List<MTask>>([]);
+  final statuses = Rx<List<MStatus>>([]);
+  final priorities = Rx<List<MPriority>>([]);
+  final selectedTask = Rxn<MTask>();
+  List<MTask> allTasks = [];
 
   Map<String, List<Widget>> transformRows({
     required BuildContext context,
@@ -70,7 +70,7 @@ class TaskTableController extends AppController {
     return rowList;
   }
 
-  void filterTask(Project project) {
+  void filterTask(MProject project) {
     tasks.value = List.from(allTasks.where((each) => each.project.id == project.id));
     update();
   }
@@ -85,7 +85,7 @@ class TaskTableController extends AppController {
     final priorityData = jsonDecode(priorityDataString);
 
     for (final item in projectData) {
-      final project = Project.fromJson(item);
+      final project = MProject.fromJson(item);
       projects.value.add(project);
       for (final task in project.tasks) {
         tasks.value.add(task);
@@ -93,11 +93,11 @@ class TaskTableController extends AppController {
     }
 
     for (final status in statusData) {
-      statuses.value.add(Status.fromJson(status));
+      statuses.value.add(MStatus.fromJson(status));
     }
 
     for (final priority in priorityData) {
-      priorities.value.add(Priority.fromJson(priority));
+      priorities.value.add(MPriority.fromJson(priority));
     }
 
     allTasks = tasks.value;

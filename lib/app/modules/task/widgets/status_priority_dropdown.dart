@@ -1,16 +1,16 @@
-import 'package:exceed_resources_frontend/app/modules/core/models/option.dart';
+import 'package:exceed_resources_frontend/app/modules/core/models/option_model.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/dropdown/dropdown.dart';
-import 'package:exceed_resources_frontend/app/modules/task/components/status_priority.dart';
-import 'package:exceed_resources_frontend/app/modules/task/models/priority.dart';
-import 'package:exceed_resources_frontend/app/modules/task/models/status.dart';
+import 'package:exceed_resources_frontend/app/modules/task/models/priority_model.dart';
+import 'package:exceed_resources_frontend/app/modules/task/models/status_model.dart';
+import 'package:exceed_resources_frontend/app/modules/task/widgets/status_priority.dart';
 import 'package:flutter/material.dart';
 
 class StatusPriorityDropdown extends StatefulWidget {
-  final List<Status>? statuses;
-  final List<Priority>? priorities;
-  final Status? initialStatus;
-  final Priority? initialPriority;
+  final List<MStatus>? statuses;
+  final List<MPriority>? priorities;
+  final MStatus? initialStatus;
+  final MPriority? initialPriority;
   const StatusPriorityDropdown({
     Key? key,
     this.statuses,
@@ -24,9 +24,9 @@ class StatusPriorityDropdown extends StatefulWidget {
 }
 
 class _StatusPriorityDropdownState extends State<StatusPriorityDropdown> {
-  late final List<Option> _dropdownOptions = List.from(
+  late final List<MOption> _dropdownOptions = List.from(
     (widget.statuses ?? widget.priorities!).map(
-      (each) => Option(
+      (each) => MOption(
         text: (each as dynamic).name,
         value: each,
       ),
@@ -34,7 +34,7 @@ class _StatusPriorityDropdownState extends State<StatusPriorityDropdown> {
   );
   late dynamic _currentOption = widget.initialStatus ?? widget.initialPriority!;
 
-  void onDropdownChange(Option? option) {
+  void onDropdownChange(MOption? option) {
     if (option != null) {
       setState(() {
         _currentOption = option.value;

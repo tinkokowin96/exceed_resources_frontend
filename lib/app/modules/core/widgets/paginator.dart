@@ -1,11 +1,11 @@
-import 'package:exceed_resources_frontend/app/modules/core/models/option.dart';
+import 'package:exceed_resources_frontend/app/modules/core/models/option_model.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:flutter/material.dart';
 
 class AppPaginator extends StatelessWidget {
-  final List<Option> paginatedOptions;
+  final List<MOption> paginatedOptions;
   final int activePage;
   final Function(int page) callback;
   const AppPaginator({
