@@ -14,7 +14,10 @@ class AppSize {
 
   //button
   static const btnWMd = 110.0;
-  static const btnHMd = 50.0;
+  static const btnHMd = 46.0;
+  static const btnWSm = 90.0;
+  static const uubtn = 28.0; //unused button
+  static const conimg = 40.0; //conversation image
 
   //popup
 

@@ -9,7 +9,6 @@ part 'chat_detail_model.g.dart';
 @freezed
 class MChatDetail with _$MChatDetail {
   factory MChatDetail({
-    required String name,
     required List<MEmployeeM> colleagues,
     required String? description,
     @JsonKey(name: 'pin_messages') List<MChatMessage>? pinMessages,

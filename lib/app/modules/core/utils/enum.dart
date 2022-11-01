@@ -28,12 +28,12 @@ enum EAttachmentType {
 }
 
 enum EChat {
-  @JsonValue('Project')
-  project,
-  @JsonValue('Department')
-  department,
-  @JsonValue('Group')
-  group,
-  @JsonValue('Colleague')
-  colleague
+  @JsonValue('Projects')
+  projects,
+  @JsonValue('Departments')
+  departments,
+  @JsonValue('Groups')
+  groups,
+  @JsonValue('Colleagues')
+  colleagues
 }

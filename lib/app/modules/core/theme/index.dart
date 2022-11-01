@@ -62,6 +62,7 @@ class AppThemeData extends ChangeNotifier {
     color: const AppColor(
       primary: Colors.black,
       secondary: Colors.orangeAccent,
+      secondaryBackground: Color.fromARGB(255, 255, 222, 178),
       background: Color(0xFFFAFAFA),
       error: Color(0xFFD1512D),
       tabeRow: Colors.white,
@@ -69,7 +70,7 @@ class AppThemeData extends ChangeNotifier {
       antiFlashWhite: Color(0xFFF3F3F3),
       body: Colors.black,
       idle: Color(0xFF565656),
-      disabled: Color.fromARGB(120, 255, 172, 64),
+      disabled: Color.fromARGB(120, 86, 86, 86),
     ),
   );
 
@@ -77,6 +78,7 @@ class AppThemeData extends ChangeNotifier {
     color: const AppColor(
       primary: Colors.white,
       secondary: Colors.orangeAccent,
+      secondaryBackground: Color.fromARGB(255, 255, 222, 178),
       container: Colors.white24,
       error: Color(0xFFD1512D),
       tabeRow: Colors.black,
@@ -84,7 +86,7 @@ class AppThemeData extends ChangeNotifier {
       antiFlashWhite: Color(0xFFF3F3F3),
       body: Colors.white,
       idle: Colors.white60,
-      disabled: Color.fromARGB(120, 255, 171, 64),
+      disabled: Color.fromARGB(120, 86, 86, 86),
     ),
   );
 }

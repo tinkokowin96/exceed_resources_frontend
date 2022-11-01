@@ -29,7 +29,7 @@ class AppButton extends StatelessWidget {
             ),
           ),
           fixedSize: MaterialStateProperty.all(size),
-          backgroundColor: MaterialStateProperty.all(AppTheme.of(context).color.secondary.withOpacity(0.1)),
+          backgroundColor: MaterialStateProperty.all(AppTheme.of(context).color.primary.withOpacity(0.05)),
           shadowColor: MaterialStateProperty.all(Colors.transparent),
         ),
         child: Center(
@@ -38,7 +38,7 @@ class AppButton extends StatelessWidget {
             style: buttonTextStyle ??
                 AppTheme.text(
                   context: context,
-                  type: disabled ? ETextType.disabled : ETextType.primary,
+                  type: disabled ? ETextType.disabled : ETextType.subtitle,
                   weight: FontWeight.w500,
                 ),
           ),
