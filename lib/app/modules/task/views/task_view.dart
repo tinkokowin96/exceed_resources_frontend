@@ -8,7 +8,7 @@ import 'package:exceed_resources_frontend/app/modules/core/widgets/paginator.dar
 import 'package:exceed_resources_frontend/app/modules/task/controllers/task_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/task/widgets/project_card.dart';
 import 'package:exceed_resources_frontend/app/modules/task/widgets/task_table.dart';
-import 'package:exceed_resources_frontend/app/routes/app_pages.dart';
+import 'package:exceed_resources_frontend/app/routes/task_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -55,7 +55,7 @@ class _TaskViewState extends State<TaskView> {
                   ),
                   AppTextButton(
                     text: 'New Project',
-                    onPressed: () => Get.toNamed(AppRoutes.newProject),
+                    onPressed: () => Get.toNamed(TaskRoutes.newProject),
                   )
                 ],
               ),

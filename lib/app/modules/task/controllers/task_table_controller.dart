@@ -8,7 +8,7 @@ import 'package:exceed_resources_frontend/app/modules/task/models/project_model.
 import 'package:exceed_resources_frontend/app/modules/task/models/status_model.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/task_model.dart';
 import 'package:exceed_resources_frontend/app/modules/task/widgets/status_priority.dart';
-import 'package:exceed_resources_frontend/app/routes/app_pages.dart';
+import 'package:exceed_resources_frontend/app/routes/task_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -38,7 +38,7 @@ class TaskTableController extends AppController {
               child: TextButton(
                 onPressed: () {
                   selectedTask.value = each;
-                  Get.toNamed(AppRoutes.taskDetail);
+                  Get.toNamed(TaskRoutes.taskDetail);
                 },
                 style: ButtonStyle(
                   overlayColor: MaterialStateProperty.all(

@@ -26,12 +26,12 @@ class AppThemeMiscs {
   }) =>
       InputDecoration(
         isCollapsed: true,
-        contentPadding: EdgeInsets.all(style == EInputStyle.message ? AppSize.mP : AppSize.fP),
+        contentPadding: EdgeInsets.all(style == EInputStyle.round ? AppSize.mP : AppSize.fP),
         hintText: hintText,
         filled: style == EInputStyle.line ? false : true,
         fillColor: style == EInputStyle.primary
             ? AppTheme.of(context).color.secondary.withOpacity(0.1)
-            : style == EInputStyle.message
+            : style == EInputStyle.round
                 ? Colors.transparent
                 : null,
         suffix: suffix != null
@@ -63,9 +63,9 @@ class AppThemeMiscs {
                 borderSide: BorderSide(color: Colors.black),
               )
             : OutlineInputBorder(
-                borderRadius: BorderRadius.circular(style == EInputStyle.message ? AppSize.md : 0),
+                borderRadius: BorderRadius.circular(style == EInputStyle.round ? AppSize.md : 0),
                 borderSide: BorderSide(
-                  color: style == EInputStyle.message
+                  color: style == EInputStyle.round
                       ? AppTheme.of(context).color.idle.withOpacity(0.1)
                       : AppTheme.of(context).color.secondary.withOpacity(0.2),
                 ),
@@ -77,9 +77,9 @@ class AppThemeMiscs {
                 ),
               )
             : OutlineInputBorder(
-                borderRadius: BorderRadius.circular(style == EInputStyle.message ? AppSize.md : 0),
+                borderRadius: BorderRadius.circular(style == EInputStyle.round ? AppSize.md : 0),
                 borderSide: BorderSide(
-                  color: style == EInputStyle.message
+                  color: style == EInputStyle.round
                       ? AppTheme.of(context).color.idle.withOpacity(0.3)
                       : AppTheme.of(context).color.secondary,
                 ),

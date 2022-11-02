@@ -43,10 +43,20 @@ class ChatGroup extends StatelessWidget {
                   Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      AppButton(
-                        onPressed: () {},
-                        size: const Size(AppSize.btnWSm, AppSize.btnHMd),
-                        text: 'All',
+                      chatGroup.type == EChat.groups || chatGroup.type == EChat.colleagues
+                          ? AppButton(
+                              onPressed: () {},
+                              size: const Size(AppSize.btnWSm, AppSize.btnHMd),
+                              text: chatGroup.type == EChat.groups ? 'Create' : 'New',
+                            )
+                          : AppSizeBox.zero,
+                      Padding(
+                        padding: const EdgeInsets.only(left: AppSize.sm),
+                        child: AppButton(
+                          onPressed: () {},
+                          size: const Size(AppSize.btnWSm, AppSize.btnHMd),
+                          text: 'All',
+                        ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: AppSize.sm),

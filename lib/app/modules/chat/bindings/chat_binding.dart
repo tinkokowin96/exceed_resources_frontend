@@ -1,4 +1,5 @@
 import 'package:exceed_resources_frontend/app/modules/chat/controllers/chat_group_controller.dart';
+import 'package:exceed_resources_frontend/app/modules/chat/controllers/create_group_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:get/get.dart';
 
@@ -12,5 +13,6 @@ class ChatBinding extends Bindings {
     Get.lazyPut<ChatGroupController>(() => ChatGroupController(), tag: EChat.departments.name);
     Get.lazyPut<ChatGroupController>(() => ChatGroupController(), tag: EChat.groups.name);
     Get.lazyPut<ChatGroupController>(() => ChatGroupController(), tag: EChat.colleagues.name);
+    Get.lazyPut<CreateGroupController>(() => CreateGroupController(), tag: EChat.colleagues.name);
   }
 }

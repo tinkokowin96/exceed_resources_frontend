@@ -166,11 +166,10 @@ class MessageInput extends StatelessWidget {
                                   readOnly: dropdown,
                                   keyboardType: TextInputType.multiline,
                                   maxLines: null,
-                                  //   style: AppTheme.text(context: context).copyWith(color: Colors.red),
                                   style: AppTheme.text(context: context).copyWith(color: Colors.transparent),
                                   decoration: AppThemeMiscs.inputStyle(
                                     context: context,
-                                    style: EInputStyle.message,
+                                    style: EInputStyle.round,
                                   ),
                                 ),
                               ),
