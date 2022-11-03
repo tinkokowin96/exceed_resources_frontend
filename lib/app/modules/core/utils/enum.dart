@@ -16,7 +16,9 @@ enum EAsyncDropdown { tyep1 }
 
 enum EExpandable { minimize, expand, form }
 
-enum EInputStyle { line, primary, round }
+enum EInputStyle { line, primary }
+
+enum EInputColor { primary, transparent }
 
 enum EAttachmentType {
   @JsonValue('Image')

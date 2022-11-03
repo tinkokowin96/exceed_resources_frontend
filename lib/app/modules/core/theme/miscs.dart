@@ -19,19 +19,20 @@ class AppThemeMiscs {
 
   static inputStyle({
     required BuildContext context,
-    required EInputStyle style,
+    EInputStyle style = EInputStyle.primary,
+    EInputColor color = EInputColor.primary,
     String? hintText,
     String? suffix,
     TextStyle? hintStyle,
   }) =>
       InputDecoration(
         isCollapsed: true,
-        contentPadding: EdgeInsets.all(style == EInputStyle.round ? AppSize.mP : AppSize.fP),
+        contentPadding: EdgeInsets.all(style == EInputStyle.primary ? AppSize.mP : AppSize.fP),
         hintText: hintText,
         filled: style == EInputStyle.line ? false : true,
-        fillColor: style == EInputStyle.primary
-            ? AppTheme.of(context).color.secondary.withOpacity(0.1)
-            : style == EInputStyle.round
+        fillColor: color == EInputColor.primary
+            ? AppTheme.of(context).color.secondary.withOpacity(0.05)
+            : color == EInputColor.transparent
                 ? Colors.transparent
                 : null,
         suffix: suffix != null
@@ -63,11 +64,9 @@ class AppThemeMiscs {
                 borderSide: BorderSide(color: Colors.black),
               )
             : OutlineInputBorder(
-                borderRadius: BorderRadius.circular(style == EInputStyle.round ? AppSize.md : 0),
+                borderRadius: BorderRadius.circular(style == EInputStyle.primary ? AppSize.md : 0),
                 borderSide: BorderSide(
-                  color: style == EInputStyle.round
-                      ? AppTheme.of(context).color.idle.withOpacity(0.1)
-                      : AppTheme.of(context).color.secondary.withOpacity(0.2),
+                  color: AppTheme.of(context).color.secondary.withOpacity(0.15),
                 ),
               ),
         focusedBorder: style == EInputStyle.line
@@ -77,9 +76,9 @@ class AppThemeMiscs {
                 ),
               )
             : OutlineInputBorder(
-                borderRadius: BorderRadius.circular(style == EInputStyle.round ? AppSize.md : 0),
+                borderRadius: BorderRadius.circular(style == EInputStyle.primary ? AppSize.md : 0),
                 borderSide: BorderSide(
-                  color: style == EInputStyle.round
+                  color: style == EInputStyle.primary
                       ? AppTheme.of(context).color.idle.withOpacity(0.3)
                       : AppTheme.of(context).color.secondary,
                 ),

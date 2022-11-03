@@ -171,7 +171,7 @@ class TaskDetailView extends GetView<TaskDetailController> {
                                               Padding(
                                                 padding: const EdgeInsets.only(left: AppSize.md),
                                                 child: StatusPriorityDropdown(
-                                                  statuses: controller.statuses.value,
+                                                  statuses: _.statuses.value,
                                                   initialStatus: _.task!.status,
                                                 ),
                                               )
@@ -193,7 +193,7 @@ class TaskDetailView extends GetView<TaskDetailController> {
                                                 Padding(
                                                   padding: const EdgeInsets.only(left: AppSize.md),
                                                   child: StatusPriorityDropdown(
-                                                    priorities: controller.priorities.value,
+                                                    priorities: _.priorities.value,
                                                     initialPriority: _.task!.priority,
                                                   ),
                                                 )

@@ -1,5 +1,4 @@
 import 'package:exceed_resources_frontend/app/modules/core/models/option_model.dart';
-import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/dropdown/dropdown.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/priority_model.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/status_model.dart';
@@ -24,16 +23,7 @@ class StatusPriorityDropdown extends StatefulWidget {
 }
 
 class _StatusPriorityDropdownState extends State<StatusPriorityDropdown> {
-  late final List<MOption> _dropdownOptions = List.from(
-    (widget.statuses ?? widget.priorities!).map(
-      (each) => MOption(
-        text: (each as dynamic).name,
-        value: each,
-      ),
-    ),
-  );
   late dynamic _currentOption = widget.initialStatus ?? widget.initialPriority!;
-
   void onDropdownChange(MOption? option) {
     if (option != null) {
       setState(() {
@@ -53,8 +43,14 @@ class _StatusPriorityDropdownState extends State<StatusPriorityDropdown> {
   @override
   Widget build(BuildContext context) {
     return AppDropdown(
-      width: AppSize.staW,
-      items: _dropdownOptions,
+      items: List.from(
+        (widget.statuses ?? widget.priorities!).map(
+          (each) => MOption(
+            text: (each as dynamic).name,
+            value: each,
+          ),
+        ),
+      ),
       onChanged: ({checked, value}) => onDropdownChange(value),
       dropdownController: TextEditingController(),
       customSelector: StatusPriority(option: _currentOption),

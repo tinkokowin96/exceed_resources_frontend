@@ -6,7 +6,6 @@ import 'package:exceed_resources_frontend/app/modules/core/widgets/dropdown/drop
 import 'package:flutter/material.dart';
 
 class AppSearchableDropdown extends StatefulWidget {
-  final double width;
   final Function({MOption? value, bool? checked}) onChanged;
   final String hint;
   final EAsyncDropdown type;
@@ -19,7 +18,6 @@ class AppSearchableDropdown extends StatefulWidget {
 
   const AppSearchableDropdown({
     Key? key,
-    required this.width,
     required this.onChanged,
     required this.hint,
     required this.type,
@@ -82,7 +80,6 @@ class _AppSearchableDropdownState extends State<AppSearchableDropdown> {
   Widget build(BuildContext context) {
     return AppDropdown(
       title: widget.title,
-      width: widget.width,
       hint: widget.hint,
       loading: _isLoading,
       initialItems: widget.initialItems,

@@ -1,12 +1,11 @@
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
+import 'package:exceed_resources_frontend/app/modules/core/theme/miscs.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/sizebox.dart';
-import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/button/add_button.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/button/button.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/button/item_button.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/button/text_button.dart';
-import 'package:exceed_resources_frontend/app/modules/core/widgets/form_field.dart';
 import 'package:exceed_resources_frontend/app/modules/task/controllers/phase_form_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -26,10 +25,8 @@ class PhaseForm extends GetView<PhaseFormController> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                AppFromField(
-                  width: constraint.maxWidth,
-                  hintText: 'Phase Name *',
-                  style: EInputStyle.primary,
+                TextFormField(
+                  decoration: AppThemeMiscs.inputStyle(context: context, hintText: 'Phase Name *'),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: AppSize.md),
@@ -37,27 +34,15 @@ class PhaseForm extends GetView<PhaseFormController> {
                     children: [
                       Flexible(
                         flex: 1,
-                        child: LayoutBuilder(
-                          builder: (context, startConstraint) {
-                            return AppFromField(
-                              width: startConstraint.maxWidth,
-                              hintText: 'Start Date *',
-                              style: EInputStyle.primary,
-                            );
-                          },
+                        child: TextFormField(
+                          decoration: AppThemeMiscs.inputStyle(context: context, hintText: 'Start Date *'),
                         ),
                       ),
                       AppSizeBox.sm,
                       Flexible(
                         flex: 1,
-                        child: LayoutBuilder(
-                          builder: (context, endConstraint) {
-                            return AppFromField(
-                              width: endConstraint.maxWidth,
-                              hintText: 'End Date *',
-                              style: EInputStyle.primary,
-                            );
-                          },
+                        child: TextFormField(
+                          decoration: AppThemeMiscs.inputStyle(context: context, hintText: 'End Date  *'),
                         ),
                       ),
                     ],
@@ -162,13 +147,9 @@ class PhaseForm extends GetView<PhaseFormController> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: AppSize.md),
-                  child: LayoutBuilder(
-                    builder: (context, remarkConstraint) => AppFromField(
-                      width: remarkConstraint.maxWidth,
-                      hintText: 'Remark',
-                      style: EInputStyle.primary,
-                      maxLines: 6,
-                    ),
+                  child: TextFormField(
+                    decoration: AppThemeMiscs.inputStyle(context: context, hintText: 'Remark'),
+                    maxLines: 6,
                   ),
                 ),
                 Padding(

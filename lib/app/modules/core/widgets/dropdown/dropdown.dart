@@ -8,20 +8,18 @@ import 'package:exceed_resources_frontend/app/modules/core/theme/sizebox.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/button/text_button.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/container/hoverable_container.dart';
-import 'package:exceed_resources_frontend/app/modules/core/widgets/form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 class AppDropdown extends StatefulWidget {
-  final double width;
   final List<MOption> items;
   final Function({MOption? value, bool? checked}) onChanged;
-  final bool? attach;
   final bool isMulti;
   final bool searchable;
   final bool noPadding;
   final bool loading;
   final EText textSize;
+  final bool? attach;
   final TextEditingController? dropdownController;
   final String? hint;
   final MOption? defaultOption;
@@ -34,7 +32,6 @@ class AppDropdown extends StatefulWidget {
   final String? title;
   const AppDropdown({
     Key? key,
-    required this.width,
     required this.items,
     required this.onChanged,
     this.loading = false,
@@ -139,7 +136,6 @@ class _AppDropdownState extends State<AppDropdown> {
                   : widget.items,
               loading: widget.loading,
               noPadding: widget.noPadding,
-              width: widget.width,
               focus: _focusNode,
               addNew: widget.addNew,
               textSize: widget.textSize,
@@ -215,16 +211,16 @@ class _AppDropdownState extends State<AppDropdown> {
               onTap: () => widget.attach != null ? null : showDropdown(!_showDropdown),
               child: widget.customSelector,
             )
-          : AppFromField(
-              title: widget.title,
-              controller: widget.dropdownController,
-              width: widget.width,
-              hintText: widget.hint,
-              focusNode: _focusNode,
-              readOnly: !widget.searchable,
-              onChanged: (value) => {debounceSearch(value)},
+          : Focus(
               onFocusChange: (hasFocus) => showDropdown(hasFocus),
-              validator: (String? value) => widget.validator != null ? widget.validator!(value) : null,
+              child: TextFormField(
+                controller: widget.dropdownController,
+                focusNode: _focusNode,
+                readOnly: !widget.searchable,
+                onChanged: (value) => {debounceSearch(value)},
+                validator: (String? value) => widget.validator != null ? widget.validator!(value) : null,
+                decoration: AppThemeMiscs.inputStyle(context: context, hintText: widget.hint),
+              ),
             ),
     );
   }
@@ -232,7 +228,6 @@ class _AppDropdownState extends State<AppDropdown> {
 
 class DopdownItems extends StatelessWidget {
   final bool loading;
-  final double width;
   final List<MOption> items;
   final FocusNode focus;
   final Function({required MOption value, bool? checked}) selectDropdownHandler;
@@ -245,7 +240,6 @@ class DopdownItems extends StatelessWidget {
   const DopdownItems({
     Key? key,
     required this.loading,
-    required this.width,
     required this.items,
     required this.selectDropdownHandler,
     required this.focus,
@@ -272,7 +266,7 @@ class DopdownItems extends StatelessWidget {
               children: [
                 loading
                     ? SizedBox(
-                        width: width,
+                        // width: width,
                         height: AppSize.dH,
                         child: Center(
                           child: Lottie.asset(
@@ -284,7 +278,7 @@ class DopdownItems extends StatelessWidget {
                     : AppSizeBox.zero,
                 !loading
                     ? SizedBox(
-                        width: width,
+                        // width: width,
                         height: AppSize.dH,
                         child: ListView.builder(
                           itemCount: items.length,

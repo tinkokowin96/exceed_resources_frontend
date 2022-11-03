@@ -120,7 +120,6 @@ class MessageInput extends StatelessWidget {
                   child: LayoutBuilder(
                     builder: (context, constraint) {
                       return AppDropdown(
-                        width: constraint.maxWidth,
                         items: employeeOptions,
                         onChanged: ({checked, value}) => onDropdownChange(value),
                         attach: dropdown,
@@ -167,10 +166,8 @@ class MessageInput extends StatelessWidget {
                                   keyboardType: TextInputType.multiline,
                                   maxLines: null,
                                   style: AppTheme.text(context: context).copyWith(color: Colors.transparent),
-                                  decoration: AppThemeMiscs.inputStyle(
-                                    context: context,
-                                    style: EInputStyle.round,
-                                  ),
+                                  decoration:
+                                      AppThemeMiscs.inputStyle(context: context, color: EInputColor.transparent),
                                 ),
                               ),
                             ],

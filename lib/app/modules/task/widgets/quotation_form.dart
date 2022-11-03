@@ -1,12 +1,11 @@
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
+import 'package:exceed_resources_frontend/app/modules/core/theme/miscs.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/sizebox.dart';
-import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/button/add_button.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/button/button.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/button/item_button.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/button/text_button.dart';
-import 'package:exceed_resources_frontend/app/modules/core/widgets/form_field.dart';
 import 'package:exceed_resources_frontend/app/modules/task/controllers/quotation_form_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -26,10 +25,8 @@ class MQuotationForm extends GetView<MQuotationFormController> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                AppFromField(
-                  width: constraint.maxWidth,
-                  hintText: 'MQuotation Name *',
-                  style: EInputStyle.primary,
+                TextFormField(
+                  decoration: AppThemeMiscs.inputStyle(context: context, hintText: 'Quotation Name *'),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: AppSize.md),
@@ -37,24 +34,16 @@ class MQuotationForm extends GetView<MQuotationFormController> {
                     children: [
                       Flexible(
                         flex: 1,
-                        child: LayoutBuilder(builder: (context, bugetConstraint) {
-                          return AppFromField(
-                            width: bugetConstraint.maxWidth,
-                            hintText: 'Budget *',
-                            style: EInputStyle.primary,
-                          );
-                        }),
+                        child: TextFormField(
+                          decoration: AppThemeMiscs.inputStyle(context: context, hintText: 'Budget *'),
+                        ),
                       ),
                       AppSizeBox.sm,
                       Flexible(
                         flex: 1,
-                        child: LayoutBuilder(builder: (context, expenseConstraint) {
-                          return AppFromField(
-                            width: expenseConstraint.maxWidth,
-                            hintText: 'Expense *',
-                            style: EInputStyle.primary,
-                          );
-                        }),
+                        child: TextFormField(
+                          decoration: AppThemeMiscs.inputStyle(context: context, hintText: 'Expense *'),
+                        ),
                       ),
                     ],
                   ),
@@ -65,27 +54,15 @@ class MQuotationForm extends GetView<MQuotationFormController> {
                     children: [
                       Flexible(
                         flex: 1,
-                        child: LayoutBuilder(
-                          builder: (context, startConstraint) {
-                            return AppFromField(
-                              width: startConstraint.maxWidth,
-                              hintText: 'Start Date *',
-                              style: EInputStyle.primary,
-                            );
-                          },
+                        child: TextFormField(
+                          decoration: AppThemeMiscs.inputStyle(context: context, hintText: 'Start Date *'),
                         ),
                       ),
                       AppSizeBox.sm,
                       Flexible(
                         flex: 1,
-                        child: LayoutBuilder(
-                          builder: (context, endConstraint) {
-                            return AppFromField(
-                              width: endConstraint.maxWidth,
-                              hintText: 'End Date *',
-                              style: EInputStyle.primary,
-                            );
-                          },
+                        child: TextFormField(
+                          decoration: AppThemeMiscs.inputStyle(context: context, hintText: 'End Date *'),
                         ),
                       ),
                     ],
@@ -190,13 +167,9 @@ class MQuotationForm extends GetView<MQuotationFormController> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: AppSize.md),
-                  child: LayoutBuilder(
-                    builder: (context, remarkConstraint) => AppFromField(
-                      width: remarkConstraint.maxWidth,
-                      hintText: 'Remark',
-                      style: EInputStyle.primary,
-                      maxLines: 6,
-                    ),
+                  child: TextFormField(
+                    maxLines: 6,
+                    decoration: AppThemeMiscs.inputStyle(context: context, hintText: 'Remark'),
                   ),
                 ),
                 Padding(
