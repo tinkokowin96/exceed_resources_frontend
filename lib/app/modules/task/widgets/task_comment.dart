@@ -98,9 +98,9 @@ class _TaskCommentState extends State<TaskComment> {
                           text: each.text,
                           style: AppTheme.text(
                             context: context,
-                            type: each.employeeId != null ? ETextType.primary : ETextType.body,
+                            type: each.colleagueId != null ? ETextType.primary : ETextType.body,
                           ),
-                          recognizer: each.employeeId == null ? null : (TapGestureRecognizer()..onTap = () => ''),
+                          recognizer: each.colleagueId == null ? null : (TapGestureRecognizer()..onTap = () => ''),
                         ),
                       ),
                     ),

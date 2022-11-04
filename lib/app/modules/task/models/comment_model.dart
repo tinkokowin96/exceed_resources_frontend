@@ -1,6 +1,6 @@
 import 'package:exceed_resources_frontend/app/modules/core/models/attachment_model.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/json_serializer.dart';
-import 'package:exceed_resources_frontend/app/modules/misc/models/employee_m_model.dart';
+import 'package:exceed_resources_frontend/app/modules/misc/models/colleague_m_model.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/comment_type_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -20,7 +20,7 @@ class MComment with _$MComment {
     @JsonKey(name: 'text_comment')
         List<MCommentType>? textComment,
     @JsonKey(name: 'commented_by')
-        required MEmployeeM commentedBy,
+        required MColleagueM commentedBy,
     @JsonKey(name: 'num_like')
         required int numLike,
     @Default(false)

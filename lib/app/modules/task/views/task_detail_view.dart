@@ -318,9 +318,9 @@ class TaskDetailView extends GetView<TaskDetailController> {
                                     listenMessage: controller.listenMessage,
                                     updateAttachment: controller.updateMessageAttachment,
                                     attachments: controller.messageAttachments.value,
-                                    employeeOptions: controller.employeeOptions,
-                                    dropdown: controller.employeeDropdown.value,
-                                    onDropdownChange: controller.onEmployeeDropdownChange,
+                                    colleagueOptions: controller.colleagueOptions,
+                                    dropdown: controller.colleagueDropdown.value,
+                                    onDropdownChange: controller.onColleagueDropdownChange,
                                     messageText: controller.messageText.value,
                                   );
                                 },

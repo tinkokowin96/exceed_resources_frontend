@@ -27,7 +27,9 @@ class AppThemeMiscs {
   }) =>
       InputDecoration(
         isCollapsed: true,
-        contentPadding: EdgeInsets.all(style == EInputStyle.primary ? AppSize.mP : AppSize.fP),
+        contentPadding: style == EInputStyle.primary
+            ? const EdgeInsets.all(AppSize.fpP)
+            : const EdgeInsets.symmetric(vertical: AppSize.flP),
         hintText: hintText,
         filled: style == EInputStyle.line ? false : true,
         fillColor: color == EInputColor.primary
@@ -56,12 +58,13 @@ class AppThemeMiscs {
               context: context,
               weight: FontWeight.w500,
             ).copyWith(
-              color:
-                  style == EInputStyle.primary ? AppTheme.of(context).color.secondary.withOpacity(0.7) : Colors.black,
+              color: style == EInputStyle.primary
+                  ? AppTheme.of(context).color.secondary.withOpacity(0.7)
+                  : AppTheme.of(context).color.idle,
             ),
         enabledBorder: style == EInputStyle.line
-            ? const UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.black),
+            ? UnderlineInputBorder(
+                borderSide: BorderSide(color: AppTheme.of(context).color.idle),
               )
             : OutlineInputBorder(
                 borderRadius: BorderRadius.circular(style == EInputStyle.primary ? AppSize.md : 0),

@@ -1,4 +1,4 @@
-import 'package:exceed_resources_frontend/app/modules/misc/models/employee_model.dart';
+import 'package:exceed_resources_frontend/app/modules/misc/models/colleague_model.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/role_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -9,7 +9,7 @@ part 'collaborator_model.g.dart';
 class MCollaborator with _$MCollaborator {
   factory MCollaborator({
     required String id,
-    required MEmployee employee,
+    required MColleague colleague,
     required MRole role,
     @Default([]) @JsonKey(name: 'allowed_resources') List<String> allowedResources,
     String? remark,

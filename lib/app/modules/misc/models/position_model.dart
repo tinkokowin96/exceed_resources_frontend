@@ -1,4 +1,4 @@
-import 'package:exceed_resources_frontend/app/modules/misc/models/employee_model.dart';
+import 'package:exceed_resources_frontend/app/modules/misc/models/colleague_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'position_model.freezed.dart';
@@ -11,7 +11,7 @@ class MPosition with _$MPosition {
     required String name,
     @JsonKey(name: 'basic_salary') double? basicSalary,
     String? remark,
-    @Default([]) List<MEmployee> employees,
+    @Default([]) List<MColleague> colleagues,
   }) = _MPosition;
 
   factory MPosition.fromJson(Map<String, dynamic> json) => _$MPositionFromJson(json);

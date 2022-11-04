@@ -24,7 +24,7 @@ class TaskCollaborator extends StatelessWidget {
         height: AppSize.emp,
         child: Center(
           child: Text(
-            transfromName(collaborator.employee.name),
+            transfromName(collaborator.colleague.name),
             style: AppTheme.text(
               context: context,
               type: ETextType.primary,

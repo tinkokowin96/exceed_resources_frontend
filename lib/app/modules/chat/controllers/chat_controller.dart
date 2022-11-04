@@ -3,7 +3,7 @@ import 'package:exceed_resources_frontend/app/modules/chat/models/chat_detail_mo
 import 'package:exceed_resources_frontend/app/modules/chat/models/chat_group_model.dart';
 import 'package:exceed_resources_frontend/app/modules/chat/models/chat_message_model.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
-import 'package:exceed_resources_frontend/app/modules/misc/models/employee_m_model.dart';
+import 'package:exceed_resources_frontend/app/modules/misc/models/colleague_m_model.dart';
 import 'package:get/get.dart';
 
 class ChatController extends GetxController {
@@ -17,7 +17,8 @@ class ChatController extends GetxController {
           name: 'Myanmar Forward Enterprise',
           chatMessages: [
             MChatMessage(
-              colleague: MEmployeeM(
+              colleague: MColleagueM(
+                positionName: 'Frontend Developer',
                 id: 'emp_1',
                 name: 'Myo Thiha Aung',
                 image:
@@ -29,13 +30,15 @@ class ChatController extends GetxController {
           ],
           chatDetail: MChatDetail(
               colleagues: [
-                MEmployeeM(
+                MColleagueM(
+                  positionName: 'Frontend Developer',
                   id: 'emp_1',
                   name: 'Myo Thiha Aung',
                   image:
                       'https://firebasestorage.googleapis.com/v0/b/exceed-resources-365004.appspot.com/o/emp_1.jpg?alt=media&token=758555e1-fb5a-4905-84a9-205bad38415a',
                 ),
-                MEmployeeM(
+                MColleagueM(
+                  positionName: 'Frontend Developer',
                   id: 'emp_2',
                   name: 'You',
                   image:
@@ -54,7 +57,8 @@ class ChatController extends GetxController {
           name: 'EPOS',
           chatMessages: [
             MChatMessage(
-              colleague: MEmployeeM(
+              colleague: MColleagueM(
+                positionName: 'Frontend Developer',
                 id: 'emp_1',
                 name: 'Myo Thiha Aung',
                 image:
@@ -66,13 +70,15 @@ class ChatController extends GetxController {
           ],
           chatDetail: MChatDetail(
               colleagues: [
-                MEmployeeM(
+                MColleagueM(
+                  positionName: 'Frontend Developer',
                   id: 'emp_1',
                   name: 'Myo Thiha Aung',
                   image:
                       'https://firebasestorage.googleapis.com/v0/b/exceed-resources-365004.appspot.com/o/emp_1.jpg?alt=media&token=758555e1-fb5a-4905-84a9-205bad38415a',
                 ),
-                MEmployeeM(
+                MColleagueM(
+                  positionName: 'Frontend Developer',
                   id: 'emp_2',
                   name: 'You',
                   image:
@@ -91,7 +97,8 @@ class ChatController extends GetxController {
           name: 'New Life Myanmar',
           chatMessages: [
             MChatMessage(
-              colleague: MEmployeeM(
+              colleague: MColleagueM(
+                positionName: 'Frontend Developer',
                 id: 'emp_1',
                 name: 'Myo Thiha Aung',
                 image:
@@ -103,13 +110,15 @@ class ChatController extends GetxController {
           ],
           chatDetail: MChatDetail(
               colleagues: [
-                MEmployeeM(
+                MColleagueM(
+                  positionName: 'Frontend Developer',
                   id: 'emp_1',
                   name: 'Myo Thiha Aung',
                   image:
                       'https://firebasestorage.googleapis.com/v0/b/exceed-resources-365004.appspot.com/o/emp_1.jpg?alt=media&token=758555e1-fb5a-4905-84a9-205bad38415a',
                 ),
-                MEmployeeM(
+                MColleagueM(
+                  positionName: 'Frontend Developer',
                   id: 'emp_2',
                   name: 'You',
                   image:
@@ -128,7 +137,8 @@ class ChatController extends GetxController {
           name: 'True Shop',
           chatMessages: [
             MChatMessage(
-              colleague: MEmployeeM(
+              colleague: MColleagueM(
+                positionName: 'Frontend Developer',
                 id: 'emp_1',
                 name: 'Myo Thiha Aung',
                 image:
@@ -140,13 +150,15 @@ class ChatController extends GetxController {
           ],
           chatDetail: MChatDetail(
               colleagues: [
-                MEmployeeM(
+                MColleagueM(
+                  positionName: 'Frontend Developer',
                   id: 'emp_1',
                   name: 'Myo Thiha Aung',
                   image:
                       'https://firebasestorage.googleapis.com/v0/b/exceed-resources-365004.appspot.com/o/emp_1.jpg?alt=media&token=758555e1-fb5a-4905-84a9-205bad38415a',
                 ),
-                MEmployeeM(
+                MColleagueM(
+                  positionName: 'Frontend Developer',
                   id: 'emp_2',
                   name: 'You',
                   image:
@@ -170,7 +182,8 @@ class ChatController extends GetxController {
           name: 'Myanmar Forward Enterprise',
           chatMessages: [
             MChatMessage(
-              colleague: MEmployeeM(
+              colleague: MColleagueM(
+                positionName: 'Frontend Developer',
                 id: 'emp_1',
                 name: 'Myo Thiha Aung',
                 image:
@@ -182,13 +195,15 @@ class ChatController extends GetxController {
           ],
           chatDetail: MChatDetail(
               colleagues: [
-                MEmployeeM(
+                MColleagueM(
+                  positionName: 'Frontend Developer',
                   id: 'emp_1',
                   name: 'Myo Thiha Aung',
                   image:
                       'https://firebasestorage.googleapis.com/v0/b/exceed-resources-365004.appspot.com/o/emp_1.jpg?alt=media&token=758555e1-fb5a-4905-84a9-205bad38415a',
                 ),
-                MEmployeeM(
+                MColleagueM(
+                  positionName: 'Frontend Developer',
                   id: 'emp_2',
                   name: 'You',
                   image:
@@ -207,7 +222,8 @@ class ChatController extends GetxController {
           name: 'EPOS',
           chatMessages: [
             MChatMessage(
-              colleague: MEmployeeM(
+              colleague: MColleagueM(
+                positionName: 'Frontend Developer',
                 id: 'emp_1',
                 name: 'Myo Thiha Aung',
                 image:
@@ -219,13 +235,15 @@ class ChatController extends GetxController {
           ],
           chatDetail: MChatDetail(
               colleagues: [
-                MEmployeeM(
+                MColleagueM(
+                  positionName: 'Frontend Developer',
                   id: 'emp_1',
                   name: 'Myo Thiha Aung',
                   image:
                       'https://firebasestorage.googleapis.com/v0/b/exceed-resources-365004.appspot.com/o/emp_1.jpg?alt=media&token=758555e1-fb5a-4905-84a9-205bad38415a',
                 ),
-                MEmployeeM(
+                MColleagueM(
+                  positionName: 'Frontend Developer',
                   id: 'emp_2',
                   name: 'You',
                   image:
@@ -244,7 +262,8 @@ class ChatController extends GetxController {
           name: 'New Life Myanmar',
           chatMessages: [
             MChatMessage(
-              colleague: MEmployeeM(
+              colleague: MColleagueM(
+                positionName: 'Frontend Developer',
                 id: 'emp_1',
                 name: 'Myo Thiha Aung',
                 image:
@@ -256,13 +275,15 @@ class ChatController extends GetxController {
           ],
           chatDetail: MChatDetail(
               colleagues: [
-                MEmployeeM(
+                MColleagueM(
+                  positionName: 'Frontend Developer',
                   id: 'emp_1',
                   name: 'Myo Thiha Aung',
                   image:
                       'https://firebasestorage.googleapis.com/v0/b/exceed-resources-365004.appspot.com/o/emp_1.jpg?alt=media&token=758555e1-fb5a-4905-84a9-205bad38415a',
                 ),
-                MEmployeeM(
+                MColleagueM(
+                  positionName: 'Frontend Developer',
                   id: 'emp_2',
                   name: 'You',
                   image:
@@ -281,7 +302,8 @@ class ChatController extends GetxController {
           name: 'True Shop',
           chatMessages: [
             MChatMessage(
-              colleague: MEmployeeM(
+              colleague: MColleagueM(
+                positionName: 'Frontend Developer',
                 id: 'emp_1',
                 name: 'Myo Thiha Aung',
                 image:
@@ -293,13 +315,15 @@ class ChatController extends GetxController {
           ],
           chatDetail: MChatDetail(
               colleagues: [
-                MEmployeeM(
+                MColleagueM(
+                  positionName: 'Frontend Developer',
                   id: 'emp_1',
                   name: 'Myo Thiha Aung',
                   image:
                       'https://firebasestorage.googleapis.com/v0/b/exceed-resources-365004.appspot.com/o/emp_1.jpg?alt=media&token=758555e1-fb5a-4905-84a9-205bad38415a',
                 ),
-                MEmployeeM(
+                MColleagueM(
+                  positionName: 'Frontend Developer',
                   id: 'emp_2',
                   name: 'You',
                   image:
@@ -323,7 +347,8 @@ class ChatController extends GetxController {
           name: 'Myanmar Forward Enterprise',
           chatMessages: [
             MChatMessage(
-              colleague: MEmployeeM(
+              colleague: MColleagueM(
+                positionName: 'Frontend Developer',
                 id: 'emp_1',
                 name: 'Myo Thiha Aung',
                 image:
@@ -335,13 +360,15 @@ class ChatController extends GetxController {
           ],
           chatDetail: MChatDetail(
               colleagues: [
-                MEmployeeM(
+                MColleagueM(
+                  positionName: 'Frontend Developer',
                   id: 'emp_1',
                   name: 'Myo Thiha Aung',
                   image:
                       'https://firebasestorage.googleapis.com/v0/b/exceed-resources-365004.appspot.com/o/emp_1.jpg?alt=media&token=758555e1-fb5a-4905-84a9-205bad38415a',
                 ),
-                MEmployeeM(
+                MColleagueM(
+                  positionName: 'Frontend Developer',
                   id: 'emp_2',
                   name: 'You',
                   image:
@@ -360,7 +387,8 @@ class ChatController extends GetxController {
           name: 'EPOS',
           chatMessages: [
             MChatMessage(
-              colleague: MEmployeeM(
+              colleague: MColleagueM(
+                positionName: 'Frontend Developer',
                 id: 'emp_1',
                 name: 'Myo Thiha Aung',
                 image:
@@ -372,13 +400,15 @@ class ChatController extends GetxController {
           ],
           chatDetail: MChatDetail(
               colleagues: [
-                MEmployeeM(
+                MColleagueM(
+                  positionName: 'Frontend Developer',
                   id: 'emp_1',
                   name: 'Myo Thiha Aung',
                   image:
                       'https://firebasestorage.googleapis.com/v0/b/exceed-resources-365004.appspot.com/o/emp_1.jpg?alt=media&token=758555e1-fb5a-4905-84a9-205bad38415a',
                 ),
-                MEmployeeM(
+                MColleagueM(
+                  positionName: 'Frontend Developer',
                   id: 'emp_2',
                   name: 'You',
                   image:
@@ -397,7 +427,8 @@ class ChatController extends GetxController {
           name: 'New Life Myanmar',
           chatMessages: [
             MChatMessage(
-              colleague: MEmployeeM(
+              colleague: MColleagueM(
+                positionName: 'Frontend Developer',
                 id: 'emp_1',
                 name: 'Myo Thiha Aung',
                 image:
@@ -409,13 +440,15 @@ class ChatController extends GetxController {
           ],
           chatDetail: MChatDetail(
               colleagues: [
-                MEmployeeM(
+                MColleagueM(
+                  positionName: 'Frontend Developer',
                   id: 'emp_1',
                   name: 'Myo Thiha Aung',
                   image:
                       'https://firebasestorage.googleapis.com/v0/b/exceed-resources-365004.appspot.com/o/emp_1.jpg?alt=media&token=758555e1-fb5a-4905-84a9-205bad38415a',
                 ),
-                MEmployeeM(
+                MColleagueM(
+                  positionName: 'Frontend Developer',
                   id: 'emp_2',
                   name: 'You',
                   image:
@@ -434,7 +467,8 @@ class ChatController extends GetxController {
           name: 'True Shop',
           chatMessages: [
             MChatMessage(
-              colleague: MEmployeeM(
+              colleague: MColleagueM(
+                positionName: 'Frontend Developer',
                 id: 'emp_1',
                 name: 'Myo Thiha Aung',
                 image:
@@ -446,13 +480,15 @@ class ChatController extends GetxController {
           ],
           chatDetail: MChatDetail(
               colleagues: [
-                MEmployeeM(
+                MColleagueM(
+                  positionName: 'Frontend Developer',
                   id: 'emp_1',
                   name: 'Myo Thiha Aung',
                   image:
                       'https://firebasestorage.googleapis.com/v0/b/exceed-resources-365004.appspot.com/o/emp_1.jpg?alt=media&token=758555e1-fb5a-4905-84a9-205bad38415a',
                 ),
-                MEmployeeM(
+                MColleagueM(
+                  positionName: 'Frontend Developer',
                   id: 'emp_2',
                   name: 'You',
                   image:
@@ -476,7 +512,8 @@ class ChatController extends GetxController {
           name: 'Myanmar Forward Enterprise',
           chatMessages: [
             MChatMessage(
-              colleague: MEmployeeM(
+              colleague: MColleagueM(
+                positionName: 'Frontend Developer',
                 id: 'emp_1',
                 name: 'Myo Thiha Aung',
                 image:
@@ -488,13 +525,15 @@ class ChatController extends GetxController {
           ],
           chatDetail: MChatDetail(
               colleagues: [
-                MEmployeeM(
+                MColleagueM(
+                  positionName: 'Frontend Developer',
                   id: 'emp_1',
                   name: 'Myo Thiha Aung',
                   image:
                       'https://firebasestorage.googleapis.com/v0/b/exceed-resources-365004.appspot.com/o/emp_1.jpg?alt=media&token=758555e1-fb5a-4905-84a9-205bad38415a',
                 ),
-                MEmployeeM(
+                MColleagueM(
+                  positionName: 'Frontend Developer',
                   id: 'emp_2',
                   name: 'You',
                   image:
@@ -513,7 +552,8 @@ class ChatController extends GetxController {
           name: 'EPOS',
           chatMessages: [
             MChatMessage(
-              colleague: MEmployeeM(
+              colleague: MColleagueM(
+                positionName: 'Frontend Developer',
                 id: 'emp_1',
                 name: 'Myo Thiha Aung',
                 image:
@@ -525,13 +565,15 @@ class ChatController extends GetxController {
           ],
           chatDetail: MChatDetail(
               colleagues: [
-                MEmployeeM(
+                MColleagueM(
+                  positionName: 'Frontend Developer',
                   id: 'emp_1',
                   name: 'Myo Thiha Aung',
                   image:
                       'https://firebasestorage.googleapis.com/v0/b/exceed-resources-365004.appspot.com/o/emp_1.jpg?alt=media&token=758555e1-fb5a-4905-84a9-205bad38415a',
                 ),
-                MEmployeeM(
+                MColleagueM(
+                  positionName: 'Frontend Developer',
                   id: 'emp_2',
                   name: 'You',
                   image:
@@ -550,7 +592,8 @@ class ChatController extends GetxController {
           name: 'New Life Myanmar',
           chatMessages: [
             MChatMessage(
-              colleague: MEmployeeM(
+              colleague: MColleagueM(
+                positionName: 'Frontend Developer',
                 id: 'emp_1',
                 name: 'Myo Thiha Aung',
                 image:
@@ -562,13 +605,15 @@ class ChatController extends GetxController {
           ],
           chatDetail: MChatDetail(
               colleagues: [
-                MEmployeeM(
+                MColleagueM(
+                  positionName: 'Frontend Developer',
                   id: 'emp_1',
                   name: 'Myo Thiha Aung',
                   image:
                       'https://firebasestorage.googleapis.com/v0/b/exceed-resources-365004.appspot.com/o/emp_1.jpg?alt=media&token=758555e1-fb5a-4905-84a9-205bad38415a',
                 ),
-                MEmployeeM(
+                MColleagueM(
+                  positionName: 'Frontend Developer',
                   id: 'emp_2',
                   name: 'You',
                   image:
@@ -587,7 +632,8 @@ class ChatController extends GetxController {
           name: 'True Shop',
           chatMessages: [
             MChatMessage(
-              colleague: MEmployeeM(
+              colleague: MColleagueM(
+                positionName: 'Frontend Developer',
                 id: 'emp_1',
                 name: 'Myo Thiha Aung',
                 image:
@@ -599,13 +645,15 @@ class ChatController extends GetxController {
           ],
           chatDetail: MChatDetail(
               colleagues: [
-                MEmployeeM(
+                MColleagueM(
+                  positionName: 'Frontend Developer',
                   id: 'emp_1',
                   name: 'Myo Thiha Aung',
                   image:
                       'https://firebasestorage.googleapis.com/v0/b/exceed-resources-365004.appspot.com/o/emp_1.jpg?alt=media&token=758555e1-fb5a-4905-84a9-205bad38415a',
                 ),
-                MEmployeeM(
+                MColleagueM(
+                  positionName: 'Frontend Developer',
                   id: 'emp_2',
                   name: 'You',
                   image:

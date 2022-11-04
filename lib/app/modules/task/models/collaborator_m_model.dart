@@ -1,4 +1,4 @@
-import 'package:exceed_resources_frontend/app/modules/misc/models/employee_m_model.dart';
+import 'package:exceed_resources_frontend/app/modules/misc/models/colleague_m_model.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/role_m_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -9,7 +9,7 @@ part 'collaborator_m_model.g.dart';
 class MCollaboratorM with _$MCollaboratorM {
   factory MCollaboratorM({
     required String id,
-    required MEmployeeM employee,
+    required MColleagueM colleague,
     required MRoleM role,
   }) = _MCollaboratorM;
 

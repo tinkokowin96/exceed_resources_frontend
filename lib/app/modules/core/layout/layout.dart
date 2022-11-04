@@ -12,28 +12,35 @@ class AppLayout {
     required EMenu currentMenu,
     required Widget content,
     AppController? controller,
+    Function()? containerAction,
     bool header = false,
     bool loading = false,
     AppPopup? popup,
     AppDrawer? drawer,
     String? title,
+    Function()? headerAction,
+    String? headerActionText,
   }) =>
       Layout(
         loading: loading,
         popup: popup,
         drawer: drawer,
         controller: controller,
+        containerAction: containerAction,
         child: MobileLayout(
           currentMenu: currentMenu,
           content: content,
           header: header,
           title: title,
+          headerAction: headerAction,
+          headerActionText: headerActionText,
         ),
       );
 
   static Widget fullscreen({
     required Widget content,
     bool loading = false,
+    Function()? containerAction,
     AppPopup? popup,
     AppDrawer? drawer,
   }) =>
@@ -41,6 +48,7 @@ class AppLayout {
         loading: loading,
         popup: popup,
         drawer: drawer,
+        containerAction: containerAction,
         child: content,
       );
 }
@@ -48,6 +56,7 @@ class AppLayout {
 class Layout extends StatelessWidget {
   final bool loading;
   final Widget child;
+  final Function()? containerAction;
   final AppController? controller;
   final AppPopup? popup;
   final AppDrawer? drawer;
@@ -55,6 +64,7 @@ class Layout extends StatelessWidget {
     Key? key,
     required this.child,
     this.loading = false,
+    this.containerAction,
     this.controller,
     this.popup,
     this.drawer,
@@ -72,7 +82,12 @@ class Layout extends StatelessWidget {
               child: AbsorbPointer(
                 absorbing: popup != null || drawer != null || loading ? true : false,
                 child: SafeArea(
-                  child: child,
+                  child: InkWell(
+                    highlightColor: Colors.transparent,
+                    splashColor: Colors.transparent,
+                    onTap: containerAction,
+                    child: child,
+                  ),
                 ),
               ),
             ),

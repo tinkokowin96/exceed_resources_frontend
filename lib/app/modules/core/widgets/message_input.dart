@@ -16,7 +16,7 @@ import 'package:flutter_svg/svg.dart';
 
 class MessageInput extends StatelessWidget {
   final double width;
-  final List<MOption> employeeOptions;
+  final List<MOption> colleagueOptions;
   final FocusNode focus;
   final Function(bool hasFocus) onFocusChange;
   final Function() sendMessage;
@@ -30,7 +30,7 @@ class MessageInput extends StatelessWidget {
   const MessageInput({
     Key? key,
     required this.width,
-    required this.employeeOptions,
+    required this.colleagueOptions,
     required this.focus,
     required this.onFocusChange,
     required this.sendMessage,
@@ -120,7 +120,7 @@ class MessageInput extends StatelessWidget {
                   child: LayoutBuilder(
                     builder: (context, constraint) {
                       return AppDropdown(
-                        items: employeeOptions,
+                        items: colleagueOptions,
                         onChanged: ({checked, value}) => onDropdownChange(value),
                         attach: dropdown,
                         customSelector: SizedBox(
@@ -134,7 +134,7 @@ class MessageInput extends StatelessWidget {
                                       color: AppTheme.of(context).color.container,
                                       borderRadius: BorderRadius.circular(AppSize.md)),
                                   child: Padding(
-                                    padding: const EdgeInsets.all(AppSize.mP),
+                                    padding: const EdgeInsets.all(AppSize.fpP),
                                     child: RichText(
                                       text: TextSpan(
                                         children: List.from(
@@ -143,9 +143,9 @@ class MessageInput extends StatelessWidget {
                                               text: each.text,
                                               style: AppTheme.text(
                                                 context: context,
-                                                type: each.employeeId != null ? ETextType.primary : ETextType.body,
+                                                type: each.colleagueId != null ? ETextType.primary : ETextType.body,
                                               ),
-                                              recognizer: each.employeeId == null
+                                              recognizer: each.colleagueId == null
                                                   ? null
                                                   : (TapGestureRecognizer()..onTap = () => ''),
                                             ),

@@ -12,12 +12,16 @@ class MobileLayout extends StatelessWidget {
   final Widget content;
   final bool header;
   final String? title;
+  final Function()? headerAction;
+  final String? headerActionText;
   const MobileLayout({
     Key? key,
     required this.content,
     required this.currentMenu,
     required this.header,
     this.title,
+    this.headerAction,
+    this.headerActionText,
   }) : super(key: key);
 
   @override
@@ -29,6 +33,8 @@ class MobileLayout extends StatelessWidget {
           title != null
               ? PageHeader(
                   title: title!,
+                  headerAction: headerAction,
+                  headerActionText: headerActionText,
                 )
               : header
                   ? const UserHeader()

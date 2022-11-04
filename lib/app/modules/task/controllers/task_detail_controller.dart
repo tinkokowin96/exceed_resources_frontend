@@ -7,7 +7,7 @@ import 'package:exceed_resources_frontend/app/modules/core/models/option_model.d
 import 'package:exceed_resources_frontend/app/modules/core/services/byte_response_service.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/config.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
-import 'package:exceed_resources_frontend/app/modules/misc/models/employee_m_model.dart';
+import 'package:exceed_resources_frontend/app/modules/misc/models/colleague_m_model.dart';
 import 'package:exceed_resources_frontend/app/modules/task/controllers/task_table_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/comment_model.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/comment_type_model.dart';
@@ -26,7 +26,7 @@ class TaskDetailController extends AppController with AttachmentMixin {
   final messageFocus = FocusNode();
   final messageHasFoucus = false.obs;
   final messageAttachments = Rx<List<MAttachmentField>>([]);
-  final employeeDropdown = false.obs;
+  final colleagueDropdown = false.obs;
   final attachments = Rx<List<MAttachment>>([]);
   final messageText = Rx<List<MCommentType>>([]);
   final data = [
@@ -40,19 +40,20 @@ class TaskDetailController extends AppController with AttachmentMixin {
         id: 'cmt_1',
         textComment: [
           MCommentType(text: 'Can I get help from '),
-          MCommentType(text: 'Htoo Aung', employeeId: 'emp_11'),
+          MCommentType(text: 'Htoo Aung', colleagueId: 'emp_11'),
           MCommentType(text: ' bro?')
         ],
-        commentedBy: MEmployeeM(
+        commentedBy: MColleagueM(
           id: 'emp_1',
           name: 'Moe Kyaw',
           image:
               'https://firebasestorage.googleapis.com/v0/b/exceed-resources-365004.appspot.com/o/emp_1.jpg?alt=media&token=758555e1-fb5a-4905-84a9-205bad38415a',
+          positionName: 'Frontend Developer',
         ),
         numLike: 1,
         updatedAt: DateTime.now().subtract(const Duration(minutes: 30)))
   ];
-  final employeeOptions = const [
+  final colleagueOptions = const [
     MOption(text: 'one', value: 1),
     MOption(text: 'two', value: 2),
     MOption(text: 'three', value: 3),
@@ -83,20 +84,20 @@ class TaskDetailController extends AppController with AttachmentMixin {
   void listenMessage(String value) {
     final regex = RegExp(r'@');
     if (regex.hasMatch(value)) {
-      if (!employeeDropdown.value) {
-        employeeDropdown.value = true;
-        employeeDropdown.refresh();
+      if (!colleagueDropdown.value) {
+        colleagueDropdown.value = true;
+        colleagueDropdown.refresh();
       }
     } else {
-      if (employeeDropdown.value) {
-        employeeDropdown.value = false;
-        employeeDropdown.refresh();
+      if (colleagueDropdown.value) {
+        colleagueDropdown.value = false;
+        colleagueDropdown.refresh();
       }
       if (value.length != previousMessage.length) {
         final isDelete = value.length < previousMessage.length;
         final lastChunkMessage = value.replaceFirst(messageBeforeLastChunk, '');
         if (isDelete) {
-          if (messageText.value.last.employeeId == null) {
+          if (messageText.value.last.colleagueId == null) {
             if (lastChunkMessage.isEmpty) {
               removeLastMessageChunk();
             } else {
@@ -109,7 +110,7 @@ class TaskDetailController extends AppController with AttachmentMixin {
           if (messageText.value.isEmpty) {
             messageText.value.add(MCommentType(text: lastChunkMessage));
           } else {
-            if (messageText.value.last.employeeId == null) {
+            if (messageText.value.last.colleagueId == null) {
               messageText.value.last.text = lastChunkMessage;
             } else {
               messageText.value.add(MCommentType(text: lastChunkMessage));
@@ -138,11 +139,11 @@ class TaskDetailController extends AppController with AttachmentMixin {
     update();
   }
 
-  void onEmployeeDropdownChange(MOption? value) {
+  void onColleagueDropdownChange(MOption? value) {
     if (value != null) {
-      employeeDropdown.value = false;
+      colleagueDropdown.value = false;
       messageController.text = messageController.text.replaceFirst('@', value.text);
-      employeeDropdown.refresh();
+      colleagueDropdown.refresh();
       messageController.selection = TextSelection.fromPosition(
         TextPosition(
           offset: messageController.text.length,
@@ -150,7 +151,7 @@ class TaskDetailController extends AppController with AttachmentMixin {
       );
 
       messageText.value.add(
-        MCommentType(text: value.text, employeeId: value.value.toString()),
+        MCommentType(text: value.text, colleagueId: value.value.toString()),
       );
       messageBeforeLastChunk = messageController.text;
       previousMessage = messageController.text;
@@ -208,10 +209,11 @@ class TaskDetailController extends AppController with AttachmentMixin {
     attachmentComment = MComment(
       attachments: attachments.value,
       liked: true,
-      commentedBy: MEmployeeM(
+      commentedBy: MColleagueM(
         id: 'emp_11',
         name: 'Kyaw Thura',
         image: data[1],
+        positionName: 'Backend Developer',
       ),
       numLike: 2,
       updatedAt: DateTime.now().subtract(const Duration(hours: 2)),
