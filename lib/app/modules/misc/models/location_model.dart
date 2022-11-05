@@ -1,5 +1,3 @@
-import 'package:exceed_resources_frontend/app/modules/core/utils/json_serializer.dart';
-import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'location_model.freezed.dart';

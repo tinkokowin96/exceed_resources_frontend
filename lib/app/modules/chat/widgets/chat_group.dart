@@ -8,6 +8,7 @@ import 'package:exceed_resources_frontend/app/modules/core/theme/sizebox.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/button/button.dart';
 import 'package:exceed_resources_frontend/app/modules/core/extensions/string_extension.dart';
+import 'package:exceed_resources_frontend/app/routes/chat_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -40,42 +41,17 @@ class ChatGroup extends StatelessWidget {
                       weight: FontWeight.w500,
                     ),
                   ),
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      chatGroup.type == EChat.groups || chatGroup.type == EChat.colleagues
-                          ? AppButton(
-                              onPressed: () {},
-                              size: const Size(AppSize.btnWSm, AppSize.btnHMd),
-                              text: chatGroup.type == EChat.groups ? 'Create' : 'New',
-                            )
-                          : AppSizeBox.zero,
-                      Padding(
-                        padding: const EdgeInsets.only(left: AppSize.sm),
-                        child: AppButton(
-                          onPressed: () {},
+                  chatGroup.type == EChat.groups || chatGroup.type == EChat.colleagues
+                      ? AppButton(
+                          onPressed: () {
+                            if (chatGroup.type == EChat.groups) {
+                              Get.toNamed(ChatRoutes.createGroup);
+                            }
+                          },
                           size: const Size(AppSize.btnWSm, AppSize.btnHMd),
-                          text: 'All',
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: AppSize.sm),
-                        child: Stack(
-                          children: [
-                            AppButton(
-                              onPressed: () {},
-                              size: const Size(AppSize.btnWSm, AppSize.btnHMd),
-                              text: 'Unread',
-                            ),
-                            UnreadMessage(
-                              numUnread:
-                                  chatGroup.chatConversations.fold(0, (value, element) => value + element.numUnread),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+                          text: chatGroup.type == EChat.groups ? 'Create' : 'New',
+                        )
+                      : AppSizeBox.zero,
                 ],
               ),
             ),

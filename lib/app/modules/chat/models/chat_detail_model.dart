@@ -10,7 +10,7 @@ part 'chat_detail_model.g.dart';
 class MChatDetail with _$MChatDetail {
   factory MChatDetail({
     required List<MColleagueM> colleagues,
-    required String? description,
+    required String description,
     @JsonKey(name: 'pin_messages') List<MChatMessage>? pinMessages,
     List<MAttachment>? attachments,
   }) = _MChatDetail;

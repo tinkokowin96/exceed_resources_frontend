@@ -10,10 +10,9 @@ class MChatConversation with _$MChatConversation {
   factory MChatConversation({
     required String image,
     required String name,
-    @JsonKey(name: 'chat_messages') required List<MChatMessage> chatMessages,
+    @JsonKey(name: 'num_colleague') required int numColleague,
+    @JsonKey(name: 'chat_messages') required Map<String, List<MChatMessage>> chatMessages,
     @JsonKey(name: 'chat_detail') required MChatDetail chatDetail,
-    @JsonKey(name: 'num_unread') required int numUnread,
-    @JsonKey(name: 'last_message') required String lastMessage,
   }) = _MChatConversation;
 
   factory MChatConversation.fromJson(Map<String, dynamic> json) => _$MChatConversationFromJson(json);

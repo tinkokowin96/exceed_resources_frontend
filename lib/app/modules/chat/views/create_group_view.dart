@@ -7,7 +7,6 @@ import 'package:exceed_resources_frontend/app/modules/core/theme/miscs.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/sizebox.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
-import 'package:exceed_resources_frontend/app/modules/core/widgets/button/button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
@@ -30,17 +29,6 @@ class CreateGroupView extends GetView<CreateGroupController> {
               key: controller.formKey,
               child: Column(
                 children: [
-                  // Padding(
-                  //   padding: const EdgeInsets.symmetric(vertical: AppSize.md),
-                  //   child: Text(
-                  //     'Create Group',
-                  //     style: AppTheme.text(
-                  //       context: context,
-                  //       size: EText.h2,
-                  //       weight: FontWeight.w500,
-                  //     ),
-                  //   ),
-                  // ),
                   TextFormField(
                     decoration: AppThemeMiscs.inputStyle(context: context, hintText: 'Create Group *'),
                   ),
