@@ -3,8 +3,11 @@ import 'package:exceed_resources_frontend/app/modules/chat/widgets/chat%20conver
 import 'package:exceed_resources_frontend/app/modules/chat/widgets/chat%20conversation/conversation_header.dart';
 import 'package:exceed_resources_frontend/app/modules/chat/widgets/chat%20conversation/conversation_message.dart';
 import 'package:exceed_resources_frontend/app/modules/core/layout/layout.dart';
+import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
+import 'package:exceed_resources_frontend/app/modules/core/theme/miscs.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
+import 'package:exceed_resources_frontend/app/modules/core/widgets/message_input.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -18,15 +21,16 @@ class ChatConversationView extends GetView<ChatConversationController> {
         return AppLayout.core(
           currentMenu: EMenu.chat,
           loading: _.loading.value,
-          content: Column(
-            children: [
-              ConversationHeader(
-                image: controller.conversation.value!.image,
-                name: controller.conversation.value!.name,
-                numColleague: controller.conversation.value!.numColleague,
-              ),
-              Expanded(
-                child: Padding(
+          content: LayoutBuilder(builder: (context, constraint) {
+            return Column(
+              children: [
+                ConversationHeader(
+                  image: controller.conversation.value!.image,
+                  name: controller.conversation.value!.name,
+                  numColleague: controller.conversation.value!.numColleague,
+                ),
+                Expanded(
+                  child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: AppSize.md),
                     child: ListView.builder(
                       controller: controller.scrollController,
@@ -52,10 +56,42 @@ class ChatConversationView extends GetView<ChatConversationController> {
                           ),
                         );
                       },
-                    )),
-              )
-            ],
-          ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: AppSize.md),
+                  child: Obx(
+                    () {
+                      return MessageInput(
+                        width: constraint.maxWidth,
+                        sendMessage: controller.onSendMessage,
+                        updateAttachment: controller.updateMessageAttachment,
+                        attachments: controller.messageAttachments.value,
+                        input: LayoutBuilder(
+                          builder: (context, inputConstraint) {
+                            return SizedBox(
+                              width: inputConstraint.maxWidth,
+                              child: TextField(
+                                controller: controller.messageController,
+                                keyboardType: TextInputType.multiline,
+                                maxLines: null,
+                                style: AppTheme.text(context: context),
+                                decoration: AppThemeMiscs.inputStyle(
+                                  context: context,
+                                  color: EInputColor.background,
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            );
+          }),
         );
       },
     );

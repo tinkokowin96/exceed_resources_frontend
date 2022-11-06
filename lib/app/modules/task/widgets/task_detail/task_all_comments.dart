@@ -1,9 +1,10 @@
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/helper.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/message_input.dart';
+import 'package:exceed_resources_frontend/app/modules/task/widgets/task_detail/comment_input.dart';
 import 'package:exceed_resources_frontend/app/modules/task/controllers/task_detail_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/comment_model.dart';
-import 'package:exceed_resources_frontend/app/modules/task/widgets/task_comment.dart';
+import 'package:exceed_resources_frontend/app/modules/task/widgets/task_detail/task_comment.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -36,17 +37,19 @@ class TaskAllComments extends GetView<TaskDetailController> {
           () {
             return MessageInput(
               width: App.width(context) - AppSize.md,
-              focus: controller.messageFocus,
-              onFocusChange: controller.onMessageFocusChange,
-              controller: controller.messageController,
               sendMessage: controller.onSendMessage,
-              listenMessage: controller.listenMessage,
-              updateAttachment: controller.updateMessageAttachment,
               attachments: controller.messageAttachments.value,
-              colleagueOptions: controller.colleagueOptions,
-              dropdown: controller.colleagueDropdown.value,
-              onDropdownChange: controller.onColleagueDropdownChange,
-              messageText: controller.messageText.value,
+              updateAttachment: controller.updateMessageAttachment,
+              input: CommentInput(
+                focus: controller.messageFocus,
+                onFocusChange: controller.onMessageFocusChange,
+                controller: controller.messageController,
+                listenMessage: controller.listenMessage,
+                colleagueOptions: controller.colleagueOptions,
+                dropdown: controller.colleagueDropdown.value,
+                onDropdownChange: controller.onColleagueDropdownChange,
+                messageText: controller.messageText.value,
+              ),
             );
           },
         ),

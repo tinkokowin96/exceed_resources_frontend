@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:exceed_resources_frontend/app/modules/core/controllers/app_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/core/models/attachment_field_model.dart';
 import 'package:file_picker/file_picker.dart';

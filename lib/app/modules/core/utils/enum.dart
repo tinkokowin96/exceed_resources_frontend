@@ -18,7 +18,7 @@ enum EExpandable { minimize, expand, form }
 
 enum EInputStyle { line, primary }
 
-enum EInputColor { primary, transparent }
+enum EInputColor { primary, transparent, background }
 
 enum EAttachmentType {
   @JsonValue('Image')

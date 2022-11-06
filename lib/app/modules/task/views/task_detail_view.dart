@@ -6,12 +6,13 @@ import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/helper.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/button/text_button.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/message_input.dart';
+import 'package:exceed_resources_frontend/app/modules/task/widgets/task_detail/comment_input.dart';
 import 'package:exceed_resources_frontend/app/modules/task/controllers/task_detail_controller.dart';
-import 'package:exceed_resources_frontend/app/modules/task/widgets/status_priority_dropdown.dart';
-import 'package:exceed_resources_frontend/app/modules/task/widgets/task_all_comments.dart';
-import 'package:exceed_resources_frontend/app/modules/task/widgets/task_attachments.dart';
-import 'package:exceed_resources_frontend/app/modules/task/widgets/task_collaborator.dart';
-import 'package:exceed_resources_frontend/app/modules/task/widgets/task_comment.dart';
+import 'package:exceed_resources_frontend/app/modules/task/widgets/task_detail/status_priority_dropdown.dart';
+import 'package:exceed_resources_frontend/app/modules/task/widgets/task_detail/task_all_comments.dart';
+import 'package:exceed_resources_frontend/app/modules/task/widgets/task_detail/task_attachments.dart';
+import 'package:exceed_resources_frontend/app/modules/task/widgets/task_detail/task_collaborator.dart';
+import 'package:exceed_resources_frontend/app/modules/task/widgets/task_detail/task_comment.dart';
 import 'package:exceed_resources_frontend/app/modules/core/extensions/datetime_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -162,7 +163,7 @@ class TaskDetailView extends GetView<TaskDetailController> {
                                             mainAxisSize: MainAxisSize.min,
                                             children: [
                                               Text(
-                                                'MStatus',
+                                                'Status',
                                                 style: AppTheme.text(
                                                   context: context,
                                                   weight: FontWeight.w500,
@@ -184,7 +185,7 @@ class TaskDetailView extends GetView<TaskDetailController> {
                                               mainAxisSize: MainAxisSize.min,
                                               children: [
                                                 Text(
-                                                  'MPriority',
+                                                  'Priority',
                                                   style: AppTheme.text(
                                                     context: context,
                                                     weight: FontWeight.w500,
@@ -312,17 +313,19 @@ class TaskDetailView extends GetView<TaskDetailController> {
                                 () {
                                   return MessageInput(
                                     width: constraint.maxWidth,
-                                    focus: controller.messageFocus,
-                                    onFocusChange: controller.onMessageFocusChange,
-                                    controller: controller.messageController,
                                     sendMessage: controller.onSendMessage,
-                                    listenMessage: controller.listenMessage,
                                     updateAttachment: controller.updateMessageAttachment,
                                     attachments: controller.messageAttachments.value,
-                                    colleagueOptions: controller.colleagueOptions,
-                                    dropdown: controller.colleagueDropdown.value,
-                                    onDropdownChange: controller.onColleagueDropdownChange,
-                                    messageText: controller.messageText.value,
+                                    input: CommentInput(
+                                      focus: controller.messageFocus,
+                                      onFocusChange: controller.onMessageFocusChange,
+                                      controller: controller.messageController,
+                                      listenMessage: controller.listenMessage,
+                                      colleagueOptions: controller.colleagueOptions,
+                                      dropdown: controller.colleagueDropdown.value,
+                                      onDropdownChange: controller.onColleagueDropdownChange,
+                                      messageText: controller.messageText.value,
+                                    ),
                                   );
                                 },
                               ),

@@ -3,6 +3,8 @@ import 'package:exceed_resources_frontend/app/modules/chat/models/chat_conversat
 import 'package:exceed_resources_frontend/app/modules/chat/models/chat_detail_model.dart';
 import 'package:exceed_resources_frontend/app/modules/chat/models/chat_message_model.dart';
 import 'package:exceed_resources_frontend/app/modules/core/controllers/app_controller.dart';
+import 'package:exceed_resources_frontend/app/modules/core/mixins/attachment_mixin.dart';
+import 'package:exceed_resources_frontend/app/modules/core/models/attachment_field_model.dart';
 import 'package:exceed_resources_frontend/app/modules/core/models/attachment_model.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/models/colleague_m_model.dart';
@@ -10,8 +12,10 @@ import 'package:exceed_resources_frontend/app/modules/core/extensions/datetime_e
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ChatConversationController extends AppController {
+class ChatConversationController extends AppController with AttachmentMixin {
   final scrollController = ScrollController();
+  final messageController = TextEditingController();
+  final messageAttachments = Rx<List<MAttachmentField>>([]);
   final messages = [
     MChatMessage(
       id: 'msg_1',
@@ -206,6 +210,21 @@ class ChatConversationController extends AppController {
     print('loading new data');
   }
 
+  void onSendMessage() {
+    messageController.clear();
+  }
+
+  Future<void> updateMessageAttachment({String? name}) async {
+    final updatedAttachments = await updateAttachment(
+      attachments: messageAttachments.value,
+      name: name,
+    );
+    if (updatedAttachments != null) {
+      messageAttachments.value = updatedAttachments;
+      messageAttachments.refresh();
+    }
+  }
+
   @override
   void onInit() {
     updateLoading(value: true);
@@ -221,6 +240,7 @@ class ChatConversationController extends AppController {
   @override
   void onClose() {
     scrollController.dispose();
+    messageController.dispose();
     super.onClose();
   }
 }

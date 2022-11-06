@@ -2,9 +2,9 @@ import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/task/controllers/project_controller.dart';
-import 'package:exceed_resources_frontend/app/modules/task/widgets/quotation_expend.dart';
-import 'package:exceed_resources_frontend/app/modules/task/widgets/quotation_form.dart';
-import 'package:exceed_resources_frontend/app/modules/task/widgets/quotation_minimize.dart';
+import 'package:exceed_resources_frontend/app/modules/task/widgets/project/quotation_expend.dart';
+import 'package:exceed_resources_frontend/app/modules/task/widgets/project/quotation_form.dart';
+import 'package:exceed_resources_frontend/app/modules/task/widgets/project/quotation_minimize.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

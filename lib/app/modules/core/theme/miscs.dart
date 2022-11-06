@@ -36,7 +36,9 @@ class AppThemeMiscs {
             ? AppTheme.of(context).color.secondary.withOpacity(0.05)
             : color == EInputColor.transparent
                 ? Colors.transparent
-                : null,
+                : color == EInputColor.background
+                    ? Colors.white
+                    : null,
         suffix: suffix != null
             ? ColoredBox(
                 color: AppTheme.of(context).color.secondary.withOpacity(0.1),
@@ -67,9 +69,11 @@ class AppThemeMiscs {
                 borderSide: BorderSide(color: AppTheme.of(context).color.idle),
               )
             : OutlineInputBorder(
-                borderRadius: BorderRadius.circular(style == EInputStyle.primary ? AppSize.md : 0),
+                borderRadius: BorderRadius.circular(style == EInputStyle.primary ? AppSize.lg : 0),
                 borderSide: BorderSide(
-                  color: AppTheme.of(context).color.secondary.withOpacity(0.15),
+                  color: color == EInputColor.background
+                      ? AppTheme.of(context).color.idle.withOpacity(0.15)
+                      : AppTheme.of(context).color.secondary.withOpacity(0.15),
                 ),
               ),
         focusedBorder: style == EInputStyle.line
