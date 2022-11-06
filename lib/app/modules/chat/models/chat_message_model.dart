@@ -11,15 +11,16 @@ part 'chat_message_model.g.dart';
 class MChatMessage with _$MChatMessage {
   factory MChatMessage({
     String? id,
-    required MColleagueM colleague,
+    MColleagueM? colleague,
     List<MAttachment>? chat_attachments,
-    String? chat_text,
-    MChatCall? chat_call,
+    List<String>? chat_text,
+    @JsonKey(name: 'chat_call')
+        MChatCall? chatCall,
     @JsonKey(
-      name: 'updated_at',
+      name: 'created_at',
       fromJson: dateFromJson,
     )
-        DateTime? updatedAt,
+        DateTime? createdAt,
   }) = _MChatMessage;
 
   factory MChatMessage.fromJson(Map<String, dynamic> json) => _$MChatMessageFromJson(json);

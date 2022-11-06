@@ -2,13 +2,13 @@ import 'dart:convert';
 import 'package:exceed_resources_frontend/app/modules/core/controllers/app_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
-import 'package:exceed_resources_frontend/app/modules/core/utils/helper.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/priority_model.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/project_model.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/status_model.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/task_model.dart';
 import 'package:exceed_resources_frontend/app/modules/task/widgets/status_priority.dart';
 import 'package:exceed_resources_frontend/app/routes/task_routes.dart';
+import 'package:exceed_resources_frontend/app/modules/core/extensions/datetime_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -57,7 +57,7 @@ class TaskTableController extends AppController {
         ),
         StatusPriority(option: each.priority),
         Text(
-          formatDate(date: each.dueDate),
+          (each.dueDate as DateTime).formatDate(),
           style: AppTheme.text(context: context, size: EText.h4),
         ),
         Text(

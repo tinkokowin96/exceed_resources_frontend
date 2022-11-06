@@ -1,8 +1,8 @@
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
-import 'package:exceed_resources_frontend/app/modules/core/utils/helper.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/collaborator_m_model.dart';
+import 'package:exceed_resources_frontend/app/modules/core/extensions/string_extension.dart';
 import 'package:flutter/material.dart';
 
 class TaskCollaborator extends StatelessWidget {
@@ -24,7 +24,7 @@ class TaskCollaborator extends StatelessWidget {
         height: AppSize.emp,
         child: Center(
           child: Text(
-            transfromName(collaborator.colleague.name),
+            collaborator.colleague.name.firstCharCaptilize(),
             style: AppTheme.text(
               context: context,
               type: ETextType.primary,

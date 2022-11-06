@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:exceed_resources_frontend/app/modules/core/utils/helper.dart';
+import 'package:exceed_resources_frontend/app/modules/core/extensions/int_extension.dart';
 import 'package:flutter/material.dart';
 
 class AppTimer extends StatefulWidget {
@@ -39,6 +39,6 @@ class _AppTimerState extends State<AppTimer> {
 
   @override
   Widget build(BuildContext context) {
-    return Text(formatTime(_remaining), style: widget.style);
+    return Text(_remaining.countTime(), style: widget.style);
   }
 }

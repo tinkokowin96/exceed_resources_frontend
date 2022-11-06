@@ -1,5 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:exceed_resources_frontend/app/modules/chat/controllers/chat_conversation_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/core/animations/animated_press.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
@@ -27,11 +26,11 @@ class ConversationHeader extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             ClipRRect(
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(25),
               child: CachedNetworkImage(
                 imageUrl: image,
-                width: 60,
-                height: 60,
+                width: 50,
+                height: 50,
               ),
             ),
             Padding(

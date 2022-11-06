@@ -1,6 +1,7 @@
 import 'package:exceed_resources_frontend/app/modules/chat/controllers/chat_conversation_controller.dart';
+import 'package:exceed_resources_frontend/app/modules/chat/widgets/chat%20conversation/conversation_date.dart';
 import 'package:exceed_resources_frontend/app/modules/chat/widgets/chat%20conversation/conversation_header.dart';
-import 'package:exceed_resources_frontend/app/modules/chat/widgets/chat%20conversation/conversation_messages.dart';
+import 'package:exceed_resources_frontend/app/modules/chat/widgets/chat%20conversation/conversation_message.dart';
 import 'package:exceed_resources_frontend/app/modules/core/layout/layout.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
@@ -28,7 +29,16 @@ class ChatConversationView extends GetView<ChatConversationController> {
                 mainAxisSize: MainAxisSize.min,
                 children: List.from(
                   controller.conversation.value!.chatMessages.entries.map(
-                    (each) => ConversationMessages(messages: each),
+                    (each) => Padding(
+                      padding: const EdgeInsets.only(top: AppSize.md),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          ConversationDate(date: each.key),
+                          ConversationMessage(messages: each.value),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
               )

@@ -12,6 +12,7 @@ import 'package:exceed_resources_frontend/app/modules/task/widgets/task_all_comm
 import 'package:exceed_resources_frontend/app/modules/task/widgets/task_attachments.dart';
 import 'package:exceed_resources_frontend/app/modules/task/widgets/task_collaborator.dart';
 import 'package:exceed_resources_frontend/app/modules/task/widgets/task_comment.dart';
+import 'package:exceed_resources_frontend/app/modules/core/extensions/datetime_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -145,7 +146,7 @@ class TaskDetailView extends GetView<TaskDetailController> {
                                           Padding(
                                             padding: const EdgeInsets.only(left: AppSize.md),
                                             child: Text(
-                                              formatDate(date: _.task!.dueDate),
+                                              _.task!.dueDate.formatDate(),
                                               style: AppTheme.text(context: context, type: ETextType.primary),
                                             ),
                                           ),

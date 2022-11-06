@@ -79,95 +79,11 @@ double getFontSize(EText size, BuildContext context) {
   }
 }
 
-String formatDate({DateTime? date, String? dateString}) {
-  final inputDate = date ?? DateTime.parse(dateString!);
-  String formattedDate = '${inputDate.day} ';
-  late final String month;
-  switch (inputDate.month) {
-    case 1:
-      month = 'Jan';
-      break;
-    case 2:
-      month = 'Feb';
-      break;
-    case 3:
-      month = 'Mar';
-      break;
-    case 4:
-      month = 'Apr';
-      break;
-    case 5:
-      month = 'May';
-      break;
-    case 6:
-      month = 'Jun';
-      break;
-    case 7:
-      month = 'Jul';
-      break;
-    case 8:
-      month = 'Aug';
-      break;
-    case 9:
-      month = 'Sep';
-      break;
-    case 10:
-      month = 'Oct';
-      break;
-    case 11:
-      month = 'Nov';
-      break;
-    case 12:
-      month = 'Dec';
-      break;
-  }
-  formattedDate += month;
-  formattedDate += ' ${inputDate.year}';
-  return formattedDate;
-}
-
-String formatTime(int time) {
-  Map calculateTime({required timeToCalculate, bool day = false, bool hour = false, minute = false}) {
-    if (day) {
-      return {'value': (timeToCalculate / 60 * 60 * 24).floor(), 'remaining': timeToCalculate % 60 * 60 * 24};
-    } else if (hour) {
-      return {'value': (timeToCalculate / 60 * 60).floor(), 'remaining': timeToCalculate % 60 * 60};
-    } else {
-      return {'value': (timeToCalculate / 60).floor(), 'remaining': timeToCalculate % 60};
-    }
-  }
-
-  int? days, hours, minutes, seconds;
-
-  if (time > 60 * 60 * 24) {
-    final calculatedDay = calculateTime(timeToCalculate: time, day: true);
-    days = calculatedDay['value'];
-    final calculatedHour = calculateTime(timeToCalculate: calculatedDay['remaining'], hour: true);
-    hours = calculatedHour['value'];
-    final calculatedMinutes = calculateTime(timeToCalculate: calculatedHour['remaining'], minute: true);
-    minutes = calculatedMinutes['value'];
-    seconds = calculatedMinutes['remaining'];
-  } else if (time > 60 * 60) {
-    final calculatedHour = calculateTime(timeToCalculate: time, hour: true);
-    hours = calculatedHour['value'];
-    final calculatedMinutes = calculateTime(timeToCalculate: calculatedHour['remaining'], minute: true);
-    minutes = calculatedMinutes['value'];
-    seconds = calculatedMinutes['remaining'];
-  } else if (time > 60) {
-    final calculatedMinutes = calculateTime(timeToCalculate: time, minute: true);
-    minutes = calculatedMinutes['value'];
-    seconds = calculatedMinutes['remaining'];
-  } else {
-    seconds = time;
-  }
-
-  return '${days == null ? '' : '${days < 10 ? '0$days' : days} : '}${hours == null ? '' : '${hours < 10 ? '0$hours' : hours} : '}${minutes == null ? '' : '${minutes < 10 ? '0$minutes' : minutes} : '}${seconds! < 10 ? '0$seconds' : seconds}';
-}
-
-String transfromName(String name) => name[0] + RegExp(r' (.)').firstMatch(name)!.group(1)!.toUpperCase();
-
-Future<void> download(
-    {required List<MAttachment> attachments, required AppController controller, required BuildContext context}) async {
+Future<void> download({
+  required List<MAttachment> attachments,
+  required AppController controller,
+  required BuildContext context,
+}) async {
   if (directory == null) {
     if (Platform.isIOS) {
       final appDoc = await getApplicationDocumentsDirectory();
