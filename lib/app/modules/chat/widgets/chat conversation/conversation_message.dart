@@ -4,71 +4,96 @@ import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/sizebox.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
-import 'package:exceed_resources_frontend/app/modules/core/utils/helper.dart';
+import 'package:exceed_resources_frontend/app/modules/core/extensions/datetime_extension.dart';
 import 'package:flutter/material.dart';
 
 class ConversationMessage extends StatelessWidget {
-  final List<MChatMessage> messages;
+  final MChatMessage message;
   const ConversationMessage({
     Key? key,
-    required this.messages,
+    required this.message,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: AppSize.sm),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: List.from(
-          messages.map(
-            (each) => Padding(
-              padding: const EdgeInsets.only(top: AppSize.sm),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  SizedBox(
-                    width: App.width(context) * 0.9,
-                    child: Row(
-                      children: [
-                        each.colleague == null
-                            ? AppSizeBox.zero
-                            : ClipRRect(
-                                borderRadius: BorderRadius.circular(20),
-                                child: CachedNetworkImage(
-                                  imageUrl: each.colleague!.image,
-                                  width: 40,
-                                  height: 40,
+    final time = Text(
+      message.createdAt!.formatTime(),
+      style: AppTheme.text(
+        context: context,
+        size: EText.h4,
+        type: ETextType.subtitle,
+      ),
+    );
+
+    final text = Expanded(
+      child: Padding(
+        padding: const EdgeInsets.only(left: AppSize.sm),
+        child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: message.chatText != null
+                ? [
+                    message.colleague != null && message.colleague!.id != 'emp_1'
+                        ? Padding(
+                            padding: const EdgeInsets.only(bottom: AppSize.sm),
+                            child: Text(
+                              message.colleague!.name,
+                              style: AppTheme.text(context: context),
+                            ),
+                          )
+                        : AppSizeBox.zero,
+                    ...List.from(
+                      message.chatText!.asMap().entries.map(
+                            (each) => Padding(
+                              padding: EdgeInsets.only(top: each.key == 0 ? 0 : AppSize.xs),
+                              child: DecoratedBox(
+                                decoration: BoxDecoration(
+                                  color: AppTheme.of(context).color.antiFlashWhite,
+                                  borderRadius: BorderRadius.circular(AppSize.sm),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(AppSize.sm),
+                                  child: Text(
+                                    each.value,
+                                    style: AppTheme.text(context: context),
+                                  ),
                                 ),
                               ),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: AppSize.sm),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [],
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: AppSize.sm),
-                          child: Text(
-                            '${each.createdAt!.hour < 10 ? '0${each.createdAt!.hour}' : each.createdAt!.hour} : ${each.createdAt!.minute < 10 ? '0${each.createdAt!.minute}' : each.createdAt!.minute} ${each.createdAt!.hour > 12 ? ' pm' : ' am'}',
-                            style: AppTheme.text(
-                              context: context,
-                              size: EText.h4,
-                              type: ETextType.subtitle,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                    )
+                  ]
+                : [AppSizeBox.zero]),
+      ),
+    );
+
+    return Padding(
+      padding: const EdgeInsets.only(top: AppSize.sm),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: message.chatCall == null && message.colleague != null && message.colleague!.id != 'emp_1'
+            ? [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: CachedNetworkImage(
+                    imageUrl: message.colleague!.image,
+                    width: 40,
+                    height: 40,
                   ),
-                ],
-              ),
-            ),
-          ),
-        ),
+                ),
+                text,
+                Padding(
+                  padding: const EdgeInsets.only(left: AppSize.sm),
+                  child: time,
+                )
+              ]
+            : [
+                Padding(
+                  padding: const EdgeInsets.only(right: AppSize.sm),
+                  child: time,
+                ),
+                text
+              ],
       ),
     );
   }

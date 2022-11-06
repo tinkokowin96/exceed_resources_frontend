@@ -1,45 +1,45 @@
 extension ParseDateTime on DateTime {
   String formatTime() =>
-      '${hour < 10 ? '0$hour' : hour} : ${minute < 10 ? '0$minute' : minute} ${hour > 12 ? ' pm' : ' am'}';
+      '${hour < 10 ? '0$hour' : hour > 12 ? hour - 12 : hour} : ${minute < 10 ? '0$minute' : minute} ${hour > 12 ? ' pm' : ' am'}';
 
   String formatDate() {
-    String formattedDate = '$day ';
+    String formattedDate = '$day, ';
     switch (month) {
       case 1:
-        formattedDate = 'Jan';
+        formattedDate += 'Jan';
         break;
       case 2:
-        formattedDate = 'Feb';
+        formattedDate += 'Feb';
         break;
       case 3:
-        formattedDate = 'Mar';
+        formattedDate += 'Mar';
         break;
       case 4:
-        formattedDate = 'Apr';
+        formattedDate += 'Apr';
         break;
       case 5:
-        formattedDate = 'May';
+        formattedDate += 'May';
         break;
       case 6:
-        formattedDate = 'Jun';
+        formattedDate += 'Jun';
         break;
       case 7:
-        formattedDate = 'Jul';
+        formattedDate += 'Jul';
         break;
       case 8:
-        formattedDate = 'Aug';
+        formattedDate += 'Aug';
         break;
       case 9:
-        formattedDate = 'Sep';
+        formattedDate += 'Sep';
         break;
       case 10:
-        formattedDate = 'Oct';
+        formattedDate += 'Oct';
         break;
       case 11:
-        formattedDate = 'Nov';
+        formattedDate += 'Nov';
         break;
       case 12:
-        formattedDate = 'Dec';
+        formattedDate += 'Dec';
         break;
     }
     return '$formattedDate $year';

@@ -13,7 +13,8 @@ class MChatMessage with _$MChatMessage {
     String? id,
     MColleagueM? colleague,
     List<MAttachment>? chat_attachments,
-    List<String>? chat_text,
+    @JsonKey(name: 'chat_text')
+        List<String>? chatText,
     @JsonKey(name: 'chat_call')
         MChatCall? chatCall,
     @JsonKey(

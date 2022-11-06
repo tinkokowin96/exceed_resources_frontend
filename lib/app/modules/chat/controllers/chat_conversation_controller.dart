@@ -7,16 +7,21 @@ import 'package:exceed_resources_frontend/app/modules/core/models/attachment_mod
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/models/colleague_m_model.dart';
 import 'package:exceed_resources_frontend/app/modules/core/extensions/datetime_extension.dart';
-import 'package:get/state_manager.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ChatConversationController extends AppController {
+  final scrollController = ScrollController();
   final messages = [
     MChatMessage(
       id: 'msg_1',
-      chat_text: [
+      chatText: [
         "Lorem Ipsum has been the industry's standard dummy",
         "There are many variations",
-        "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using"
+        "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using",
+        "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using",
+        "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using",
+        "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using",
       ],
       createdAt: DateTime.now().subtract(const Duration(days: 1)).subtract(const Duration(hours: 2)),
       colleague: MColleagueM(
@@ -29,7 +34,7 @@ class ChatConversationController extends AppController {
     ),
     MChatMessage(
       id: 'msg_2',
-      chat_text: ["Contrary to popular belief, Lorem Ipsum"],
+      chatText: ["Contrary to popular belief, Lorem Ipsum"],
       createdAt: DateTime.now().subtract(const Duration(days: 1)).subtract(const Duration(minutes: 60)),
       colleague: MColleagueM(
         id: 'emp_4',
@@ -41,7 +46,7 @@ class ChatConversationController extends AppController {
     ),
     MChatMessage(
       id: 'msg_3',
-      chat_text: [
+      chatText: [
         "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock",
         "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using",
       ],
@@ -56,7 +61,7 @@ class ChatConversationController extends AppController {
     ),
     MChatMessage(
       id: 'msg_4',
-      chat_text: ["Lorem Ipsum has been the industry's standard dummy"],
+      chatText: ["Lorem Ipsum has been the industry's standard dummy"],
       createdAt: DateTime.now().subtract(const Duration(days: 2)).subtract(const Duration(hours: 2)),
       colleague: MColleagueM(
         id: 'emp_1',
@@ -137,7 +142,6 @@ class ChatConversationController extends AppController {
   final conversation = Rxn<MChatConversation>();
 
   void transformData() {
-// messages.value = messages.value.f;
     final Map<String, List<MChatMessage>> messagesObject = {};
     for (final message in messages) {
       final formattedDate = message.createdAt!.formatDate();
@@ -198,10 +202,25 @@ class ChatConversationController extends AppController {
     updateLoading(value: false);
   }
 
+  void loadNewData() {
+    print('loading new data');
+  }
+
   @override
   void onInit() {
     updateLoading(value: true);
+    scrollController.addListener(() {
+      if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
+        loadNewData();
+      }
+    });
     transformData();
     super.onInit();
+  }
+
+  @override
+  void onClose() {
+    scrollController.dispose();
+    super.onClose();
   }
 }

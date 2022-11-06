@@ -25,22 +25,34 @@ class ChatConversationView extends GetView<ChatConversationController> {
                 name: controller.conversation.value!.name,
                 numColleague: controller.conversation.value!.numColleague,
               ),
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                children: List.from(
-                  controller.conversation.value!.chatMessages.entries.map(
-                    (each) => Padding(
-                      padding: const EdgeInsets.only(top: AppSize.md),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          ConversationDate(date: each.key),
-                          ConversationMessage(messages: each.value),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
+              Expanded(
+                child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: AppSize.md),
+                    child: ListView.builder(
+                      controller: controller.scrollController,
+                      reverse: true,
+                      itemCount: controller.conversation.value!.chatMessages.entries.length,
+                      itemBuilder: (context, index) {
+                        final item = List.from(controller.conversation.value!.chatMessages.entries)[index];
+                        return SingleChildScrollView(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              ConversationDate(date: item.key),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(vertical: AppSize.sm),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: List.from(
+                                    item.value.map((each) => ConversationMessage(message: each)),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    )),
               )
             ],
           ),
