@@ -63,7 +63,7 @@ class AppTable extends StatelessWidget {
                     return AppTheme.of(context).color.background;
                   },
                 ),
-                headingRowHeight: AppSize.thH,
+                headingRowHeight: AppSize.tblh,
                 columns: tColumns,
                 rows: List.from(
                   rows.entries.map(
@@ -81,7 +81,7 @@ class AppTable extends StatelessWidget {
                             (field) => DataCell(
                               ConstrainedBox(
                                 constraints: const BoxConstraints(
-                                  maxWidth: AppSize.tcMW,
+                                  maxWidth: AppSize.tblc,
                                 ),
                                 child: Center(child: field),
                               ),

@@ -48,7 +48,7 @@ class _TaskCommentState extends State<TaskComment> {
                     Padding(
                       padding: const EdgeInsets.only(left: AppSize.sm),
                       child: Text(
-                        widget.comment.myComment ? 'You' : widget.comment.commentedBy.name,
+                        widget.comment.commentedBy.name,
                         style: AppTheme.text(
                           context: context,
                           type: ETextType.subtitle,
@@ -89,11 +89,11 @@ class _TaskCommentState extends State<TaskComment> {
         ),
         Padding(
           padding: const EdgeInsets.only(top: AppSize.xs),
-          child: widget.comment.textComment != null
+          child: widget.comment.commentTexts != null
               ? RichText(
                   text: TextSpan(
                     children: List.from(
-                      widget.comment.textComment!.map(
+                      widget.comment.commentTexts!.map(
                         (each) => TextSpan(
                           text: each.text,
                           style: AppTheme.text(

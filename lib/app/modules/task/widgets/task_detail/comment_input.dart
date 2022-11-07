@@ -4,7 +4,7 @@ import 'package:exceed_resources_frontend/app/modules/core/theme/miscs.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/dropdown/dropdown.dart';
-import 'package:exceed_resources_frontend/app/modules/task/models/comment_type_model.dart';
+import 'package:exceed_resources_frontend/app/modules/task/models/comment_text_model.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +15,7 @@ class CommentInput extends StatelessWidget {
   final TextEditingController controller;
   final bool dropdown;
   final Function(MOption? value) onDropdownChange;
-  final List<MCommentType> messageText;
+  final List<MCommentText> messageText;
   final Function(String value)? listenMessage;
   const CommentInput({
     Key? key,
@@ -47,7 +47,7 @@ class CommentInput extends StatelessWidget {
                     decoration: BoxDecoration(
                         color: AppTheme.of(context).color.container, borderRadius: BorderRadius.circular(AppSize.md)),
                     child: Padding(
-                      padding: const EdgeInsets.all(AppSize.fpP),
+                      padding: const EdgeInsets.all(AppSize.fepp),
                       child: RichText(
                         text: TextSpan(
                           children: List.from(

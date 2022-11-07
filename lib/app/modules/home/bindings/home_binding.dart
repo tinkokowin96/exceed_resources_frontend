@@ -1,4 +1,4 @@
-import 'package:exceed_resources_frontend/app/modules/chat/controllers/chat_conversation_controller.dart';
+import 'package:exceed_resources_frontend/app/modules/chat/controllers/chat_detail_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/core/controllers/fullscreen_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/home/controllers/home_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/task/controllers/task_table_controller.dart';
@@ -10,6 +10,6 @@ class HomeBinding extends Bindings {
     Get.lazyPut<HomeController>(() => HomeController());
     Get.lazyPut<TaskTableController>(() => TaskTableController());
     Get.lazyPut<FullscreenController>(() => FullscreenController());
-    Get.lazyPut<ChatConversationController>(() => ChatConversationController());
+    Get.lazyPut<ChatDetailController>(() => ChatDetailController());
   }
 }

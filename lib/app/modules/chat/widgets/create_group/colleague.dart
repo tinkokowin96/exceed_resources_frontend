@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
+import 'package:exceed_resources_frontend/app/modules/core/widgets/circle.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/models/colleague_m_model.dart';
 import 'package:flutter/material.dart';
 
@@ -28,14 +29,7 @@ class Colleague extends StatelessWidget {
               children: [
                 Stack(
                   children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(18),
-                      child: CachedNetworkImage(
-                        imageUrl: colleague.image,
-                        width: 36,
-                        height: 36,
-                      ),
-                    ),
+                    AppCircle.image(size: AppSize.md, image: colleague.image),
                     Positioned(
                       top: 0,
                       right: 0,

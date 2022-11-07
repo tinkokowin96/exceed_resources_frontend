@@ -49,8 +49,8 @@ class MessageInput extends StatelessWidget {
                                       ColoredBox(
                                         color: AppTheme.of(context).color.background,
                                         child: SizedBox(
-                                          width: AppSize.ma,
-                                          height: AppSize.ma,
+                                          width: AppSize.msgatt,
+                                          height: AppSize.msgatt,
                                           child: imgTypes.contains(each.type) && each.file != null
                                               ? Image.file(
                                                   each.file!,

@@ -1,6 +1,3 @@
-import 'package:exceed_resources_frontend/app/modules/core/utils/helper.dart';
-import 'package:flutter/material.dart';
-
 class AppSize {
   static const xs = 6.0;
   static const sm = 10.0;
@@ -17,16 +14,10 @@ class AppSize {
   static const btnHMd = 46.0;
   static const btnWSm = 90.0;
   static const uubtn = 28.0; //unused button
-  static const conimg = 40.0; //conversation image
-
-  //popup
 
   //input field
-  static fWMd(BuildContext context) => App.width(context) * 0.8;
-  static const fWSmA = 110.0; //absolute width
-  static const fpP = 16.0; //field primary padding
-  static const flP = 12.0; //field line padding
-  static const ma = 80.0;
+  static const fepp = 16.0; //field primary padding
+  static const felp = 12.0; //field line padding
 
   //dropdown
   static const dH = 100.0;
@@ -41,17 +32,17 @@ class AppSize {
   static const staH = 24.0;
 
   //miscs
-  static const fH = 50.0; //footer height
-  static const tcMW = 200.0; //table column max width
+  static const fotH = 50.0; //footer height
   static const heH = 220.0; //home event section height
-  static const emp = 35.0; //colleague width
+  static const msgatt = 80.0; //input message attachment
 
   //add button
   static const abtn = 40.0;
   static const abtnIco = 30.0;
 
   //table
-  static const thH = 40.0; //heading height
+  static const tblh = 40.0; //heading height
+  static const tblc = 200.0; //table column max width
 
   //project card
   static const pcW = 200.0;
@@ -60,4 +51,11 @@ class AppSize {
   static const pcsW = 50.0;
   static const pccwW = 14.0; //project card circle wrapper width
   static const pccW = 12.0;
+
+  //circle
+  static const cXs = 12.0;
+  static const cSm = 32.0;
+  static const cMd = 40.0;
+  static const cLg = 50.0;
+  static const cXl = 12.0;
 }

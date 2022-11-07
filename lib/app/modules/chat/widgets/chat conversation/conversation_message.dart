@@ -1,10 +1,10 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:exceed_resources_frontend/app/modules/chat/models/chat_message_model.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/sizebox.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/extensions/datetime_extension.dart';
+import 'package:exceed_resources_frontend/app/modules/core/widgets/circle.dart';
 import 'package:flutter/material.dart';
 
 class ConversationMessage extends StatelessWidget {
@@ -31,7 +31,7 @@ class ConversationMessage extends StatelessWidget {
         child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: message.chatText != null
+            children: message.chatTexts != null
                 ? [
                     message.colleague != null && message.colleague!.id != 'emp_1'
                         ? Padding(
@@ -43,7 +43,7 @@ class ConversationMessage extends StatelessWidget {
                           )
                         : AppSizeBox.zero,
                     ...List.from(
-                      message.chatText!.asMap().entries.map(
+                      message.chatTexts!.asMap().entries.map(
                             (each) => Padding(
                               padding: EdgeInsets.only(top: each.key == 0 ? 0 : AppSize.xs),
                               child: DecoratedBox(
@@ -73,14 +73,7 @@ class ConversationMessage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: message.chatCall == null && message.colleague != null && message.colleague!.id != 'emp_1'
             ? [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: CachedNetworkImage(
-                    imageUrl: message.colleague!.image,
-                    width: 40,
-                    height: 40,
-                  ),
-                ),
+                AppCircle.image(size: AppSize.cMd, image: message.colleague!.image),
                 text,
                 Padding(
                   padding: const EdgeInsets.only(left: AppSize.sm),

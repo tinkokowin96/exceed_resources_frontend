@@ -11,9 +11,10 @@ import 'package:exceed_resources_frontend/app/modules/task/controllers/task_deta
 import 'package:exceed_resources_frontend/app/modules/task/widgets/task_detail/status_priority_dropdown.dart';
 import 'package:exceed_resources_frontend/app/modules/task/widgets/task_detail/task_all_comments.dart';
 import 'package:exceed_resources_frontend/app/modules/task/widgets/task_detail/task_attachments.dart';
-import 'package:exceed_resources_frontend/app/modules/task/widgets/task_detail/task_collaborator.dart';
+import 'package:exceed_resources_frontend/app/modules/task/widgets/task_detail/task_collaborators.dart';
 import 'package:exceed_resources_frontend/app/modules/task/widgets/task_detail/task_comment.dart';
 import 'package:exceed_resources_frontend/app/modules/core/extensions/datetime_extension.dart';
+import 'package:exceed_resources_frontend/app/modules/task/widgets/task_detail/task_detail_section.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -48,158 +49,40 @@ class TaskDetailView extends GetView<TaskDetailController> {
                                   mainAxisSize: MainAxisSize.min,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              'Collaborators',
-                                              style: AppTheme.text(
-                                                context: context,
-                                                weight: FontWeight.w500,
-                                                type: ETextType.subtitle,
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(top: AppSize.sm),
-                                              child: ConstrainedBox(
-                                                constraints: BoxConstraints(maxWidth: constraint.maxWidth / 2),
-                                                child: Wrap(
-                                                  spacing: AppSize.sm,
-                                                  runSpacing: AppSize.xs,
-                                                  children: List.from(
-                                                    _.task!.collaborators.map(
-                                                      (each) => TaskCollaborator(
-                                                        collaborator: each,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                        Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          crossAxisAlignment: CrossAxisAlignment.end,
-                                          children: [
-                                            Text(
-                                              'Assigned By',
-                                              style: AppTheme.text(
-                                                context: context,
-                                                weight: FontWeight.w500,
-                                                type: ETextType.subtitle,
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(top: AppSize.sm),
-                                              child: ConstrainedBox(
-                                                constraints: BoxConstraints(maxWidth: constraint.maxWidth / 2),
-                                                child: TaskCollaborator(
-                                                  collaborator: _.task!.assignedBy,
-                                                ),
-                                              ),
-                                            )
-                                          ],
-                                        )
-                                      ],
+                                    TaskCollaborators(
+                                      collaborators: _.task!.collaborators,
+                                      assignedBy: _.task!.assignedBy,
+                                      width: constraint.maxWidth,
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: AppSize.md),
+                                      child: TaskDetailSection(title: 'Project', detailText: _.task!.project.name),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: AppSize.md),
+                                      child: TaskDetailSection(
+                                          title: 'Due Date', detailText: _.task!.dueDate.formatDate()),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(top: AppSize.md),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
-                                          Text(
-                                            'Project',
-                                            style: AppTheme.text(
-                                              context: context,
-                                              type: ETextType.subtitle,
-                                              weight: FontWeight.w500,
+                                          TaskDetailSection(
+                                            title: 'Status',
+                                            detailWidget: StatusPriorityDropdown(
+                                              statuses: _.statuses.value,
+                                              initialStatus: _.task!.status,
                                             ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(left: AppSize.md),
-                                            child: Text(
-                                              _.task!.project.name,
-                                              style: AppTheme.text(context: context, type: ETextType.primary),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: AppSize.md),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Text(
-                                            'Due Date',
-                                            style: AppTheme.text(
-                                              context: context,
-                                              type: ETextType.subtitle,
-                                              weight: FontWeight.w500,
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(left: AppSize.md),
-                                            child: Text(
-                                              _.task!.dueDate.formatDate(),
-                                              style: AppTheme.text(context: context, type: ETextType.primary),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: AppSize.md),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Row(
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              Text(
-                                                'Status',
-                                                style: AppTheme.text(
-                                                  context: context,
-                                                  weight: FontWeight.w500,
-                                                  type: ETextType.subtitle,
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(left: AppSize.md),
-                                                child: StatusPriorityDropdown(
-                                                  statuses: _.statuses.value,
-                                                  initialStatus: _.task!.status,
-                                                ),
-                                              )
-                                            ],
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.only(left: AppSize.lg),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.min,
-                                              children: [
-                                                Text(
-                                                  'Priority',
-                                                  style: AppTheme.text(
-                                                    context: context,
-                                                    weight: FontWeight.w500,
-                                                    type: ETextType.subtitle,
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: const EdgeInsets.only(left: AppSize.md),
-                                                  child: StatusPriorityDropdown(
-                                                    priorities: _.priorities.value,
-                                                    initialPriority: _.task!.priority,
-                                                  ),
-                                                )
-                                              ],
+                                            child: TaskDetailSection(
+                                              title: 'Priority',
+                                              detailWidget: StatusPriorityDropdown(
+                                                priorities: _.priorities.value,
+                                                initialPriority: _.task!.priority,
+                                              ),
                                             ),
                                           ),
                                         ],
@@ -207,23 +90,14 @@ class TaskDetailView extends GetView<TaskDetailController> {
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(top: AppSize.md),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            'Description',
-                                            style: AppTheme.text(
-                                                context: context, weight: FontWeight.w500, type: ETextType.subtitle),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(top: AppSize.xs),
-                                            child: Text(
-                                              _.task!.description,
-                                              style: AppTheme.text(context: context),
-                                            ),
-                                          )
-                                        ],
+                                      child: TaskDetailSection(
+                                        title: 'Description',
+                                        direction: Axis.vertical,
+                                        detailPadding: const EdgeInsets.only(top: AppSize.xs),
+                                        detailWidget: Text(
+                                          _.task!.description,
+                                          style: AppTheme.text(context: context),
+                                        ),
                                       ),
                                     ),
                                     Padding(

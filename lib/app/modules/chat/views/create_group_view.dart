@@ -1,12 +1,12 @@
 import 'package:exceed_resources_frontend/app/modules/chat/controllers/create_group_controller.dart';
-import 'package:exceed_resources_frontend/app/modules/chat/widgets/colleague.dart';
-import 'package:exceed_resources_frontend/app/modules/chat/widgets/participant.dart';
+import 'package:exceed_resources_frontend/app/modules/chat/widgets/create_group/colleague.dart';
 import 'package:exceed_resources_frontend/app/modules/core/layout/layout.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/miscs.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/sizebox.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
+import 'package:exceed_resources_frontend/app/modules/core/widgets/circle.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
@@ -54,9 +54,11 @@ class CreateGroupView extends GetView<CreateGroupController> {
                                       runSpacing: AppSize.sm,
                                       children: List.from(
                                         controller.participants.value.map(
-                                          (each) => Participant(
-                                            colleague: each,
-                                            onDelete: () => controller.updateParticipant(id: each.id, add: false),
+                                          (each) => AppCircle.imageAction(
+                                            size: AppSize.sm,
+                                            image: each.image,
+                                            asset: 'assets/icons/remove.svg',
+                                            action: () => controller.updateParticipant(id: each.id, add: false),
                                           ),
                                         ),
                                       ),

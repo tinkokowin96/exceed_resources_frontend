@@ -28,8 +28,8 @@ class AppThemeMiscs {
       InputDecoration(
         isCollapsed: true,
         contentPadding: style == EInputStyle.primary
-            ? const EdgeInsets.all(AppSize.fpP)
-            : const EdgeInsets.symmetric(vertical: AppSize.flP),
+            ? const EdgeInsets.all(AppSize.fepp)
+            : const EdgeInsets.symmetric(vertical: AppSize.felp),
         hintText: hintText,
         filled: style == EInputStyle.line ? false : true,
         fillColor: color == EInputColor.primary

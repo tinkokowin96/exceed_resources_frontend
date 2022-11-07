@@ -10,7 +10,7 @@ enum EDevice { mobile, tablet, desktop }
 
 enum ERequestMethod { get, post, patch, delete }
 
-enum ESize { sm, md, lg }
+enum ESize { xs, sm, md, lg, xl }
 
 enum EAsyncDropdown { tyep1 }
 

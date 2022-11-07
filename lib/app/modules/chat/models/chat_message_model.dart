@@ -12,9 +12,10 @@ class MChatMessage with _$MChatMessage {
   factory MChatMessage({
     String? id,
     MColleagueM? colleague,
-    List<MAttachment>? chat_attachments,
-    @JsonKey(name: 'chat_text')
-        List<String>? chatText,
+    @JsonKey(name: 'chat_attachments')
+        List<MAttachment>? chatAttachments,
+    @JsonKey(name: 'chat_texts')
+        List<String>? chatTexts,
     @JsonKey(name: 'chat_call')
         MChatCall? chatCall,
     @JsonKey(

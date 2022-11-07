@@ -78,7 +78,7 @@ class _AppNavigationState extends State<AppNavigation> with SingleTickerProvider
     return Padding(
       padding: const EdgeInsets.only(bottom: AppSize.sm),
       child: SizedBox(
-        height: AppSize.fH,
+        height: AppSize.fotH,
         child: Row(
           children: List.from(
             menuSections.map(

@@ -17,11 +17,11 @@ class TaskCollaborator extends StatelessWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         color: AppTheme.of(context).color.secondary.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(AppSize.emp / 2),
+        borderRadius: BorderRadius.circular(AppSize.cSm / 2),
       ),
       child: SizedBox(
-        width: AppSize.emp,
-        height: AppSize.emp,
+        width: AppSize.cSm,
+        height: AppSize.cSm,
         child: Center(
           child: Text(
             collaborator.colleague.name.firstCharCaptilize(),

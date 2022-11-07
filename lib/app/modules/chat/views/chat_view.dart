@@ -1,4 +1,4 @@
-import 'package:exceed_resources_frontend/app/modules/chat/widgets/chat_group.dart';
+import 'package:exceed_resources_frontend/app/modules/chat/widgets/chat_group/chat_group.dart';
 import 'package:exceed_resources_frontend/app/modules/core/layout/layout.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';

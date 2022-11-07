@@ -3,6 +3,7 @@ import 'package:exceed_resources_frontend/app/modules/core/animations/animated_p
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
+import 'package:exceed_resources_frontend/app/modules/core/widgets/circle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -25,14 +26,7 @@ class ConversationHeader extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(25),
-              child: CachedNetworkImage(
-                imageUrl: image,
-                width: 50,
-                height: 50,
-              ),
-            ),
+            AppCircle.image(size: AppSize.cMd, image: image),
             Padding(
               padding: const EdgeInsets.only(left: AppSize.sm),
               child: Column(

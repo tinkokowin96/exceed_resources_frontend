@@ -69,15 +69,13 @@ class _TaskViewState extends State<TaskView> {
                       children: List.from(
                         _controller.tableController.projects.value.map(
                           (each) => Obx(
-                            () {
-                              return ProjectCard(
-                                callback: () => _controller.updateActiveProject(each),
-                                project: each,
-                                active: _controller.activeProject.value == null
-                                    ? false
-                                    : _controller.activeProject.value!.id == each.id,
-                              );
-                            },
+                            () => ProjectCard(
+                              callback: () => _controller.updateActiveProject(each),
+                              project: each,
+                              active: _controller.activeProject.value == null
+                                  ? false
+                                  : _controller.activeProject.value!.id == each.id,
+                            ),
                           ),
                         ),
                       ),
@@ -89,13 +87,11 @@ class _TaskViewState extends State<TaskView> {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: AppSize.md),
                 child: Obx(
-                  () {
-                    return AppPaginator(
-                      paginatedOptions: _controller.paginatedOptions,
-                      callback: _controller.updatePage,
-                      activePage: _controller.activePage.value,
-                    );
-                  },
+                  () => AppPaginator(
+                    paginatedOptions: _controller.paginatedOptions,
+                    callback: _controller.updatePage,
+                    activePage: _controller.activePage.value,
+                  ),
                 ),
               )
             ],
