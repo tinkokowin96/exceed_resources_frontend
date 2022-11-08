@@ -6,8 +6,8 @@ import 'package:exceed_resources_frontend/app/modules/task/controllers/project_c
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class MQuotationExpend extends GetView<ProjectController> {
-  const MQuotationExpend({Key? key}) : super(key: key);
+class MQuotationExpand extends GetView<ProjectController> {
+  const MQuotationExpand({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

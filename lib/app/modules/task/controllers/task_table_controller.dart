@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:exceed_resources_frontend/app/modules/core/controllers/app_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
@@ -8,20 +7,23 @@ import 'package:exceed_resources_frontend/app/modules/task/models/status_model.d
 import 'package:exceed_resources_frontend/app/modules/task/models/task_model.dart';
 import 'package:exceed_resources_frontend/app/modules/task/widgets/status_priority.dart';
 import 'package:exceed_resources_frontend/app/routes/task_routes.dart';
+import 'package:exceed_resources_frontend/app/modules/core/mock/project.dart' as mpj;
+import 'package:exceed_resources_frontend/app/modules/core/mock/task.dart' as mt;
+import 'package:exceed_resources_frontend/app/modules/core/mock/status.dart' as ms;
+import 'package:exceed_resources_frontend/app/modules/core/mock/priority.dart' as mp;
 import 'package:exceed_resources_frontend/app/modules/core/extensions/datetime_extension.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class TaskTableController extends AppController {
   final statusController = TextEditingController();
-  final columns = ['Task Name', 'MPriority', 'Due Date', 'MProject'];
-  final projects = Rx<List<MProject>>([]);
-  final tasks = Rx<List<MTask>>([]);
-  final statuses = Rx<List<MStatus>>([]);
-  final priorities = Rx<List<MPriority>>([]);
+  final columns = ['Task Name', 'Priority', 'Due Date', 'Project'];
+  final projects = Rx<List<MProject>>(mpj.projects);
+  final tasks = Rx<List<MTask>>(mt.tasks);
+  final statuses = Rx<List<MStatus>>(ms.statuses);
+  final priorities = Rx<List<MPriority>>(mp.priorities);
   final selectedTask = Rxn<MTask>();
-  List<MTask> allTasks = [];
+  late List<MTask> allTasks = tasks.value;
 
   Map<String, List<Widget>> transformRows({
     required BuildContext context,
@@ -75,45 +77,8 @@ class TaskTableController extends AppController {
     update();
   }
 
-  Future<void> readJsonFile() async {
-    stopwatch.start();
-    final projectDataString = await rootBundle.loadString('assets/mock/project.json');
-    final projectData = jsonDecode(projectDataString);
-    final statusDataString = await rootBundle.loadString('assets/mock/status.json');
-    final statusData = jsonDecode(statusDataString);
-    final priorityDataString = await rootBundle.loadString('assets/mock/priority.json');
-    final priorityData = jsonDecode(priorityDataString);
-
-    for (final item in projectData) {
-      final project = MProject.fromJson(item);
-      projects.value.add(project);
-      for (final task in project.tasks) {
-        tasks.value.add(task);
-      }
-    }
-
-    for (final status in statusData) {
-      statuses.value.add(MStatus.fromJson(status));
-    }
-
-    for (final priority in priorityData) {
-      priorities.value.add(MPriority.fromJson(priority));
-    }
-
-    allTasks = tasks.value;
-    updateLoading(value: false, elapsed: stopwatch.elapsedMilliseconds);
-  }
-
   void resetTasks() {
     tasks.value = allTasks;
     update();
-  }
-
-  @override
-  void onInit() {
-    stopwatch.start();
-    updateLoading(value: true);
-    readJsonFile();
-    super.onInit();
   }
 }

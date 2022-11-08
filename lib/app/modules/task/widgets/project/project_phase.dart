@@ -2,6 +2,7 @@ import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/sizebox.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
+import 'package:exceed_resources_frontend/app/modules/core/widgets/animated/animated_switcher.dart';
 import 'package:exceed_resources_frontend/app/modules/task/controllers/project_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/task/widgets/project/phase_expend.dart';
 import 'package:exceed_resources_frontend/app/modules/task/widgets/project/phase_form.dart';
@@ -77,15 +78,10 @@ class ProjectPhase extends GetView<ProjectController> {
                 ],
               ),
               Obx(
-                () => AnimatedSwitcher(
-                  duration: const Duration(milliseconds: 300),
-                  transitionBuilder: (child, animation) => SlideTransition(
-                    position: Tween<Offset>(begin: const Offset(1.2, 0), end: const Offset(0, 0)).animate(animation),
-                    child: child,
-                  ),
+                () => AppAnimatedSwitcher(
                   child: controller.phase.value == EExpandable.expand
-                      ? const PhaseExpend(
-                          key: ValueKey('phase_expend'),
+                      ? const PhaseExpand(
+                          key: ValueKey('phase_expand'),
                         )
                       : controller.phase.value == EExpandable.form
                           ? const PhaseForm(

@@ -6,8 +6,8 @@ import 'package:exceed_resources_frontend/app/modules/task/controllers/project_c
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class PhaseExpend extends GetView<ProjectController> {
-  const PhaseExpend({Key? key}) : super(key: key);
+class PhaseExpand extends GetView<ProjectController> {
+  const PhaseExpand({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

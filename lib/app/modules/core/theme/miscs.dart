@@ -69,12 +69,8 @@ class AppThemeMiscs {
                 borderSide: BorderSide(color: AppTheme.of(context).color.idle),
               )
             : OutlineInputBorder(
-                borderRadius: BorderRadius.circular(style == EInputStyle.primary ? AppSize.lg : 0),
-                borderSide: BorderSide(
-                  color: color == EInputColor.background
-                      ? AppTheme.of(context).color.idle.withOpacity(0.15)
-                      : AppTheme.of(context).color.secondary.withOpacity(0.15),
-                ),
+                borderRadius: BorderRadius.circular(style == EInputStyle.primary ? AppSize.xl : 0),
+                borderSide: BorderSide(color: AppTheme.of(context).color.idle.withOpacity(0.15)),
               ),
         focusedBorder: style == EInputStyle.line
             ? UnderlineInputBorder(

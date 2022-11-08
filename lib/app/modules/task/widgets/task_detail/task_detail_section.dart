@@ -23,6 +23,7 @@ class TaskDetailSection extends StatelessWidget {
     return Flex(
       direction: direction,
       mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           title,

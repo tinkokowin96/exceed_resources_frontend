@@ -5,8 +5,6 @@ import 'package:exceed_resources_frontend/app/modules/core/mock/data.dart';
 import 'package:exceed_resources_frontend/app/modules/core/mock/priority.dart';
 import 'package:exceed_resources_frontend/app/modules/core/mock/project.dart';
 import 'package:exceed_resources_frontend/app/modules/core/mock/status.dart';
-import 'package:exceed_resources_frontend/app/modules/core/models/attachment_model.dart';
-import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/comment_model.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/comment_text_model.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/task_model.dart';
@@ -15,6 +13,7 @@ final taskComments = [
   MComment(
     commentedBy: m_colleagues[0],
     numLike: 3,
+    updatedAt: DateTime.now().subtract(const Duration(days: 1)),
     commentTexts: [
       MCommentText(text: "Lorem Ipsum has been the industry's standard dummy tex"),
     ],
@@ -22,6 +21,7 @@ final taskComments = [
   MComment(
     commentedBy: m_colleagues[2],
     numLike: 3,
+    updatedAt: DateTime.now().subtract(const Duration(days: 3)),
     commentTexts: [
       MCommentText(text: "Contrary to popular belief "),
       MCommentText(text: "Htoo Aung", colleagueId: 'emp_2'),
@@ -30,6 +30,7 @@ final taskComments = [
   MComment(
     commentedBy: m_colleagues[1],
     numLike: 3,
+    updatedAt: DateTime.now().subtract(const Duration(days: 2, hours: 4)),
     commentTexts: [
       MCommentText(
           text:
@@ -39,6 +40,7 @@ final taskComments = [
   MComment(
     commentedBy: m_colleagues[2],
     numLike: 3,
+    updatedAt: DateTime.now().subtract(const Duration(days: 1, hours: 21)),
     commentTexts: [
       MCommentText(text: "The standard chunk of Lorem Ipsum used since the 1500s "),
       MCommentText(text: "Nander Aye ", colleagueId: 'emp_4'),
@@ -48,6 +50,7 @@ final taskComments = [
   MComment(
     commentedBy: m_colleagues[3],
     numLike: 3,
+    updatedAt: DateTime.now().subtract(const Duration(days: 1, hours: 3)),
     commentTexts: [
       MCommentText(text: "Lorem Ipsum has been the industry's standard dummy tex"),
     ],
@@ -55,6 +58,7 @@ final taskComments = [
   MComment(
     commentedBy: m_colleagues[0],
     numLike: 3,
+    updatedAt: DateTime.now().subtract(const Duration(hours: 15)),
     commentAttachments: attachments,
   ),
 ];
@@ -72,7 +76,7 @@ final tasks = [
       m_collaborators[1],
       m_collaborators[2],
     ],
-    assignedBy: m_collaborators[6],
+    assignedBy: m_collaborators[5],
     assignedDate: DateTime.now().add(const Duration(days: 55)),
     dueDate: DateTime.now().add(const Duration(days: 60)),
     attachments: asset_data,
@@ -94,7 +98,7 @@ final tasks = [
       m_collaborators[1],
       m_collaborators[2],
     ],
-    assignedBy: m_collaborators[6],
+    assignedBy: m_collaborators[5],
     assignedDate: DateTime.now().add(const Duration(days: 45)),
     dueDate: DateTime.now().add(const Duration(days: 47)),
     attachments: asset_data,
@@ -116,7 +120,7 @@ final tasks = [
       m_collaborators[5],
       m_collaborators[1],
     ],
-    assignedBy: m_collaborators[6],
+    assignedBy: m_collaborators[5],
     assignedDate: DateTime.now().add(const Duration(days: 23)),
     dueDate: DateTime.now().add(const Duration(days: 30)),
     attachments: asset_data,
@@ -140,7 +144,7 @@ final tasks = [
       m_collaborators[1],
       m_collaborators[2],
     ],
-    assignedBy: m_collaborators[6],
+    assignedBy: m_collaborators[5],
     assignedDate: DateTime.now().add(const Duration(days: 31)),
     dueDate: DateTime.now().add(const Duration(days: 34)),
     attachments: asset_data,
@@ -160,7 +164,7 @@ final tasks = [
       m_collaborators[3],
       m_collaborators[4],
     ],
-    assignedBy: m_collaborators[6],
+    assignedBy: m_collaborators[5],
     assignedDate: DateTime.now().add(const Duration(days: 41)),
     dueDate: DateTime.now().add(const Duration(days: 50)),
     attachments: asset_data,

@@ -58,7 +58,7 @@ class ChatConversationController extends AppController with AttachmentMixin {
   }
 
   void loadNewData() {
-    print('loading new data');
+    // print('loading new data');
   }
 
   void onSendMessage() {

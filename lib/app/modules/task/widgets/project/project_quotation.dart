@@ -1,6 +1,7 @@
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
+import 'package:exceed_resources_frontend/app/modules/core/widgets/animated/animated_switcher.dart';
 import 'package:exceed_resources_frontend/app/modules/task/controllers/project_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/task/widgets/project/quotation_expend.dart';
 import 'package:exceed_resources_frontend/app/modules/task/widgets/project/quotation_form.dart';
@@ -59,15 +60,10 @@ class ProjectQuotation extends GetView<ProjectController> {
               ),
               Obx(
                 () {
-                  return AnimatedSwitcher(
-                    duration: const Duration(milliseconds: 300),
-                    transitionBuilder: (child, animation) => SlideTransition(
-                      position: Tween<Offset>(begin: const Offset(1.2, 0), end: const Offset(0, 0)).animate(animation),
-                      child: child,
-                    ),
+                  return AppAnimatedSwitcher(
                     child: controller.quotation.value == EExpandable.expand
-                        ? const MQuotationExpend(
-                            key: ValueKey('quotation_expend'),
+                        ? const MQuotationExpand(
+                            key: ValueKey('quotation_expand'),
                           )
                         : controller.quotation.value == EExpandable.minimize
                             ? const MQuotationMinimize(

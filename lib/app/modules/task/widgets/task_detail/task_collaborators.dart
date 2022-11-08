@@ -2,7 +2,6 @@ import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/collaborator_m_model.dart';
-import 'package:exceed_resources_frontend/app/modules/core/extensions/string_extension.dart';
 import 'package:exceed_resources_frontend/app/modules/task/widgets/task_detail/task_collaborator.dart';
 import 'package:flutter/material.dart';
 

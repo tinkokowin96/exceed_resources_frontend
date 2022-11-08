@@ -1,13 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:exceed_resources_frontend/app/modules/core/animations/animated_press.dart';
+import 'package:exceed_resources_frontend/app/modules/core/widgets/animated/animated_press.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/sizebox.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
+import 'package:exceed_resources_frontend/app/modules/core/extensions/int_extension.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/comment_model.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:timeago/timeago.dart';
 
 class TaskComment extends StatefulWidget {
   final MComment comment;
@@ -63,7 +63,7 @@ class _TaskCommentState extends State<TaskComment> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  format(widget.comment.updatedAt!, locale: 'en_short'),
+                  (DateTime.now().difference(widget.comment.updatedAt!).inSeconds).countTime(format: true),
                   style: AppTheme.text(
                     context: context,
                     type: ETextType.subtitle,

@@ -1,5 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:exceed_resources_frontend/app/modules/core/animations/animated_press.dart';
+import 'package:exceed_resources_frontend/app/modules/core/widgets/animated/animated_press.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';

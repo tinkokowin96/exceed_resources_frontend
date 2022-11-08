@@ -7,7 +7,7 @@ import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/sizebox.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/button/text_button.dart';
-import 'package:exceed_resources_frontend/app/modules/core/widgets/container/hoverable_container.dart';
+import 'package:exceed_resources_frontend/app/modules/core/widgets/animated/hoverable_container.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 

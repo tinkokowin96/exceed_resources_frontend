@@ -78,7 +78,10 @@ class CommentInput extends StatelessWidget {
                     keyboardType: TextInputType.multiline,
                     maxLines: null,
                     style: AppTheme.text(context: context).copyWith(color: Colors.transparent),
-                    decoration: AppThemeMiscs.inputStyle(context: context, color: EInputColor.transparent),
+                    decoration: AppThemeMiscs.inputStyle(
+                      context: context,
+                      color: EInputColor.transparent,
+                    ),
                   ),
                 ),
               ],
