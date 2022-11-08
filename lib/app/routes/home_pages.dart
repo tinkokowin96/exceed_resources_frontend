@@ -11,5 +11,6 @@ final List<GetPage<dynamic>> homeRoutes = [
     page: () => const HomeView(),
     binding: HomeBinding(),
     transitionDuration: Duration.zero,
+    maintainState: false,
   ),
 ];

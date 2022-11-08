@@ -8,7 +8,7 @@ class HomeBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<HomeController>(() => HomeController());
-    Get.lazyPut<TaskTableController>(() => TaskTableController());
+    Get.lazyPut<TaskTableController>(() => TaskTableController(), tag: 'home');
     Get.lazyPut<FullscreenController>(() => FullscreenController());
     Get.lazyPut<ChatDetailController>(() => ChatDetailController());
   }

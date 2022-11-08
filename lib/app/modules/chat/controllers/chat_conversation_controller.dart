@@ -37,22 +37,6 @@ class ChatConversationController extends AppController with AttachmentMixin {
       name: 'New Life Myanmar',
       numColleague: 4,
       chatMessages: messagesObject,
-      chatDetail: MChatDetail(
-        colleagues: [
-          m_colleagues[0],
-          m_colleagues[1],
-          m_colleagues[3],
-          m_colleagues[6],
-        ],
-        pinMessages: [
-          messages[0],
-          messages[1],
-          messages[4],
-        ],
-        attachments: messages[4].chatAttachments,
-        description:
-            "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to",
-      ),
     );
     updateLoading(value: false);
   }

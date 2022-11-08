@@ -22,7 +22,7 @@ class TaskTableController extends AppController {
   final tasks = Rx<List<MTask>>(mt.tasks);
   final statuses = Rx<List<MStatus>>(ms.statuses);
   final priorities = Rx<List<MPriority>>(mp.priorities);
-  final selectedTask = Rxn<MTask>();
+  late final selectedTask = Rx<MTask>(tasks.value[0]);
   late List<MTask> allTasks = tasks.value;
 
   Map<String, List<Widget>> transformRows({

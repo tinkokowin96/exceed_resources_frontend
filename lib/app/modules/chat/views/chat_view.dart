@@ -19,6 +19,7 @@ class ChatView extends GetView<ChatController> {
   Widget build(BuildContext context) {
     return AppLayout.core(
       currentMenu: EMenu.chat,
+      controller: controller,
       content: ListView(children: [
         Center(
           child: Padding(
@@ -33,7 +34,7 @@ class ChatView extends GetView<ChatController> {
             ),
           ),
         ),
-        ...controller.chatGroups.map((each) {
+        ...controller.chatGroups.value.map((each) {
           final groupController = Get.find<ChatGroupController>(tag: each.type.name);
           return LayoutBuilder(
             builder: (context, constraint) {

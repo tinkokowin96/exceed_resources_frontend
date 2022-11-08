@@ -13,6 +13,7 @@ class ReportView extends GetView<ReportController> {
     return AppLayout.core(
       currentMenu: EMenu.report,
       content: Container(color: Colors.purpleAccent),
+      controller: controller,
     );
   }
 }

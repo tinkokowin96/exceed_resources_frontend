@@ -11,6 +11,7 @@ final List<GetPage<dynamic>> taskRoutes = [
     page: () => const TaskView(),
     binding: TaskBinding(),
     transitionDuration: Duration.zero,
+    maintainState: false,
   ),
   GetPage(
     name: TaskRoutes.taskDetail,

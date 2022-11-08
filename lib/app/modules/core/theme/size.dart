@@ -58,5 +58,5 @@ class AppSize {
   static const cSm = 32.0;
   static const cMd = 40.0;
   static const cLg = 50.0;
-  static const cXl = 12.0;
+  static const cXl = 100.0;
 }

@@ -1,10 +1,11 @@
+import 'package:exceed_resources_frontend/app/modules/core/controllers/app_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/task/controllers/phase_form_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/task/controllers/quotation_form_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ProjectController extends GetxController {
+class ProjectController extends AppController {
   final formKey = GlobalKey<FormState>();
   final nameController = TextEditingController();
   final phase = Rx<EExpandable>(EExpandable.minimize);

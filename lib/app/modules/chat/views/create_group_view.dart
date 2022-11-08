@@ -21,6 +21,7 @@ class CreateGroupView extends GetView<CreateGroupController> {
       title: 'Create Group',
       headerAction: controller.submitHandler,
       headerActionText: 'Create',
+      controller: controller,
       content: Padding(
         padding: const EdgeInsets.only(top: AppSize.md),
         child: LayoutBuilder(

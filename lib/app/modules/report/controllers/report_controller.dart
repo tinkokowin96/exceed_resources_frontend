@@ -1,3 +1,3 @@
-import 'package:get/get.dart';
+import 'package:exceed_resources_frontend/app/modules/core/controllers/app_controller.dart';
 
-class ReportController extends GetxController {}
+class ReportController extends AppController {}

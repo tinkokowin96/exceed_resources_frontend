@@ -19,6 +19,7 @@ class ProjectView extends GetView<ProjectController> {
     return AppLayout.core(
       title: 'Create New Project',
       currentMenu: EMenu.task,
+      controller: controller,
       content: Padding(
         padding: const EdgeInsets.only(top: AppSize.md),
         child: LayoutBuilder(

@@ -24,12 +24,12 @@ class AppController extends GetxController {
         await Future.delayed(Duration(milliseconds: minimunLoading - elapsed));
       }
     }
-    update();
+    loading.refresh();
   }
 
   void updateError(String? updatedError) {
     error.value = updatedError;
-    update();
+    error.refresh();
   }
 
   void showDrawer({required Widget widget}) {
@@ -38,13 +38,13 @@ class AppController extends GetxController {
       exit: exitDrawer,
       child: widget,
     );
-    update();
+    drawer.refresh();
   }
 
   void exitDrawer() {
     drawer.value = null;
     drawerWidget.value = null;
-    update();
+    drawer.refresh();
   }
 
   void exitDrawerRequest() {
@@ -53,7 +53,7 @@ class AppController extends GetxController {
       exitDrawerRequest: true,
       child: drawerWidget.value!,
     );
-    update();
+    drawer.refresh();
   }
 
   void showPopup({
@@ -64,12 +64,12 @@ class AppController extends GetxController {
     popup.value = popupWidget;
     confirmCallback.value = confirm;
     cancelCallback.value = cancel;
-    update();
+    popup.refresh();
   }
 
   void exitPopup() {
     popup.value = null;
-    update();
+    popup.refresh();
   }
 
   void confirmPopup() {

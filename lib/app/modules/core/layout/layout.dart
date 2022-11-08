@@ -5,28 +5,23 @@ import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/drawer.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/popup.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:lottie/lottie.dart';
 
 class AppLayout {
   static Widget core({
     required EMenu currentMenu,
     required Widget content,
-    AppController? controller,
+    required AppController controller,
     Function()? containerAction,
     bool header = false,
-    bool loading = false,
-    AppPopup? popup,
-    AppDrawer? drawer,
     String? title,
     Function()? headerAction,
     String? headerActionText,
   }) =>
       Layout(
-        loading: loading,
-        popup: popup,
-        drawer: drawer,
-        controller: controller,
         containerAction: containerAction,
+        controller: controller,
         child: MobileLayout(
           currentMenu: currentMenu,
           content: content,
@@ -39,74 +34,76 @@ class AppLayout {
 
   static Widget fullscreen({
     required Widget content,
+    required AppController controller,
     bool loading = false,
     Function()? containerAction,
     AppPopup? popup,
     AppDrawer? drawer,
   }) =>
       Layout(
-        loading: loading,
-        popup: popup,
-        drawer: drawer,
         containerAction: containerAction,
+        controller: controller,
         child: content,
       );
 }
 
 class Layout extends StatelessWidget {
-  final bool loading;
   final Widget child;
   final Function()? containerAction;
-  final AppController? controller;
-  final AppPopup? popup;
-  final AppDrawer? drawer;
+  final AppController controller;
   const Layout({
     Key? key,
     required this.child,
-    this.loading = false,
+    required this.controller,
     this.containerAction,
-    this.controller,
-    this.popup,
-    this.drawer,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          Opacity(
-            opacity: popup != null || drawer != null || loading ? 0.5 : 1,
-            child: GestureDetector(
-              onTap: drawer != null ? controller!.exitDrawerRequest : null,
-              child: AbsorbPointer(
-                absorbing: popup != null || drawer != null || loading ? true : false,
-                child: SafeArea(
-                  child: InkWell(
-                    highlightColor: Colors.transparent,
-                    splashColor: Colors.transparent,
-                    onTap: containerAction,
-                    child: child,
+      body: Obx(
+        () {
+          return Stack(
+            children: [
+              Opacity(
+                opacity: controller.popup.value != null || controller.drawer.value != null || controller.loading.value
+                    ? 0.5
+                    : 1,
+                child: GestureDetector(
+                  onTap: controller.drawer.value != null ? controller.exitDrawerRequest : null,
+                  child: AbsorbPointer(
+                    absorbing:
+                        controller.popup.value != null || controller.drawer.value != null || controller.loading.value
+                            ? true
+                            : false,
+                    child: SafeArea(
+                      child: InkWell(
+                        highlightColor: Colors.transparent,
+                        splashColor: Colors.transparent,
+                        onTap: containerAction,
+                        child: child,
+                      ),
+                    ),
                   ),
                 ),
               ),
-            ),
-          ),
-          popup != null || loading
-              ? SizedBox(
-                  width: double.infinity,
-                  height: double.infinity,
-                  child: popup ?? Lottie.asset('assets/animation/loading.json'),
-                )
-              : AppSizeBox.zero,
-          drawer != null
-              ? Positioned(
-                  bottom: 0,
-                  left: 0,
-                  child: drawer!,
-                )
-              : AppSizeBox.zero,
-        ],
+              controller.popup.value != null || controller.loading.value
+                  ? SizedBox(
+                      width: double.infinity,
+                      height: double.infinity,
+                      child: controller.popup.value ?? Lottie.asset('assets/animation/loading.json'),
+                    )
+                  : AppSizeBox.zero,
+              controller.drawer.value != null
+                  ? Positioned(
+                      bottom: 0,
+                      left: 0,
+                      child: controller.drawer.value!,
+                    )
+                  : AppSizeBox.zero,
+            ],
+          );
+        },
       ),
     );
   }

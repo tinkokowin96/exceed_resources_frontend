@@ -7,11 +7,8 @@ class FullscreenView extends GetView<FullscreenController> {
   const FullscreenView({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => GetBuilder<FullscreenController>(
-        builder: (_) => AppLayout.fullscreen(
-          loading: _.loading.value,
-          popup: _.popup.value,
-          content: Get.arguments,
-        ),
+  Widget build(BuildContext context) => AppLayout.fullscreen(
+        controller: controller,
+        content: Get.arguments,
       );
 }

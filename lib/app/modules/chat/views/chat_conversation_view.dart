@@ -16,84 +16,80 @@ class ChatConversationView extends GetView<ChatConversationController> {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<ChatConversationController>(
-      builder: (_) {
-        return AppLayout.core(
-          currentMenu: EMenu.chat,
-          loading: _.loading.value,
-          content: LayoutBuilder(builder: (context, constraint) {
-            return Column(
-              children: [
-                ConversationHeader(
-                  image: controller.conversation.value!.image,
-                  name: controller.conversation.value!.name,
-                  numColleague: controller.conversation.value!.numColleague,
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: AppSize.md),
-                    child: ListView.builder(
-                      controller: controller.scrollController,
-                      reverse: true,
-                      itemCount: controller.conversation.value!.chatMessages.entries.length,
-                      itemBuilder: (context, index) {
-                        final item = List.from(controller.conversation.value!.chatMessages.entries)[index];
-                        return SingleChildScrollView(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              ConversationDate(date: item.key),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(vertical: AppSize.sm),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: List.from(
-                                    item.value.map((each) => ConversationMessage(message: each)),
-                                  ),
-                                ),
+    return AppLayout.core(
+      currentMenu: EMenu.chat,
+      controller: controller,
+      content: LayoutBuilder(builder: (context, constraint) {
+        return Column(
+          children: [
+            ConversationHeader(
+              image: controller.conversation.value!.image,
+              name: controller.conversation.value!.name,
+              numColleague: controller.conversation.value!.numColleague,
+            ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: AppSize.md),
+                child: ListView.builder(
+                  controller: controller.scrollController,
+                  reverse: true,
+                  itemCount: controller.conversation.value!.chatMessages.entries.length,
+                  itemBuilder: (context, index) {
+                    final item = List.from(controller.conversation.value!.chatMessages.entries)[index];
+                    return SingleChildScrollView(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          ConversationDate(date: item.key),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: AppSize.sm),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: List.from(
+                                item.value.map((each) => ConversationMessage(message: each)),
                               ),
-                            ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: AppSize.md),
+              child: Obx(
+                () {
+                  return MessageInput(
+                    width: constraint.maxWidth,
+                    sendMessage: controller.onSendMessage,
+                    updateAttachment: controller.updateMessageAttachment,
+                    attachments: controller.messageAttachments.value,
+                    input: LayoutBuilder(
+                      builder: (context, inputConstraint) {
+                        return SizedBox(
+                          width: inputConstraint.maxWidth,
+                          child: TextField(
+                            controller: controller.messageController,
+                            keyboardType: TextInputType.multiline,
+                            maxLines: null,
+                            style: AppTheme.text(context: context),
+                            decoration: AppThemeMiscs.inputStyle(
+                              context: context,
+                              color: EInputColor.background,
+                            ),
                           ),
                         );
                       },
                     ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: AppSize.md),
-                  child: Obx(
-                    () {
-                      return MessageInput(
-                        width: constraint.maxWidth,
-                        sendMessage: controller.onSendMessage,
-                        updateAttachment: controller.updateMessageAttachment,
-                        attachments: controller.messageAttachments.value,
-                        input: LayoutBuilder(
-                          builder: (context, inputConstraint) {
-                            return SizedBox(
-                              width: inputConstraint.maxWidth,
-                              child: TextField(
-                                controller: controller.messageController,
-                                keyboardType: TextInputType.multiline,
-                                maxLines: null,
-                                style: AppTheme.text(context: context),
-                                decoration: AppThemeMiscs.inputStyle(
-                                  context: context,
-                                  color: EInputColor.background,
-                                ),
-                              ),
-                            );
-                          },
-                        ),
-                      );
-                    },
-                  ),
-                ),
-              ],
-            );
-          }),
+                  );
+                },
+              ),
+            ),
+          ],
         );
-      },
+      }),
     );
   }
 }

@@ -8,38 +8,40 @@ import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:lottie/lottie.dart';
 
-class TaskTable extends GetView<TaskTableController> {
+class TaskTable extends StatelessWidget {
+  final TaskTableController controller;
   const TaskTable({
     Key? key,
+    required this.controller,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<TaskTableController>(builder: (_) {
-      return Expanded(
-        child: LayoutBuilder(
-          builder: (context, constraint) {
-            return SizedBox(
-              width: constraint.maxWidth,
-              height: constraint.maxHeight,
-              child: Column(
-                children: [
-                  Expanded(
-                    child: LayoutBuilder(
-                      builder: (context, tbConstraint) {
-                        return DecoratedBox(
-                          decoration: BoxDecoration(
-                            color: AppTheme.of(context).color.container,
-                            borderRadius: BorderRadius.circular(
-                              AppSize.xs,
-                            ),
+    return Expanded(
+      child: LayoutBuilder(
+        builder: (context, constraint) {
+          return SizedBox(
+            width: constraint.maxWidth,
+            height: constraint.maxHeight,
+            child: Column(
+              children: [
+                Expanded(
+                  child: LayoutBuilder(
+                    builder: (context, tbConstraint) {
+                      return DecoratedBox(
+                        decoration: BoxDecoration(
+                          color: AppTheme.of(context).color.container,
+                          borderRadius: BorderRadius.circular(
+                            AppSize.xs,
                           ),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: AppSize.sm),
-                            child: SizedBox(
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: AppSize.sm),
+                          child: Obx(() {
+                            return SizedBox(
                               width: tbConstraint.maxWidth,
                               height: tbConstraint.maxHeight,
-                              child: _.loading.value
+                              child: controller.loading.value
                                   ? Lottie.asset('assets/animation/loading.json')
                                   : Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -63,25 +65,25 @@ class TaskTable extends GetView<TaskTableController> {
                                         Expanded(
                                           child: AppTable(
                                             columns: controller.columns,
-                                            data: _.tasks.value,
+                                            data: controller.tasks.value,
                                             transformRows: (context, data) =>
                                                 controller.transformRows(context: context, taskList: data),
                                           ),
                                         )
                                       ],
                                     ),
-                            ),
-                          ),
-                        );
-                      },
-                    ),
+                            );
+                          }),
+                        ),
+                      );
+                    },
                   ),
-                ],
-              ),
-            );
-          },
-        ),
-      );
-    });
+                ),
+              ],
+            ),
+          );
+        },
+      ),
+    );
   }
 }
