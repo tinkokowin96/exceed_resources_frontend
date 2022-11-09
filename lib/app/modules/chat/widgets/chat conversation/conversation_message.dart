@@ -5,6 +5,7 @@ import 'package:exceed_resources_frontend/app/modules/core/theme/sizebox.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/extensions/datetime_extension.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/circle.dart';
+import 'package:exceed_resources_frontend/app/modules/core/widgets/container.dart';
 import 'package:flutter/material.dart';
 
 class ConversationMessage extends StatelessWidget {
@@ -46,17 +47,11 @@ class ConversationMessage extends StatelessWidget {
                       message.chatTexts!.asMap().entries.map(
                             (each) => Padding(
                               padding: EdgeInsets.only(top: each.key == 0 ? 0 : AppSize.xs),
-                              child: DecoratedBox(
-                                decoration: BoxDecoration(
-                                  color: AppTheme.of(context).color.antiFlashWhite,
-                                  borderRadius: BorderRadius.circular(AppSize.sm),
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(AppSize.sm),
-                                  child: Text(
-                                    each.value,
-                                    style: AppTheme.text(context: context),
-                                  ),
+                              child: AppContainer(
+                                background: AppTheme.of(context).color.secondaryContainer,
+                                child: Text(
+                                  each.value,
+                                  style: AppTheme.text(context: context),
                                 ),
                               ),
                             ),

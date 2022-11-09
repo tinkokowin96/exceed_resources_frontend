@@ -78,6 +78,7 @@ class ChatConversationView extends GetView<ChatConversationController> {
                             decoration: AppThemeMiscs.inputStyle(
                               context: context,
                               color: EInputColor.background,
+                              border: EInputColor.background,
                             ),
                           ),
                         );

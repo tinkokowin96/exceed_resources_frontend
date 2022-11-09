@@ -102,7 +102,7 @@ class ActiveIndicator extends StatelessWidget {
               children: [
                 DecoratedBox(
                   decoration: BoxDecoration(
-                    color: AppTheme.of(context).color.antiFlashWhite,
+                    color: AppTheme.of(context).color.container,
                     borderRadius: BorderRadius.circular(AppSize.aiw / 2),
                   ),
                   child: const SizedBox(

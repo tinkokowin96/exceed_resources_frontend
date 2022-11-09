@@ -1,9 +1,7 @@
 import 'package:exceed_resources_frontend/app/modules/chat/models/chat_conversation_model.dart';
-import 'package:exceed_resources_frontend/app/modules/chat/models/chat_detail_model.dart';
 import 'package:exceed_resources_frontend/app/modules/chat/models/chat_message_model.dart';
 import 'package:exceed_resources_frontend/app/modules/core/controllers/app_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/core/mixins/attachment_mixin.dart';
-import 'package:exceed_resources_frontend/app/modules/core/mock/colleague.dart';
 import 'package:exceed_resources_frontend/app/modules/core/mock/message.dart';
 import 'package:exceed_resources_frontend/app/modules/core/models/attachment_field_model.dart';
 import 'package:exceed_resources_frontend/app/modules/core/extensions/datetime_extension.dart';

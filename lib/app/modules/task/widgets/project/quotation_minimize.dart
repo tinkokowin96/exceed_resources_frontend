@@ -1,10 +1,11 @@
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
+import 'package:exceed_resources_frontend/app/modules/core/widgets/column.dart';
 import 'package:flutter/material.dart';
 
-class MQuotationMinimize extends StatelessWidget {
-  const MQuotationMinimize({Key? key}) : super(key: key);
+class QuotationMinimize extends StatelessWidget {
+  const QuotationMinimize({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,52 +14,40 @@ class MQuotationMinimize extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Column(
-            mainAxisSize: MainAxisSize.min,
+          AppColumn(
+            spacing: AppSize.xs,
             children: [
               Text(
-                'Num MQuotation',
+                'Num Quotation',
+                style: AppTheme.text(context: context),
+              ),
+              Text(
+                '57 Quotation',
                 style: AppTheme.text(
                   context: context,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  top: AppSize.xs,
-                ),
-                child: Text(
-                  '57 MQuotation',
-                  style: AppTheme.text(
-                    context: context,
-                    type: ETextType.subtitle,
-                  ),
+                  type: ETextType.subtitle,
                 ),
               ),
             ],
           ),
-          Column(
-            mainAxisSize: MainAxisSize.min,
+          AppColumn(
+            spacing: AppSize.xs,
             children: [
               Text(
                 'Total Budget',
+                style: AppTheme.text(context: context),
+              ),
+              Text(
+                '10345 Lakh MMK',
                 style: AppTheme.text(
                   context: context,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: AppSize.xs),
-                child: Text(
-                  '10345 Lakh MMK',
-                  style: AppTheme.text(
-                    context: context,
-                    type: ETextType.subtitle,
-                  ),
+                  type: ETextType.subtitle,
                 ),
               ),
             ],
           ),
-          Column(
-            mainAxisSize: MainAxisSize.min,
+          AppColumn(
+            spacing: AppSize.xs,
             children: [
               Text(
                 'Total Profits',
@@ -66,14 +55,11 @@ class MQuotationMinimize extends StatelessWidget {
                   context: context,
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: AppSize.xs),
-                child: Text(
-                  '8570 Lakh MMk',
-                  style: AppTheme.text(
-                    context: context,
-                    type: ETextType.subtitle,
-                  ),
+              Text(
+                '8570 Lakh MMk',
+                style: AppTheme.text(
+                  context: context,
+                  type: ETextType.subtitle,
                 ),
               ),
             ],

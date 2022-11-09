@@ -12,23 +12,26 @@ class Test extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(ProjectController());
+    final isTrue = false;
     return Scaffold(
-      body: SizedBox(
-        width: App.width(context),
-        child: Padding(
-          padding: const EdgeInsets.all(AppSize.md),
-          child: Center(
-            child: AppTimer(
-              until: DateTime.now().subtract(
-                const Duration(minutes: 1),
-              ),
-              style: AppTheme.text(context: context, type: ETextType.subtitle),
-              onCompleted: () => '',
-            ),
+        body: Column(
+      children: [
+        ColoredBox(
+          color: Colors.redAccent,
+          child: SizedBox(
+            width: 50,
+            height: 50,
           ),
         ),
-      ),
-    );
+        if (isTrue)
+          ColoredBox(
+            color: Colors.blueAccent,
+            child: SizedBox(
+              width: 50,
+              height: 50,
+            ),
+          )
+      ],
+    ));
   }
 }

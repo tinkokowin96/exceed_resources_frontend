@@ -6,8 +6,8 @@ import 'package:exceed_resources_frontend/app/modules/task/controllers/project_c
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class MQuotationExpand extends GetView<ProjectController> {
-  const MQuotationExpand({Key? key}) : super(key: key);
+class QuotationExpand extends GetView<ProjectController> {
+  const QuotationExpand({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +28,8 @@ class MQuotationExpand extends GetView<ProjectController> {
                   ),
                 ),
                 ItemButton(text: 'Initial Project Fee', onPressed: () {}),
-                ItemButton(text: 'MQuotation 1', onPressed: () {}),
-                ItemButton(text: 'MQuotation 2', onPressed: () {}),
+                ItemButton(text: 'Quotation 1', onPressed: () {}),
+                ItemButton(text: 'Quotation 2', onPressed: () {}),
                 ItemButton(text: 'Quatation 3', onPressed: () {}),
               ],
             ),

@@ -5,6 +5,8 @@ import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/sizebox.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/extensions/int_extension.dart';
+import 'package:exceed_resources_frontend/app/modules/core/widgets/column.dart';
+import 'package:exceed_resources_frontend/app/modules/core/widgets/row.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/comment_model.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -25,42 +27,36 @@ class TaskComment extends StatefulWidget {
 class _TaskCommentState extends State<TaskComment> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
+    return AppColumn(
+      firstNoSpacing: true,
+      spacing: AppSize.xs,
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
+            AppRow(
+              spacing: AppSize.sm,
               children: [
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(AppSize.icoMd / 2),
-                      child: CachedNetworkImage(
-                        imageUrl: widget.comment.commentedBy.image,
-                        width: AppSize.icoMd,
-                        height: AppSize.icoMd,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: AppSize.sm),
-                      child: Text(
-                        widget.comment.commentedBy.name,
-                        style: AppTheme.text(
-                          context: context,
-                          type: ETextType.subtitle,
-                        ),
-                      ),
-                    )
-                  ],
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(AppSize.icoMd / 2),
+                  child: CachedNetworkImage(
+                    imageUrl: widget.comment.commentedBy.image,
+                    width: AppSize.icoMd,
+                    height: AppSize.icoMd,
+                  ),
                 ),
+                Text(
+                  widget.comment.commentedBy.name,
+                  style: AppTheme.text(
+                    context: context,
+                    type: ETextType.subtitle,
+                  ),
+                )
               ],
             ),
-            Row(
-              mainAxisSize: MainAxisSize.min,
+            AppRow(
+              spacing: AppSize.sm,
+              firstNoSpacing: true,
               children: [
                 Text(
                   (DateTime.now().difference(widget.comment.updatedAt!).inSeconds).countTime(format: true),
@@ -69,19 +65,13 @@ class _TaskCommentState extends State<TaskComment> {
                     type: ETextType.subtitle,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: AppSize.sm),
-                  child: AppAnimatedPress(
-                    onPressed: () => null,
-                    child: Icon(widget.comment.liked ? Icons.favorite : Icons.favorite_border),
-                  ),
+                AppAnimatedPress(
+                  onPressed: () => null,
+                  child: Icon(widget.comment.liked ? Icons.favorite : Icons.favorite_border),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: AppSize.sm),
-                  child: Text(
-                    widget.comment.numLike.toString(),
-                    style: AppTheme.text(context: context),
-                  ),
+                Text(
+                  widget.comment.numLike.toString(),
+                  style: AppTheme.text(context: context),
                 ),
               ],
             )
@@ -108,14 +98,13 @@ class _TaskCommentState extends State<TaskComment> {
                 )
               : AppSizeBox.zero,
         ),
-        widget.divider
-            ? Padding(
-                padding: const EdgeInsets.only(top: AppSize.xs),
-                child: Divider(
-                  color: AppTheme.of(context).color.idle,
-                ),
-              )
-            : AppSizeBox.zero,
+        if (widget.divider)
+          Padding(
+            padding: const EdgeInsets.only(top: AppSize.xs),
+            child: Divider(
+              color: AppTheme.of(context).color.idle,
+            ),
+          )
       ],
     );
   }

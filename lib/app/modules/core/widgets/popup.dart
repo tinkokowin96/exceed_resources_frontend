@@ -6,6 +6,7 @@ import 'package:exceed_resources_frontend/app/modules/core/theme/sizebox.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/helper.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/button/button.dart';
+import 'package:exceed_resources_frontend/app/modules/core/widgets/container.dart';
 import 'package:flutter/material.dart';
 
 class AppPopup extends StatefulWidget {
@@ -114,36 +115,28 @@ class _AppPopupState extends State<AppPopup> with SingleTickerProviderStateMixin
                       : _transfromAnimation3.value,
             ),
             child: Center(
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  color: AppTheme.of(context).color.container,
-                  borderRadius: BorderRadius.circular(AppSize.sm),
-                  boxShadow: [AppThemeMiscs.shadow2],
-                ),
-                child: SizedBox(
-                  width: App.width(context) * 0.9,
-                  child: Padding(
-                    padding: const EdgeInsets.all(AppSize.md),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        widget.child,
-                        Padding(
-                          padding: const EdgeInsets.only(top: AppSize.md),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              AppButton(onPressed: () => exit(), text: widget.confirmText),
-                              AppSizeBox.md,
-                              widget.cancel
-                                  ? AppButton(onPressed: () => exit(confirm: false), text: 'Cancel')
-                                  : AppSizeBox.zero,
-                            ],
-                          ),
-                        ),
-                      ],
+              child: AppContainer(
+                background: AppTheme.of(context).color.secondaryContainer,
+                padding: AppSize.md,
+                width: App.width(context) * 0.9,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    widget.child,
+                    Padding(
+                      padding: const EdgeInsets.only(top: AppSize.md),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          AppButton(onPressed: () => exit(), text: widget.confirmText),
+                          AppSizeBox.md,
+                          widget.cancel
+                              ? AppButton(onPressed: () => exit(confirm: false), text: 'Cancel')
+                              : AppSizeBox.zero,
+                        ],
+                      ),
                     ),
-                  ),
+                  ],
                 ),
               ),
             ),

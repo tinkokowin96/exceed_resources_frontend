@@ -1,8 +1,10 @@
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
+import 'package:exceed_resources_frontend/app/modules/core/widgets/circle.dart';
+import 'package:exceed_resources_frontend/app/modules/core/widgets/column.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/collaborator_m_model.dart';
-import 'package:exceed_resources_frontend/app/modules/task/widgets/task_detail/task_collaborator.dart';
+import 'package:exceed_resources_frontend/app/modules/core/extensions/string_extension.dart';
 import 'package:flutter/material.dart';
 
 class TaskCollaborators extends StatelessWidget {
@@ -22,8 +24,8 @@ class TaskCollaborators extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Column(
-          mainAxisSize: MainAxisSize.min,
+        AppColumn(
+          spacing: AppSize.sm,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
@@ -34,17 +36,22 @@ class TaskCollaborators extends StatelessWidget {
                 type: ETextType.subtitle,
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: AppSize.sm),
-              child: ConstrainedBox(
-                constraints: BoxConstraints(maxWidth: width / 2),
-                child: Wrap(
-                  spacing: AppSize.sm,
-                  runSpacing: AppSize.xs,
-                  children: List.from(
-                    collaborators.map(
-                      (each) => TaskCollaborator(
-                        collaborator: each,
+            ConstrainedBox(
+              constraints: BoxConstraints(maxWidth: width / 2),
+              child: Wrap(
+                spacing: AppSize.sm,
+                runSpacing: AppSize.xs,
+                children: List.from(
+                  collaborators.map(
+                    (each) => AppCircle.container(
+                      width: AppSize.cSm,
+                      color: AppTheme.of(context).color.secondary.withOpacity(0.1),
+                      child: Text(
+                        each.colleague.name.firstCharCaptilize(),
+                        style: AppTheme.text(
+                          context: context,
+                          type: ETextType.primary,
+                        ),
                       ),
                     ),
                   ),
@@ -53,8 +60,8 @@ class TaskCollaborators extends StatelessWidget {
             )
           ],
         ),
-        Column(
-          mainAxisSize: MainAxisSize.min,
+        AppColumn(
+          spacing: AppSize.sm,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Text(
@@ -65,12 +72,17 @@ class TaskCollaborators extends StatelessWidget {
                 type: ETextType.subtitle,
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: AppSize.sm),
-              child: ConstrainedBox(
-                constraints: BoxConstraints(maxWidth: width / 2),
-                child: TaskCollaborator(
-                  collaborator: assignedBy,
+            ConstrainedBox(
+              constraints: BoxConstraints(maxWidth: width / 2),
+              child: AppCircle.container(
+                width: AppSize.cSm,
+                color: AppTheme.of(context).color.secondary.withOpacity(0.1),
+                child: Text(
+                  assignedBy.colleague.name.firstCharCaptilize(),
+                  style: AppTheme.text(
+                    context: context,
+                    type: ETextType.primary,
+                  ),
                 ),
               ),
             )

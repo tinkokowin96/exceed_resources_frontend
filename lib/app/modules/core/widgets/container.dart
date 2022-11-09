@@ -1,12 +1,14 @@
+import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/miscs.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
-import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:flutter/material.dart';
 
 class AppContainer extends StatelessWidget {
-  final bool vertical;
+  final bool leftRadius;
+  final bool rightRadius;
   final bool noShadow;
-  final ESize borderRadius;
+  final double? borderRadius;
+  final Color? background;
   final BoxShadow? shadow;
   final double? padding;
   final double? width;
@@ -14,9 +16,11 @@ class AppContainer extends StatelessWidget {
   final Widget? child;
   const AppContainer({
     Key? key,
-    this.vertical = false,
-    this.noShadow = false,
-    this.borderRadius = ESize.md,
+    this.leftRadius = false,
+    this.rightRadius = false,
+    this.noShadow = true,
+    this.borderRadius,
+    this.background,
     this.shadow,
     this.padding,
     this.width,
@@ -28,28 +32,27 @@ class AppContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: vertical
+        color: background ?? AppTheme.of(context).color.container,
+        borderRadius: leftRadius
             ? BorderRadius.only(
-                topLeft: Radius.circular(
-                  borderRadius == ESize.md ? AppSize.sm : AppSize.xs,
-                ),
-                bottomLeft: Radius.circular(
-                  borderRadius == ESize.md ? AppSize.sm : AppSize.xs,
-                ),
+                topLeft: Radius.circular(borderRadius ?? AppSize.sm),
+                bottomLeft: Radius.circular(borderRadius ?? AppSize.sm),
               )
-            : BorderRadius.all(
-                Radius.circular(
-                  borderRadius == ESize.md ? AppSize.sm : AppSize.xs,
-                ),
-              ),
-        boxShadow: noShadow ? null : [shadow ?? AppThemeMiscs.shadow2],
+            : rightRadius
+                ? BorderRadius.only(
+                    topRight: Radius.circular(borderRadius ?? AppSize.sm),
+                    bottomRight: Radius.circular(borderRadius ?? AppSize.sm),
+                  )
+                : BorderRadius.all(
+                    Radius.circular(borderRadius ?? AppSize.sm),
+                  ),
+        boxShadow: noShadow ? null : [shadow ?? AppThemeMiscs.shadow1],
       ),
       child: SizedBox(
         width: width,
         height: height,
         child: Padding(
-          padding: EdgeInsets.all(padding ?? AppSize.lg),
+          padding: EdgeInsets.all(padding ?? AppSize.sm),
           child: child,
         ),
       ),

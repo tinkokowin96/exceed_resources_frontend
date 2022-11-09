@@ -262,11 +262,9 @@ class DopdownItems extends StatelessWidget {
           padding: const EdgeInsets.all(AppSize.sm),
           child: SingleChildScrollView(
             child: Column(
-              //   crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 loading
                     ? SizedBox(
-                        // width: width,
                         height: AppSize.dH,
                         child: Center(
                           child: Lottie.asset(
@@ -278,7 +276,6 @@ class DopdownItems extends StatelessWidget {
                     : AppSizeBox.zero,
                 !loading
                     ? SizedBox(
-                        // width: width,
                         height: AppSize.dH,
                         child: ListView.builder(
                           itemCount: items.length,

@@ -6,6 +6,7 @@ import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/sizebox.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/config.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
+import 'package:exceed_resources_frontend/app/modules/core/widgets/container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -32,62 +33,57 @@ class MessageInput extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           attachments.isNotEmpty
-              ? ColoredBox(
-                  color: AppTheme.of(context).color.container,
-                  child: Padding(
-                    padding: const EdgeInsets.all(AppSize.sm),
-                    child: SizedBox(
-                      width: width,
-                      child: Wrap(
-                        spacing: AppSize.xs,
-                        runSpacing: AppSize.xs,
-                        children: List.from(
-                          attachments.map(
-                            (each) => !each.delete
-                                ? Stack(
-                                    children: [
-                                      ColoredBox(
-                                        color: AppTheme.of(context).color.background,
-                                        child: SizedBox(
-                                          width: AppSize.msgatt,
-                                          height: AppSize.msgatt,
-                                          child: imgTypes.contains(each.type) && each.file != null
-                                              ? Image.file(
-                                                  each.file!,
-                                                  fit: BoxFit.cover,
-                                                )
-                                              : imgTypes.contains(each.type) && each.value != null
-                                                  ? CachedNetworkImage(imageUrl: each.value!)
-                                                  : Center(
-                                                      child: Text(
-                                                        each.name,
-                                                        textAlign: TextAlign.center,
-                                                        style: AppTheme.text(context: context, size: EText.h4),
-                                                      ),
-                                                    ),
-                                        ),
-                                      ),
-                                      Positioned(
-                                        top: 0,
-                                        right: 0,
-                                        child: ColoredBox(
-                                          color: AppTheme.of(context).color.container.withOpacity(0.5),
-                                          child: SizedBox(
-                                            child: AppAnimatedPress(
-                                              onPressed: () => updateAttachment(name: each.name),
-                                              child: const Icon(
-                                                Icons.clear,
-                                                size: AppSize.icoSm,
-                                              ),
-                                            ),
+              ? AppContainer(
+                  background: AppTheme.of(context).color.secondaryContainer,
+                  width: width,
+                  child: Wrap(
+                    spacing: AppSize.xs,
+                    runSpacing: AppSize.xs,
+                    children: List.from(
+                      attachments.map(
+                        (each) => !each.delete
+                            ? Stack(
+                                children: [
+                                  ColoredBox(
+                                    color: AppTheme.of(context).color.background,
+                                    child: SizedBox(
+                                      width: AppSize.msgatt,
+                                      height: AppSize.msgatt,
+                                      child: imgTypes.contains(each.type) && each.file != null
+                                          ? Image.file(
+                                              each.file!,
+                                              fit: BoxFit.cover,
+                                            )
+                                          : imgTypes.contains(each.type) && each.value != null
+                                              ? CachedNetworkImage(imageUrl: each.value!)
+                                              : Center(
+                                                  child: Text(
+                                                    each.name,
+                                                    textAlign: TextAlign.center,
+                                                    style: AppTheme.text(context: context, size: EText.h4),
+                                                  ),
+                                                ),
+                                    ),
+                                  ),
+                                  Positioned(
+                                    top: 0,
+                                    right: 0,
+                                    child: ColoredBox(
+                                      color: AppTheme.of(context).color.container.withOpacity(0.5),
+                                      child: SizedBox(
+                                        child: AppAnimatedPress(
+                                          onPressed: () => updateAttachment(name: each.name),
+                                          child: const Icon(
+                                            Icons.clear,
+                                            size: AppSize.icoSm,
                                           ),
                                         ),
                                       ),
-                                    ],
-                                  )
-                                : AppSizeBox.zero,
-                          ),
-                        ),
+                                    ),
+                                  ),
+                                ],
+                              )
+                            : AppSizeBox.zero,
                       ),
                     ),
                   ),

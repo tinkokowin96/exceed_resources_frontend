@@ -16,10 +16,6 @@ class AppSize {
   static const btnWSm = 90.0;
   static const uubtn = 28.0; //unused button
 
-  //input field
-  static const fepp = 16.0; //field primary padding
-  static const felp = 12.0; //field line padding
-
   //dropdown
   static const dH = 100.0;
   static const dL = 100.0; //dropdown loading
@@ -36,6 +32,7 @@ class AppSize {
   static const fotH = 50.0; //footer height
   static const heH = 220.0; //home event section height
   static const msgatt = 80.0; //input message attachment
+  static const fep = 12.0; //field  padding
 
   //add button
   static const abtn = 40.0;
@@ -58,5 +55,5 @@ class AppSize {
   static const cSm = 32.0;
   static const cMd = 40.0;
   static const cLg = 50.0;
-  static const cXl = 100.0;
+  static const cXl = 70.0;
 }

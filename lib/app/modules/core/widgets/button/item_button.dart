@@ -2,6 +2,7 @@ import 'package:exceed_resources_frontend/app/modules/core/widgets/animated/anim
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
+import 'package:exceed_resources_frontend/app/modules/core/widgets/container.dart';
 import 'package:flutter/material.dart';
 
 class ItemButton extends StatelessWidget {
@@ -17,19 +18,14 @@ class ItemButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppAnimatedPress(
       onPressed: onPressed,
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: AppTheme.of(context).color.secondary.withOpacity(0.1),
-          borderRadius: BorderRadius.circular(AppSize.lg),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(AppSize.sm),
-          child: Text(
-            text,
-            style: AppTheme.text(
-              context: context,
-              type: ETextType.primary,
-            ),
+      child: AppContainer(
+        background: AppTheme.of(context).color.secondary.withOpacity(0.1),
+        borderRadius: AppSize.lg,
+        child: Text(
+          text,
+          style: AppTheme.text(
+            context: context,
+            type: ETextType.primary,
           ),
         ),
       ),

@@ -89,7 +89,7 @@ class AppTable extends StatelessWidget {
                           ),
                         ],
                         color: MaterialStateProperty.resolveWith(
-                          (Set states) => AppTheme.of(context).color.tabeRow,
+                          (Set states) => Colors.transparent,
                         ),
                       );
                     },

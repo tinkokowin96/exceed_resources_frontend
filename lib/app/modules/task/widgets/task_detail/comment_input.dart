@@ -45,9 +45,11 @@ class CommentInput extends StatelessWidget {
                   width: constraint.maxWidth,
                   child: DecoratedBox(
                     decoration: BoxDecoration(
-                        color: AppTheme.of(context).color.container, borderRadius: BorderRadius.circular(AppSize.md)),
+                      color: AppTheme.of(context).color.container,
+                      borderRadius: BorderRadius.circular(AppSize.md),
+                    ),
                     child: Padding(
-                      padding: const EdgeInsets.all(AppSize.fepp),
+                      padding: const EdgeInsets.all(AppSize.fep),
                       child: RichText(
                         text: TextSpan(
                           children: List.from(
@@ -81,6 +83,7 @@ class CommentInput extends StatelessWidget {
                     decoration: AppThemeMiscs.inputStyle(
                       context: context,
                       color: EInputColor.transparent,
+                      border: EInputColor.background,
                     ),
                   ),
                 ),

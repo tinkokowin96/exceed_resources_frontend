@@ -26,7 +26,7 @@ class ProjectController extends AppController {
         break;
       case 'quotation':
         if (quotation.value == EExpandable.form) {
-          Get.delete<MQuotationFormController>();
+          Get.delete<QuotationFormController>();
         }
         if (expandable != EExpandable.minimize && phase.value != EExpandable.minimize) {
           phase.value = EExpandable.minimize;

@@ -20,10 +20,4 @@ class HomeController extends AppController {
       );
     }
   }
-
-  @override
-  void onInit() {
-    // TODO: implement onInit
-    super.onInit();
-  }
 }

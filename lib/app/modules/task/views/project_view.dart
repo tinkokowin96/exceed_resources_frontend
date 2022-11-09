@@ -5,6 +5,7 @@ import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/button/button.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/button/text_button.dart';
+import 'package:exceed_resources_frontend/app/modules/core/widgets/column.dart';
 import 'package:exceed_resources_frontend/app/modules/task/controllers/project_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/task/widgets/project/project_phase.dart';
 import 'package:exceed_resources_frontend/app/modules/task/widgets/project/project_quotation.dart';
@@ -38,68 +39,58 @@ class ProjectView extends GetView<ProjectController> {
                               padding: const EdgeInsets.only(top: AppSize.lg),
                               child: Form(
                                 key: controller.formKey,
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
+                                child: AppColumn(
+                                  spacing: AppSize.md,
                                   children: [
                                     TextFormField(
-                                      decoration:
-                                          AppThemeMiscs.inputStyle(context: context, hintText: 'Project Name *'),
+                                      decoration: AppThemeMiscs.inputStyle(
+                                        context: context,
+                                        hintText: 'Project Name *',
+                                      ),
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: AppSize.md),
-                                      child: ProjectPhase(maxWidth: constraint.maxWidth),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: AppSize.md),
-                                      child: ProjectQuotation(maxWidth: constraint.maxWidth),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: AppSize.md),
-                                      child: SizedBox(
-                                        width: constraint.maxWidth,
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            RichText(
-                                              text: TextSpan(
-                                                text: 'Resources ',
-                                                style: AppTheme.text(context: context, weight: FontWeight.w500),
-                                                children: const [
-                                                  TextSpan(text: '(up to 10 files with maximun of 5mb for each)'),
-                                                ],
-                                              ),
-                                            ),
-                                            Wrap(
-                                              spacing: AppSize.sm,
-                                              runSpacing: AppSize.sm,
-                                              crossAxisAlignment: WrapCrossAlignment.center,
-                                              children: [
-                                                Text(
-                                                  'file-1.jpg',
-                                                  style: AppTheme.text(context: context),
-                                                ),
-                                                Text(
-                                                  'file-2.png',
-                                                  style: AppTheme.text(context: context),
-                                                ),
-                                                Text(
-                                                  'file-3.pdf',
-                                                  style: AppTheme.text(context: context),
-                                                ),
-                                                AppTextButton(text: 'Add', onPressed: () {}),
+                                    ProjectPhase(maxWidth: constraint.maxWidth),
+                                    ProjectQuotation(maxWidth: constraint.maxWidth),
+                                    SizedBox(
+                                      width: constraint.maxWidth,
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          RichText(
+                                            text: TextSpan(
+                                              text: 'Resources ',
+                                              style: AppTheme.text(context: context, weight: FontWeight.w500),
+                                              children: const [
+                                                TextSpan(text: '(up to 10 files with maximun of 5mb for each)'),
                                               ],
-                                            )
-                                          ],
-                                        ),
+                                            ),
+                                          ),
+                                          Wrap(
+                                            spacing: AppSize.sm,
+                                            runSpacing: AppSize.sm,
+                                            crossAxisAlignment: WrapCrossAlignment.center,
+                                            children: [
+                                              Text(
+                                                'file-1.jpg',
+                                                style: AppTheme.text(context: context),
+                                              ),
+                                              Text(
+                                                'file-2.png',
+                                                style: AppTheme.text(context: context),
+                                              ),
+                                              Text(
+                                                'file-3.pdf',
+                                                style: AppTheme.text(context: context),
+                                              ),
+                                              AppTextButton(text: 'Add', onPressed: () {}),
+                                            ],
+                                          )
+                                        ],
                                       ),
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: AppSize.md),
-                                      child: AppButton(
-                                        onPressed: () {},
-                                        text: 'Create',
-                                      ),
+                                    AppButton(
+                                      onPressed: () {},
+                                      text: 'Create',
                                     ),
                                   ],
                                 ),

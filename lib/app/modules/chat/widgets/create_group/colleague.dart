@@ -1,7 +1,9 @@
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
+import 'package:exceed_resources_frontend/app/modules/core/theme/sizebox.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/circle.dart';
+import 'package:exceed_resources_frontend/app/modules/core/widgets/row.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/models/colleague_m_model.dart';
 import 'package:flutter/material.dart';
 
@@ -20,11 +22,13 @@ class Colleague extends StatelessWidget {
       onTap: () => addColleague(id: colleague.id),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: AppSize.sm),
-        child: Row(
+        child: AppRow(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisSize: MainAxisSize.max,
+          spacing: AppSize.md,
           children: [
-            Row(
-              mainAxisSize: MainAxisSize.min,
+            AppRow(
+              spacing: AppSize.sm,
               children: [
                 Stack(
                   children: [
@@ -37,35 +41,26 @@ class Colleague extends StatelessWidget {
                           color: colleague.status?.color ?? Colors.greenAccent,
                           borderRadius: BorderRadius.circular(7),
                         ),
-                        child: const SizedBox(
-                          width: 10,
-                          height: 10,
-                        ),
+                        child: AppSizeBox.sm,
                       ),
                     ),
                   ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: AppSize.sm),
-                  child: Text(
-                    colleague.name,
-                    style: AppTheme.text(
-                      context: context,
-                      size: EText.h4,
-                    ),
+                Text(
+                  colleague.name,
+                  style: AppTheme.text(
+                    context: context,
+                    size: EText.h4,
                   ),
                 ),
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: AppSize.md),
-              child: Text(
-                colleague.positionName,
-                style: AppTheme.text(
-                  context: context,
-                  size: EText.h4,
-                  type: ETextType.subtitle,
-                ),
+            Text(
+              colleague.positionName,
+              style: AppTheme.text(
+                context: context,
+                size: EText.h4,
+                type: ETextType.subtitle,
               ),
             ),
           ],

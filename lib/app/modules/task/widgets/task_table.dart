@@ -30,7 +30,7 @@ class TaskTable extends StatelessWidget {
                     builder: (context, tbConstraint) {
                       return DecoratedBox(
                         decoration: BoxDecoration(
-                          color: AppTheme.of(context).color.container,
+                          color: AppTheme.of(context).color.secondaryContainer,
                           borderRadius: BorderRadius.circular(
                             AppSize.xs,
                           ),

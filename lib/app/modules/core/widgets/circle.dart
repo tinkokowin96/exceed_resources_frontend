@@ -5,6 +5,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class AppCircle {
+  static Widget container({
+    required double width,
+    required Widget child,
+    Color? color,
+    Function()? onPressed,
+  }) =>
+      InkWell(
+        onTap: onPressed,
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            color: color,
+            borderRadius: BorderRadius.circular(width / 2),
+          ),
+          child: SizedBox(
+            width: width,
+            height: width,
+            child: Center(child: child),
+          ),
+        ),
+      );
+
   static Widget image({
     required double size,
     required String image,
