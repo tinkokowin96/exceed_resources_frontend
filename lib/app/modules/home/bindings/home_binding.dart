@@ -1,4 +1,3 @@
-import 'package:exceed_resources_frontend/app/modules/chat/controllers/chat_conversation_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/chat/controllers/chat_detail_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/core/controllers/fullscreen_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/home/controllers/home_controller.dart';

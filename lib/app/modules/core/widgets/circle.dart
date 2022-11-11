@@ -38,11 +38,13 @@ class AppCircle {
                 imageUrl: image,
                 width: size,
                 height: size,
+                fit: BoxFit.cover,
               )
             : Image.asset(
                 image,
                 width: size,
                 height: size,
+                fit: BoxFit.cover,
               ),
       );
 
@@ -51,7 +53,7 @@ class AppCircle {
     required String image,
     required String asset,
     required Function() action,
-    double actionSize = AppSize.cXs,
+    double actionSize = AppSize.cXxs,
     bool network = true,
   }) =>
       SizedBox(
@@ -64,11 +66,13 @@ class AppCircle {
                     imageUrl: image,
                     width: size,
                     height: size,
+                    fit: BoxFit.cover,
                   )
                 : Image.asset(
                     image,
                     width: size,
                     height: size,
+                    fit: BoxFit.cover,
                   ),
             Positioned(
               right: 0,

@@ -16,9 +16,9 @@ final chatDetails = [
     pinMessages: [
       messages[0],
       messages[1],
-      messages[4],
+      messages[2],
     ],
-    attachments: messages[4].chatAttachments,
+    attachments: messages[5].chatAttachments!,
     description:
         "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to",
   ),

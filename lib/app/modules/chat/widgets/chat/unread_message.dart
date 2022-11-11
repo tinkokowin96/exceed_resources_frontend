@@ -16,15 +16,15 @@ class UnreadMessage extends StatelessWidget {
       right: 0,
       top: 0,
       child: Transform.translate(
-        offset: const Offset(AppSize.uubtn / 4, -AppSize.uubtn / 4),
+        offset: const Offset(AppSize.cXs / 4, -AppSize.cXs / 4),
         child: DecoratedBox(
           decoration: BoxDecoration(
             color: AppTheme.of(context).color.secondaryBackground,
-            borderRadius: BorderRadius.circular(AppSize.uubtn / 2),
+            borderRadius: BorderRadius.circular(AppSize.cXs / 2),
           ),
           child: SizedBox(
-            width: AppSize.uubtn,
-            height: AppSize.uubtn,
+            width: AppSize.cXs,
+            height: AppSize.cXs,
             child: Center(
               child: Text(
                 numUnread.toString(),

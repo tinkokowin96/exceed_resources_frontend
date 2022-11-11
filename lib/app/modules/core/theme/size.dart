@@ -14,7 +14,7 @@ class AppSize {
   static const btnWMd = 110.0;
   static const btnHMd = 46.0;
   static const btnWSm = 90.0;
-  static const uubtn = 28.0; //unused button
+//   static const uubtn = 28.0; //unused button
 
   //dropdown
   static const dH = 100.0;
@@ -51,7 +51,8 @@ class AppSize {
   static const pccW = 12.0;
 
   //circle
-  static const cXs = 12.0;
+  static const cXxs = 12.0;
+  static const cXs = 26.0;
   static const cSm = 32.0;
   static const cMd = 40.0;
   static const cLg = 50.0;

@@ -14,8 +14,8 @@ class MChatDetail with _$MChatDetail {
     required String name,
     required List<MColleagueM> colleagues,
     required String description,
-    @JsonKey(name: 'pin_messages') List<MChatMessage>? pinMessages,
-    List<MAttachment>? attachments,
+    @JsonKey(name: 'pin_messages') @Default([]) List<MChatMessage> pinMessages,
+    @Default([]) List<MAttachment> attachments,
   }) = _MChatDetail;
 
   factory MChatDetail.fromJson(Map<String, dynamic> json) => _$MChatDetailFromJson(json);

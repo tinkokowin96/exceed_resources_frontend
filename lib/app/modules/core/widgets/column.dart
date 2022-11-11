@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 
 class AppColumn extends StatelessWidget {
   final List<Widget> children;
@@ -25,11 +26,18 @@ class AppColumn extends StatelessWidget {
       crossAxisAlignment: crossAxisAlignment,
       children: List.from(
         children.asMap().entries.map(
-              (each) => Padding(
-                padding: EdgeInsets.only(top: firstNoSpacing && each.key == 0 ? 0 : spacing),
-                child: each.value,
-              ),
-            ),
+          (each) {
+            final isExpanded = each.value is Expanded || each.value is Obx;
+            final noPadding = (firstNoSpacing && each.key == 0) || isExpanded;
+            if (noPadding) {
+              return each.value;
+            }
+            return Padding(
+              padding: EdgeInsets.only(top: noPadding ? 0 : spacing),
+              child: each.value,
+            );
+          },
+        ),
       ),
     );
   }
