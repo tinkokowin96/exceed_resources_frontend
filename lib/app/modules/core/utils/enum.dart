@@ -39,3 +39,14 @@ enum EChat {
   @JsonValue('Colleagues')
   colleagues
 }
+
+enum EField {
+  @JsonValue('Colleague')
+  colleague,
+  @JsonValue('Date')
+  date,
+  @JsonValue('String')
+  string,
+  @JsonValue('number')
+  number,
+}

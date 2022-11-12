@@ -44,7 +44,6 @@ Color getTextColor(ETextType type, BuildContext context) {
 
 double getFontSize(EText size, BuildContext context) {
   final device = getDevice(context);
-
   switch (size) {
     case EText.h1:
       return device == EDevice.mobile

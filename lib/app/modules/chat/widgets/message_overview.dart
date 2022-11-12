@@ -44,10 +44,13 @@ class MessageOverview extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: Text(
-              description,
-              overflow: TextOverflow.ellipsis,
-              style: AppTheme.text(context: context),
+            child: Align(
+              alignment: Alignment.centerRight,
+              child: Text(
+                description,
+                overflow: TextOverflow.ellipsis,
+                style: AppTheme.text(context: context),
+              ),
             ),
           ),
         ],
