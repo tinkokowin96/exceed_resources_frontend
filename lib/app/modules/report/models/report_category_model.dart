@@ -7,6 +7,7 @@ part 'report_category_model.g.dart';
 @freezed
 class MReportCategory with _$MReportCategory {
   factory MReportCategory({
+    required String id,
     required String name,
     required List<List<MField>> fields,
     @Default(true) bool earning,

@@ -7,6 +7,7 @@ part 'field_model.g.dart';
 @freezed
 class MField with _$MField {
   factory MField({
+    required String id,
     required String name,
     @JsonKey(name: 'field_type') required EField fieldType,
     required dynamic value,

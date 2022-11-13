@@ -10,7 +10,8 @@ class MReport with _$MReport {
   factory MReport({
     required List<MReportCategory> categories,
     @JsonKey(name: 'basic_salary') required double basicSalary,
-    @Default(true) bool earning,
+    @JsonKey(name: 'total_earning') @Default(0) double totalEarning,
+    @JsonKey(name: 'total_deduction') @Default(0) double totalDeduction,
   }) = _MReport;
 
   factory MReport.fromJson(Map<String, dynamic> json) => _$MReportFromJson(json);

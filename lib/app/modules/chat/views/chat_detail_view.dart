@@ -62,7 +62,6 @@ class ChatDetailView extends GetView<ChatDetailController> {
                     () => Expandable(
                       name: 'Colleagues',
                       toggleExpand: controller.toggleExpandable,
-                      heading: AppSizeBox.zero,
                       expand: controller.colleagueExpandable.value == EExpandable.expand,
                       content: controller.colleagueExpandable.value == EExpandable.expand
                           ? ListView(
@@ -108,7 +107,6 @@ class ChatDetailView extends GetView<ChatDetailController> {
                     () => Expandable(
                       name: 'Pinned Messages',
                       toggleExpand: () => controller.toggleExpandable(colleague: false),
-                      heading: AppSizeBox.zero,
                       expand: controller.pinExpandable.value == EExpandable.expand,
                       content: controller.pinExpandable.value == EExpandable.expand
                           ? ListView(
