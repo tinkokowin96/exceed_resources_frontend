@@ -3,7 +3,7 @@ class AppSize {
   static const sm = 10.0;
   static const md = 20.0;
   static const lg = 40.0;
-  static const xl = 60.0;
+  static const xl = 80.0;
 
   //icon
   static const icoSm = 18.0;

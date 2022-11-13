@@ -8,6 +8,7 @@ class AppColumn extends StatelessWidget {
   final MainAxisSize mainAxisSize;
   final CrossAxisAlignment crossAxisAlignment;
   final MainAxisAlignment mainAxisAlignment;
+  final double? endSpacing;
   const AppColumn({
     Key? key,
     required this.children,
@@ -16,6 +17,7 @@ class AppColumn extends StatelessWidget {
     this.mainAxisSize = MainAxisSize.min,
     this.crossAxisAlignment = CrossAxisAlignment.center,
     this.mainAxisAlignment = MainAxisAlignment.start,
+    this.endSpacing,
   }) : super(key: key);
 
   @override
@@ -33,7 +35,10 @@ class AppColumn extends StatelessWidget {
               return each.value;
             }
             return Padding(
-              padding: EdgeInsets.only(top: noPadding ? 0 : spacing),
+              padding: EdgeInsets.only(
+                top: noPadding ? 0 : spacing,
+                bottom: noPadding || endSpacing == null ? 0 : endSpacing!,
+              ),
               child: each.value,
             );
           },
