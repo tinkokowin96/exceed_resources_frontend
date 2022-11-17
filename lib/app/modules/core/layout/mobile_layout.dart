@@ -11,31 +11,27 @@ class MobileLayout extends StatelessWidget {
   final EMenu currentMenu;
   final Widget content;
   final bool header;
+  final bool noPadding;
   final String? title;
-  final Function()? headerAction;
-  final String? headerActionText;
+  final Widget? headerTail;
   const MobileLayout({
     Key? key,
     required this.content,
     required this.currentMenu,
     required this.header,
+    required this.noPadding,
     this.title,
-    this.headerAction,
-    this.headerActionText,
+    this.headerTail,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: AppSize.md),
+      padding: EdgeInsets.symmetric(horizontal: noPadding ? 0 : AppSize.md),
       child: Column(
         children: [
           title != null
-              ? PageHeader(
-                  title: title!,
-                  headerAction: headerAction,
-                  headerActionText: headerActionText,
-                )
+              ? PageHeader(title: title!, headerTail: headerTail)
               : header
                   ? const UserHeader()
                   : AppSizeBox.zero,

@@ -13,9 +13,11 @@ class AppLayout {
     required EMenu currentMenu,
     required Widget content,
     required AppController controller,
+    bool noPadding = false,
     Function()? containerAction,
     bool header = false,
     String? title,
+    Widget? headerTail,
     Function()? headerAction,
     String? headerActionText,
   }) =>
@@ -23,12 +25,12 @@ class AppLayout {
         containerAction: containerAction,
         controller: controller,
         child: MobileLayout(
+          noPadding: noPadding,
           currentMenu: currentMenu,
           content: content,
           header: header,
           title: title,
-          headerAction: headerAction,
-          headerActionText: headerActionText,
+          headerTail: headerTail,
         ),
       );
 
