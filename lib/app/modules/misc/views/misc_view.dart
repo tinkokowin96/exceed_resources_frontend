@@ -12,7 +12,6 @@ import 'package:exceed_resources_frontend/app/modules/misc/models/misc_action_mo
 import 'package:exceed_resources_frontend/app/modules/misc/widgets/misc_action.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/widgets/misc_action_section.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 import 'package:get/get.dart';
 
