@@ -20,13 +20,28 @@ enum EInputStyle { line, primary }
 
 enum EInputColor { primary, transparent, background }
 
-enum EAttachmentType {
+enum EAttachment {
+  @JsonValue('Video')
+  video,
   @JsonValue('Image')
   image,
   @JsonValue('Pdf')
   pdf,
   @JsonValue('Others')
   others
+}
+
+enum EArticleSection {
+  @JsonValue('Image')
+  image,
+  @JsonValue('Carousel')
+  carousel,
+  @JsonValue('Title')
+  title,
+  @JsonValue('Body')
+  body,
+  @JsonValue('Unordered')
+  unordered
 }
 
 enum EChat {

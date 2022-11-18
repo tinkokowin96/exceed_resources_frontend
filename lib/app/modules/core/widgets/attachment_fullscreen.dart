@@ -40,7 +40,7 @@ class AttachmentFullscreen extends GetView<FullscreenController> {
           ),
         ),
         Expanded(
-          child: attachment.type == EAttachmentType.image
+          child: attachment.type == EAttachment.image
               ? CachedNetworkImage(imageUrl: attachment.url!)
               : SfPdfViewer.memory(attachment.data!),
         ),

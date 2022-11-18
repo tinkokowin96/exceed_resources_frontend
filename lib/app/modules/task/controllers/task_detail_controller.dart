@@ -141,7 +141,7 @@ class TaskDetailController extends AppController with AttachmentMixin {
       if (imgTypes.contains(fileType)) {
         attachments.value.add(
           MAttachment(
-            type: EAttachmentType.image,
+            type: EAttachment.image,
             name: fileName,
             url: attachment,
           ),
@@ -149,7 +149,7 @@ class TaskDetailController extends AppController with AttachmentMixin {
       } else if (fileType == 'pdf') {
         attachments.value.add(
           MAttachment(
-            type: EAttachmentType.pdf,
+            type: EAttachment.pdf,
             name: fileName,
             data: await byteResponse(attachment),
           ),
@@ -157,7 +157,7 @@ class TaskDetailController extends AppController with AttachmentMixin {
       } else {
         attachments.value.add(
           MAttachment(
-            type: EAttachmentType.others,
+            type: EAttachment.others,
             name: fileName,
             url: attachment,
           ),

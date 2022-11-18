@@ -24,7 +24,7 @@ class TaskAttachments extends StatelessWidget {
       data: List.from(
         attachments.map(
           (each) {
-            if (each.type == EAttachmentType.image) {
+            if (each.type == EAttachment.image) {
               return InkWell(
                 onTap: () => Get.toNamed(
                   AppRoutes.fullscreen,
@@ -39,7 +39,7 @@ class TaskAttachments extends StatelessWidget {
                 ),
               );
             }
-            if (each.type == EAttachmentType.pdf) {
+            if (each.type == EAttachment.pdf) {
               return SizedBox(
                 width: width,
                 height: 300,

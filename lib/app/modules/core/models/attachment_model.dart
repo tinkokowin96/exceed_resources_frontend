@@ -7,7 +7,7 @@ part 'attachment_model.g.dart';
 @freezed
 class MAttachment with _$MAttachment {
   factory MAttachment({
-    required EAttachmentType type,
+    required EAttachment type,
     required String name,
     String? url,
     dynamic data, //null on data comes from api
