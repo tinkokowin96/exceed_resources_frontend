@@ -7,7 +7,7 @@ part 'article_section_model.g.dart';
 @freezed
 class MArticleSection with _$MArticleSection {
   factory MArticleSection({
-    required EArticleSection type,
+    required EDynamicField type,
     required List<String> data,
   }) = _MArticleSection;
 

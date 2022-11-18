@@ -34,7 +34,7 @@ class MessageInput extends StatelessWidget {
         children: [
           attachments.isNotEmpty
               ? AppContainer(
-                  background: AppTheme.of(context).color.secondaryContainer,
+                  background: AppTheme.of(context).color.container,
                   width: width,
                   child: Wrap(
                     spacing: AppSize.xs,

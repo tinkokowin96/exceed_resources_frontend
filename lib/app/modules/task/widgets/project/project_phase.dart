@@ -20,7 +20,7 @@ class ProjectPhase extends GetView<ProjectController> {
   @override
   Widget build(BuildContext context) {
     return AppContainer(
-      background: AppTheme.of(context).color.secondaryContainer,
+      background: AppTheme.of(context).color.container,
       width: maxWidth,
       padding: AppSize.md,
       child: Column(

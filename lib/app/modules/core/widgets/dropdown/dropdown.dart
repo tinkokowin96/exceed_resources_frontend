@@ -4,10 +4,9 @@ import 'package:exceed_resources_frontend/app/modules/core/models/option_model.d
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/miscs.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
-import 'package:exceed_resources_frontend/app/modules/core/theme/sizebox.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/button/text_button.dart';
-import 'package:exceed_resources_frontend/app/modules/core/widgets/animated/hoverable_container.dart';
+import 'package:exceed_resources_frontend/app/modules/core/widgets/container.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -128,7 +127,7 @@ class _AppDropdownState extends State<AppDropdown> {
             showWhenUnlinked: false,
             offset: Offset(
               0,
-              position.dy / screenHeight < 0.7 ? renderBox.size.height : -(AppSize.dH + AppSize.lg),
+              position.dy / screenHeight < 0.7 ? renderBox.size.height + AppSize.sm : -(AppSize.dH + AppSize.lg),
             ),
             child: DopdownItems(
               items: !widget.loading && widget.initialItems != null && searchedText.isEmpty
@@ -256,110 +255,110 @@ class DopdownItems extends StatelessWidget {
       child: DecoratedBox(
         decoration: BoxDecoration(
           color: Colors.white,
-          boxShadow: [AppThemeMiscs.shadow2],
+          boxShadow: [AppThemeMiscs.shadow1],
         ),
         child: Padding(
           padding: const EdgeInsets.all(AppSize.sm),
           child: SingleChildScrollView(
             child: Column(
               children: [
-                loading
-                    ? SizedBox(
-                        height: AppSize.dH,
-                        child: Center(
-                          child: Lottie.asset(
-                            'assets/animation/search_loading.json',
-                            width: AppSize.dL,
-                          ),
-                        ),
-                      )
-                    : AppSizeBox.zero,
-                !loading
-                    ? SizedBox(
-                        height: AppSize.dH,
-                        child: ListView.builder(
-                          itemCount: items.length,
-                          itemBuilder: (BuildContext context, int index) => !isMulti
-                              ? AppHoverableContainer(
-                                  hoverColor: AppTheme.of(context).color.primary.withOpacity(0.2),
-                                  idleColor: Colors.white,
-                                  onPressed: () => selectDropdownHandler(
-                                    value: items[index],
-                                  ),
+                if (loading) ...[
+                  SizedBox(
+                    height: AppSize.dH,
+                    child: Center(
+                      child: Lottie.asset(
+                        'assets/animation/search_loading.json',
+                        width: AppSize.dL,
+                      ),
+                    ),
+                  ),
+                ] else ...[
+                  SizedBox(
+                    height: AppSize.dH,
+                    child: ListView.builder(
+                      itemCount: items.length,
+                      padding: EdgeInsets.zero,
+                      itemBuilder: (BuildContext context, int index) => !isMulti
+                          ? Padding(
+                              padding: const EdgeInsets.only(bottom: AppSize.sm),
+                              child: InkWell(
+                                onTap: () => selectDropdownHandler(
+                                  value: items[index],
+                                ),
+                                child: AppContainer(
+                                  borderRadius: 0,
+                                  background: AppTheme.of(context).color.secondary.withOpacity(0.05),
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Expanded(
-                                        child: Container(
-                                          padding: EdgeInsets.symmetric(
-                                            vertical: noPadding ? 0 : AppSize.sm,
-                                          ),
+                                        child: Align(
                                           alignment:
                                               items[index].category != null ? Alignment.centerLeft : Alignment.center,
                                           child: Text(
                                             items[index].text,
-                                            style: AppTheme.text(context: context, size: textSize),
+                                            style: AppTheme.text(
+                                                context: context, size: textSize, type: ETextType.primary),
                                           ),
                                         ),
                                       ),
-                                      items[index].category != null
-                                          ? ColoredBox(
-                                              color: AppTheme.of(context).color.primary.withOpacity(0.2),
-                                              child: Text(
-                                                items[index].category!,
-                                                style: AppTheme.text(
-                                                    size: textSize, context: context, type: ETextType.primary),
-                                              ),
-                                            )
-                                          : AppSizeBox.zero,
-                                    ],
-                                  ),
-                                )
-                              : Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: AppSize.md,
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        items[index].text,
-                                        style: AppTheme.text(context: context, size: textSize),
-                                      ),
-                                      Checkbox(
-                                        fillColor: MaterialStateProperty.all<Color>(
-                                          AppTheme.of(context).color.primary,
-                                        ),
-                                        value: selected.contains(items[index].text),
-                                        onChanged: (value) => selectDropdownHandler(
-                                          value: items[index],
-                                          checked: value,
-                                        ),
-                                      ),
+                                      if (items[index].category != null)
+                                        ColoredBox(
+                                          color: AppTheme.of(context).color.primary.withOpacity(0.2),
+                                          child: Text(
+                                            items[index].category!,
+                                            style: AppTheme.text(
+                                                size: textSize, context: context, type: ETextType.primary),
+                                          ),
+                                        )
                                     ],
                                   ),
                                 ),
-                        ),
-                      )
-                    : AppSizeBox.zero,
-                AppSizeBox.sm,
-                addNew != null
-                    ? Padding(
-                        padding: const EdgeInsets.symmetric(vertical: AppSize.sm),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            AppTextButton(
-                              text: addNew!.text,
-                              onPressed: () {
-                                focus.unfocus();
-                                addNew!.action();
-                              },
+                              ),
                             )
-                          ],
-                        ),
-                      )
-                    : AppSizeBox.zero,
+                          : Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: AppSize.md,
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    items[index].text,
+                                    style: AppTheme.text(context: context, size: textSize),
+                                  ),
+                                  Checkbox(
+                                    fillColor: MaterialStateProperty.all<Color>(
+                                      AppTheme.of(context).color.primary,
+                                    ),
+                                    value: selected.contains(items[index].text),
+                                    onChanged: (value) => selectDropdownHandler(
+                                      value: items[index],
+                                      checked: value,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                    ),
+                  ),
+                ],
+                if (addNew != null)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: AppSize.sm),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        AppTextButton(
+                          text: addNew!.text,
+                          onPressed: () {
+                            focus.unfocus();
+                            addNew!.action();
+                          },
+                        )
+                      ],
+                    ),
+                  )
               ],
             ),
           ),

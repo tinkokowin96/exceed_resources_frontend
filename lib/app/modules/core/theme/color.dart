@@ -7,9 +7,9 @@ class AppColor {
   final Color container;
   final Color error;
   final Color background;
-  final Color secondaryContainer;
   final Color disabled;
   final Color body;
+  final Color category;
   final Color idle;
 
   const AppColor({
@@ -18,10 +18,10 @@ class AppColor {
     required this.secondaryBackground,
     required this.container,
     required this.error,
-    required this.secondaryContainer,
     required this.background,
     required this.disabled,
     required this.body,
+    required this.category,
     required this.idle,
   });
 }

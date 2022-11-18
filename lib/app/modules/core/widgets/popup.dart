@@ -115,7 +115,7 @@ class _AppPopupState extends State<AppPopup> with SingleTickerProviderStateMixin
             ),
             child: Center(
               child: AppContainer(
-                background: AppTheme.of(context).color.secondaryContainer,
+                background: AppTheme.of(context).color.container,
                 padding: AppSize.md,
                 width: App.width(context) * 0.9,
                 child: Column(

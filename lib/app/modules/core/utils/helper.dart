@@ -37,6 +37,9 @@ Color getTextColor(ETextType type, BuildContext context) {
     case ETextType.disabled:
       return AppTheme.of(context).color.disabled;
 
+    case ETextType.category:
+      return AppTheme.of(context).color.category;
+
     default:
       return AppTheme.of(context).color.body;
   }

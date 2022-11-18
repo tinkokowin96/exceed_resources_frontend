@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-enum ETextType { body, error, primary, white, subtitle, disabled, disabledPrimary }
+enum ETextType { body, error, primary, white, subtitle, disabled, disabledPrimary, category }
 
 enum EText { h1, h2, h3, h4, h5 }
 
@@ -31,7 +31,7 @@ enum EAttachment {
   others
 }
 
-enum EArticleSection {
+enum EDynamicField {
   @JsonValue('Image')
   image,
   @JsonValue('Carousel')

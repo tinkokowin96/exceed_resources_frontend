@@ -22,7 +22,7 @@ class ProjectQuotation extends GetView<ProjectController> {
     return AppContainer(
       width: maxWidth,
       padding: AppSize.md,
-      background: AppTheme.of(context).color.secondaryContainer,
+      background: AppTheme.of(context).color.container,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [

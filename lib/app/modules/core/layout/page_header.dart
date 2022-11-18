@@ -13,7 +13,7 @@ class PageHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: AppSize.sm),
+      padding: const EdgeInsets.only(top: AppSize.sm, bottom: AppSize.md),
       child: Stack(
         alignment: Alignment.center,
         children: [

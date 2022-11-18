@@ -17,7 +17,7 @@ class AppSize {
 //   static const uubtn = 28.0; //unused button
 
   //dropdown
-  static const dH = 100.0;
+  static const dH = 200.0;
   static const dL = 100.0; //dropdown loading
 
   //active indicator
@@ -33,6 +33,7 @@ class AppSize {
   static const heH = 220.0; //home event section height
   static const msgatt = 80.0; //input message attachment
   static const fep = 12.0; //field  padding
+  static const imgfeH = 120.0; //image field height
 
   //add button
   static const abtn = 40.0;

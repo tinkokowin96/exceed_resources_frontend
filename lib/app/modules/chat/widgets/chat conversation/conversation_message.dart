@@ -48,7 +48,7 @@ class ConversationMessage extends StatelessWidget {
                             (each) => Padding(
                               padding: EdgeInsets.only(top: each.key == 0 ? 0 : AppSize.xs),
                               child: AppContainer(
-                                background: AppTheme.of(context).color.secondaryContainer,
+                                background: AppTheme.of(context).color.container,
                                 child: Text(
                                   each.value,
                                   style: AppTheme.text(context: context),

@@ -18,7 +18,7 @@ class MiscActionSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppContainer(
-      background: AppTheme.of(context).color.secondaryContainer,
+      background: AppTheme.of(context).color.container,
       child: AppColumn(
         spacing: AppSize.md,
         endSpacing: AppSize.sm,

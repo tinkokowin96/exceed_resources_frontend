@@ -85,7 +85,7 @@ class MiscView extends GetView<MiscController> {
             child: Padding(
               padding: const EdgeInsets.only(top: AppSize.md),
               child: AppContainer(
-                background: AppTheme.of(context).color.secondaryContainer,
+                background: AppTheme.of(context).color.container,
                 child: SingleChildScrollView(
                   child: AppColumn(
                     spacing: AppSize.lg,

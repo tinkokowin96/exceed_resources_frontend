@@ -2,6 +2,7 @@ import 'package:exceed_resources_frontend/app/modules/misc/views/add_event_view.
 import 'package:exceed_resources_frontend/app/modules/misc/views/calender_view.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/views/colleague_detail_view.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/views/colleague_view.dart';
+import 'package:exceed_resources_frontend/app/modules/misc/views/create_article_view.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/views/late_view.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/views/leave_view.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/views/onboarding_view.dart';
@@ -62,6 +63,12 @@ final List<GetPage<dynamic>> miscRoutes = [
   GetPage(
     name: MiscRoutes.onboarding,
     page: () => const OnboardingView(),
+    binding: MiscBinding(),
+    transitionDuration: Duration.zero,
+  ),
+  GetPage(
+    name: MiscRoutes.createArticle,
+    page: () => const CreateArticleView(),
     binding: MiscBinding(),
     transitionDuration: Duration.zero,
   ),
