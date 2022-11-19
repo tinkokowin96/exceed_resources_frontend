@@ -3,12 +3,16 @@ import 'package:flutter/material.dart';
 
 class MDynamicField {
   final EDynamicField type;
-  final Widget widget;
-  TextEditingController? controllers;
+  final Widget child;
+  final int oriKey;
+  int key;
+  TextEditingController? controller;
 
   MDynamicField({
     required this.type,
-    required this.widget,
-    this.controllers,
+    required this.oriKey,
+    required this.key,
+    required this.child,
+    this.controller,
   });
 }

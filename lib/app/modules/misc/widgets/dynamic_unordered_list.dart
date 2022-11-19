@@ -3,6 +3,8 @@ import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/column.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/container.dart';
+import 'package:exceed_resources_frontend/app/modules/core/widgets/draggable.dart';
+import 'package:exceed_resources_frontend/app/modules/core/widgets/reorderable_container.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/controllers/dynamic_unordered_list_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -35,7 +37,15 @@ class DynamicUnorderedList extends GetView<DynamicUnorderedListController> {
                 spacing: AppSize.sm,
                 children: [
                   ...List.from(
-                    controller.fields.value.values.map((each) => each.widget),
+                    controller.fields.value.values.map(
+                      (each) => ReorderableContainer(
+                        up: () => controller.reorderField(each.key, true),
+                        down: () => controller.reorderField(each.key, false),
+                        first: each.key == 1,
+                        last: controller.fields.value.values.length == each.key,
+                        child: each.child,
+                      ),
+                    ),
                   ),
                   InkWell(
                     onTap: () => controller.addField(EDynamicField.body),

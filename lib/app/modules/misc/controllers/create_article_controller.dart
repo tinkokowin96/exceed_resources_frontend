@@ -85,7 +85,8 @@ class CreateArticleController extends AppController with DynamicListMixin {
           ],
         );
     }
-    fields.value[addIndex] = MDynamicField(type: type, widget: fieldWidget, controllers: fieldController);
+    fields.value[addIndex] =
+        MDynamicField(key: addIndex, oriKey: addIndex, type: type, child: fieldWidget, controller: fieldController);
     controllers[addIndex] = fieldController;
     fields.refresh();
   }

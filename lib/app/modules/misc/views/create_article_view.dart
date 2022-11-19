@@ -1,12 +1,16 @@
 import 'package:exceed_resources_frontend/app/modules/core/layout/layout.dart';
+import 'package:exceed_resources_frontend/app/modules/core/mock/report.dart';
+import 'package:exceed_resources_frontend/app/modules/core/models/draggable_item_model.dart';
 import 'package:exceed_resources_frontend/app/modules/core/models/option_model.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/miscs.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/column.dart';
+import 'package:exceed_resources_frontend/app/modules/core/widgets/draggable.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/dropdown/dropdown.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/image_upload.dart';
+import 'package:exceed_resources_frontend/app/modules/core/widgets/reorderable_container.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/row.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/controllers/create_article_controller.dart';
 import 'package:flutter/material.dart';
@@ -47,7 +51,15 @@ class CreateArticleView extends GetView<CreateArticleController> {
                   () => AppColumn(
                     spacing: AppSize.sm,
                     children: List.from(
-                      controller.fields.value.values.map((each) => each.widget),
+                      controller.fields.value.values.map(
+                        (each) => ReorderableContainer(
+                          up: () => controller.reorderField(each.key, true),
+                          down: () => controller.reorderField(each.key, false),
+                          first: each.key == 1,
+                          last: controller.fields.value.values.length == each.key,
+                          child: each.child,
+                        ),
+                      ),
                     ),
                   ),
                 ),
