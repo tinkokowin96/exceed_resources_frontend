@@ -14,7 +14,6 @@ class AppSize {
   static const btnWMd = 110.0;
   static const btnHMd = 46.0;
   static const btnWSm = 90.0;
-//   static const uubtn = 28.0; //unused button
 
   //dropdown
   static const dH = 200.0;
@@ -58,4 +57,10 @@ class AppSize {
   static const cMd = 40.0;
   static const cLg = 50.0;
   static const cXl = 70.0;
+
+  //card
+  //onboarding
+  static const obcard = 120.0;
+  static const obcatW = 50.0; //onboarding card category width
+  static const obcatH = 25.0; //onboarding card category height
 }

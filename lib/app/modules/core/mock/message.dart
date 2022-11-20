@@ -54,7 +54,7 @@ final messages = [
   ),
   MChatMessage(
     id: 'msg_6',
-    chatAttachments: attachments,
+    chatAttachments: m_attachments.sublist(0, 4),
     createdAt: DateTime.now().subtract(const Duration(days: 2)).subtract(const Duration(hours: 2)),
     colleague: m_colleagues[3],
   ),

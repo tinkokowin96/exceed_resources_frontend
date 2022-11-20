@@ -9,6 +9,7 @@ class MAttachment with _$MAttachment {
   factory MAttachment({
     required EAttachment type,
     required String name,
+    String? thumbnail,
     String? url,
     dynamic data, //null on data comes from api
   }) = _MAttachment;

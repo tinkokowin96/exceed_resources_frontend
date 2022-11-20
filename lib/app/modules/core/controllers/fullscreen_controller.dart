@@ -1,3 +1,22 @@
 import 'package:exceed_resources_frontend/app/modules/core/controllers/app_controller.dart';
+import 'package:exceed_resources_frontend/app/modules/core/models/attachment_model.dart';
+import 'package:exceed_resources_frontend/app/modules/core/services/byte_response_service.dart';
+import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
+import 'package:flutter/foundation.dart';
+import 'package:get/get.dart';
 
-class FullscreenController extends AppController {}
+class AttachmentFullscreenController extends AppController {
+  final MAttachment attachment = Get.arguments;
+  final pdfAttachment = Rxn<Uint8List>();
+
+  @override
+  void onInit() {
+    if (attachment.type == EAttachment.pdf) {
+      doAysncTask(() async {
+        pdfAttachment.value = await byteResponse(attachment.url!);
+        pdfAttachment.refresh();
+      });
+    }
+    super.onInit();
+  }
+}

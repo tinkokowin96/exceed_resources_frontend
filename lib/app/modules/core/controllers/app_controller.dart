@@ -56,6 +56,12 @@ class AppController extends GetxController {
     drawer.refresh();
   }
 
+  void doAysncTask(Function() task) {
+    updateLoading(value: true);
+    task();
+    updateLoading(value: false);
+  }
+
   void showPopup({
     required AppPopup popupWidget,
     Function()? confirm,

@@ -22,7 +22,7 @@ class ChatDetailView extends GetView<ChatDetailController> {
     return AppLayout.core(
       currentMenu: EMenu.chat,
       controller: controller,
-      headerAction: () => controller.findFocus.unfocus(),
+      containerAction: () => controller.findFocus.unfocus(),
       content: AppColumn(
         spacing: AppSize.md,
         children: [

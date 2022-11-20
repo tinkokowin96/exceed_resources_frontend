@@ -2,12 +2,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:exceed_resources_frontend/app/modules/core/models/attachment_model.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
-import 'package:exceed_resources_frontend/app/modules/core/widgets/attachment_fullscreen.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/carousel.dart';
 import 'package:exceed_resources_frontend/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class TaskAttachments extends StatelessWidget {
   final List<MAttachment> attachments;
@@ -26,12 +24,7 @@ class TaskAttachments extends StatelessWidget {
           (each) {
             if (each.type == EAttachment.image) {
               return InkWell(
-                onTap: () => Get.toNamed(
-                  AppRoutes.fullscreen,
-                  arguments: AttachmentFullscreen(
-                    attachment: each,
-                  ),
-                ),
+                onTap: () => Get.toNamed(AppRoutes.fullscreen, arguments: each),
                 child: CachedNetworkImage(
                   imageUrl: each.url!,
                   width: width,
@@ -43,24 +36,12 @@ class TaskAttachments extends StatelessWidget {
               return SizedBox(
                 width: width,
                 height: 300,
-                child: Stack(
-                  children: [
-                    SfPdfViewer.memory(
-                      each.data!,
-                      enableDoubleTapZooming: false,
-                    ),
-                    InkWell(
-                        onTap: () => Get.toNamed(
-                              AppRoutes.fullscreen,
-                              arguments: AttachmentFullscreen(
-                                attachment: each,
-                              ),
-                            ),
-                        child: SizedBox(
-                          height: 300,
-                          width: width,
-                        ))
-                  ],
+                child: InkWell(
+                  onTap: () => Get.toNamed(AppRoutes.fullscreen, arguments: each),
+                  child: CachedNetworkImage(
+                    imageUrl: each.thumbnail!,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               );
             }

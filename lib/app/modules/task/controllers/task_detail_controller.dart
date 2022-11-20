@@ -1,12 +1,9 @@
 import 'package:exceed_resources_frontend/app/modules/core/controllers/app_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/core/mixins/attachment_mixin.dart';
-import 'package:exceed_resources_frontend/app/modules/core/mock/data.dart';
+import 'package:exceed_resources_frontend/app/modules/core/mock/attachment.dart';
 import 'package:exceed_resources_frontend/app/modules/core/models/attachment_model.dart';
 import 'package:exceed_resources_frontend/app/modules/core/models/attachment_field_model.dart';
 import 'package:exceed_resources_frontend/app/modules/core/models/option_model.dart';
-import 'package:exceed_resources_frontend/app/modules/core/services/byte_response_service.dart';
-import 'package:exceed_resources_frontend/app/modules/core/utils/config.dart';
-import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/task/controllers/task_table_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/comment_text_model.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/priority_model.dart';
@@ -24,7 +21,7 @@ class TaskDetailController extends AppController with AttachmentMixin {
   final messageHasFoucus = false.obs;
   final messageAttachments = Rx<List<MAttachmentField>>([]);
   final colleagueDropdown = false.obs;
-  final attachments = Rx<List<MAttachment>>([]);
+  final attachments = Rx<List<MAttachment>>(m_attachments);
   final messageText = Rx<List<MCommentText>>([]);
   final colleagueOptions = const [
     MOption(text: 'one', value: 1),
@@ -133,46 +130,6 @@ class TaskDetailController extends AppController with AttachmentMixin {
   void updateStatus() {}
   void updatePriority() {}
   void updateComment() {}
-
-  Future<void> transformAttachments() async {
-    for (final attachment in asset_data) {
-      final fileName = RegExp(r'([^\/]*\.[a-z]{3,4})\?.*$').firstMatch(attachment)!.group(1);
-      final fileType = RegExp(r'([a-z]{3,4})$').firstMatch(fileName!)!.group(1);
-      if (imgTypes.contains(fileType)) {
-        attachments.value.add(
-          MAttachment(
-            type: EAttachment.image,
-            name: fileName,
-            url: attachment,
-          ),
-        );
-      } else if (fileType == 'pdf') {
-        attachments.value.add(
-          MAttachment(
-            type: EAttachment.pdf,
-            name: fileName,
-            data: await byteResponse(attachment),
-          ),
-        );
-      } else {
-        attachments.value.add(
-          MAttachment(
-            type: EAttachment.others,
-            name: fileName,
-            url: attachment,
-          ),
-        );
-      }
-    }
-
-    update();
-  }
-
-  @override
-  void onInit() {
-    transformAttachments();
-    super.onInit();
-  }
 
   @override
   void onClose() {

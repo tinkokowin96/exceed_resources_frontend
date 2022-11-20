@@ -1,13 +1,10 @@
 import 'package:exceed_resources_frontend/app/modules/core/layout/layout.dart';
-import 'package:exceed_resources_frontend/app/modules/core/mock/report.dart';
-import 'package:exceed_resources_frontend/app/modules/core/models/draggable_item_model.dart';
 import 'package:exceed_resources_frontend/app/modules/core/models/option_model.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/miscs.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/column.dart';
-import 'package:exceed_resources_frontend/app/modules/core/widgets/draggable.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/dropdown/dropdown.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/image_upload.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/reorderable_container.dart';

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:archive/archive_io.dart';
 import 'package:exceed_resources_frontend/app/modules/core/controllers/app_controller.dart';
+import 'package:exceed_resources_frontend/app/modules/core/mock/attachment.dart';
 import 'package:exceed_resources_frontend/app/modules/core/models/attachment_model.dart';
 import 'package:exceed_resources_frontend/app/modules/core/services/byte_response_service.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
@@ -107,11 +108,11 @@ Future<void> download({
     late final Uint8List bytes;
     late final String name;
     if (attachments.length == 1) {
-      name = attachments[0].name;
-      if (attachments[0].url == null) {
-        bytes = attachments[0].data!;
+      name = m_attachments[0].name;
+      if (m_attachments[0].url == null) {
+        bytes = m_attachments[0].data!;
       } else {
-        bytes = await byteResponse(attachments[0].url!);
+        bytes = await byteResponse(m_attachments[0].url!);
       }
     } else {
       final encoder = ZipEncoder();
@@ -145,7 +146,7 @@ Future<void> download({
     );
   }
 
-  if (attachments.length == 1 && await File('$directory/${attachments[0].name}').exists()) {
+  if (attachments.length == 1 && await File('$directory/${m_attachments[0].name}').exists()) {
     controller.showPopup(
       popupWidget: AppPopup.info(
         context: context,

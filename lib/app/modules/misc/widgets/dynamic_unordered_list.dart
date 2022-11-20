@@ -3,7 +3,6 @@ import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/column.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/container.dart';
-import 'package:exceed_resources_frontend/app/modules/core/widgets/draggable.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/reorderable_container.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/controllers/dynamic_unordered_list_controller.dart';
 import 'package:flutter/material.dart';

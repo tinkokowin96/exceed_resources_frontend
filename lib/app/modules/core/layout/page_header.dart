@@ -1,3 +1,4 @@
+import 'package:exceed_resources_frontend/app/modules/core/utils/helper.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/animated/animated_press.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
@@ -8,7 +9,13 @@ import 'package:get/get.dart';
 class PageHeader extends StatelessWidget {
   final String title;
   final Widget? headerTail;
-  const PageHeader({Key? key, required this.title, this.headerTail}) : super(key: key);
+  final Function()? backAction;
+  const PageHeader({
+    Key? key,
+    required this.title,
+    this.headerTail,
+    this.backAction,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,17 +27,27 @@ class PageHeader extends StatelessWidget {
           Align(
             alignment: Alignment.centerLeft,
             child: AppAnimatedPress(
-              onPressed: () => Get.back(),
+              onPressed: () {
+                Get.back();
+                if (backAction != null) {
+                  backAction!();
+                }
+              },
               child: const Icon(Icons.navigate_before),
             ),
           ),
           Center(
-            child: Text(
-              title,
-              style: AppTheme.text(
-                context: context,
-                size: EText.h2,
-                weight: FontWeight.w500,
+            child: SizedBox(
+              width: App.width(context) * 0.6,
+              child: Text(
+                title,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.center,
+                style: AppTheme.text(
+                  context: context,
+                  size: EText.h2,
+                  weight: FontWeight.w500,
+                ),
               ),
             ),
           ),

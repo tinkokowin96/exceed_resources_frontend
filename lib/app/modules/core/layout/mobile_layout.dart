@@ -14,6 +14,7 @@ class MobileLayout extends StatelessWidget {
   final bool noPadding;
   final String? title;
   final Widget? headerTail;
+  final Function()? backAction;
   const MobileLayout({
     Key? key,
     required this.content,
@@ -22,6 +23,7 @@ class MobileLayout extends StatelessWidget {
     required this.noPadding,
     this.title,
     this.headerTail,
+    this.backAction,
   }) : super(key: key);
 
   @override
@@ -31,7 +33,11 @@ class MobileLayout extends StatelessWidget {
       child: Column(
         children: [
           title != null
-              ? PageHeader(title: title!, headerTail: headerTail)
+              ? PageHeader(
+                  title: title!,
+                  headerTail: headerTail,
+                  backAction: backAction,
+                )
               : header
                   ? const UserHeader()
                   : AppSizeBox.zero,

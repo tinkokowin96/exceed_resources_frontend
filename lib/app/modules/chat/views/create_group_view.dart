@@ -19,8 +19,16 @@ class CreateGroupView extends GetView<CreateGroupController> {
       currentMenu: EMenu.chat,
       containerAction: () => controller.searchFocus.unfocus(),
       title: 'Create Group',
-      headerAction: controller.submitHandler,
-      headerActionText: 'Create',
+      headerTail: GestureDetector(
+        onTap: controller.submitHandler,
+        child: Text(
+          'Create',
+          style: AppTheme.text(
+            context: context,
+            weight: FontWeight.w500,
+          ),
+        ),
+      ),
       controller: controller,
       content: Padding(
         padding: const EdgeInsets.only(top: AppSize.md),

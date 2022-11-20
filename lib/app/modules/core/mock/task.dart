@@ -59,7 +59,7 @@ final taskComments = [
     commentedBy: m_colleagues[0],
     numLike: 3,
     updatedAt: DateTime.now().subtract(const Duration(hours: 15)),
-    commentAttachments: attachments,
+    commentAttachments: m_attachments,
   ),
 ];
 final tasks = [

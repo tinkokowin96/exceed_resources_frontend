@@ -1,9 +1,10 @@
 import 'package:exceed_resources_frontend/app/modules/core/controllers/app_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/core/layout/mobile_layout.dart';
+import 'package:exceed_resources_frontend/app/modules/core/layout/page_header.dart';
+import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/sizebox.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
-import 'package:exceed_resources_frontend/app/modules/core/widgets/drawer.dart';
-import 'package:exceed_resources_frontend/app/modules/core/widgets/popup.dart';
+import 'package:exceed_resources_frontend/app/modules/core/widgets/column.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:lottie/lottie.dart';
@@ -14,12 +15,11 @@ class AppLayout {
     required Widget content,
     required AppController controller,
     bool noPadding = false,
-    Function()? containerAction,
     bool header = false,
+    Function()? containerAction,
     String? title,
     Widget? headerTail,
-    Function()? headerAction,
-    String? headerActionText,
+    Function()? backAction,
   }) =>
       Layout(
         containerAction: containerAction,
@@ -31,21 +31,31 @@ class AppLayout {
           header: header,
           title: title,
           headerTail: headerTail,
+          backAction: backAction,
         ),
       );
 
   static Widget fullscreen({
     required Widget content,
     required AppController controller,
-    bool loading = false,
+    required String title,
+    Widget? headerTail,
+    Function()? backAction,
     Function()? containerAction,
-    AppPopup? popup,
-    AppDrawer? drawer,
   }) =>
       Layout(
         containerAction: containerAction,
         controller: controller,
-        child: content,
+        child: AppColumn(
+          spacing: AppSize.md,
+          children: [
+            PageHeader(
+              title: title,
+              headerTail: headerTail,
+              backAction: backAction,
+            ),
+          ],
+        ),
       );
 }
 
