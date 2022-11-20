@@ -29,7 +29,6 @@ class AppPages {
     GetPage(
       name: AppRoutes.fullscreen,
       page: () => const FullscreenView(),
-      binding: HomeBinding(),
       transitionDuration: Duration.zero,
     ),
     GetPage(

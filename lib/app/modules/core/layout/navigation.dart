@@ -82,37 +82,41 @@ class _AppNavigationState extends State<AppNavigation> with SingleTickerProvider
         child: Row(
           children: List.from(
             menuSections.map(
-              (menu) => GestureDetector(
-                onTap: () => pressedMenu(menu),
-                child: SizedBox(
-                  width: (App.width(context) - 2 * AppSize.md) / menuSections.length,
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      AnimatedBuilder(
-                        animation: _controller,
-                        builder: (BuildContext context, _) {
-                          return MenuItemText(
-                            key: UniqueKey(),
-                            menu: menu,
-                            isCurrentMenu: menu.type == _currentMenuState,
-                            opacity: _opacityAnimation.value,
-                          );
-                        },
+              (menu) => Flexible(
+                child: GestureDetector(
+                  onTap: () => pressedMenu(menu),
+                  child: LayoutBuilder(builder: (context, constraint) {
+                    return SizedBox(
+                      width: constraint.maxWidth,
+                      child: Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          AnimatedBuilder(
+                            animation: _controller,
+                            builder: (BuildContext context, _) {
+                              return MenuItemText(
+                                key: UniqueKey(),
+                                menu: menu,
+                                isCurrentMenu: menu.type == _currentMenuState,
+                                opacity: _opacityAnimation.value,
+                              );
+                            },
+                          ),
+                          AnimatedBuilder(
+                            animation: _controller,
+                            builder: (BuildContext context, _) {
+                              return MenuItemIcon(
+                                key: UniqueKey(),
+                                menu: menu,
+                                isCurrentMenu: menu.type == _currentMenuState,
+                                transform: _transformAnimation.value,
+                              );
+                            },
+                          ),
+                        ],
                       ),
-                      AnimatedBuilder(
-                        animation: _controller,
-                        builder: (BuildContext context, _) {
-                          return MenuItemIcon(
-                            key: UniqueKey(),
-                            menu: menu,
-                            isCurrentMenu: menu.type == _currentMenuState,
-                            transform: _transformAnimation.value,
-                          );
-                        },
-                      ),
-                    ],
-                  ),
+                    );
+                  }),
                 ),
               ),
             ),

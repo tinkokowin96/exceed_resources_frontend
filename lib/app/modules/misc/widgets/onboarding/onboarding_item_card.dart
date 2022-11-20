@@ -1,16 +1,20 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:chewie/chewie.dart';
+import 'package:exceed_resources_frontend/app/modules/core/layout/page_header.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
+import 'package:exceed_resources_frontend/app/modules/core/utils/helper.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/animated/animated_press.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/container.dart';
+import 'package:exceed_resources_frontend/app/modules/misc/controllers/onboarding_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/models/onboarding_model.dart';
 import 'package:exceed_resources_frontend/app/modules/core/extensions/string_extension.dart';
 import 'package:exceed_resources_frontend/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class OnboardingItemCard extends StatelessWidget {
+class OnboardingItemCard extends GetView<OnboardingController> {
   final MOnboarding data;
   const OnboardingItemCard({
     Key? key,
@@ -30,7 +34,31 @@ class OnboardingItemCard extends StatelessWidget {
       child: InkWell(
         onTap: () {
           if (data.attachment != null) {
-            Get.toNamed(AppRoutes.attachmentFullscreen, arguments: data.attachment);
+            if (data.attachment!.type == EAttachment.video) {
+              Get.toNamed(
+                AppRoutes.fullscreen,
+                arguments: SafeArea(
+                  child: Column(
+                    children: [
+                      const PageHeader(title: ''),
+                      Expanded(
+                        child: Center(
+                          child: SizedBox(
+                              width: App.width(context),
+                              height: AppSize.vpH,
+                              child: Chewie(controller: controller.getChewieController(data.attachment!.url!))),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            } else {
+              Get.toNamed(
+                AppRoutes.attachmentFullscreen,
+                arguments: data.attachment,
+              );
+            }
           }
         },
         child: Stack(
