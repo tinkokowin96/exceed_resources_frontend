@@ -1,5 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:exceed_resources_frontend/app/modules/core/controllers/fullscreen_controller.dart';
+import 'package:exceed_resources_frontend/app/modules/core/controllers/attachment_fullscreen_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/core/layout/layout.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/sizebox.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
@@ -25,19 +25,17 @@ class AttachmentFullscreenView extends GetView<AttachmentFullscreenController> {
         ),
         backAction: () => Get.delete<AttachmentFullscreenController>(),
         controller: controller,
-        content: Obx(
-          () {
-            if (controller.attachment.type == EAttachment.image) {
-              return CachedNetworkImage(
-                imageUrl: controller.attachment.url!,
-                width: App.width(context),
-              );
-            } else if (controller.pdfAttachment.value != null) {
-              return SfPdfViewer.memory(controller.pdfAttachment.value!);
-            } else {
-              return AppSizeBox.zero;
-            }
-          },
-        ),
+        content: controller.attachment.type == EAttachment.image
+            ? CachedNetworkImage(imageUrl: controller.attachment.url!, width: App.width(context))
+            : controller.attachment.type == EAttachment.pdf
+                ? Obx(
+                    () => controller.pdfAttachment.value != null
+                        ? SfPdfViewer.memory(controller.pdfAttachment.value!)
+                        : CachedNetworkImage(
+                            imageUrl: controller.attachment.thumbnail!,
+                            width: App.width(context),
+                          ),
+                  )
+                : AppSizeBox.zero,
       );
 }

@@ -24,16 +24,19 @@ class PageHeader extends StatelessWidget {
       child: Stack(
         alignment: Alignment.center,
         children: [
-          Align(
-            alignment: Alignment.centerLeft,
-            child: AppAnimatedPress(
-              onPressed: () {
-                Get.back();
-                if (backAction != null) {
-                  backAction!();
-                }
-              },
-              child: const Icon(Icons.navigate_before),
+          Padding(
+            padding: const EdgeInsets.only(left: AppSize.sm),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: AppAnimatedPress(
+                onPressed: () {
+                  Get.back();
+                  if (backAction != null) {
+                    backAction!();
+                  }
+                },
+                child: const Icon(Icons.navigate_before),
+              ),
             ),
           ),
           Center(
@@ -51,7 +54,11 @@ class PageHeader extends StatelessWidget {
               ),
             ),
           ),
-          if (headerTail != null) Align(alignment: Alignment.centerRight, child: headerTail!)
+          if (headerTail != null)
+            Padding(
+              padding: const EdgeInsets.only(right: AppSize.sm),
+              child: Align(alignment: Alignment.centerRight, child: headerTail!),
+            )
         ],
       ),
     );

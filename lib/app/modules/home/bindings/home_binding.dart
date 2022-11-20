@@ -1,4 +1,4 @@
-import 'package:exceed_resources_frontend/app/modules/core/controllers/fullscreen_controller.dart';
+import 'package:exceed_resources_frontend/app/modules/core/controllers/attachment_fullscreen_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/home/controllers/home_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/controllers/onboarding_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/task/controllers/task_table_controller.dart';

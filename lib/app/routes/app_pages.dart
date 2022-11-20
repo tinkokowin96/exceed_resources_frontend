@@ -1,4 +1,5 @@
 import 'package:exceed_resources_frontend/app/modules/core/utils/config.dart';
+import 'package:exceed_resources_frontend/app/modules/core/views/attachment_fullscreen_view.dart';
 import 'package:exceed_resources_frontend/app/modules/core/views/fullscreen_view.dart';
 import 'package:exceed_resources_frontend/app/modules/home/bindings/home_binding.dart';
 import 'package:exceed_resources_frontend/app/routes/chat_pages.dart';
@@ -28,6 +29,12 @@ class AppPages {
     GetPage(
       name: AppRoutes.fullscreen,
       page: () => const FullscreenView(),
+      binding: HomeBinding(),
+      transitionDuration: Duration.zero,
+    ),
+    GetPage(
+      name: AppRoutes.attachmentFullscreen,
+      page: () => const AttachmentFullscreenView(),
       binding: HomeBinding(),
       transitionDuration: Duration.zero,
     ),

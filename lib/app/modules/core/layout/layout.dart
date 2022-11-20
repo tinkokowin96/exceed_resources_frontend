@@ -46,14 +46,18 @@ class AppLayout {
       Layout(
         containerAction: containerAction,
         controller: controller,
-        child: AppColumn(
-          spacing: AppSize.md,
+        child: Column(
           children: [
             PageHeader(
               title: title,
               headerTail: headerTail,
               backAction: backAction,
             ),
+            Expanded(
+                child: Padding(
+              padding: const EdgeInsets.only(top: AppSize.sm),
+              child: content,
+            ))
           ],
         ),
       );

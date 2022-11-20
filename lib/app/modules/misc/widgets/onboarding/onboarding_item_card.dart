@@ -6,7 +6,9 @@ import 'package:exceed_resources_frontend/app/modules/core/widgets/animated/anim
 import 'package:exceed_resources_frontend/app/modules/core/widgets/container.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/models/onboarding_model.dart';
 import 'package:exceed_resources_frontend/app/modules/core/extensions/string_extension.dart';
+import 'package:exceed_resources_frontend/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class OnboardingItemCard extends StatelessWidget {
   final MOnboarding data;
@@ -27,15 +29,8 @@ class OnboardingItemCard extends StatelessWidget {
     return SizedBox(
       child: InkWell(
         onTap: () {
-          final arguments = {
-            'title': '',
-            'headerTail': AppAnimatedPress(
-              onPressed: () => null,
-              child: const Icon(Icons.download),
-            ),
-          };
-          if (type == 'Image') {
-            arguments['contents'] = CachedNetworkImage(imageUrl: data.attachment!.url!);
+          if (data.attachment != null) {
+            Get.toNamed(AppRoutes.attachmentFullscreen, arguments: data.attachment);
           }
         },
         child: Stack(

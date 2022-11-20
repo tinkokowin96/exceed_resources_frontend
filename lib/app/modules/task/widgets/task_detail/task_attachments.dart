@@ -24,7 +24,7 @@ class TaskAttachments extends StatelessWidget {
           (each) {
             if (each.type == EAttachment.image) {
               return InkWell(
-                onTap: () => Get.toNamed(AppRoutes.fullscreen, arguments: each),
+                onTap: () => Get.toNamed(AppRoutes.attachmentFullscreen, arguments: each),
                 child: CachedNetworkImage(
                   imageUrl: each.url!,
                   width: width,
@@ -37,7 +37,7 @@ class TaskAttachments extends StatelessWidget {
                 width: width,
                 height: 300,
                 child: InkWell(
-                  onTap: () => Get.toNamed(AppRoutes.fullscreen, arguments: each),
+                  onTap: () => Get.toNamed(AppRoutes.attachmentFullscreen, arguments: each),
                   child: CachedNetworkImage(
                     imageUrl: each.thumbnail!,
                     fit: BoxFit.cover,
