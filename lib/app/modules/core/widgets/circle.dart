@@ -7,7 +7,7 @@ import 'package:flutter_svg/svg.dart';
 class AppCircle {
   static Widget container({
     required double width,
-    required Widget child,
+    Widget? child,
     Color? color,
     Function()? onPressed,
   }) =>

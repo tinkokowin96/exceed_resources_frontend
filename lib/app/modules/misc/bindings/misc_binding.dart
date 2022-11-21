@@ -1,4 +1,5 @@
 import 'package:exceed_resources_frontend/app/modules/misc/controllers/add_event_controller.dart';
+import 'package:exceed_resources_frontend/app/modules/misc/controllers/article_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/controllers/calender_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/controllers/colleague_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/controllers/colleague_detail_controller.dart';
@@ -18,6 +19,7 @@ class MiscBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<MiscController>(() => MiscController());
+    Get.lazyPut<ArticleController>(() => ArticleController());
     Get.lazyPut<AddEventController>(() => AddEventController());
     Get.lazyPut<CalenderController>(() => CalenderController());
     Get.lazyPut<ColleagueDetailController>(() => ColleagueDetailController());

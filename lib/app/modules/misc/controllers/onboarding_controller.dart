@@ -1,12 +1,9 @@
 import 'package:chewie/chewie.dart';
 import 'package:exceed_resources_frontend/app/modules/core/controllers/app_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/core/mixins/attachment_mixin.dart';
-import 'package:exceed_resources_frontend/app/modules/core/mock/data.dart';
 import 'package:exceed_resources_frontend/app/modules/core/mock/onboarding.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
-import 'package:exceed_resources_frontend/app/routes/app_pages.dart';
 import 'package:exceed_resources_frontend/app/routes/home_routes.dart';
-import 'package:exceed_resources_frontend/app/routes/misc_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:video_player/video_player.dart';

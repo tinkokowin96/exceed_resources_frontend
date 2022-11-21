@@ -1,6 +1,7 @@
 abstract class MiscRoutes {
   MiscRoutes._();
   static const misc = '/misc';
+  static const article = '/article';
   static const addEvent = '/addEvent';
   static const calender = '/calender';
   static const colleagueDetail = '/colleagueDetail';

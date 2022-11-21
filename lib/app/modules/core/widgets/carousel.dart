@@ -2,6 +2,7 @@ import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/sizebox.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/config.dart';
+import 'package:exceed_resources_frontend/app/modules/core/widgets/circle.dart';
 import 'package:flutter/material.dart';
 
 class AppCarousel extends StatefulWidget {
@@ -100,26 +101,14 @@ class ActiveIndicator extends StatelessWidget {
             child: Stack(
               alignment: Alignment.center,
               children: [
-                DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: AppTheme.of(context).color.container,
-                    borderRadius: BorderRadius.circular(AppSize.aiw / 2),
-                  ),
-                  child: const SizedBox(
-                    width: AppSize.aiw,
-                    height: AppSize.aiw,
-                  ),
+                AppCircle.container(
+                  width: AppSize.aiw,
+                  color: AppTheme.of(context).color.idle.withOpacity(0.1),
                 ),
-                DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: index == activePage ? AppTheme.of(context).color.secondary : Colors.white,
-                    borderRadius: BorderRadius.circular(AppSize.aii / 2),
-                  ),
-                  child: const SizedBox(
-                    width: AppSize.aii,
-                    height: AppSize.aii,
-                  ),
-                )
+                AppCircle.container(
+                  width: AppSize.aii,
+                  color: index == activePage ? AppTheme.of(context).color.secondary : Colors.white,
+                ),
               ],
             ),
           ),

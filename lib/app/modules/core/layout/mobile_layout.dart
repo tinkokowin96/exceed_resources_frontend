@@ -2,7 +2,6 @@ import 'package:exceed_resources_frontend/app/modules/core/layout/content.dart';
 import 'package:exceed_resources_frontend/app/modules/core/layout/page_header.dart';
 import 'package:exceed_resources_frontend/app/modules/core/layout/user_header.dart';
 import 'package:exceed_resources_frontend/app/modules/core/layout/navigation.dart';
-import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/sizebox.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:flutter/material.dart';
@@ -28,23 +27,20 @@ class MobileLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: noPadding ? 0 : AppSize.md),
-      child: Column(
-        children: [
-          title != null
-              ? PageHeader(
-                  title: title!,
-                  headerTail: headerTail,
-                  backAction: backAction,
-                )
-              : header
-                  ? const UserHeader()
-                  : AppSizeBox.zero,
-          AppContent(child: content),
-          AppNavigation(currentMenu: currentMenu),
-        ],
-      ),
+    return Column(
+      children: [
+        title != null
+            ? PageHeader(
+                title: title!,
+                headerTail: headerTail,
+                backAction: backAction,
+              )
+            : header
+                ? const UserHeader()
+                : AppSizeBox.zero,
+        AppContent(noPadding: noPadding, child: content),
+        AppNavigation(currentMenu: currentMenu),
+      ],
     );
   }
 }
