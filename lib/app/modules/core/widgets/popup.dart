@@ -1,5 +1,6 @@
 import 'package:exceed_resources_frontend/app/modules/core/controllers/app_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
+import 'package:exceed_resources_frontend/app/modules/core/theme/miscs.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/sizebox.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
@@ -114,28 +115,31 @@ class _AppPopupState extends State<AppPopup> with SingleTickerProviderStateMixin
                       : _transfromAnimation3.value,
             ),
             child: Center(
-              child: AppContainer(
-                background: AppTheme.of(context).color.container,
-                padding: AppSize.md,
-                width: App.width(context) * 0.9,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    widget.child,
-                    Padding(
-                      padding: const EdgeInsets.only(top: AppSize.md),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          AppButton(onPressed: () => exit(), text: widget.confirmText),
-                          AppSizeBox.md,
-                          widget.cancel
-                              ? AppButton(onPressed: () => exit(confirm: false), text: 'Cancel')
-                              : AppSizeBox.zero,
-                        ],
+              child: DecoratedBox(
+                decoration: BoxDecoration(boxShadow: [AppThemeMiscs.shadow2]),
+                child: AppContainer(
+                  background: AppTheme.of(context).color.container,
+                  padding: AppSize.md,
+                  width: App.width(context) * 0.9,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      widget.child,
+                      Padding(
+                        padding: const EdgeInsets.only(top: AppSize.md),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            AppButton(onPressed: () => exit(), text: widget.confirmText),
+                            AppSizeBox.md,
+                            widget.cancel
+                                ? AppButton(onPressed: () => exit(confirm: false), text: 'Cancel')
+                                : AppSizeBox.zero,
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),

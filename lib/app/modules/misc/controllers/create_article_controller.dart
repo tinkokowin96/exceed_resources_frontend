@@ -4,7 +4,7 @@ import 'package:exceed_resources_frontend/app/modules/core/models/dynamic_field_
 import 'package:exceed_resources_frontend/app/modules/core/theme/miscs.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
-import 'package:exceed_resources_frontend/app/modules/core/widgets/image_upload.dart';
+import 'package:exceed_resources_frontend/app/modules/core/widgets/upload_attachment.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/controllers/dynamic_unordered_list_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/widgets/dynamic_unordered_list.dart';
 import 'package:flutter/material.dart';
@@ -26,8 +26,7 @@ class CreateArticleController extends AppController with DynamicListMixin {
       case EDynamicField.image:
         fieldWidget = Stack(
           children: [
-            ImageUpload(
-              placeHolder: 'assets/images/img_ph_ind_full.svg',
+            UploadAttachment(
               width: formWidth,
               height: AppSize.imgfeH,
               pickFile: (image) => null,

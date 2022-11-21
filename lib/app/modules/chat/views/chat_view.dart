@@ -52,7 +52,6 @@ class ChatView extends GetView<ChatController> {
                                     Get.toNamed(ChatRoutes.createGroup);
                                   }
                                 },
-                                size: const Size(AppSize.btnWSm, AppSize.btnHMd),
                                 text: each.type == EChat.groups ? 'Create' : 'New',
                               )
                             : AppSizeBox.zero,

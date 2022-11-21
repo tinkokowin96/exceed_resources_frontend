@@ -44,29 +44,29 @@ class AppSwitch extends StatelessWidget {
       ..scene(duration: const Duration(milliseconds: 600)).tween(
         'background',
         ColorTween(
-          begin: activeBackground ?? Colors.white,
-          end: inactiveBackground ?? Colors.white,
+          begin: inactiveBackground ?? Colors.white,
+          end: activeBackground ?? Colors.white,
         ),
       )
       ..scene(duration: const Duration(milliseconds: 600)).tween(
         'border',
         ColorTween(
-          begin: activeBorder ?? AppTheme.of(context).color.secondary,
-          end: inactiveBorder ?? AppTheme.of(context).color.secondary,
+          begin: inactiveBorder ?? AppTheme.of(context).color.secondary,
+          end: activeBorder ?? AppTheme.of(context).color.secondary,
         ),
       )
       ..scene(duration: const Duration(milliseconds: 600)).tween(
         'iconBackground',
         ColorTween(
-          begin: activeIconBackground ?? AppTheme.of(context).color.secondary,
-          end: inactiveIconBackground ?? AppTheme.of(context).color.secondary,
+          begin: inactiveIconBackground ?? AppTheme.of(context).color.secondary,
+          end: activeIconBackground ?? AppTheme.of(context).color.secondary,
         ),
       )
       ..scene(duration: const Duration(milliseconds: 600)).tween(
         'iconColor',
         ColorTween(
-          begin: activeIconColor ?? Colors.white,
-          end: inactiveIconColor ?? Colors.white,
+          begin: inactiveIconColor ?? Colors.white,
+          end: activeIconColor ?? Colors.white,
         ),
       )
       ..scene(duration: const Duration(milliseconds: 300)).tween(

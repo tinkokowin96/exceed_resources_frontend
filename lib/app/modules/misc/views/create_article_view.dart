@@ -6,7 +6,7 @@ import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/column.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/dropdown/dropdown.dart';
-import 'package:exceed_resources_frontend/app/modules/core/widgets/image_upload.dart';
+import 'package:exceed_resources_frontend/app/modules/core/widgets/upload_attachment.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/reorderable_container.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/row.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/controllers/create_article_controller.dart';
@@ -35,8 +35,7 @@ class CreateArticleView extends GetView<CreateArticleController> {
                   hintText: 'Title *',
                 ),
               ),
-              ImageUpload(
-                placeHolder: 'assets/images/img_ph_ind_full.svg',
+              UploadAttachment(
                 width: constraint.maxWidth,
                 height: AppSize.imgfeH,
                 pickFile: (image) => null,

@@ -61,7 +61,7 @@ class AppSize {
 
   //card
   //onboarding
-  static const obcard = 120.0;
-  static const obcatW = 50.0; //onboarding card category width
-  static const obcatH = 25.0; //onboarding card category height
+  static const imgCard = 120.0;
+  static const imgCatW = 50.0; //image card category width
+  static const imgCatH = 24.0; //image card category height
 }
