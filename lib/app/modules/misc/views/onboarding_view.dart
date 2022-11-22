@@ -47,6 +47,7 @@ class OnboardingView extends GetView<OnboardingController> {
       ),
       content: Obx(
         () {
+          final permissionMode = controller.permissionMode.isTrue;
           return AppColumn(
             spacing: AppSize.md,
             mainAxisSize: MainAxisSize.max,
@@ -74,32 +75,29 @@ class OnboardingView extends GetView<OnboardingController> {
                                   spacing: AppSize.sm,
                                   runSpacing: AppSize.sm,
                                   children: [
-                                    Obx(
-                                      () => controller.permissionMode.isFalse
-                                          ? AppAnimatedPress(
-                                              onPressed: controller.createOnboarding,
-                                              child: Stack(
-                                                alignment: Alignment.center,
-                                                children: [
-                                                  DecoratedBox(
-                                                    decoration: BoxDecoration(
-                                                      borderRadius: BorderRadius.circular(AppSize.xs),
-                                                      border: Border.all(color: AppTheme.of(context).color.secondary),
-                                                    ),
-                                                    child: const SizedBox(
-                                                      width: AppSize.imgCard,
-                                                      height: AppSize.imgCard,
-                                                    ),
-                                                  ),
-                                                  SvgPicture.asset(
-                                                    'assets/icons/add.svg',
-                                                    width: AppSize.icoMd,
-                                                  ),
-                                                ],
+                                    if (!permissionMode)
+                                      AppAnimatedPress(
+                                        onPressed: controller.createOnboarding,
+                                        child: Stack(
+                                          alignment: Alignment.center,
+                                          children: [
+                                            DecoratedBox(
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(AppSize.xs),
+                                                border: Border.all(color: AppTheme.of(context).color.secondary),
                                               ),
-                                            )
-                                          : AppSizeBox.zero,
-                                    ),
+                                              child: const SizedBox(
+                                                width: AppSize.imgCard,
+                                                height: AppSize.imgCard,
+                                              ),
+                                            ),
+                                            SvgPicture.asset(
+                                              'assets/icons/add.svg',
+                                              width: AppSize.icoMd,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
                                     ...List.from(
                                       controller.data.map(
                                         (each) {
@@ -177,7 +175,6 @@ class OnboardingView extends GetView<OnboardingController> {
                 () {
                   final selectedNotEmpty =
                       controller.selectedOnboardings.value.values.where((each) => each == true).isNotEmpty;
-                  final permissionMode = controller.permissionMode.isTrue;
                   if (selectedNotEmpty && permissionMode) {
                     return AppButton(onPressed: () {}, text: 'Update Permissions');
                   } else {

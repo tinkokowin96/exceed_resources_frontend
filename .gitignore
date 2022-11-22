@@ -46,3 +46,6 @@ app.*.map.json
 # Freezed
 *.freezed.dart
 *.g.dart
+
+# mock
+/lib/app/modules/core/mock/*

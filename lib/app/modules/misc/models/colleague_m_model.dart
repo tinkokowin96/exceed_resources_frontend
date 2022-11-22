@@ -11,6 +11,9 @@ class MColleagueM with _$MColleagueM {
     required String name,
     required String image,
     @JsonKey(name: 'position_name') required String positionName,
+    double? salary,
+    String? departmentId,
+    @JsonKey(name: 'department_name') String? departmentName,
     ColleagueStatusM? status,
   }) = _MColleagueM;
 
