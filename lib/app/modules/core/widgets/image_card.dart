@@ -34,13 +34,13 @@ class ImageCard extends StatelessWidget {
               child: CachedNetworkImage(
                 imageUrl: image,
                 fit: BoxFit.cover,
-                width: AppSize.imgCard,
-                height: AppSize.imgCard,
+                width: AppSize.cardWSm,
+                height: AppSize.cardWSm,
               ),
             ),
             const AppContainer(
-              width: AppSize.imgCard,
-              height: AppSize.imgCard,
+              width: AppSize.cardWSm,
+              height: AppSize.cardWSm,
               borderRadius: AppSize.xs,
               gradient: LinearGradient(
                 begin: Alignment.bottomCenter,
@@ -60,8 +60,8 @@ class ImageCard extends StatelessWidget {
                     ),
                   ),
                   child: SizedBox(
-                    width: AppSize.imgCatW,
-                    height: AppSize.imgCatH,
+                    width: AppSize.cardcatW,
+                    height: AppSize.cardcatH,
                     child: Center(
                       child: Text(
                         category!,
@@ -79,7 +79,7 @@ class ImageCard extends StatelessWidget {
             Positioned(
               bottom: AppSize.sm,
               child: SizedBox(
-                width: AppSize.imgCard,
+                width: AppSize.cardWSm,
                 child: Text(
                   name,
                   overflow: TextOverflow.ellipsis,

@@ -1,5 +1,5 @@
 import 'package:exceed_resources_frontend/app/modules/chat/controllers/chat_detail_controller.dart';
-import 'package:exceed_resources_frontend/app/modules/chat/widgets/message_overview.dart';
+import 'package:exceed_resources_frontend/app/modules/misc/widgets/colleague_item.dart';
 import 'package:exceed_resources_frontend/app/modules/core/layout/layout.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/miscs.dart';
@@ -67,7 +67,7 @@ class ChatDetailView extends GetView<ChatDetailController> {
                               key: const ValueKey('colleague_expend'),
                               children: List.from(
                                 controller.chatDetail.value.colleagues.map(
-                                  (colleague) => MessageOverview(
+                                  (colleague) => ColleagueItem(
                                     image: colleague.image,
                                     name: colleague.name,
                                     description: colleague.positionName,
@@ -112,7 +112,7 @@ class ChatDetailView extends GetView<ChatDetailController> {
                               key: const ValueKey('pin_expend'),
                               children: List.from(
                                 controller.chatDetail.value.pinMessages.map(
-                                  (message) => MessageOverview(
+                                  (message) => ColleagueItem(
                                     image: message.colleague!.image,
                                     name: message.colleague!.name,
                                     description: message.colleague!.positionName,

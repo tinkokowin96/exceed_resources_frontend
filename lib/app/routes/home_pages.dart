@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 final List<GetPage<dynamic>> homeRoutes = [
   GetPage(
     name: HomeRoutes.home,
-    // page: () => const Test(),
     page: () => const OnboardingView(),
     // page: () => const HomeView(),
     binding: HomeBinding(),

@@ -6,6 +6,7 @@ part 'chat_conversation_m_model.g.dart';
 @freezed
 class MChatConversationM with _$MChatConversationM {
   factory MChatConversationM({
+    String? id,
     required String image,
     required String name,
     @JsonKey(name: 'num_unread') required int numUnread,

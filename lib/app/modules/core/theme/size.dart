@@ -27,6 +27,10 @@ class AppSize {
   static const staW = 70.0;
   static const staH = 24.0;
 
+  //field
+  static const ffeMd = 160.0;
+  static const ftitle = 100.0; //filter title width
+
   //miscs
   static const fotH = 50.0; //footer height
   static const heH = 220.0; //home event section height
@@ -43,12 +47,12 @@ class AppSize {
   static const tblh = 40.0; //heading height
   static const tblc = 200.0; //table column max width
 
-  //project card
+  //project cardWSm
   static const pcW = 200.0;
   static const pcH = 100.0;
   static const pcnW = 150.0;
   static const pcsW = 50.0;
-  static const pccwW = 14.0; //project card circle wrapper width
+  static const pccwW = 14.0; //project cardWSm circle wrapper width
   static const pccW = 12.0;
 
   //circle
@@ -59,9 +63,11 @@ class AppSize {
   static const cLg = 50.0;
   static const cXl = 70.0;
 
-  //card
+  //cardWSm
   //onboarding
-  static const imgCard = 120.0;
-  static const imgCatW = 50.0; //image card category width
-  static const imgCatH = 24.0; //image card category height
+  static const cardWSm = 120.0;
+  static const cardWMd = 180.0;
+  static const cardH = 80.0;
+  static const cardcatW = 50.0; //image card category width
+  static const cardcatH = 24.0; //image card category height
 }

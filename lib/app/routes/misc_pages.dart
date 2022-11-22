@@ -6,6 +6,7 @@ import 'package:exceed_resources_frontend/app/modules/misc/views/colleague_view.
 import 'package:exceed_resources_frontend/app/modules/misc/views/create_article_view.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/views/late_view.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/views/leave_view.dart';
+import 'package:exceed_resources_frontend/app/modules/misc/views/onboarding_permission_view.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/views/onboarding_view.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/views/organization_structure_view.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/views/overtime_view.dart';
@@ -22,6 +23,18 @@ final List<GetPage<dynamic>> miscRoutes = [
   GetPage(
     name: MiscRoutes.misc,
     page: () => const MiscView(),
+    binding: MiscBinding(),
+    transitionDuration: Duration.zero,
+  ),
+  GetPage(
+    name: MiscRoutes.onboarding,
+    page: () => const OnboardingView(),
+    binding: MiscBinding(),
+    transitionDuration: Duration.zero,
+  ),
+  GetPage(
+    name: MiscRoutes.onboardingPermission,
+    page: () => const OnboardingPermissionView(),
     binding: MiscBinding(),
     transitionDuration: Duration.zero,
   ),
@@ -64,12 +77,6 @@ final List<GetPage<dynamic>> miscRoutes = [
   GetPage(
     name: MiscRoutes.leave,
     page: () => const LeaveView(),
-    binding: MiscBinding(),
-    transitionDuration: Duration.zero,
-  ),
-  GetPage(
-    name: MiscRoutes.onboarding,
-    page: () => const OnboardingView(),
     binding: MiscBinding(),
     transitionDuration: Duration.zero,
   ),

@@ -1,5 +1,5 @@
 import 'package:exceed_resources_frontend/app/modules/chat/controllers/chat_group_controller.dart';
-import 'package:exceed_resources_frontend/app/modules/chat/widgets/message_overview.dart';
+import 'package:exceed_resources_frontend/app/modules/misc/widgets/colleague_item.dart';
 import 'package:exceed_resources_frontend/app/modules/core/layout/layout.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
@@ -60,7 +60,7 @@ class ChatView extends GetView<ChatController> {
                                 key: ValueKey('${each.type.name}_expand'),
                                 children: List.from(
                                   each.chatConversations.map(
-                                    (conversation) => MessageOverview(
+                                    (conversation) => ColleagueItem(
                                       image: conversation.image,
                                       name: conversation.name,
                                       numUnread: conversation.numUnread,

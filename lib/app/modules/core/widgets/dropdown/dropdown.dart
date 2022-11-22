@@ -6,6 +6,7 @@ import 'package:exceed_resources_frontend/app/modules/core/theme/miscs.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/button/text_button.dart';
+import 'package:exceed_resources_frontend/app/modules/core/widgets/column.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/container.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -18,6 +19,7 @@ class AppDropdown extends StatefulWidget {
   final bool noPadding;
   final bool loading;
   final EText textSize;
+  final InputDecoration? decoration;
   final bool? attach;
   final TextEditingController? dropdownController;
   final String? hint;
@@ -38,6 +40,7 @@ class AppDropdown extends StatefulWidget {
     this.noPadding = false,
     this.isMulti = false,
     this.textSize = EText.h3,
+    this.decoration,
     this.dropdownController,
     this.attach,
     this.hint,
@@ -205,21 +208,23 @@ class _AppDropdownState extends State<AppDropdown> {
   Widget build(BuildContext context) {
     return CompositedTransformTarget(
       link: _layerLink,
-      child: widget.customSelector != null
-          ? GestureDetector(
-              onTap: () => widget.attach != null ? null : showDropdown(!_showDropdown),
-              child: widget.customSelector,
-            )
-          : Focus(
+      child: widget.customSelector == null
+          ? Focus(
               onFocusChange: (hasFocus) => showDropdown(hasFocus),
               child: TextFormField(
                 controller: widget.dropdownController,
                 focusNode: _focusNode,
                 readOnly: !widget.searchable,
+                style: AppTheme.text(context: context),
+                textAlignVertical: TextAlignVertical.center,
                 onChanged: (value) => {debounceSearch(value)},
                 validator: (String? value) => widget.validator != null ? widget.validator!(value) : null,
-                decoration: AppThemeMiscs.inputStyle(context: context, hintText: widget.hint),
+                decoration: widget.decoration ?? AppThemeMiscs.inputStyle(context: context, hintText: widget.hint),
               ),
+            )
+          : GestureDetector(
+              onTap: () => widget.attach != null ? null : showDropdown(!_showDropdown),
+              child: widget.customSelector,
             ),
     );
   }
@@ -273,73 +278,76 @@ class DopdownItems extends StatelessWidget {
                     ),
                   ),
                 ] else ...[
-                  SizedBox(
-                    height: AppSize.dH,
-                    child: ListView.builder(
-                      itemCount: items.length,
-                      padding: EdgeInsets.zero,
-                      itemBuilder: (BuildContext context, int index) => !isMulti
-                          ? Padding(
-                              padding: const EdgeInsets.only(bottom: AppSize.sm),
-                              child: InkWell(
-                                onTap: () => selectDropdownHandler(
-                                  value: items[index],
-                                ),
-                                child: AppContainer(
-                                  borderRadius: 0,
-                                  background: AppTheme.of(context).color.secondary.withOpacity(0.05),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Expanded(
-                                        child: Align(
-                                          alignment:
-                                              items[index].category != null ? Alignment.centerLeft : Alignment.center,
-                                          child: Text(
-                                            items[index].text,
-                                            style: AppTheme.text(
-                                                context: context, size: textSize, type: ETextType.primary),
-                                          ),
+                  ConstrainedBox(
+                    constraints: const BoxConstraints(maxHeight: AppSize.dH),
+                    child: SingleChildScrollView(
+                      child: AppColumn(
+                        spacing: AppSize.sm,
+                        children: List.from(
+                          items.map(
+                            (each) => !isMulti
+                                ? Padding(
+                                    padding: const EdgeInsets.only(bottom: AppSize.sm),
+                                    child: InkWell(
+                                      onTap: () => selectDropdownHandler(
+                                        value: each,
+                                      ),
+                                      child: AppContainer(
+                                        borderRadius: 0,
+                                        background: AppTheme.of(context).color.secondary.withOpacity(0.05),
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Expanded(
+                                              child: Align(
+                                                alignment:
+                                                    each.category != null ? Alignment.centerLeft : Alignment.center,
+                                                child: Text(
+                                                  each.text,
+                                                  style: AppTheme.text(
+                                                      context: context, size: textSize, type: ETextType.primary),
+                                                ),
+                                              ),
+                                            ),
+                                            if (each.category != null)
+                                              ColoredBox(
+                                                color: AppTheme.of(context).color.primary.withOpacity(0.2),
+                                                child: Text(
+                                                  each.category!,
+                                                  style: AppTheme.text(
+                                                      size: textSize, context: context, type: ETextType.primary),
+                                                ),
+                                              )
+                                          ],
                                         ),
                                       ),
-                                      if (items[index].category != null)
-                                        ColoredBox(
-                                          color: AppTheme.of(context).color.primary.withOpacity(0.2),
-                                          child: Text(
-                                            items[index].category!,
-                                            style: AppTheme.text(
-                                                size: textSize, context: context, type: ETextType.primary),
-                                          ),
-                                        )
+                                    ),
+                                  )
+                                : Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Expanded(
+                                        child: Text(
+                                          each.text,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: AppTheme.text(context: context, size: textSize),
+                                        ),
+                                      ),
+                                      Checkbox(
+                                        fillColor: MaterialStateProperty.all<Color>(
+                                          AppTheme.of(context).color.secondary,
+                                        ),
+                                        value: selected.contains(each.text),
+                                        onChanged: (value) => selectDropdownHandler(
+                                          value: each,
+                                          checked: value,
+                                        ),
+                                      ),
                                     ],
                                   ),
-                                ),
-                              ),
-                            )
-                          : Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: AppSize.md,
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    items[index].text,
-                                    style: AppTheme.text(context: context, size: textSize),
-                                  ),
-                                  Checkbox(
-                                    fillColor: MaterialStateProperty.all<Color>(
-                                      AppTheme.of(context).color.primary,
-                                    ),
-                                    value: selected.contains(items[index].text),
-                                    onChanged: (value) => selectDropdownHandler(
-                                      value: items[index],
-                                      checked: value,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ],

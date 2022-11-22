@@ -16,6 +16,11 @@ class AppThemeMiscs {
     spreadRadius: 1,
     blurRadius: 10,
   );
+  static final shadow3 = BoxShadow(
+    color: Colors.black.withOpacity(0.08),
+    spreadRadius: 1,
+    blurRadius: 5,
+  );
 
   static inputStyle({
     required BuildContext context,
@@ -29,7 +34,7 @@ class AppThemeMiscs {
   }) =>
       InputDecoration(
         isCollapsed: true,
-        contentPadding: const EdgeInsets.all(AppSize.fep),
+        contentPadding: EdgeInsets.all(style == EInputStyle.line ? 0 : AppSize.fep),
         hintText: hintText,
         filled: style == EInputStyle.line ? false : true,
         fillColor: color == EInputColor.primary

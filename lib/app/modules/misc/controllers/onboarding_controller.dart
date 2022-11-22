@@ -2,6 +2,7 @@ import 'package:chewie/chewie.dart';
 import 'package:exceed_resources_frontend/app/modules/core/controllers/app_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/core/mixins/attachment_mixin.dart';
 import 'package:exceed_resources_frontend/app/modules/core/mock/onboarding.dart';
+import 'package:exceed_resources_frontend/app/modules/core/models/option_model.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
@@ -21,7 +22,8 @@ class OnboardingController extends AppController with AttachmentMixin {
   final permissionMode = false.obs;
   final createArticleFormKey = GlobalKey<FormState>();
   final attachmentNameController = TextEditingController();
-  final selectedOnboardings = Rx<Map<String, bool>>({});
+//   final selectedOnboardings = Rx<Map<String, bool>>({});
+  final selectedOnboardings = Rx<Map<String, String?>>({});
   final attachmentTypes = [
     Padding(
       padding: const EdgeInsets.symmetric(horizontal: AppSize.sm),
@@ -53,8 +55,7 @@ class OnboardingController extends AppController with AttachmentMixin {
         OptionItem(
           onTap: () {
             chewieController!.pause();
-            Get.toNamed(HomeRoutes.home);
-            // Get.toNamed(MiscRoutes.onboarding);
+            Get.toNamed(MiscRoutes.onboarding);
             SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
           },
           iconData: Icons.chevron_left,
@@ -131,17 +132,28 @@ class OnboardingController extends AppController with AttachmentMixin {
     permissionMode.refresh();
   }
 
-  void updateOnboardingSelect(String id, bool? value) {
+  void updateOnboardingSelect(String id, bool? value, String? name) {
     if (value != null) {
-      selectedOnboardings.value[id] = value;
+      selectedOnboardings.value[id] = name;
       selectedOnboardings.refresh();
     }
+  }
+
+  void updatePermission() {
+    Get.toNamed(
+      MiscRoutes.onboardingPermission,
+      arguments: List.from(
+        selectedOnboardings.value.entries.where((each) => each.value != null).map(
+              (item) => MOption(text: item.value!, value: item.key),
+            ),
+      ),
+    );
   }
 
   @override
   void onInit() {
     for (final onboarding in m_onbardings) {
-      selectedOnboardings.value[onboarding.id] = false;
+      selectedOnboardings.value[onboarding.id] = null;
     }
     selectedOnboardings.refresh();
     super.onInit();

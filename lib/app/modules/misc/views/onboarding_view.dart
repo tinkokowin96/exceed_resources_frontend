@@ -87,8 +87,8 @@ class OnboardingView extends GetView<OnboardingController> {
                                                 border: Border.all(color: AppTheme.of(context).color.secondary),
                                               ),
                                               child: const SizedBox(
-                                                width: AppSize.imgCard,
-                                                height: AppSize.imgCard,
+                                                width: AppSize.cardWSm,
+                                                height: AppSize.cardWSm,
                                               ),
                                             ),
                                             SvgPicture.asset(
@@ -117,10 +117,18 @@ class OnboardingView extends GetView<OnboardingController> {
                                               name: name,
                                               category: type,
                                               selected: controller.permissionMode.isTrue
-                                                  ? controller.selectedOnboardings.value[each.id]
+                                                  ? controller.selectedOnboardings.value[each.id] != null
                                                   : null,
                                               onChanged: controller.permissionMode.isTrue
-                                                  ? (value) => controller.updateOnboardingSelect(each.id, value)
+                                                  ? (value) => controller.updateOnboardingSelect(
+                                                        each.id,
+                                                        value,
+                                                        value != null && value
+                                                            ? each.attachment != null
+                                                                ? each.attachment!.name
+                                                                : each.article!.title
+                                                            : null,
+                                                      )
                                                   : null,
                                               onTap: () {
                                                 if (each.attachment != null) {
@@ -174,9 +182,9 @@ class OnboardingView extends GetView<OnboardingController> {
               Obx(
                 () {
                   final selectedNotEmpty =
-                      controller.selectedOnboardings.value.values.where((each) => each == true).isNotEmpty;
+                      controller.selectedOnboardings.value.values.where((each) => each != null).isNotEmpty;
                   if (selectedNotEmpty && permissionMode) {
-                    return AppButton(onPressed: () {}, text: 'Update Permissions');
+                    return AppButton(onPressed: controller.updatePermission, text: 'Update Permissions');
                   } else {
                     return AppSizeBox.zero;
                   }

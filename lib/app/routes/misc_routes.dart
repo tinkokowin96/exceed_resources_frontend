@@ -1,6 +1,8 @@
 abstract class MiscRoutes {
   MiscRoutes._();
   static const misc = '/misc';
+  static const onboarding = '/onboarding';
+  static const onboardingPermission = '/onboardingPermission';
   static const article = '/article';
   static const addEvent = '/addEvent';
   static const calender = '/calender';
@@ -8,7 +10,6 @@ abstract class MiscRoutes {
   static const colleague = '/colleague';
   static const late = '/late';
   static const leave = '/leave';
-  static const onboarding = '/onboarding';
   static const createArticle = '/createArticle';
   static const organizationStructure = '/organizationStructure';
   static const overtime = '/overtime';

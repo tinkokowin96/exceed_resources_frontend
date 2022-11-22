@@ -52,7 +52,6 @@ class _StatusPriorityDropdownState extends State<StatusPriorityDropdown> {
         ),
       ),
       onChanged: ({checked, value}) => onDropdownChange(value),
-      dropdownController: TextEditingController(),
       customSelector: StatusPriority(option: _currentOption),
     );
   }

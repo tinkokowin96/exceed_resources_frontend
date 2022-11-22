@@ -30,6 +30,7 @@ class AppCircle {
     required double size,
     required String image,
     bool network = true,
+    bool svg = false,
   }) =>
       ClipRRect(
         borderRadius: BorderRadius.circular(size / 2),
@@ -40,12 +41,19 @@ class AppCircle {
                 height: size,
                 fit: BoxFit.cover,
               )
-            : Image.asset(
-                image,
-                width: size,
-                height: size,
-                fit: BoxFit.cover,
-              ),
+            : svg
+                ? SvgPicture.asset(
+                    image,
+                    width: size,
+                    height: size,
+                    fit: BoxFit.cover,
+                  )
+                : Image.asset(
+                    image,
+                    width: size,
+                    height: size,
+                    fit: BoxFit.cover,
+                  ),
       );
 
   static Widget imageAction({

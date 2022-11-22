@@ -53,12 +53,10 @@ class TaskTable extends StatelessWidget {
                                               onPressed: () {},
                                               disabled: true,
                                               text: 'Due Date',
-                                              size: ESize.sm,
                                             ),
                                             AppTextButton(
                                               onPressed: () {},
                                               text: 'Assignment Date',
-                                              size: ESize.sm,
                                             ),
                                           ],
                                         ),
