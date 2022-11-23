@@ -15,6 +15,7 @@ class AppLayout {
     required AppController controller,
     bool noPadding = false,
     bool header = false,
+    bool hasAdminMode = false,
     Function()? containerAction,
     String? title,
     Widget? headerTail,
@@ -28,6 +29,8 @@ class AppLayout {
           currentMenu: currentMenu,
           content: content,
           header: header,
+          hasAdminMode: hasAdminMode,
+          controller: controller,
           title: title,
           headerTail: headerTail,
           backAction: backAction,
@@ -38,6 +41,7 @@ class AppLayout {
     required Widget content,
     required AppController controller,
     required String title,
+    bool hasAdminMode = false,
     Widget? headerTail,
     Function()? backAction,
     Function()? containerAction,
@@ -51,6 +55,8 @@ class AppLayout {
               title: title,
               headerTail: headerTail,
               backAction: backAction,
+              hasAdminMode: hasAdminMode,
+              controller: controller,
             ),
             Expanded(
                 child: Padding(

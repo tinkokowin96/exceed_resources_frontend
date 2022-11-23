@@ -40,14 +40,6 @@ class ColleagueListingController extends AppController {
     sortDirection.refresh();
   }
 
-//   void updateDropdown({})
-
-  @override
-  void dispose() {
-    print('dispose called');
-    super.dispose();
-  }
-
   @override
   void onClose() {
     sortbyController.dispose();

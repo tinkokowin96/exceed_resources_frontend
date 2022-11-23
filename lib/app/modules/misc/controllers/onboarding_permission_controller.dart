@@ -1,6 +1,5 @@
 import 'package:exceed_resources_frontend/app/modules/core/controllers/app_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/core/mock/colleague.dart';
-import 'package:exceed_resources_frontend/app/modules/core/models/option_model.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/models/colleague_m_model.dart';
 import 'package:get/get.dart';
 

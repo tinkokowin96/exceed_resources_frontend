@@ -12,6 +12,8 @@ class OrganizationStructureView extends GetView<OrganizationStructureController>
     return AppLayout.core(
       currentMenu: EMenu.misc,
       controller: controller,
+      title: 'On Boarding',
+      hasAdminMode: true,
       content: Container(),
     );
   }

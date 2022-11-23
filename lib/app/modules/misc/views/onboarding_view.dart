@@ -1,7 +1,6 @@
 import 'package:chewie/chewie.dart';
 import 'package:exceed_resources_frontend/app/modules/core/layout/layout.dart';
 import 'package:exceed_resources_frontend/app/modules/core/layout/page_header.dart';
-import 'package:exceed_resources_frontend/app/modules/core/models/switch_model.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/sizebox.dart';
@@ -13,7 +12,6 @@ import 'package:exceed_resources_frontend/app/modules/core/widgets/button/button
 import 'package:exceed_resources_frontend/app/modules/core/widgets/column.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/image_card.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/section_heading.dart';
-import 'package:exceed_resources_frontend/app/modules/core/widgets/switch.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/controllers/onboarding_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/core/extensions/string_extension.dart';
 import 'package:exceed_resources_frontend/app/routes/app_pages.dart';
@@ -32,22 +30,10 @@ class OnboardingView extends GetView<OnboardingController> {
       controller: controller,
       noPadding: true,
       title: 'On Boarding',
-      headerTail: Obx(
-        () => AppSwitch(
-          data: MSwitch(
-            activeIcon: controller.permissionMode.isTrue ? Icons.supervisor_account : Icons.visibility,
-            idleIcon: controller.permissionMode.isTrue ? Icons.visibility : Icons.supervisor_account,
-          ),
-          active: controller.permissionMode.isTrue,
-          toggleSwitch: controller.toggleMode,
-          activeBackground: AppTheme.of(context).color.secondary,
-          activeIconBackground: AppTheme.of(context).color.background,
-          activeIconColor: AppTheme.of(context).color.secondary,
-        ),
-      ),
+      hasAdminMode: true,
       content: Obx(
         () {
-          final permissionMode = controller.permissionMode.isTrue;
+          final adminMode = controller.adminMode.isTrue;
           return AppColumn(
             spacing: AppSize.md,
             mainAxisSize: MainAxisSize.max,
@@ -75,7 +61,7 @@ class OnboardingView extends GetView<OnboardingController> {
                                   spacing: AppSize.sm,
                                   runSpacing: AppSize.sm,
                                   children: [
-                                    if (!permissionMode)
+                                    if (!adminMode)
                                       AppAnimatedPress(
                                         onPressed: controller.createOnboarding,
                                         child: Stack(
@@ -116,10 +102,10 @@ class OnboardingView extends GetView<OnboardingController> {
                                               image: image!,
                                               name: name,
                                               category: type,
-                                              selected: controller.permissionMode.isTrue
+                                              selected: controller.adminMode.isTrue
                                                   ? controller.selectedOnboardings.value[each.id] != null
                                                   : null,
-                                              onChanged: controller.permissionMode.isTrue
+                                              onChanged: controller.adminMode.isTrue
                                                   ? (value) => controller.updateOnboardingSelect(
                                                         each.id,
                                                         value,
@@ -142,11 +128,13 @@ class OnboardingView extends GetView<OnboardingController> {
                                                             Expanded(
                                                               child: Center(
                                                                 child: SizedBox(
-                                                                    width: App.width(context),
-                                                                    height: AppSize.vpH,
-                                                                    child: Chewie(
-                                                                        controller: controller.getChewieController(
-                                                                            each.attachment!.url!))),
+                                                                  width: App.width(context),
+                                                                  height: AppSize.vpH,
+                                                                  child: Chewie(
+                                                                    controller: controller
+                                                                        .getChewieController(each.attachment!.url!),
+                                                                  ),
+                                                                ),
                                                               ),
                                                             ),
                                                           ],
@@ -183,7 +171,7 @@ class OnboardingView extends GetView<OnboardingController> {
                 () {
                   final selectedNotEmpty =
                       controller.selectedOnboardings.value.values.where((each) => each != null).isNotEmpty;
-                  if (selectedNotEmpty && permissionMode) {
+                  if (selectedNotEmpty && adminMode) {
                     return AppButton(onPressed: controller.updatePermission, text: 'Update Permissions');
                   } else {
                     return AppSizeBox.zero;

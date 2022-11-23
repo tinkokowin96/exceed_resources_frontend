@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 class AppController extends GetxController {
   final stopwatch = Stopwatch();
   final loading = false.obs;
+  final adminMode = false.obs;
   final error = Rxn<String>();
   final popup = Rxn<AppPopup>();
   final drawerWidget = Rxn<Widget>();
@@ -60,6 +61,11 @@ class AppController extends GetxController {
     updateLoading(value: true);
     task();
     updateLoading(value: false);
+  }
+
+  void toggleMode() {
+    adminMode.value = !adminMode.value;
+    adminMode.refresh();
   }
 
   void showPopup({

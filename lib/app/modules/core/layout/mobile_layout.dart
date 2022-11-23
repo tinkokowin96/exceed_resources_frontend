@@ -1,3 +1,4 @@
+import 'package:exceed_resources_frontend/app/modules/core/controllers/app_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/core/layout/content.dart';
 import 'package:exceed_resources_frontend/app/modules/core/layout/page_header.dart';
 import 'package:exceed_resources_frontend/app/modules/core/layout/user_header.dart';
@@ -11,6 +12,8 @@ class MobileLayout extends StatelessWidget {
   final Widget content;
   final bool header;
   final bool noPadding;
+  final bool hasAdminMode;
+  final AppController controller;
   final String? title;
   final Widget? headerTail;
   final Function()? backAction;
@@ -20,6 +23,8 @@ class MobileLayout extends StatelessWidget {
     required this.currentMenu,
     required this.header,
     required this.noPadding,
+    required this.hasAdminMode,
+    required this.controller,
     this.title,
     this.headerTail,
     this.backAction,
@@ -34,6 +39,8 @@ class MobileLayout extends StatelessWidget {
                 title: title!,
                 headerTail: headerTail,
                 backAction: backAction,
+                hasAdminMode: hasAdminMode,
+                controller: controller,
               )
             : header
                 ? const UserHeader()

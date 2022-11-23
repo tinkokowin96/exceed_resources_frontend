@@ -8,7 +8,6 @@ import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/popup.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/widgets/onboarding/create_onboarding_attachment_popup.dart';
-import 'package:exceed_resources_frontend/app/routes/home_routes.dart';
 import 'package:exceed_resources_frontend/app/routes/misc_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -19,10 +18,8 @@ class OnboardingController extends AppController with AttachmentMixin {
   final data = m_onbardings.obs;
   final activeIndex = 0.obs;
   final prevIndex = 0.obs;
-  final permissionMode = false.obs;
   final createArticleFormKey = GlobalKey<FormState>();
   final attachmentNameController = TextEditingController();
-//   final selectedOnboardings = Rx<Map<String, bool>>({});
   final selectedOnboardings = Rx<Map<String, String?>>({});
   final attachmentTypes = [
     Padding(
@@ -125,11 +122,6 @@ class OnboardingController extends AppController with AttachmentMixin {
       attachmentTypes.asMap().entries.map((each) => each.key == index ? true : false),
     );
     selectedCreateOnboarding.refresh();
-  }
-
-  void toggleMode() {
-    permissionMode.value = !permissionMode.value;
-    permissionMode.refresh();
   }
 
   void updateOnboardingSelect(String id, bool? value, String? name) {
