@@ -28,7 +28,7 @@ class AppSize {
   static const staH = 24.0;
 
   //field
-  static const ffeMd = 160.0;
+  static const ffeMd = 140.0;
   static const ftitle = 100.0; //filter title width
 
   //miscs

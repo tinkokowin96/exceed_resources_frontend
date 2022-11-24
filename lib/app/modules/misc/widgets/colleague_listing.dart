@@ -2,7 +2,6 @@ import 'package:exceed_resources_frontend/app/modules/core/models/option_model.d
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
-import 'package:exceed_resources_frontend/app/modules/core/utils/helper.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/animated/animated_press.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/button/text_button.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/column.dart';
@@ -10,20 +9,20 @@ import 'package:exceed_resources_frontend/app/modules/core/widgets/filter_field.
 import 'package:exceed_resources_frontend/app/modules/core/widgets/row.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/toggle.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/controllers/colleague_listing_controller.dart';
-import 'package:exceed_resources_frontend/app/modules/misc/models/colleague_m_model.dart';
+import 'package:exceed_resources_frontend/app/modules/misc/models/colleague_model.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/widgets/colleague_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 class ColleagueListing extends GetView<ColleagueListingController> {
-  final Map<String, List<MColleagueM>> selectedColleagues;
-  final Map<String, List<MColleagueM>> remainingColleagues;
+  final Map<String, List<MColleague>> selectedColleagues;
+  final Map<String, List<MColleague>> remainingColleagues;
   final bool exportable;
   final bool showSalary;
   final double? padding;
-  final Function({MColleagueM? colleague, String? departmentId})? onAdd;
-  final Function({MColleagueM? colleague, String? departmentId})? onRemove;
+  final Function({MColleague? colleague, String? departmentId})? onAdd;
+  final Function({MColleague? colleague, String? departmentId})? onRemove;
   const ColleagueListing({
     Key? key,
     required this.selectedColleagues,
@@ -47,7 +46,7 @@ class ColleagueListing extends GetView<ColleagueListingController> {
                     (department) => Padding(
                       padding: EdgeInsets.only(top: department.key == 0 ? AppSize.sm : AppSize.md),
                       child: AppColumn(
-                        spacing: AppSize.md,
+                        spacing: AppSize.sm,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
@@ -57,7 +56,7 @@ class ColleagueListing extends GetView<ColleagueListingController> {
                                 spacing: AppSize.md,
                                 children: [
                                   Text(
-                                    department.value[0].departmentName!,
+                                    department.value[0].departments[0].name,
                                     style: AppTheme.text(
                                       context: context,
                                       size: EText.h2,
@@ -67,8 +66,8 @@ class ColleagueListing extends GetView<ColleagueListingController> {
                                   if (onAdd != null)
                                     AppAnimatedPress(
                                       onPressed: () => selected
-                                          ? onRemove!(departmentId: department.value[0].departmentId)
-                                          : onAdd!(departmentId: department.value[0].departmentId),
+                                          ? onRemove!(departmentId: department.value[0].departments[0].name)
+                                          : onAdd!(departmentId: department.value[0].departments[0].name),
                                       child: SvgPicture.asset(
                                         'assets/icons/${selected ? 'remove' : 'add'}.svg',
                                         width: AppSize.icoMd,
@@ -79,39 +78,36 @@ class ColleagueListing extends GetView<ColleagueListingController> {
                               if (department.key == 0 && exportable) AppTextButton(onPressed: () {}, text: 'Export')
                             ],
                           ),
-                          ConstrainedBox(
-                            constraints: BoxConstraints(maxHeight: App.height(context) * 0.4),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: List.from(
-                                department.value.map(
-                                  (each) {
-                                    return Dismissible(
-                                      key: ValueKey(each.id),
-                                      background: ColoredBox(
-                                        color: selected ? Colors.redAccent : AppTheme.of(context).color.secondary,
-                                        child: Center(
-                                          child: Text(
-                                            selected ? 'Remove' : 'Add',
-                                            style: AppTheme.text(context: context, type: ETextType.white),
-                                          ),
+                          Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: List.from(
+                              department.value.map(
+                                (each) {
+                                  return Dismissible(
+                                    key: ValueKey(each.id),
+                                    background: ColoredBox(
+                                      color: selected ? Colors.redAccent : AppTheme.of(context).color.secondary,
+                                      child: Center(
+                                        child: Text(
+                                          selected ? 'Remove' : 'Add',
+                                          style: AppTheme.text(context: context, type: ETextType.white),
                                         ),
                                       ),
-                                      direction: onAdd == null ? DismissDirection.none : DismissDirection.horizontal,
-                                      onDismissed: (direction) =>
-                                          selected ? onRemove!(colleague: each) : onAdd!(colleague: each),
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(top: AppSize.sm),
-                                        child: ColleagueItem(
-                                          image: each.image,
-                                          name: each.name,
-                                          description: each.positionName,
-                                          salary: showSalary ? each.salary.toString() : null,
-                                        ),
+                                    ),
+                                    direction: onAdd == null ? DismissDirection.none : DismissDirection.horizontal,
+                                    onDismissed: (direction) =>
+                                        selected ? onRemove!(colleague: each) : onAdd!(colleague: each),
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(top: AppSize.sm),
+                                      child: ColleagueItem(
+                                        image: each.image,
+                                        name: each.name,
+                                        description: each.position.name,
+                                        salary: showSalary ? each.basicSalary.toString() : null,
                                       ),
-                                    );
-                                  },
-                                ),
+                                    ),
+                                  );
+                                },
                               ),
                             ),
                           ),

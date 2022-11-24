@@ -10,7 +10,10 @@ class MDepartment with _$MDepartment {
   factory MDepartment({
     required String id,
     required String name,
+    @JsonKey(name: 'short_name') String? shortName,
+    @Default([]) List<MColleague> executives,
     @Default([]) List<MColleague> colleagues,
+    @Default([]) List<MDepartment> departments,
     @Default([]) List<MPermission> permissions,
     List<String>? resources,
     String? remark,

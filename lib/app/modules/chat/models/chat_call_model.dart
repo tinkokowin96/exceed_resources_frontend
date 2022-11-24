@@ -1,5 +1,5 @@
 import 'package:exceed_resources_frontend/app/modules/core/utils/json_serializer.dart';
-import 'package:exceed_resources_frontend/app/modules/misc/models/colleague_m_model.dart';
+import 'package:exceed_resources_frontend/app/modules/misc/models/colleague_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'chat_call_model.freezed.dart';
@@ -9,7 +9,7 @@ part 'chat_call_model.g.dart';
 class MChatCall with _$MChatCall {
   factory MChatCall({
     String? id,
-    required List<MColleagueM> colleagues,
+    required List<MColleague> colleagues,
     required int duration,
     @JsonKey(
       name: 'created_at',

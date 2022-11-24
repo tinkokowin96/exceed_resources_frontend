@@ -1,14 +1,14 @@
 import 'package:exceed_resources_frontend/app/modules/core/controllers/app_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/core/models/option_model.dart';
-import 'package:exceed_resources_frontend/app/modules/misc/models/colleague_m_model.dart';
+import 'package:exceed_resources_frontend/app/modules/misc/models/colleague_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ColleagueListingController extends AppController {
-  final selected = Rx<Map<String, List<MColleagueM>>>({});
-  final reamining = Rx<Map<String, List<MColleagueM>>>({});
+  final selected = Rx<Map<String, List<MColleague>>>({});
+  final reamining = Rx<Map<String, List<MColleague>>>({});
   ColleagueListingController(
-      Map<String, List<MColleagueM>> selectedColleagues, Map<String, List<MColleagueM>> remainingColleagues) {
+      Map<String, List<MColleague>> selectedColleagues, Map<String, List<MColleague>> remainingColleagues) {
     selected.value = selectedColleagues;
     reamining.value = remainingColleagues;
   }
@@ -21,8 +21,8 @@ class ColleagueListingController extends AppController {
   void onInit() {
     final departmentMap = {};
     for (final colleagues in [...selected.value.values, ...reamining.value.values]) {
-      if (!departmentMap.containsKey(colleagues[0].departmentId)) {
-        departmentMap[colleagues[0].departmentId] = colleagues[0].departmentName;
+      if (!departmentMap.containsKey(colleagues[0].departments[0].id)) {
+        departmentMap[colleagues[0].departments[0].id] = colleagues[0].departments[0].name;
       }
     }
     departments = List.from(

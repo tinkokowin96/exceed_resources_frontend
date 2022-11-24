@@ -4,11 +4,11 @@ import 'package:exceed_resources_frontend/app/modules/core/theme/sizebox.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/circle.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/row.dart';
-import 'package:exceed_resources_frontend/app/modules/misc/models/colleague_m_model.dart';
+import 'package:exceed_resources_frontend/app/modules/misc/models/colleague_model.dart';
 import 'package:flutter/material.dart';
 
 class Colleague extends StatelessWidget {
-  final MColleagueM colleague;
+  final MColleague colleague;
   final Function({required String id, bool add}) addColleague;
   const Colleague({
     Key? key,
@@ -56,7 +56,7 @@ class Colleague extends StatelessWidget {
               ],
             ),
             Text(
-              colleague.positionName,
+              colleague.position.name,
               style: AppTheme.text(
                 context: context,
                 size: EText.h4,

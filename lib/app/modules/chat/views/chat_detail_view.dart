@@ -70,7 +70,7 @@ class ChatDetailView extends GetView<ChatDetailController> {
                                   (colleague) => ColleagueItem(
                                     image: colleague.image,
                                     name: colleague.name,
-                                    description: colleague.positionName,
+                                    description: colleague.position.name,
                                   ),
                                 ),
                               ),
@@ -115,7 +115,7 @@ class ChatDetailView extends GetView<ChatDetailController> {
                                   (message) => ColleagueItem(
                                     image: message.colleague!.image,
                                     name: message.colleague!.name,
-                                    description: message.colleague!.positionName,
+                                    description: message.colleague!.position.name,
                                   ),
                                 ),
                               ),
