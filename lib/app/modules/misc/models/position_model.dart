@@ -9,6 +9,7 @@ class MPosition with _$MPosition {
   factory MPosition({
     required String id,
     required String name,
+    @JsonKey(name: 'short_name') String? shortName,
     @JsonKey(name: 'basic_salary') double? basicSalary,
     String? remark,
     @Default([]) List<MColleague> colleagues,

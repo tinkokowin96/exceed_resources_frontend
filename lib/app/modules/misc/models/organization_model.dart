@@ -14,6 +14,7 @@ class MOrganization with _$MOrganization {
     required String logo,
     required String type,
     required String ceoName,
+    required String ceoImage,
     required String ceoPositionName,
     required String ceoEmail,
     required String ceoPhone,

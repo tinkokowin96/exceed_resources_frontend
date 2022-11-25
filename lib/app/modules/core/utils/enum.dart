@@ -20,6 +20,8 @@ enum EInputStyle { line, primary }
 
 enum EInputColor { primary, transparent, background }
 
+enum EStructure { ceo, topManagement, department, executive }
+
 enum EAttachment {
   @JsonValue('Video')
   video,

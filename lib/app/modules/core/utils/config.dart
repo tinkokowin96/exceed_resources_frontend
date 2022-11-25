@@ -1,4 +1,5 @@
 import 'package:exceed_resources_frontend/app/modules/core/lang/locale.dart';
+import 'package:exceed_resources_frontend/app/modules/core/mock/organization.dart';
 import 'package:exceed_resources_frontend/app/modules/core/models/permission_model.dart';
 import 'package:exceed_resources_frontend/app/modules/core/models/permission_request_response_model.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
@@ -10,6 +11,7 @@ import 'package:flutter_svg/svg.dart';
 
 String? directory;
 late final MPermissionRequestResponse permissionResponse;
+final organization = m_organizations[0];
 const minimunLoading = 1500;
 const platform = MethodChannel('exceed_resources');
 const imgTypes = ['jpg', 'jpeg', 'png'];

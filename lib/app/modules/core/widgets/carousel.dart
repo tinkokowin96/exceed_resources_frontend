@@ -3,18 +3,23 @@ import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/sizebox.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/config.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/circle.dart';
+import 'package:exceed_resources_frontend/app/modules/core/widgets/report_size.dart';
 import 'package:flutter/material.dart';
 
 class AppCarousel extends StatefulWidget {
   final List<Widget> data;
   final double width;
   final double? height;
+  final double fraction;
+  final bool showIndicator;
 
   const AppCarousel({
     Key? key,
     required this.data,
     required this.width,
-    required this.height,
+    this.height,
+    this.fraction = 1.0,
+    this.showIndicator = true,
   }) : super(key: key);
 
   @override
@@ -24,12 +29,13 @@ class AppCarousel extends StatefulWidget {
 class _AppCarouselState extends State<AppCarousel> {
   late PageController _pageController;
   late int _currentPage;
+  late double _height = widget.height ?? 0;
 
   @override
   void initState() {
     _currentPage = widget.data.length > 1 ? 1 : 0;
     _pageController = PageController(
-      viewportFraction: 1,
+      viewportFraction: widget.fraction,
       initialPage: _currentPage,
     );
     super.initState();
@@ -45,33 +51,53 @@ class _AppCarouselState extends State<AppCarousel> {
   Widget build(BuildContext context) {
     return SizedBox(
       width: widget.width,
-      height: widget.height,
+      height: _height,
       child: Column(
         children: [
           Expanded(
             child: LayoutBuilder(
               builder: (context, constraint) {
-                return SizedBox(
-                  width: constraint.maxWidth,
-                  height: constraint.maxHeight,
-                  child: PageView.builder(
-                    itemCount: widget.data.length,
-                    pageSnapping: true,
-                    controller: _pageController,
-                    scrollBehavior: AppScrollBehaviour(),
-                    onPageChanged: (page) {
-                      setState(() => _currentPage = page);
-                    },
-                    itemBuilder: (context, page) {
-                      return widget.data[page];
-                    },
-                  ),
+                return PageView.builder(
+                  itemCount: widget.data.length,
+                  pageSnapping: true,
+                  controller: _pageController,
+                  scrollBehavior: AppScrollBehaviour(),
+                  onPageChanged: (page) {
+                    setState(() => _currentPage = page);
+                  },
+                  itemBuilder: (context, page) {
+                    return Padding(
+                      padding: EdgeInsets.symmetric(horizontal: widget.fraction < 1 ? AppSize.sm : 0),
+                      child: Opacity(
+                        opacity: page != _currentPage && widget.fraction < 1 ? 0.5 : 1,
+                        child: OverflowBox(
+                          minHeight: 0,
+                          maxHeight: double.infinity,
+                          child: ReportSize(
+                            onChange: (size) {
+                              if (_height != size.height + AppSize.md) {
+                                setState(() {
+                                  _height = size.height + AppSize.md;
+                                });
+                              }
+                            },
+                            report: page == 0,
+                            child: widget.data[page],
+                          ),
+                        ),
+                      ),
+                    );
+                  },
                 );
               },
             ),
           ),
           AppSizeBox.sm,
-          ActiveIndicator(numPage: widget.data.length, activePage: _currentPage)
+          if (widget.showIndicator)
+            ActiveIndicator(
+              numPage: widget.data.length,
+              activePage: _currentPage,
+            )
         ],
       ),
     );

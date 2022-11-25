@@ -18,7 +18,7 @@ class AppThemeMiscs {
   );
   static final shadow3 = BoxShadow(
     color: Colors.black.withOpacity(0.08),
-    spreadRadius: 1,
+    spreadRadius: 2,
     blurRadius: 5,
   );
 
