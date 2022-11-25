@@ -3,6 +3,7 @@ import 'package:exceed_resources_frontend/app/modules/core/theme/miscs.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/config.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
+import 'package:exceed_resources_frontend/app/modules/core/utils/helper.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/circle.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/column.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/container.dart';
@@ -26,11 +27,6 @@ class StructureItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final width = type == EStructure.ceo
-        ? 320.0
-        : type == EStructure.topManagement
-            ? 300.0
-            : 280.0;
     final title = department != null
         ? department!.name
         : colleague != null
@@ -69,7 +65,7 @@ class StructureItemCard extends StatelessWidget {
     return InkWell(
       onTap: onPressed,
       child: AppContainer(
-        width: width,
+        width: App.width(context) * 0.7,
         padding: 0,
         noShadow: false,
         shadow: AppThemeMiscs.shadow3,
@@ -103,7 +99,12 @@ class StructureItemCard extends StatelessWidget {
             ),
             Divider(thickness: 1.5, color: AppTheme.of(context).color.idle),
             Padding(
-              padding: const EdgeInsets.fromLTRB(AppSize.sm, AppSize.sm, AppSize.sm, AppSize.md),
+              padding: const EdgeInsets.fromLTRB(
+                AppSize.sm,
+                0,
+                AppSize.sm,
+                AppSize.sm,
+              ),
               child: AppRow(
                 spacing: AppSize.md,
                 mainAxisSize: MainAxisSize.max,
@@ -115,8 +116,9 @@ class StructureItemCard extends StatelessWidget {
                 children: department == null
                     ? [
                         AppCircle.image(size: AppSize.cLg, image: image!),
-                        AppColumn(
-                          spacing: AppSize.xs,
+                        Column(
+                          //   spacing: AppSize.xs,
+                          mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(

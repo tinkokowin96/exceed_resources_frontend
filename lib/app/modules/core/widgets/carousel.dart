@@ -12,6 +12,7 @@ class AppCarousel extends StatefulWidget {
   final double? height;
   final double fraction;
   final bool showIndicator;
+  final Function(int index)? onChange;
 
   const AppCarousel({
     Key? key,
@@ -20,6 +21,7 @@ class AppCarousel extends StatefulWidget {
     this.height,
     this.fraction = 1.0,
     this.showIndicator = true,
+    this.onChange,
   }) : super(key: key);
 
   @override
@@ -33,7 +35,7 @@ class _AppCarouselState extends State<AppCarousel> {
 
   @override
   void initState() {
-    _currentPage = widget.data.length > 1 ? 1 : 0;
+    _currentPage = 0;
     _pageController = PageController(
       viewportFraction: widget.fraction,
       initialPage: _currentPage,
@@ -64,6 +66,7 @@ class _AppCarouselState extends State<AppCarousel> {
                   scrollBehavior: AppScrollBehaviour(),
                   onPageChanged: (page) {
                     setState(() => _currentPage = page);
+                    if (widget.onChange != null) widget.onChange!(page);
                   },
                   itemBuilder: (context, page) {
                     return Padding(
