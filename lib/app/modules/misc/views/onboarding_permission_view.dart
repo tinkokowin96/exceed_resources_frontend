@@ -40,20 +40,12 @@ class OnboardingPermissionView extends GetView<OnboardingPermissionController> {
                   ),
                 ),
               ),
-              ColleagueListing(
-                selectedColleagues: controller.selectedColleagues.value,
-                remainingColleagues: controller.remainingColleagues.value,
-                padding: AppSize.lg,
-                exportable: true,
-                showSalary: true,
-                onAdd: ({colleague, departmentId}) => controller.updateColleague(
-                  colleague: colleague,
-                  departmentId: departmentId,
-                ),
-                onRemove: ({colleague, departmentId}) => controller.updateColleague(
-                  add: false,
-                  colleague: colleague,
-                  departmentId: departmentId,
+              const Expanded(
+                child: ColleagueListing(
+                  padding: AppSize.lg,
+                  exportable: true,
+                  showSalary: true,
+                  updatable: true,
                 ),
               ),
             ],

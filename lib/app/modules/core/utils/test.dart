@@ -2,8 +2,6 @@ import 'package:exceed_resources_frontend/app/modules/core/controllers/test_cont
 import 'package:exceed_resources_frontend/app/modules/core/mock/colleague.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
-import 'package:exceed_resources_frontend/app/modules/core/utils/helper.dart';
-import 'package:exceed_resources_frontend/app/modules/core/widgets/carousel.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/report_size.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/widgets/organization_structure/structure_item_card.dart';
 import 'package:flutter/material.dart';
