@@ -1,7 +1,6 @@
 import 'package:exceed_resources_frontend/app/modules/core/models/option_model.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
-import 'package:exceed_resources_frontend/app/modules/core/theme/sizebox.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/animated/animated_press.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/button/text_button.dart';
@@ -10,6 +9,7 @@ import 'package:exceed_resources_frontend/app/modules/core/widgets/filter_field.
 import 'package:exceed_resources_frontend/app/modules/core/widgets/row.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/toggle.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/controllers/colleague_listing_controller.dart';
+import 'package:exceed_resources_frontend/app/modules/misc/models/colleague_model.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/widgets/colleague_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -19,12 +19,18 @@ class ColleagueListing extends GetView<ColleagueListingController> {
   final bool exportable;
   final bool showSalary;
   final bool updatable;
+  final bool selectable;
+  final Function(MColleague colleague)? onPressed;
+  final Function(MColleague colleague)? onSelectionChange;
   final double? padding;
   const ColleagueListing({
     Key? key,
     this.exportable = false,
     this.showSalary = false,
     this.updatable = false,
+    this.selectable = false,
+    this.onPressed,
+    this.onSelectionChange,
     this.padding,
   }) : super(key: key);
 
@@ -154,37 +160,39 @@ class ColleagueListing extends GetView<ColleagueListingController> {
                       title: 'Sort By',
                       onChanged: ({checked, value}) => null,
                     ),
-                    Obx(() {
-                      return AppToggle(
-                        isSelected: controller.sortDirection.value,
-                        onSelectionChange: controller.changeSortDirection,
-                        disabled: const [],
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: AppSize.sm),
-                            child: Text(
-                              'Asc',
-                              style: AppTheme.text(
-                                context: context,
-                                type: ETextType.primary,
-                                weight: FontWeight.w500,
+                    Obx(
+                      () {
+                        return AppToggle(
+                          isSelected: controller.sortDirection.value,
+                          onSelectionChange: controller.changeSortDirection,
+                          disabled: const [],
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: AppSize.sm),
+                              child: Text(
+                                'Asc',
+                                style: AppTheme.text(
+                                  context: context,
+                                  type: ETextType.primary,
+                                  weight: FontWeight.w500,
+                                ),
                               ),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: AppSize.sm),
-                            child: Text(
-                              'Desc',
-                              style: AppTheme.text(
-                                context: context,
-                                type: ETextType.primary,
-                                weight: FontWeight.w500,
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: AppSize.sm),
+                              child: Text(
+                                'Desc',
+                                style: AppTheme.text(
+                                  context: context,
+                                  type: ETextType.primary,
+                                  weight: FontWeight.w500,
+                                ),
                               ),
                             ),
-                          ),
-                        ],
-                      );
-                    })
+                          ],
+                        );
+                      },
+                    )
                   ],
                 ),
                 FilterField(

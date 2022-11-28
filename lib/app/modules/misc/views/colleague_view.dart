@@ -1,5 +1,4 @@
 import 'package:exceed_resources_frontend/app/modules/core/layout/layout.dart';
-import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/animated/animated_press.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/controllers/colleague_controller.dart';

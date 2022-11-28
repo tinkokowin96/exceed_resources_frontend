@@ -54,7 +54,7 @@ class ColleagueItem extends StatelessWidget {
           children: [
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: AppSize.md),
+                padding: EdgeInsets.fromLTRB(AppSize.md, 0, salary == null ? 0 : AppSize.md, 0),
                 child: Text(
                   description,
                   textAlign: salary == null ? TextAlign.end : TextAlign.center,

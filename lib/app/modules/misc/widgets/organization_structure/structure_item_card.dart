@@ -5,7 +5,6 @@ import 'package:exceed_resources_frontend/app/modules/core/utils/config.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/helper.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/circle.dart';
-import 'package:exceed_resources_frontend/app/modules/core/widgets/column.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/container.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/row.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/models/colleague_model.dart';

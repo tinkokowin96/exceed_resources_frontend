@@ -6,6 +6,7 @@ import 'package:exceed_resources_frontend/app/modules/core/theme/miscs.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/button/text_button.dart';
+import 'package:exceed_resources_frontend/app/modules/core/widgets/checkbox.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/column.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/container.dart';
 import 'package:flutter/material.dart';
@@ -333,11 +334,8 @@ class DopdownItems extends StatelessWidget {
                                           style: AppTheme.text(context: context, size: textSize),
                                         ),
                                       ),
-                                      Checkbox(
-                                        fillColor: MaterialStateProperty.all<Color>(
-                                          AppTheme.of(context).color.secondary,
-                                        ),
-                                        value: selected.contains(each.text),
+                                      AppCheckbox(
+                                        selected: selected.contains(each.text),
                                         onChanged: (value) => selectDropdownHandler(
                                           value: each,
                                           checked: value,

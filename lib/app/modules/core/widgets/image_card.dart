@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
+import 'package:exceed_resources_frontend/app/modules/core/widgets/checkbox.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/container.dart';
 import 'package:flutter/material.dart';
 
@@ -95,17 +96,7 @@ class ImageCard extends StatelessWidget {
             if (selected != null)
               Padding(
                 padding: const EdgeInsets.only(top: AppSize.xs, left: AppSize.xs),
-                child: SizedBox(
-                  width: AppSize.md,
-                  height: AppSize.md,
-                  child: Checkbox(
-                    value: selected!,
-                    onChanged: onChanged!,
-                    fillColor: MaterialStateProperty.all<Color>(
-                      AppTheme.of(context).color.secondary,
-                    ),
-                  ),
-                ),
+                child: AppCheckbox(selected: selected!, onChanged: onChanged!),
               )
           ],
         ),
