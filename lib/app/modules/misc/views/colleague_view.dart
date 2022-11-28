@@ -1,8 +1,10 @@
 import 'package:exceed_resources_frontend/app/modules/core/layout/layout.dart';
+import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/animated/animated_press.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/controllers/colleague_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/widgets/colleague_listing.dart';
+import 'package:exceed_resources_frontend/app/routes/misc_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -17,10 +19,14 @@ class ColleagueView extends GetView<ColleagueController> {
       controller: controller,
       title: 'Colleagues',
       headerTail: AppAnimatedPress(
-        onPressed: () {},
+        onPressed: () => Get.toNamed(MiscRoutes.payriseConfig, arguments: controller.selected.value),
         child: SvgPicture.asset('assets/icons/pay_rise.svg'),
       ),
-      content: const ColleagueListing(exportable: true),
+      content: ColleagueListing(
+        exportable: true,
+        selectable: true,
+        onSelectionChange: controller.updateSelected,
+      ),
     );
   }
 }

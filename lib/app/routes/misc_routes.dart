@@ -14,7 +14,7 @@ abstract class MiscRoutes {
   static const organizationStructure = '/organizationStructure';
   static const overtime = '/overtime';
   static const payment = '/payment';
-  static const payrise = '/payrise';
+  static const payriseConfig = '/payriseConfig';
   static const payroll = '/payroll';
   static const permission = '/permission';
 }

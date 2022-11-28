@@ -21,7 +21,7 @@ class ColleagueListing extends GetView<ColleagueListingController> {
   final bool updatable;
   final bool selectable;
   final Function(MColleague colleague)? onPressed;
-  final Function(MColleague colleague)? onSelectionChange;
+  final Function(bool value, MColleague colleague)? onSelectionChange;
   final double? padding;
   const ColleagueListing({
     Key? key,
@@ -110,6 +110,12 @@ class ColleagueListing extends GetView<ColleagueListingController> {
                                         name: each.name,
                                         description: each.position.name,
                                         salary: showSalary ? each.basicSalary.toString() : null,
+                                        selected: false,
+                                        onChanged: (value) {
+                                          if (value != null) {
+                                            onSelectionChange!(value, each);
+                                          }
+                                        },
                                       ),
                                     ),
                                   );

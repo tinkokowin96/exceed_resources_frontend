@@ -58,6 +58,13 @@ class ColleagueListingController extends AppController {
     remainingColleagues.refresh();
   }
 
+  void changeSortDirection(int index) {
+    sortDirection.value = List.from(
+      sortDirection.asMap().entries.map((each) => each.key == index ? true : false),
+    );
+    sortDirection.refresh();
+  }
+
   @override
   void onInit() {
     for (final colleague in m_colleagues) {
@@ -98,13 +105,6 @@ class ColleagueListingController extends AppController {
     );
     remainingColleagues.refresh();
     super.onInit();
-  }
-
-  void changeSortDirection(int index) {
-    sortDirection.value = List.from(
-      sortDirection.asMap().entries.map((each) => each.key == index ? true : false),
-    );
-    sortDirection.refresh();
   }
 
   @override
