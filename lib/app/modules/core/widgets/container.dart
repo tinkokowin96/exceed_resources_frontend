@@ -7,7 +7,7 @@ class AppContainer extends StatelessWidget {
   final bool leftRadius;
   final bool rightRadius;
   final bool noShadow;
-
+  final BorderRadiusGeometry? customRadius;
   final Gradient? gradient;
   final double? borderRadius;
   final Color? background;
@@ -21,6 +21,7 @@ class AppContainer extends StatelessWidget {
     this.leftRadius = false,
     this.rightRadius = false,
     this.noShadow = true,
+    this.customRadius,
     this.gradient,
     this.borderRadius,
     this.background,
@@ -37,19 +38,20 @@ class AppContainer extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: gradient,
         color: gradient == null ? background ?? AppTheme.of(context).color.container : null,
-        borderRadius: leftRadius
-            ? BorderRadius.only(
-                topLeft: Radius.circular(borderRadius ?? AppSize.sm),
-                bottomLeft: Radius.circular(borderRadius ?? AppSize.sm),
-              )
-            : rightRadius
+        borderRadius: customRadius ??
+            (leftRadius
                 ? BorderRadius.only(
-                    topRight: Radius.circular(borderRadius ?? AppSize.sm),
-                    bottomRight: Radius.circular(borderRadius ?? AppSize.sm),
+                    topLeft: Radius.circular(borderRadius ?? AppSize.sm),
+                    bottomLeft: Radius.circular(borderRadius ?? AppSize.sm),
                   )
-                : BorderRadius.all(
-                    Radius.circular(borderRadius ?? AppSize.sm),
-                  ),
+                : rightRadius
+                    ? BorderRadius.only(
+                        topRight: Radius.circular(borderRadius ?? AppSize.sm),
+                        bottomRight: Radius.circular(borderRadius ?? AppSize.sm),
+                      )
+                    : BorderRadius.all(
+                        Radius.circular(borderRadius ?? AppSize.sm),
+                      )),
         boxShadow: noShadow ? null : [shadow ?? AppThemeMiscs.shadow1],
       ),
       child: SizedBox(

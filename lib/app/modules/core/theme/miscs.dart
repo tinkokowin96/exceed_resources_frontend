@@ -34,7 +34,7 @@ class AppThemeMiscs {
   }) =>
       InputDecoration(
         isCollapsed: true,
-        contentPadding: EdgeInsets.all(style == EInputStyle.line ? 0 : AppSize.fep),
+        contentPadding: EdgeInsets.only(left: style == EInputStyle.line ? 0 : AppSize.fep),
         hintText: hintText,
         filled: style == EInputStyle.line ? false : true,
         fillColor: color == EInputColor.primary

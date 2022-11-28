@@ -11,7 +11,7 @@ import 'package:exceed_resources_frontend/app/modules/misc/views/onboarding_view
 import 'package:exceed_resources_frontend/app/modules/misc/views/organization_structure_view.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/views/overtime_view.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/views/payment_view.dart';
-import 'package:exceed_resources_frontend/app/modules/misc/views/payrise_config_view.dart';
+import 'package:exceed_resources_frontend/app/modules/misc/views/payrise_view.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/views/payroll_view.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/views/permission_view.dart';
 import 'package:exceed_resources_frontend/app/routes/misc_routes.dart';
@@ -105,8 +105,8 @@ final List<GetPage<dynamic>> miscRoutes = [
     transitionDuration: Duration.zero,
   ),
   GetPage(
-    name: MiscRoutes.payriseConfig,
-    page: () => const PayriseConfigView(),
+    name: MiscRoutes.payrise,
+    page: () => const PayriseView(),
     binding: MiscBinding(),
     transitionDuration: Duration.zero,
   ),

@@ -11,6 +11,7 @@ import 'package:exceed_resources_frontend/app/modules/misc/controllers/onboardin
 import 'package:exceed_resources_frontend/app/modules/misc/controllers/organization_structure_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/controllers/overtime_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/controllers/payment_controller.dart';
+import 'package:exceed_resources_frontend/app/modules/misc/controllers/payrise_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/controllers/payroll_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/controllers/permission_controller.dart';
 import 'package:get/get.dart';
@@ -25,6 +26,7 @@ class MiscBinding extends Bindings {
     Get.lazyPut<OnboardingPermissionController>(() => OnboardingPermissionController());
     Get.lazyPut<ArticleController>(() => ArticleController());
     Get.lazyPut<CreateArticleController>(() => CreateArticleController());
+    Get.lazyPut<PayriseController>(() => PayriseController());
     Get.lazyPut<AddEventController>(() => AddEventController());
     Get.lazyPut<CalenderController>(() => CalenderController());
     Get.lazyPut<ColleagueDetailController>(() => ColleagueDetailController());

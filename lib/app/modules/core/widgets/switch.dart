@@ -10,6 +10,8 @@ class AppSwitch extends StatelessWidget {
   final MSwitch data;
   final bool active;
   final Function() toggleSwitch;
+  final double? width;
+  final double? height;
   final Color? activeBackground;
   final Color? inactiveBackground;
   final Color? activeBorder;
@@ -24,6 +26,8 @@ class AppSwitch extends StatelessWidget {
     required this.data,
     required this.active,
     required this.toggleSwitch,
+    this.width,
+    this.height,
     this.activeBackground,
     this.inactiveBackground,
     this.activeBorder,
@@ -92,8 +96,8 @@ class AppSwitch extends StatelessWidget {
               borderRadius: BorderRadius.circular(AppSize.lg / 2),
             ),
             child: SizedBox(
-              width: 70,
-              height: AppSize.lg,
+              width: width ?? AppSize.swiW,
+              height: height ?? AppSize.lg,
               child: Stack(
                 alignment: Alignment.centerLeft,
                 children: [

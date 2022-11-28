@@ -38,6 +38,7 @@ class AppSize {
   static const fep = 12.0; //field  padding
   static const imgfeH = 120.0; //image field height
   static const vpH = 300.0; //potrait video player height
+  static const swiW = 70.0; //switch width
 
   //add button
   static const abtn = 40.0;

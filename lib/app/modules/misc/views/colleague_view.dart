@@ -1,5 +1,4 @@
 import 'package:exceed_resources_frontend/app/modules/core/layout/layout.dart';
-import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/animated/animated_press.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/controllers/colleague_controller.dart';
@@ -19,7 +18,7 @@ class ColleagueView extends GetView<ColleagueController> {
       controller: controller,
       title: 'Colleagues',
       headerTail: AppAnimatedPress(
-        onPressed: () => Get.toNamed(MiscRoutes.payriseConfig, arguments: controller.selected.value),
+        onPressed: () => Get.toNamed(MiscRoutes.payrise, arguments: controller.selected.value),
         child: SvgPicture.asset('assets/icons/pay_rise.svg'),
       ),
       content: ColleagueListing(
