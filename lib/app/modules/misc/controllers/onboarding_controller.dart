@@ -1,4 +1,3 @@
-import 'package:chewie/chewie.dart';
 import 'package:exceed_resources_frontend/app/modules/core/controllers/app_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/core/mixins/attachment_mixin.dart';
 import 'package:exceed_resources_frontend/app/modules/core/mock/onboarding.dart';
@@ -10,8 +9,6 @@ import 'package:exceed_resources_frontend/app/modules/core/widgets/popup.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/widgets/onboarding/create_onboarding_attachment_popup.dart';
 import 'package:exceed_resources_frontend/app/routes/misc_routes.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:video_player/video_player.dart';
 import 'package:get/get.dart';
 
 class OnboardingController extends AppController with AttachmentMixin {
@@ -37,31 +34,6 @@ class OnboardingController extends AppController with AttachmentMixin {
   ];
 
   late final selectedCreateOnboarding = [true, false, false].obs;
-  VideoPlayerController? playerController;
-  ChewieController? chewieController;
-
-  ChewieController getChewieController(String url) {
-    playerController = VideoPlayerController.network(url);
-    chewieController = ChewieController(
-      videoPlayerController: playerController!,
-      // startAt: const Duration(seconds: 45),
-      allowFullScreen: false,
-      autoInitialize: true,
-      fullScreenByDefault: true,
-      additionalOptions: (context) => [
-        OptionItem(
-          onTap: () {
-            chewieController!.pause();
-            Get.toNamed(MiscRoutes.onboarding);
-            SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-          },
-          iconData: Icons.chevron_left,
-          title: 'Back',
-        ),
-      ],
-    );
-    return chewieController!;
-  }
 
   void updateIndex(int index) {
     prevIndex.value = activeIndex.value;
@@ -149,14 +121,5 @@ class OnboardingController extends AppController with AttachmentMixin {
     }
     selectedOnboardings.refresh();
     super.onInit();
-  }
-
-  @override
-  void onClose() {
-    if (chewieController != null) {
-      playerController!.dispose();
-      chewieController!.dispose();
-    }
-    super.onClose();
   }
 }

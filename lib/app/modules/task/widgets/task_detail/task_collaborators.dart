@@ -1,6 +1,7 @@
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
+import 'package:exceed_resources_frontend/app/modules/core/utils/helper.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/circle.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/column.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/collaborator_m_model.dart';
@@ -10,12 +11,10 @@ import 'package:flutter/material.dart';
 class TaskCollaborators extends StatelessWidget {
   final List<MCollaboratorM> collaborators;
   final MCollaboratorM assignedBy;
-  final double width;
   const TaskCollaborators({
     Key? key,
     required this.collaborators,
     required this.assignedBy,
-    required this.width,
   }) : super(key: key);
 
   @override
@@ -37,7 +36,7 @@ class TaskCollaborators extends StatelessWidget {
               ),
             ),
             ConstrainedBox(
-              constraints: BoxConstraints(maxWidth: width / 2),
+              constraints: BoxConstraints(maxWidth: App.containerWidth(context) / 2),
               child: Wrap(
                 spacing: AppSize.sm,
                 runSpacing: AppSize.xs,
@@ -73,7 +72,7 @@ class TaskCollaborators extends StatelessWidget {
               ),
             ),
             ConstrainedBox(
-              constraints: BoxConstraints(maxWidth: width / 2),
+              constraints: BoxConstraints(maxWidth: App.containerWidth(context) / 2),
               child: AppCircle.container(
                 width: AppSize.cSm,
                 color: AppTheme.of(context).color.secondary.withOpacity(0.1),

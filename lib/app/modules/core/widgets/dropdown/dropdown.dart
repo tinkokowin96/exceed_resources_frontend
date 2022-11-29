@@ -131,7 +131,7 @@ class _AppDropdownState extends State<AppDropdown> {
             showWhenUnlinked: false,
             offset: Offset(
               0,
-              position.dy / screenHeight < 0.7 ? renderBox.size.height + AppSize.sm : -(AppSize.dH + AppSize.lg),
+              position.dy / screenHeight < 0.7 ? renderBox.size.height + AppSize.sm : -(AppSize.dH + AppSize.md),
             ),
             child: DopdownItems(
               items: !widget.loading && widget.initialItems != null && searchedText.isEmpty

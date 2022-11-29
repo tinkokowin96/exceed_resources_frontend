@@ -62,7 +62,6 @@ class ChatConversationView extends GetView<ChatConversationController> {
               child: Obx(
                 () {
                   return MessageInput(
-                    width: constraint.maxWidth,
                     sendMessage: controller.onSendMessage,
                     updateAttachment: controller.updateMessageAttachment,
                     attachments: controller.messageAttachments.value,

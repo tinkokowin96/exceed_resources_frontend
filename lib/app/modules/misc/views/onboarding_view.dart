@@ -1,17 +1,15 @@
-import 'package:chewie/chewie.dart';
 import 'package:exceed_resources_frontend/app/modules/core/layout/layout.dart';
-import 'package:exceed_resources_frontend/app/modules/core/layout/page_header.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/sizebox.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
-import 'package:exceed_resources_frontend/app/modules/core/utils/helper.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/animated/animated_press.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/animated/animated_switcher.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/button/button.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/column.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/image_card.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/section_heading.dart';
+import 'package:exceed_resources_frontend/app/modules/core/widgets/video_player.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/controllers/onboarding_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/core/extensions/string_extension.dart';
 import 'package:exceed_resources_frontend/app/routes/app_pages.dart';
@@ -121,24 +119,12 @@ class OnboardingView extends GetView<OnboardingController> {
                                                   if (each.attachment!.type == EAttachment.video) {
                                                     Get.toNamed(
                                                       AppRoutes.fullscreen,
-                                                      arguments: SafeArea(
-                                                        child: Column(
-                                                          children: [
-                                                            const PageHeader(title: ''),
-                                                            Expanded(
-                                                              child: Center(
-                                                                child: SizedBox(
-                                                                  width: App.width(context),
-                                                                  height: AppSize.vpH,
-                                                                  child: Chewie(
-                                                                    controller: controller
-                                                                        .getChewieController(each.attachment!.url!),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
+                                                      arguments: AppVideoPlayer(
+                                                        url: each.attachment!.url!,
+                                                        homeRoute: MiscRoutes.onboarding,
+                                                        controller: controller,
+                                                        playerController: controller.playerController,
+                                                        chewieController: controller.chewieController,
                                                       ),
                                                     );
                                                   } else {

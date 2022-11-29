@@ -11,25 +11,27 @@ import 'package:exceed_resources_frontend/app/modules/task/models/comment_model.
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-class TaskComment extends StatefulWidget {
+class AppComment extends StatefulWidget {
   final MComment comment;
   final bool divider;
-  const TaskComment({
+  final bool showLike;
+  const AppComment({
     Key? key,
     required this.comment,
+    required this.showLike,
     this.divider = true,
   }) : super(key: key);
 
   @override
-  State<TaskComment> createState() => _TaskCommentState();
+  State<AppComment> createState() => _AppCommentState();
 }
 
-class _TaskCommentState extends State<TaskComment> {
+class _AppCommentState extends State<AppComment> {
   @override
   Widget build(BuildContext context) {
     return AppColumn(
-      firstNoSpacing: true,
       spacing: AppSize.xs,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -56,7 +58,6 @@ class _TaskCommentState extends State<TaskComment> {
             ),
             AppRow(
               spacing: AppSize.sm,
-              firstNoSpacing: true,
               children: [
                 Text(
                   (DateTime.now().difference(widget.comment.updatedAt!).inSeconds).countTime(format: true),
@@ -65,39 +66,41 @@ class _TaskCommentState extends State<TaskComment> {
                     type: ETextType.subtitle,
                   ),
                 ),
-                AppAnimatedPress(
-                  onPressed: () => null,
-                  child: Icon(widget.comment.liked ? Icons.favorite : Icons.favorite_border),
-                ),
-                Text(
-                  widget.comment.numLike.toString(),
-                  style: AppTheme.text(context: context),
-                ),
+                if (widget.showLike) ...[
+                  AppAnimatedPress(
+                    onPressed: () => null,
+                    child: Icon(widget.comment.liked ? Icons.favorite : Icons.favorite_border),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: AppSize.xs),
+                    child: Text(
+                      widget.comment.numLike.toString(),
+                      style: AppTheme.text(context: context),
+                    ),
+                  ),
+                ]
               ],
             )
           ],
         ),
-        Padding(
-          padding: const EdgeInsets.only(top: AppSize.xs),
-          child: widget.comment.commentTexts != null
-              ? RichText(
-                  text: TextSpan(
-                    children: List.from(
-                      widget.comment.commentTexts!.map(
-                        (each) => TextSpan(
-                          text: each.text,
-                          style: AppTheme.text(
-                            context: context,
-                            type: each.colleagueId != null ? ETextType.primary : ETextType.body,
-                          ),
-                          recognizer: each.colleagueId == null ? null : (TapGestureRecognizer()..onTap = () => ''),
+        widget.comment.commentTexts != null
+            ? RichText(
+                text: TextSpan(
+                  children: List.from(
+                    widget.comment.commentTexts!.map(
+                      (each) => TextSpan(
+                        text: each.text,
+                        style: AppTheme.text(
+                          context: context,
+                          type: each.colleagueId != null ? ETextType.primary : ETextType.body,
                         ),
+                        recognizer: each.colleagueId == null ? null : (TapGestureRecognizer()..onTap = () => ''),
                       ),
                     ),
                   ),
-                )
-              : AppSizeBox.zero,
-        ),
+                ),
+              )
+            : AppSizeBox.zero,
         if (widget.divider)
           Padding(
             padding: const EdgeInsets.only(top: AppSize.xs),

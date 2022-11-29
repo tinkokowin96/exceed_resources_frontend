@@ -12,6 +12,7 @@ import 'package:get/get.dart';
 class PageHeader extends StatelessWidget {
   final String title;
   final bool hasAdminMode;
+  final double? topPadding;
   final AppController? controller;
   final Widget? headerTail;
   final Function()? backAction;
@@ -19,6 +20,7 @@ class PageHeader extends StatelessWidget {
     Key? key,
     required this.title,
     this.hasAdminMode = false,
+    this.topPadding,
     this.controller,
     this.headerTail,
     this.backAction,
@@ -27,7 +29,7 @@ class PageHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: AppSize.md),
+      padding: EdgeInsets.only(bottom: topPadding ?? AppSize.md),
       child: Stack(
         alignment: Alignment.center,
         children: [

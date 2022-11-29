@@ -1,97 +1,25 @@
 import 'package:exceed_resources_frontend/app/modules/core/controllers/app_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/core/mixins/attachment_mixin.dart';
+import 'package:exceed_resources_frontend/app/modules/core/mixins/message_input_mixin.dart';
 import 'package:exceed_resources_frontend/app/modules/core/mock/attachment.dart';
 import 'package:exceed_resources_frontend/app/modules/core/models/attachment_model.dart';
-import 'package:exceed_resources_frontend/app/modules/core/models/attachment_field_model.dart';
-import 'package:exceed_resources_frontend/app/modules/core/models/option_model.dart';
 import 'package:exceed_resources_frontend/app/modules/task/controllers/task_table_controller.dart';
-import 'package:exceed_resources_frontend/app/modules/task/models/comment_text_model.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/priority_model.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/status_model.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class TaskDetailController extends AppController with AttachmentMixin {
+class TaskDetailController extends AppController with AttachmentMixin, MessageInputMixin {
   final tableController = Get.find<TaskTableController>();
   late final task = tableController.selectedTask.value;
   final statuses = Rx<List<MStatus>>([]);
   final priorities = Rx<List<MPriority>>([]);
-  final messageController = TextEditingController();
-  final messageFocus = FocusNode();
-  final messageHasFoucus = false.obs;
-  final messageAttachments = Rx<List<MAttachmentField>>([]);
-  final colleagueDropdown = false.obs;
   final attachments = Rx<List<MAttachment>>(m_attachments);
-  final messageText = Rx<List<MCommentText>>([]);
-  final colleagueOptions = const [
-    MOption(text: 'one', value: 1),
-    MOption(text: 'two', value: 2),
-    MOption(text: 'three', value: 3),
-  ];
-  String previousMessage = '';
-  String messageBeforeLastChunk = '';
 
-  void onSendMessage() {
-    messageController.clear();
-  }
+  void updateStatus() {}
+  void updatePriority() {}
+  void updateComment() {}
 
-  void removeLastMessageChunk() {
-    messageText.value.removeLast();
-    messageBeforeLastChunk = '';
-    for (int i = 0; i < messageText.value.length; i++) {
-      messageBeforeLastChunk += messageText.value[i].text;
-    }
-    messageController.text = messageBeforeLastChunk;
-    messageController.selection = TextSelection.fromPosition(
-      TextPosition(
-        offset: messageController.text.length,
-      ),
-    );
-    previousMessage = messageController.text;
-  }
-
-  void listenMessage(String value) {
-    final regex = RegExp(r'@');
-    if (regex.hasMatch(value)) {
-      if (!colleagueDropdown.value) {
-        colleagueDropdown.value = true;
-        colleagueDropdown.refresh();
-      }
-    } else {
-      if (colleagueDropdown.value) {
-        colleagueDropdown.value = false;
-        colleagueDropdown.refresh();
-      }
-      if (value.length != previousMessage.length) {
-        final isDelete = value.length < previousMessage.length;
-        final lastChunkMessage = value.replaceFirst(messageBeforeLastChunk, '');
-        if (isDelete) {
-          if (messageText.value.last.colleagueId == null) {
-            if (lastChunkMessage.isEmpty) {
-              removeLastMessageChunk();
-            } else {
-              messageText.value.last.text = lastChunkMessage;
-            }
-          } else {
-            removeLastMessageChunk();
-          }
-        } else {
-          if (messageText.value.isEmpty) {
-            messageText.value.add(MCommentText(text: lastChunkMessage));
-          } else {
-            if (messageText.value.last.colleagueId == null) {
-              messageText.value.last.text = lastChunkMessage;
-            } else {
-              messageText.value.add(MCommentText(text: lastChunkMessage));
-            }
-          }
-        }
-        previousMessage = value;
-      }
-    }
-    messageText.refresh();
-  }
-
+  @override
   Future<void> updateMessageAttachment({String? name}) async {
     final updatedAttachments = await updateAttachment(
       attachments: messageAttachments.value,
@@ -102,34 +30,6 @@ class TaskDetailController extends AppController with AttachmentMixin {
       messageAttachments.refresh();
     }
   }
-
-  void onMessageFocusChange(bool hasFocus) {
-    messageHasFoucus.value = hasFocus;
-    update();
-  }
-
-  void onColleagueDropdownChange(MOption? value) {
-    if (value != null) {
-      colleagueDropdown.value = false;
-      messageController.text = messageController.text.replaceFirst('@', value.text);
-      colleagueDropdown.refresh();
-      messageController.selection = TextSelection.fromPosition(
-        TextPosition(
-          offset: messageController.text.length,
-        ),
-      );
-
-      messageText.value.add(
-        MCommentText(text: value.text, colleagueId: value.value.toString()),
-      );
-      messageBeforeLastChunk = messageController.text;
-      previousMessage = messageController.text;
-    }
-  }
-
-  void updateStatus() {}
-  void updatePriority() {}
-  void updateComment() {}
 
   @override
   void onClose() {

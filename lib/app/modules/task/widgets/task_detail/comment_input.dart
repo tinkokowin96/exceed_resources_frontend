@@ -79,11 +79,13 @@ class CommentInput extends StatelessWidget {
                     readOnly: dropdown,
                     keyboardType: TextInputType.multiline,
                     maxLines: null,
+                    textAlignVertical: TextAlignVertical.center,
                     style: AppTheme.text(context: context).copyWith(color: Colors.transparent),
                     decoration: AppThemeMiscs.inputStyle(
                       context: context,
                       color: EInputColor.transparent,
                       border: EInputColor.background,
+                      borderRadius: AppSize.lg,
                     ),
                   ),
                 ),

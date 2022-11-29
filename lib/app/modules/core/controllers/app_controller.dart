@@ -1,8 +1,10 @@
+import 'package:chewie/chewie.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/config.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/drawer.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/popup.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:video_player/video_player.dart';
 
 class AppController extends GetxController {
   final stopwatch = Stopwatch();
@@ -14,6 +16,8 @@ class AppController extends GetxController {
   final drawer = Rxn<AppDrawer>();
   final confirmCallback = Rxn<Function()>();
   final cancelCallback = Rxn<Function()>();
+  VideoPlayerController? playerController;
+  ChewieController? chewieController;
 
   Future<void> updateLoading({
     required bool value,
@@ -96,5 +100,14 @@ class AppController extends GetxController {
     if (cancelCallback.value != null) {
       cancelCallback.value!();
     }
+  }
+
+  @override
+  void onClose() {
+    if (chewieController != null) {
+      playerController!.dispose();
+      chewieController!.dispose();
+    }
+    super.onClose();
   }
 }

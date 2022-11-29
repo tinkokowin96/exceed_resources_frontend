@@ -31,6 +31,8 @@ enum EAttachment {
   pdf,
   @JsonValue('Thumbnail')
   thumbnail,
+  @JsonValue('Url')
+  url,
   @JsonValue('Others')
   others
 }

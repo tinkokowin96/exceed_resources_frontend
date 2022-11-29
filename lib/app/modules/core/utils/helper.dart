@@ -1,19 +1,22 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:archive/archive_io.dart';
+import 'package:chewie/chewie.dart';
 import 'package:exceed_resources_frontend/app/modules/core/controllers/app_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/core/mock/attachment.dart';
 import 'package:exceed_resources_frontend/app/modules/core/models/attachment_model.dart';
 import 'package:exceed_resources_frontend/app/modules/core/services/byte_response_service.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
+import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/config.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/popup.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/route_manager.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:video_player/video_player.dart';
 
 EDevice getDevice(BuildContext context) => MediaQuery.of(context).size.width <= 576
     ? EDevice.mobile
@@ -161,7 +164,36 @@ Future<void> download({
   }
 }
 
+ChewieController getChewieController({
+  required String url,
+  required VideoPlayerController? playerController,
+  required ChewieController? chewieController,
+  required String homeRoute,
+}) {
+  playerController = VideoPlayerController.network(url);
+  chewieController = ChewieController(
+    videoPlayerController: playerController,
+    // startAt: const Duration(seconds: 45),
+    allowFullScreen: false,
+    autoInitialize: true,
+    fullScreenByDefault: true,
+    additionalOptions: (context) => [
+      OptionItem(
+        onTap: () {
+          chewieController!.pause();
+          Get.toNamed(homeRoute);
+          SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+        },
+        iconData: Icons.chevron_left,
+        title: 'Back',
+      ),
+    ],
+  );
+  return chewieController;
+}
+
 class App {
   static width(BuildContext context) => MediaQuery.of(context).size.width;
   static height(BuildContext context) => MediaQuery.of(context).size.height;
+  static containerWidth(BuildContext context) => App.width(context) - 2 * AppSize.md;
 }

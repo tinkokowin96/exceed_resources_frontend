@@ -1,17 +1,18 @@
 import 'dart:async';
 
 import 'package:exceed_resources_frontend/app/modules/core/extensions/int_extension.dart';
+import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:flutter/material.dart';
 
 class AppTimer extends StatefulWidget {
   final DateTime until;
   final Function() onCompleted;
-  final TextStyle style;
+  final TextStyle? style;
   const AppTimer({
     Key? key,
     required this.until,
     required this.onCompleted,
-    required this.style,
+    this.style,
   }) : super(key: key);
 
   @override
@@ -19,7 +20,7 @@ class AppTimer extends StatefulWidget {
 }
 
 class _AppTimerState extends State<AppTimer> {
-  late int _remaining = DateTime.now().difference(widget.until).inSeconds;
+  late int _remaining = widget.until.difference(DateTime.now()).inSeconds;
   late final Timer _timer;
 
   @override
@@ -39,6 +40,6 @@ class _AppTimerState extends State<AppTimer> {
 
   @override
   Widget build(BuildContext context) {
-    return Text(_remaining.countTime(), style: widget.style);
+    return Text(_remaining.countTime(), style: widget.style ?? AppTheme.text(context: context));
   }
 }

@@ -37,7 +37,7 @@ class AppSize {
   static const msgatt = 80.0; //input message attachment
   static const fep = 12.0; //field  padding
   static const imgfeH = 120.0; //image field height
-  static const vpH = 300.0; //potrait video player height
+  static const secH = 300.0; //section height
   static const swiW = 70.0; //switch width
 
   //add button

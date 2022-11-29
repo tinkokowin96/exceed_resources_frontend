@@ -16,16 +16,17 @@ class PayriseView extends GetView<PayriseController> {
       currentMenu: EMenu.misc,
       controller: controller,
       title: 'Payrise',
-      content: LayoutBuilder(builder: (context, constraint) {
-        final cardWidth = (constraint.maxWidth - AppSize.sm) / 2;
-        return Form(
-          key: controller.formKey,
-          child: Column(
-            children: [
-              if (controller.payrises.isNotEmpty)
-                Padding(
-                  padding: const EdgeInsets.only(bottom: AppSize.md),
-                  child: Wrap(
+      content: LayoutBuilder(
+        builder: (context, constraint) {
+          final cardWidth = (constraint.maxWidth - AppSize.sm) / 2;
+          return Form(
+            key: controller.formKey,
+            child: Column(
+              children: [
+                if (controller.payrises.isNotEmpty)
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: AppSize.md),
+                    child: Wrap(
                       spacing: AppSize.sm,
                       runSpacing: AppSize.sm,
                       children: List.from(
@@ -35,13 +36,15 @@ class PayriseView extends GetView<PayriseController> {
                             width: cardWidth,
                           ),
                         ),
-                      )),
-                ),
-              const PayriseForm(),
-            ],
-          ),
-        );
-      }),
+                      ),
+                    ),
+                  ),
+                const PayriseForm(),
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 }

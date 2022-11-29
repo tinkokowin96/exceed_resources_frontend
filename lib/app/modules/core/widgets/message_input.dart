@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:exceed_resources_frontend/app/modules/core/utils/helper.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/animated/animated_press.dart';
 import 'package:exceed_resources_frontend/app/modules/core/models/attachment_field_model.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
@@ -11,14 +12,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class MessageInput extends StatelessWidget {
-  final double width;
   final Function() sendMessage;
   final Function({String? name}) updateAttachment;
   final List<MAttachmentField> attachments;
   final Widget input;
   const MessageInput({
     Key? key,
-    required this.width,
     required this.sendMessage,
     required this.updateAttachment,
     required this.attachments,
@@ -28,14 +27,14 @@ class MessageInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: width,
+      width: App.containerWidth(context),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           attachments.isNotEmpty
               ? AppContainer(
                   background: AppTheme.of(context).color.container,
-                  width: width,
+                  width: App.containerWidth(context),
                   child: Wrap(
                     spacing: AppSize.xs,
                     runSpacing: AppSize.xs,

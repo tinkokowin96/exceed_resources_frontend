@@ -13,6 +13,7 @@ class AppLayout {
     required EMenu currentMenu,
     required Widget content,
     required AppController controller,
+    double? topPadding,
     bool noPadding = false,
     bool header = false,
     bool hasAdminMode = false,
@@ -33,6 +34,7 @@ class AppLayout {
           controller: controller,
           title: title,
           headerTail: headerTail,
+          topPadding: topPadding,
           backAction: backAction,
         ),
       );
@@ -98,9 +100,7 @@ class Layout extends StatelessWidget {
                             ? true
                             : false,
                     child: SafeArea(
-                      child: InkWell(
-                        highlightColor: Colors.transparent,
-                        splashColor: Colors.transparent,
+                      child: GestureDetector(
                         onTap: containerAction,
                         child: child,
                       ),

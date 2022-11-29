@@ -14,6 +14,7 @@ class MobileLayout extends StatelessWidget {
   final bool noPadding;
   final bool hasAdminMode;
   final AppController controller;
+  final double? topPadding;
   final String? title;
   final Widget? headerTail;
   final Function()? backAction;
@@ -25,6 +26,7 @@ class MobileLayout extends StatelessWidget {
     required this.noPadding,
     required this.hasAdminMode,
     required this.controller,
+    this.topPadding,
     this.title,
     this.headerTail,
     this.backAction,
@@ -40,6 +42,7 @@ class MobileLayout extends StatelessWidget {
                 headerTail: headerTail,
                 backAction: backAction,
                 hasAdminMode: hasAdminMode,
+                topPadding: topPadding,
                 controller: controller,
               )
             : header
