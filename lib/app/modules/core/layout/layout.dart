@@ -10,9 +10,9 @@ import 'package:lottie/lottie.dart';
 
 class AppLayout {
   static Widget core({
+    required AppController controller,
     required EMenu currentMenu,
     required Widget content,
-    required AppController controller,
     double? topPadding,
     bool noPadding = false,
     bool header = false,

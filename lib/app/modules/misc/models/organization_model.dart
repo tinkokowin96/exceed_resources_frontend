@@ -9,20 +9,20 @@ part 'organization_model.g.dart';
 @freezed
 class MOrganization with _$MOrganization {
   factory MOrganization({
-    required String id,
-    required String name,
-    required String logo,
-    required String type,
-    required String ceoName,
-    required String ceoImage,
-    required String ceoPositionName,
-    required String ceoEmail,
-    required String ceoPhone,
+    @Default('') String id,
+    @Default('') String name,
+    @Default('') String logo,
+    @Default('') String type,
+    @Default('') String ceoName,
+    @Default('') String ceoImage,
+    @Default('') String ceoPositionName,
+    @Default('') String ceoEmail,
+    @Default('') String ceoPhone,
     @Default([]) List<MDepartment> departments,
     @Default([]) List<MColleague> topManagements,
     @Default([]) List<MAttachment> resources,
-    String? ceoPositionShort,
-    String? description,
+    @Default('') String ceoPositionShort,
+    @Default('') String description,
   }) = _MOrganization;
 
   factory MOrganization.fromJson(Map<String, dynamic> json) => _$MOrganizationFromJson(json);

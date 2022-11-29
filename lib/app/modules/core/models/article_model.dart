@@ -7,10 +7,10 @@ part 'article_model.g.dart';
 @freezed
 class MArticle with _$MArticle {
   factory MArticle({
-    required String id,
-    required String title,
-    required String image,
-    required List<MArticleSection> sections,
+    @Default('') String id,
+    @Default('') String title,
+    @Default('') String image,
+    @Default([]) List<MArticleSection> sections,
   }) = _MArticle;
 
   factory MArticle.fromJson(Map<String, dynamic> json) => _$MArticleFromJson(json);

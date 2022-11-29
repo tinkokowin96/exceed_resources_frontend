@@ -6,8 +6,8 @@ part 'permission_model.g.dart';
 @freezed
 class MPermission with _$MPermission {
   factory MPermission({
-    required String name,
-    required bool write,
+    @Default('') String name,
+    @Default(false) bool write,
     Map? option,
   }) = _MPermission;
 

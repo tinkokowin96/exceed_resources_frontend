@@ -9,21 +9,11 @@ part 'colleague_status_model.g.dart';
 @freezed
 class ColleagueStatusM with _$ColleagueStatusM {
   factory ColleagueStatusM({
-    required String name,
-    @JsonKey(
-      name: 'until',
-      fromJson: dateFromJson,
-      toJson: dateToJson,
-    )
-        DateTime? until,
-    @JsonKey(
-      name: 'color',
-      fromJson: colorFromJson,
-      toJson: colorToJson,
-    )
-        required Color color,
+    @Default('') String name,
+    @JsonKey(name: 'until', fromJson: dateFromJson, toJson: dateToJson) DateTime? until,
+    @JsonKey(name: 'color', fromJson: colorFromJson, toJson: colorToJson) Color? color,
     LocationM? location,
-    String? remark,
+    @Default('') String remark,
   }) = _ColleagueStatusM;
 
   factory ColleagueStatusM.fromJson(Map<String, dynamic> json) => _$ColleagueStatusMFromJson(json);

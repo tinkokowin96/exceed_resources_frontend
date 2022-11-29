@@ -56,7 +56,7 @@ class Colleague extends StatelessWidget {
               ],
             ),
             Text(
-              colleague.position.name,
+              colleague.position!.name,
               style: AppTheme.text(
                 context: context,
                 size: EText.h4,

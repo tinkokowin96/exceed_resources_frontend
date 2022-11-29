@@ -8,11 +8,11 @@ part 'collaborator_model.g.dart';
 @freezed
 class MCollaborator with _$MCollaborator {
   factory MCollaborator({
-    required String id,
-    required MColleague colleague,
-    required MRole role,
+    @Default('') String id,
+    MColleague? colleague,
+    MRole? role,
     @Default([]) @JsonKey(name: 'allowed_resources') List<String> allowedResources,
-    String? remark,
+    @Default('') String remark,
   }) = _MCollaborator;
 
   factory MCollaborator.fromJson(Map<String, dynamic> json) => _$MCollaboratorFromJson(json);

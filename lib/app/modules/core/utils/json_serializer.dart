@@ -10,6 +10,4 @@ Color colorFromJson(String json) => Color(
       ),
     );
 
-String colorToJson(Color color) => color.toString().replaceAll('Color(', '').replaceAll(')', '');
-
-dynamic dataFromJson(String json) {}
+String colorToJson(Color? color) => color.toString().replaceAll('Color(', '').replaceAll(')', '');

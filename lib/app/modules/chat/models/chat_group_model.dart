@@ -8,9 +8,9 @@ part 'chat_group_model.g.dart';
 @freezed
 class MChatGroup with _$MChatGroup {
   factory MChatGroup({
-    String? id,
-    required EChat type,
-    @JsonKey(name: 'chat_conversations') required List<MChatConversationM> chatConversations,
+    @Default('') String id,
+    @Default(EChat.colleagues) EChat type,
+    @Default([]) @JsonKey(name: 'chat_conversations') List<MChatConversationM> chatConversations,
   }) = _MChatGroup;
 
   factory MChatGroup.fromJson(Map<String, dynamic> json) => _$MChatGroupFromJson(json);

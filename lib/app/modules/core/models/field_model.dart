@@ -7,10 +7,10 @@ part 'field_model.g.dart';
 @freezed
 class MField with _$MField {
   factory MField({
-    required String id,
-    required String name,
-    @JsonKey(name: 'field_type') required EField fieldType,
-    required dynamic value,
+    @Default('') String id,
+    @Default('') String name,
+    @Default(EField.string) @JsonKey(name: 'field_type') EField fieldType,
+    dynamic value,
   }) = _MField;
 
   factory MField.fromJson(Map<String, dynamic> json) => _$MFieldFromJson(json);

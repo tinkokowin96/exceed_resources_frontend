@@ -73,7 +73,7 @@ class TaskTableController extends AppController {
   }
 
   void filterTask(MProject project) {
-    tasks.value = List.from(allTasks.where((each) => each.project.id == project.id));
+    tasks.value = List.from(allTasks.where((each) => each.project!.id == project.id));
     update();
   }
 

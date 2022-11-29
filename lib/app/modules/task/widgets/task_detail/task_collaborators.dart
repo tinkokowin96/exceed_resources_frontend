@@ -4,13 +4,13 @@ import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/helper.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/circle.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/column.dart';
-import 'package:exceed_resources_frontend/app/modules/task/models/collaborator_m_model.dart';
+import 'package:exceed_resources_frontend/app/modules/task/models/collaborator_model.dart';
 import 'package:exceed_resources_frontend/app/modules/core/extensions/string_extension.dart';
 import 'package:flutter/material.dart';
 
 class TaskCollaborators extends StatelessWidget {
-  final List<MCollaboratorM> collaborators;
-  final MCollaboratorM assignedBy;
+  final List<MCollaborator> collaborators;
+  final MCollaborator assignedBy;
   const TaskCollaborators({
     Key? key,
     required this.collaborators,
@@ -46,7 +46,7 @@ class TaskCollaborators extends StatelessWidget {
                       width: AppSize.cSm,
                       color: AppTheme.of(context).color.secondary.withOpacity(0.1),
                       child: Text(
-                        each.colleague.name.firstCharCaptilize(),
+                        each.colleague!.name.firstCharCaptilize(),
                         style: AppTheme.text(
                           context: context,
                           type: ETextType.primary,
@@ -77,7 +77,7 @@ class TaskCollaborators extends StatelessWidget {
                 width: AppSize.cSm,
                 color: AppTheme.of(context).color.secondary.withOpacity(0.1),
                 child: Text(
-                  assignedBy.colleague.name.firstCharCaptilize(),
+                  assignedBy.colleague!.name.firstCharCaptilize(),
                   style: AppTheme.text(
                     context: context,
                     type: ETextType.primary,

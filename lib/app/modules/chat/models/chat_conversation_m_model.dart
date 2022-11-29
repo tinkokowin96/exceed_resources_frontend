@@ -6,11 +6,11 @@ part 'chat_conversation_m_model.g.dart';
 @freezed
 class MChatConversationM with _$MChatConversationM {
   factory MChatConversationM({
-    String? id,
-    required String image,
-    required String name,
-    @JsonKey(name: 'num_unread') required int numUnread,
-    @JsonKey(name: 'last_message') required String lastMessage,
+    @Default('') String id,
+    @Default('') String image,
+    @Default('') String name,
+    @Default(0) @JsonKey(name: 'num_unread') int numUnread,
+    @Default('') @JsonKey(name: 'last_message') String lastMessage,
   }) = _MChatConversationM;
 
   factory MChatConversationM.fromJson(Map<String, dynamic> json) => _$MChatConversationMFromJson(json);

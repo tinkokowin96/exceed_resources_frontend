@@ -3,6 +3,8 @@ import 'package:exceed_resources_frontend/app/modules/misc/controllers/article_c
 import 'package:exceed_resources_frontend/app/modules/misc/controllers/calender_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/controllers/colleague_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/controllers/colleague_detail_controller.dart';
+import 'package:exceed_resources_frontend/app/modules/misc/controllers/colleague_detail_permission_controller.dart';
+import 'package:exceed_resources_frontend/app/modules/misc/controllers/colleague_permission_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/controllers/create_article_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/controllers/late_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/controllers/leave_controller.dart';
@@ -29,8 +31,10 @@ class MiscBinding extends Bindings {
     Get.lazyPut<PayriseController>(() => PayriseController());
     Get.lazyPut<AddEventController>(() => AddEventController());
     Get.lazyPut<CalenderController>(() => CalenderController());
-    Get.lazyPut<ColleagueDetailController>(() => ColleagueDetailController());
     Get.lazyPut<ColleagueController>(() => ColleagueController());
+    Get.lazyPut<ColleagueDetailController>(() => ColleagueDetailController());
+    Get.lazyPut<ColleagueDetailPermissionController>(() => ColleagueDetailPermissionController());
+    Get.lazyPut<ColleaguePermissionController>(() => ColleaguePermissionController());
     Get.lazyPut<LateController>(() => LateController());
     Get.lazyPut<LeaveController>(() => LeaveController());
     Get.lazyPut<OrganizationStructureController>(() => OrganizationStructureController());

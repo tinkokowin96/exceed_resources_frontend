@@ -112,10 +112,10 @@ Future<void> download({
     late final String name;
     if (attachments.length == 1) {
       name = m_attachments[0].name;
-      if (m_attachments[0].url == null) {
+      if (m_attachments[0].url.isNotEmpty) {
         bytes = m_attachments[0].data!;
       } else {
-        bytes = await byteResponse(m_attachments[0].url!);
+        bytes = await byteResponse(m_attachments[0].url);
       }
     } else {
       final encoder = ZipEncoder();
@@ -125,7 +125,7 @@ Future<void> download({
         if (file.data != null) {
           fileByte = file.data!;
         } else {
-          fileByte = await byteResponse(file.url!);
+          fileByte = await byteResponse(file.url);
         }
         ArchiveFile archiveFile = ArchiveFile.stream(
           file.name,

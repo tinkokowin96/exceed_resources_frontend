@@ -8,15 +8,15 @@ part 'department_model.g.dart';
 @freezed
 class MDepartment with _$MDepartment {
   factory MDepartment({
-    required String id,
-    required String name,
-    @JsonKey(name: 'short_name') String? shortName,
+    @Default('') String id,
+    @Default('') String name,
+    @Default('') @JsonKey(name: 'short_name') String shortName,
     @Default([]) List<MColleague> executives,
     @Default([]) List<MColleague> colleagues,
     @Default([]) List<MDepartment> departments,
     @Default([]) List<MPermission> permissions,
-    List<String>? resources,
-    String? remark,
+    @Default([]) List<String> resources,
+    @Default('') String remark,
   }) = _MDepartment;
 
   factory MDepartment.fromJson(Map<String, dynamic> json) => _$MDepartmentFromJson(json);

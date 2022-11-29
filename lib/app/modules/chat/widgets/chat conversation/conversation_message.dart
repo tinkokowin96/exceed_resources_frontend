@@ -44,7 +44,7 @@ class ConversationMessage extends StatelessWidget {
                           )
                         : AppSizeBox.zero,
                     ...List.from(
-                      message.chatTexts!.asMap().entries.map(
+                      message.chatTexts.asMap().entries.map(
                             (each) => Padding(
                               padding: EdgeInsets.only(top: each.key == 0 ? 0 : AppSize.xs),
                               child: AppContainer(

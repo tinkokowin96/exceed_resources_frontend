@@ -68,7 +68,7 @@ class ProjectCard extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.only(left: AppSize.md),
                           child: Text(
-                            project.phase.name,
+                            project.phase!.name,
                             overflow: TextOverflow.ellipsis,
                             style: AppTheme.text(
                               context: context,

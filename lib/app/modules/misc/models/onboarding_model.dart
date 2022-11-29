@@ -8,7 +8,7 @@ part 'onboarding_model.g.dart';
 @freezed
 class MOnboarding with _$MOnboarding {
   factory MOnboarding({
-    required String id,
+    @Default('') String id,
     MAttachment? attachment,
     MArticle? article,
   }) = _MOnboarding;

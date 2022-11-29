@@ -33,9 +33,9 @@ class ChatConversationView extends GetView<ChatConversationController> {
                 child: ListView.builder(
                   controller: controller.scrollController,
                   reverse: true,
-                  itemCount: controller.conversation.value!.chatMessages.entries.length,
+                  itemCount: controller.conversation.value!.chatMessages!.entries.length,
                   itemBuilder: (context, index) {
-                    final item = List.from(controller.conversation.value!.chatMessages.entries)[index];
+                    final item = List.from(controller.conversation.value!.chatMessages!.entries)[index];
                     return SingleChildScrollView(
                       child: Column(
                         mainAxisSize: MainAxisSize.min,

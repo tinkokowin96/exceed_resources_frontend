@@ -29,12 +29,12 @@ class StructureItemCard extends StatelessWidget {
     final title = department != null
         ? department!.name
         : colleague != null
-            ? colleague!.position.name
+            ? colleague!.position!.name
             : organization.ceoPositionName;
     final short = department != null
         ? department!.shortName
         : colleague != null
-            ? colleague!.position.shortName
+            ? colleague!.position!.shortName
             : organization.ceoPositionShort;
     final image = colleague != null
         ? colleague!.image

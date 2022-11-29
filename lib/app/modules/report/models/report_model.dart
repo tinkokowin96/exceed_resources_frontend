@@ -7,10 +7,10 @@ part 'report_model.g.dart';
 @freezed
 class MReport with _$MReport {
   factory MReport({
-    required List<MReportCategory> categories,
-    @JsonKey(name: 'basic_salary') required double basicSalary,
-    @JsonKey(name: 'total_earning') @Default(0) double totalEarning,
-    @JsonKey(name: 'total_deduction') @Default(0) double totalDeduction,
+    @Default([]) List<MReportCategory> categories,
+    @Default(0) @JsonKey(name: 'basic_salary') double basicSalary,
+    @Default(0) @JsonKey(name: 'total_earning') double totalEarning,
+    @Default(0) @JsonKey(name: 'total_deduction') double totalDeduction,
   }) = _MReport;
 
   factory MReport.fromJson(Map<String, dynamic> json) => _$MReportFromJson(json);

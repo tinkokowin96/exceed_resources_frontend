@@ -1,7 +1,9 @@
 import 'package:exceed_resources_frontend/app/modules/misc/views/add_event_view.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/views/article_view.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/views/calender_view.dart';
+import 'package:exceed_resources_frontend/app/modules/misc/views/colleague_detail_permission_view.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/views/colleague_detail_view.dart';
+import 'package:exceed_resources_frontend/app/modules/misc/views/colleague_permission_view.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/views/colleague_view.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/views/create_article_view.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/views/late_view.dart';
@@ -57,14 +59,26 @@ final List<GetPage<dynamic>> miscRoutes = [
     transitionDuration: Duration.zero,
   ),
   GetPage(
+    name: MiscRoutes.colleague,
+    page: () => const ColleagueView(),
+    binding: MiscBinding(),
+    transitionDuration: Duration.zero,
+  ),
+  GetPage(
     name: MiscRoutes.colleagueDetail,
     page: () => const ColleagueDetailView(),
     binding: MiscBinding(),
     transitionDuration: Duration.zero,
   ),
   GetPage(
-    name: MiscRoutes.colleague,
-    page: () => const ColleagueView(),
+    name: MiscRoutes.colleagueDetailPermission,
+    page: () => const ColleagueDetailPermissionView(),
+    binding: MiscBinding(),
+    transitionDuration: Duration.zero,
+  ),
+  GetPage(
+    name: MiscRoutes.colleaguePermission,
+    page: () => const ColleaguePermissionView(),
     binding: MiscBinding(),
     transitionDuration: Duration.zero,
   ),

@@ -97,7 +97,7 @@ class OnboardingView extends GetView<OnboardingController> {
                                               each.article != null ? each.article!.title : each.attachment!.name;
                                           return Obx(() {
                                             return ImageCard(
-                                              image: image!,
+                                              image: image,
                                               name: name,
                                               category: type,
                                               selected: controller.adminMode.isTrue
@@ -120,7 +120,7 @@ class OnboardingView extends GetView<OnboardingController> {
                                                     Get.toNamed(
                                                       AppRoutes.fullscreen,
                                                       arguments: AppVideoPlayer(
-                                                        url: each.attachment!.url!,
+                                                        url: each.attachment!.url,
                                                         homeRoute: MiscRoutes.onboarding,
                                                         controller: controller,
                                                         playerController: controller.playerController,

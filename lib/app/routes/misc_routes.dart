@@ -6,8 +6,10 @@ abstract class MiscRoutes {
   static const article = '/article';
   static const addEvent = '/addEvent';
   static const calender = '/calender';
-  static const colleagueDetail = '/colleagueDetail';
   static const colleague = '/colleague';
+  static const colleagueDetail = '/colleagueDetail';
+  static const colleagueDetailPermission = '/colleagueDetailPermission';
+  static const colleaguePermission = '/colleaguePermission';
   static const late = '/late';
   static const leave = '/leave';
   static const createArticle = '/createArticle';

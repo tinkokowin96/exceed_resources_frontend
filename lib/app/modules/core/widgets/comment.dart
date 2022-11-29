@@ -42,13 +42,13 @@ class _AppCommentState extends State<AppComment> {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(AppSize.icoMd / 2),
                   child: CachedNetworkImage(
-                    imageUrl: widget.comment.commentedBy.image,
+                    imageUrl: widget.comment.commentedBy!.image,
                     width: AppSize.icoMd,
                     height: AppSize.icoMd,
                   ),
                 ),
                 Text(
-                  widget.comment.commentedBy.name,
+                  widget.comment.commentedBy!.name,
                   style: AppTheme.text(
                     context: context,
                     type: ETextType.subtitle,
@@ -69,7 +69,8 @@ class _AppCommentState extends State<AppComment> {
                 if (widget.showLike) ...[
                   AppAnimatedPress(
                     onPressed: () => null,
-                    child: Icon(widget.comment.liked ? Icons.favorite : Icons.favorite_border),
+                    child: const Icon(Icons.favorite_border),
+                    // child: Icon(widget.comment.liked ? Icons.favorite : Icons.favorite_border),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: AppSize.xs),
@@ -83,18 +84,18 @@ class _AppCommentState extends State<AppComment> {
             )
           ],
         ),
-        widget.comment.commentTexts != null
+        widget.comment.commentTexts.isNotEmpty
             ? RichText(
                 text: TextSpan(
                   children: List.from(
-                    widget.comment.commentTexts!.map(
+                    widget.comment.commentTexts.map(
                       (each) => TextSpan(
                         text: each.text,
                         style: AppTheme.text(
                           context: context,
-                          type: each.colleagueId != null ? ETextType.primary : ETextType.body,
+                          type: each.colleagueId.isNotEmpty ? ETextType.primary : ETextType.body,
                         ),
-                        recognizer: each.colleagueId == null ? null : (TapGestureRecognizer()..onTap = () => ''),
+                        recognizer: each.colleagueId.isEmpty ? null : (TapGestureRecognizer()..onTap = () => ''),
                       ),
                     ),
                   ),

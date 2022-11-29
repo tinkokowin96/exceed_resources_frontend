@@ -7,12 +7,12 @@ part 'position_model.g.dart';
 @freezed
 class MPosition with _$MPosition {
   factory MPosition({
-    required String id,
-    required String name,
-    @JsonKey(name: 'short_name') String? shortName,
-    @JsonKey(name: 'basic_salary') double? basicSalary,
-    String? remark,
+    @Default('') String id,
+    @Default('') String name,
+    @Default('') @JsonKey(name: 'short_name') String shortName,
+    @Default(0) @JsonKey(name: 'basic_salary') double basicSalary,
     @Default([]) List<MColleague> colleagues,
+    @Default('') String remark,
   }) = _MPosition;
 
   factory MPosition.fromJson(Map<String, dynamic> json) => _$MPositionFromJson(json);

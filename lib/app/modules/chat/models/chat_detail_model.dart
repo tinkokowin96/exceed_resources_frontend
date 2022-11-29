@@ -9,12 +9,12 @@ part 'chat_detail_model.g.dart';
 @freezed
 class MChatDetail with _$MChatDetail {
   factory MChatDetail({
-    String? id,
-    required String image,
-    required String name,
-    required List<MColleague> colleagues,
-    required String description,
-    @JsonKey(name: 'pin_messages') @Default([]) List<MChatMessage> pinMessages,
+    @Default('') String id,
+    @Default('') String image,
+    @Default('') String name,
+    @Default('') String description,
+    @Default([]) List<MColleague> colleagues,
+    @Default([]) @JsonKey(name: 'pin_messages') List<MChatMessage> pinMessages,
     @Default([]) List<MAttachment> attachments,
   }) = _MChatDetail;
 

@@ -41,10 +41,10 @@ class TaskDetailView extends GetView<TaskDetailController> {
                   children: [
                     TaskCollaborators(
                       collaborators: controller.task.collaborators,
-                      assignedBy: controller.task.assignedBy,
+                      assignedBy: controller.task.assignedBy!,
                     ),
-                    DetailSection(title: 'Project', detailText: controller.task.project.name),
-                    DetailSection(title: 'Due Date', detailText: controller.task.dueDate.formatDate()),
+                    DetailSection(title: 'Project', detailText: controller.task.project!.name),
+                    DetailSection(title: 'Due Date', detailText: controller.task.dueDate!.formatDate()),
                     AppRow(
                       spacing: AppSize.lg,
                       children: [

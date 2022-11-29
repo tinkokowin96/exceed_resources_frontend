@@ -8,14 +8,9 @@ part 'status_model.g.dart';
 @freezed
 class MStatus with _$MStatus {
   factory MStatus({
-    required String id,
-    required String name,
-    @JsonKey(
-      name: 'color',
-      fromJson: colorFromJson,
-      toJson: colorToJson,
-    )
-        required Color color,
+    @Default('') String id,
+    @Default('') String name,
+    @JsonKey(name: 'color', fromJson: colorFromJson, toJson: colorToJson) Color? color,
   }) = _MStatus;
 
   factory MStatus.fromJson(Map<String, dynamic> json) => _$MStatusFromJson(json);

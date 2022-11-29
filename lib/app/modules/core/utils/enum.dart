@@ -71,3 +71,14 @@ enum EField {
   @JsonValue('number')
   number,
 }
+
+enum EColleagueDetailPermission {
+  @JsonValue('Colleague')
+  colleague,
+  @JsonValue('Date')
+  date,
+  @JsonValue('String')
+  string,
+  @JsonValue('number')
+  number,
+}

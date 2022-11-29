@@ -26,13 +26,13 @@ class AttachmentFullscreenView extends GetView<AttachmentFullscreenController> {
         backAction: () => Get.delete<AttachmentFullscreenController>(),
         controller: controller,
         content: controller.attachment.type == EAttachment.image
-            ? CachedNetworkImage(imageUrl: controller.attachment.url!, width: App.width(context))
+            ? CachedNetworkImage(imageUrl: controller.attachment.url, width: App.width(context))
             : controller.attachment.type == EAttachment.pdf
                 ? Obx(
                     () => controller.pdfAttachment.value != null
                         ? SfPdfViewer.memory(controller.pdfAttachment.value!)
                         : CachedNetworkImage(
-                            imageUrl: controller.attachment.thumbnail!,
+                            imageUrl: controller.attachment.thumbnail,
                             width: App.width(context),
                           ),
                   )

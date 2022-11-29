@@ -1,4 +1,5 @@
 import 'package:exceed_resources_frontend/app/modules/core/models/attachment_model.dart';
+import 'package:exceed_resources_frontend/app/modules/core/utils/json_serializer.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/models/bank_model.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/models/colleague_comment_model.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/models/colleague_status_model.dart';
@@ -16,29 +17,30 @@ part 'colleague_model.g.dart';
 @freezed
 class MColleague with _$MColleague {
   factory MColleague({
-    required String id,
-    required String name,
-    required String image,
-    required MPosition position,
-    required String email,
-    required String phone,
-    @JsonKey(name: 'basic_salary') required double basicSalary,
-    @JsonKey(name: 'department_executive') @Default([]) List<bool> departmentExecutive,
-    @Default(false) @JsonKey(name: 'top_management') bool topManagement,
+    @Default('') String id,
+    @Default('') String name,
+    @Default('') String image,
+    @Default('') String email,
+    @Default('') String phone,
+    MPosition? position,
+    @Default(0) @JsonKey(name: 'basic_salary') double basicSalary,
+    @JsonKey(name: 'joining_date', fromJson: dateFromJson, toJson: dateToJson) DateTime? joiningDate,
     @Default([]) List<MDepartment> departments,
+    @Default(false) @JsonKey(name: 'top_management') bool topManagement,
+    @Default([]) @JsonKey(name: 'department_executive') List<bool> departmentExecutive,
     @Default([]) @JsonKey(name: 'commented_by') List<MColleagueComment> commentedBy,
     @Default([]) @JsonKey(name: 'commented_to') List<MColleagueComment> commentedTo,
     @Default([]) @JsonKey(name: 'current_month_earning') List<MReportCategory> currentMonthEarning,
     @Default(0) @JsonKey(name: 'total_current_month_earning') double totalCurrentMonthEarning,
     @Default([]) @JsonKey(name: 'current_month_deduction') List<MReportCategory> currentMonthDeduction,
     @Default(0) @JsonKey(name: 'total_current_month_deduction') double totalCurrentMonthDeduction,
-    @JsonKey(name: 'earning_history') Map<String, List<MReportCategory>>? earningHistory,
-    @JsonKey(name: 'deduction_history') Map<String, List<MReportCategory>>? deductionHistory,
     @Default([]) List<MAttachment> resources,
     @Default([]) List<MComment> reviews,
+    @JsonKey(name: 'earning_history') Map<String, List<MReportCategory>>? earningHistory,
+    @JsonKey(name: 'deduction_history') Map<String, List<MReportCategory>>? deductionHistory,
     ColleagueStatusM? status,
     MBank? bank,
-    String? remark,
+    @Default('') String remark,
   }) = _MColleague;
 
   factory MColleague.fromJson(Map<String, dynamic> json) => _$MColleagueFromJson(json);

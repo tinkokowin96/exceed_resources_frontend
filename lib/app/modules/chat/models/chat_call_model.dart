@@ -8,14 +8,10 @@ part 'chat_call_model.g.dart';
 @freezed
 class MChatCall with _$MChatCall {
   factory MChatCall({
-    String? id,
-    required List<MColleague> colleagues,
-    required int duration,
-    @JsonKey(
-      name: 'created_at',
-      fromJson: dateFromJson,
-    )
-        DateTime? createdAt,
+    @Default('') String id,
+    @Default([]) List<MColleague> colleagues,
+    @Default(0) int duration,
+    @JsonKey(name: 'created_at', fromJson: dateFromJson) DateTime? createdAt,
   }) = _MChatCall;
 
   factory MChatCall.fromJson(Map<String, dynamic> json) => _$MChatCallFromJson(json);

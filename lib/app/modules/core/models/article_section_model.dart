@@ -7,8 +7,8 @@ part 'article_section_model.g.dart';
 @freezed
 class MArticleSection with _$MArticleSection {
   factory MArticleSection({
-    required EDynamicField type,
-    required List<String> data,
+    @Default(EDynamicField.body) EDynamicField type,
+    @Default([]) List<String> data,
   }) = _MArticleSection;
 
   factory MArticleSection.fromJson(Map<String, dynamic> json) => _$MArticleSectionFromJson(json);

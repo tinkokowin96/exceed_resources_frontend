@@ -7,13 +7,12 @@ part 'bank_model.g.dart';
 @freezed
 class MBank with _$MBank {
   factory MBank({
-    required String id,
-    required String name,
-    @JsonKey(name: 'organization_account') required bool origanizationAccount,
-    @JsonKey(name: 'owner_id') String? ownerId,
-    String? remark,
-    @JsonKey(name: 'num_like') required int numLike,
+    @Default('') String id,
+    @Default('') String name,
+    @Default(false) @JsonKey(name: 'organization_account') bool origanizationAccount,
     @Default([]) List<MColleague> colleagues,
+    MColleague? owner,
+    @Default('') String remark,
   }) = _MBank;
 
   factory MBank.fromJson(Map<String, dynamic> json) => _$MBankFromJson(json);

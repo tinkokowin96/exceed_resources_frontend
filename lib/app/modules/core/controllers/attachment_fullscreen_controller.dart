@@ -13,7 +13,7 @@ class AttachmentFullscreenController extends AppController {
   void onInit() {
     if (attachment.type == EAttachment.pdf) {
       doAysncTask(() {
-        byteResponse(attachment.url!).then((value) {
+        byteResponse(attachment.url).then((value) {
           pdfAttachment.value = value;
           pdfAttachment.refresh();
         });

@@ -7,10 +7,10 @@ part 'attachment_model.g.dart';
 @freezed
 class MAttachment with _$MAttachment {
   factory MAttachment({
-    required EAttachment type,
-    required String name,
-    String? thumbnail,
-    String? url,
+    @Default(EAttachment.image) EAttachment type,
+    @Default('') String name,
+    @Default('') String thumbnail,
+    @Default('') String url,
     dynamic data, //null on data comes from api
   }) = _MAttachment;
 

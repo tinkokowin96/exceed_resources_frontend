@@ -97,7 +97,7 @@ class ColleagueDetailView extends GetView<ColleagueDetailController> {
                     ),
                     DetailSection(
                       title: 'Position',
-                      detailText: controller.data.position.name,
+                      detailText: controller.data.position!.name,
                     ),
                     DetailSection(
                       title: 'Basic Salary',

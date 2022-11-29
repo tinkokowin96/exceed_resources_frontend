@@ -63,7 +63,7 @@ class DetailAttachment extends StatelessWidget {
                       child: TextButton(
                         onPressed: () => Get.toNamed(AppRoutes.webview, arguments: each),
                         child: Text(
-                          each.url!,
+                          each.url,
                           style: AppTheme.text(
                             context: context,
                             type: ETextType.primary,
@@ -80,7 +80,7 @@ class DetailAttachment extends StatelessWidget {
                         Get.toNamed(
                           AppRoutes.fullscreen,
                           arguments: AppVideoPlayer(
-                            url: each.url!,
+                            url: each.url,
                             homeRoute: homeRoute,
                             controller: controller,
                             playerController: controller.playerController,
@@ -92,7 +92,7 @@ class DetailAttachment extends StatelessWidget {
                       }
                     },
                     child: CachedNetworkImage(
-                      imageUrl: each.type == EAttachment.image ? each.url! : each.thumbnail!,
+                      imageUrl: each.type == EAttachment.image ? each.url : each.thumbnail,
                       width: App.containerWidth(context),
                       height: AppSize.secH,
                       fit: BoxFit.cover,

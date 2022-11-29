@@ -108,7 +108,7 @@ class ColleagueListing extends GetView<ColleagueListingController> {
                                       child: ColleagueItem(
                                         image: each.image,
                                         name: each.name,
-                                        description: each.position.name,
+                                        description: each.position!.name,
                                         salary: showSalary ? each.basicSalary.toString() : null,
                                         selected: false,
                                         onChanged: (value) {

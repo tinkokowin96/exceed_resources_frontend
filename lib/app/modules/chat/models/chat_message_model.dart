@@ -10,19 +10,12 @@ part 'chat_message_model.g.dart';
 @freezed
 class MChatMessage with _$MChatMessage {
   factory MChatMessage({
-    String? id,
+    @Default('') String? id,
     MColleague? colleague,
-    @JsonKey(name: 'chat_attachments')
-        List<MAttachment>? chatAttachments,
-    @JsonKey(name: 'chat_texts')
-        List<String>? chatTexts,
-    @JsonKey(name: 'chat_call')
-        MChatCall? chatCall,
-    @JsonKey(
-      name: 'created_at',
-      fromJson: dateFromJson,
-    )
-        DateTime? createdAt,
+    @Default([]) @JsonKey(name: 'chat_attachments') List<MAttachment> chatAttachments,
+    @Default([]) @JsonKey(name: 'chat_texts') List<String> chatTexts,
+    @JsonKey(name: 'chat_call') MChatCall? chatCall,
+    @JsonKey(name: 'created_at', fromJson: dateFromJson) DateTime? createdAt,
   }) = _MChatMessage;
 
   factory MChatMessage.fromJson(Map<String, dynamic> json) => _$MChatMessageFromJson(json);

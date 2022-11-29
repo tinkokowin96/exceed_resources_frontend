@@ -8,14 +8,9 @@ part 'priority_model.g.dart';
 @freezed
 class MPriority with _$MPriority {
   factory MPriority({
-    required String id,
-    required String name,
-    @JsonKey(
-      name: 'color',
-      fromJson: colorFromJson,
-      toJson: colorToJson,
-    )
-        required Color color,
+    @Default('') String id,
+    @Default('') String name,
+    @JsonKey(name: 'color', fromJson: colorFromJson, toJson: colorToJson) Color? color,
   }) = _MPriority;
 
   factory MPriority.fromJson(Map<String, dynamic> json) => _$MPriorityFromJson(json);
