@@ -1,12 +1,10 @@
 import 'package:exceed_resources_frontend/app/modules/core/controllers/app_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/core/models/option_model.dart';
-import 'package:exceed_resources_frontend/app/modules/core/utils/config.dart';
 import 'package:exceed_resources_frontend/app/modules/task/controllers/task_table_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/project_model.dart';
 import 'package:get/get.dart';
 
 class TaskController extends AppController {
-  final permission = permissions.firstWhere((each) => each.name == "task");
   final tableController = Get.find<TaskTableController>(tag: 'task');
   final paginatedOptions = List.generate(
     5,

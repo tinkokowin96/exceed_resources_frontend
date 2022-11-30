@@ -79,7 +79,7 @@ mixin MessageInputMixin on AppController {
         final isDelete = value.length < previousMessage.length;
         final lastChunkMessage = value.replaceFirst(messageBeforeLastChunk, '');
         if (isDelete) {
-          if (messageText.value.last.colleagueId == null) {
+          if (messageText.value.last.colleagueId.isEmpty) {
             if (lastChunkMessage.isEmpty) {
               removeLastMessageChunk();
             } else {
@@ -92,7 +92,7 @@ mixin MessageInputMixin on AppController {
           if (messageText.value.isEmpty) {
             messageText.value.add(MCommentText(text: lastChunkMessage));
           } else {
-            if (messageText.value.last.colleagueId == null) {
+            if (messageText.value.last.colleagueId.isEmpty) {
               messageText.value.last.text = lastChunkMessage;
             } else {
               messageText.value.add(MCommentText(text: lastChunkMessage));

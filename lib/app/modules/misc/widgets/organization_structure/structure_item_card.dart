@@ -83,7 +83,7 @@ class StructureItemCard extends StatelessWidget {
                     size: EText.h2,
                   ),
                   children: [
-                    if (short != null)
+                    if (short.isNotEmpty)
                       TextSpan(
                         text: ' ($short)',
                         style: AppTheme.text(

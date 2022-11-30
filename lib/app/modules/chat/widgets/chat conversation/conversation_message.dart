@@ -32,7 +32,7 @@ class ConversationMessage extends StatelessWidget {
         child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: message.chatTexts != null
+            children: message.chatTexts.isNotEmpty
                 ? [
                     message.colleague != null && message.colleague!.id != 'emp_1'
                         ? Padding(

@@ -64,7 +64,7 @@ class UserHeader extends StatelessWidget {
                 ),
               ),
               SvgPicture.asset(
-                'assets/icons/notification-idle.svg',
+                'assets/icons/notification_idle.svg',
                 width: AppSize.icoMd,
                 height: AppSize.icoMd,
                 color: AppTheme.of(context).color.idle,

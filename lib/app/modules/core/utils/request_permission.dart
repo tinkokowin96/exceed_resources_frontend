@@ -5,12 +5,10 @@ import 'package:exceed_resources_frontend/app/modules/core/utils/config.dart';
 import 'package:exceed_resources_frontend/app/modules/core/extensions/string_extension.dart';
 
 Future<MPermissionRequestResponse> requestPermission() async {
-  if (permissions.firstWhere((each) => each.name == 'home').option!["location"]) {
-    if (Platform.isAndroid || Platform.isIOS) {
-      final result = await platform.invokeMethod('location');
-      if (!result['granted'].toString().parseBool()) {
-        return MPermissionRequestResponse(granted: false, message: result['message']);
-      }
+  if (Platform.isAndroid || Platform.isIOS) {
+    final result = await platform.invokeMethod('location');
+    if (!result['granted'].toString().parseBool()) {
+      return MPermissionRequestResponse(granted: false, message: result['message']);
     }
   }
   if (Platform.isAndroid) {

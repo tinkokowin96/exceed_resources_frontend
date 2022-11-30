@@ -58,10 +58,10 @@ class CommentInput extends StatelessWidget {
                                 text: each.text,
                                 style: AppTheme.text(
                                   context: context,
-                                  type: each.colleagueId != null ? ETextType.primary : ETextType.body,
+                                  type: each.colleagueId.isNotEmpty ? ETextType.primary : ETextType.body,
                                 ),
                                 recognizer:
-                                    each.colleagueId == null ? null : (TapGestureRecognizer()..onTap = () => ''),
+                                    each.colleagueId.isEmpty ? null : (TapGestureRecognizer()..onTap = () => ''),
                               ),
                             ),
                           ),
