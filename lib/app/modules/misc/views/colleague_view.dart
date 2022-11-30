@@ -19,27 +19,38 @@ class ColleagueView extends GetView<ColleagueController> {
       currentMenu: EMenu.misc,
       controller: controller,
       title: 'Colleagues',
-      headerTail: AppRow(
-        spacing: AppSize.md,
+      topPadding: AppSize.sm,
+      content: Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          AppAnimatedPress(
-            onPressed: () => Get.toNamed(MiscRoutes.payrise, arguments: controller.selected.value),
-            child: SvgPicture.asset('assets/icons/payrise.svg'),
+          Padding(
+            padding: const EdgeInsets.only(bottom: AppSize.sm),
+            child: AppRow(
+              spacing: AppSize.md,
+              children: [
+                AppAnimatedPress(
+                  onPressed: () => Get.toNamed(MiscRoutes.payrise, arguments: controller.selected.value),
+                  child: SvgPicture.asset('assets/icons/payrise.svg'),
+                ),
+                AppAnimatedPress(
+                  onPressed: () => Get.toNamed(MiscRoutes.payrise, arguments: controller.selected.value),
+                  child: SvgPicture.asset('assets/icons/permission.svg'),
+                ),
+                AppAnimatedPress(
+                  onPressed: () => Get.toNamed(MiscRoutes.payrise, arguments: controller.selected.value),
+                  child: SvgPicture.asset('assets/icons/add_outline.svg'),
+                ),
+              ],
+            ),
           ),
-          AppAnimatedPress(
-            onPressed: () => Get.toNamed(MiscRoutes.payrise, arguments: controller.selected.value),
-            child: SvgPicture.asset('assets/icons/permission.svg'),
-          ),
-          AppAnimatedPress(
-            onPressed: () => Get.toNamed(MiscRoutes.payrise, arguments: controller.selected.value),
-            child: SvgPicture.asset('assets/icons/add_outline.svg'),
+          Expanded(
+            child: ColleagueListing(
+              exportable: true,
+              selectable: true,
+              onSelectionChange: controller.updateSelected,
+            ),
           ),
         ],
-      ),
-      content: ColleagueListing(
-        exportable: true,
-        selectable: true,
-        onSelectionChange: controller.updateSelected,
       ),
     );
   }

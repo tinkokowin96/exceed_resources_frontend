@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
+import 'package:exceed_resources_frontend/app/modules/core/utils/helper.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/checkbox.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/container.dart';
 import 'package:flutter/material.dart';
@@ -35,15 +36,15 @@ class ImageCard extends StatelessWidget {
               child: CachedNetworkImage(
                 imageUrl: image,
                 fit: BoxFit.cover,
-                width: AppSize.cardWSm,
-                height: AppSize.cardWSm,
+                width: App.cardSize(context: context, numCol: 3),
+                height: App.cardSize(context: context, numCol: 3),
               ),
             ),
-            const AppContainer(
-              width: AppSize.cardWSm,
-              height: AppSize.cardWSm,
+            AppContainer(
+              width: App.cardSize(context: context, numCol: 3),
+              height: App.cardSize(context: context, numCol: 3),
               borderRadius: AppSize.xs,
-              gradient: LinearGradient(
+              gradient: const LinearGradient(
                 begin: Alignment.bottomCenter,
                 end: Alignment.topCenter,
                 colors: [Colors.black26, Colors.transparent],
@@ -60,18 +61,15 @@ class ImageCard extends StatelessWidget {
                       topRight: Radius.circular(AppSize.xs),
                     ),
                   ),
-                  child: SizedBox(
-                    width: AppSize.cardcatW,
-                    height: AppSize.cardcatH,
-                    child: Center(
-                      child: Text(
-                        category!,
-                        style: AppTheme.text(
-                          context: context,
-                          size: EText.h4,
-                          weight: FontWeight.w500,
-                          type: ETextType.white,
-                        ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(AppSize.xs),
+                    child: Text(
+                      category!,
+                      style: AppTheme.text(
+                        context: context,
+                        size: EText.h4,
+                        weight: FontWeight.w500,
+                        type: ETextType.white,
                       ),
                     ),
                   ),
@@ -80,7 +78,7 @@ class ImageCard extends StatelessWidget {
             Positioned(
               bottom: AppSize.sm,
               child: SizedBox(
-                width: AppSize.cardWSm,
+                width: App.cardSize(context: context, numCol: 3),
                 child: Text(
                   name,
                   overflow: TextOverflow.ellipsis,

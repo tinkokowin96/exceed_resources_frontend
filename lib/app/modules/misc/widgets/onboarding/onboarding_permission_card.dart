@@ -1,5 +1,6 @@
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
+import 'package:exceed_resources_frontend/app/modules/core/utils/helper.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/animated/animated_press.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/container.dart';
 import 'package:flutter/material.dart';
@@ -19,8 +20,9 @@ class OnboardingPermissionCard extends StatelessWidget {
     return Stack(
       children: [
         AppContainer(
-          width: AppSize.cardWSm,
+          width: App.cardSize(context: context, numCol: 3),
           height: AppSize.cardH,
+          noBorder: false,
           child: Center(
             child: Text(
               data,

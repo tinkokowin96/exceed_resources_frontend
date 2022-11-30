@@ -196,4 +196,6 @@ class App {
   static width(BuildContext context) => MediaQuery.of(context).size.width;
   static height(BuildContext context) => MediaQuery.of(context).size.height;
   static containerWidth(BuildContext context) => App.width(context) - 2 * AppSize.md;
+  static cardSize({required BuildContext context, required int numCol, double spacing = AppSize.sm}) =>
+      ((App.width(context) - 2 * AppSize.md) / numCol) - (spacing * (numCol - 1));
 }

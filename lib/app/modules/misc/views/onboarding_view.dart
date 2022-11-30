@@ -3,6 +3,7 @@ import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/sizebox.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
+import 'package:exceed_resources_frontend/app/modules/core/utils/helper.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/animated/animated_press.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/animated/animated_switcher.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/button/button.dart';
@@ -70,9 +71,9 @@ class OnboardingView extends GetView<OnboardingController> {
                                                 borderRadius: BorderRadius.circular(AppSize.xs),
                                                 border: Border.all(color: AppTheme.of(context).color.secondary),
                                               ),
-                                              child: const SizedBox(
-                                                width: AppSize.cardWSm,
-                                                height: AppSize.cardWSm,
+                                              child:  SizedBox(
+                                                width: App.cardSize(context: context, numCol: 3),
+                                                height: App.cardSize(context: context, numCol: 3),
                                               ),
                                             ),
                                             SvgPicture.asset(

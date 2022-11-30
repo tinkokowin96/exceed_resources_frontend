@@ -48,12 +48,12 @@ class AppSize {
   static const tblh = 40.0; //heading height
   static const tblc = 200.0; //table column max width
 
-  //project cardWSm
+  //project card
   static const pcW = 200.0;
   static const pcH = 100.0;
   static const pcnW = 150.0;
   static const pcsW = 50.0;
-  static const pccwW = 14.0; //project cardWSm circle wrapper width
+  static const pccwW = 14.0; //project card circle wrapper width
   static const pccW = 12.0;
 
   //circle
@@ -64,11 +64,6 @@ class AppSize {
   static const cLg = 50.0;
   static const cXl = 70.0;
 
-  //cardWSm
-  //onboarding
-  static const cardWSm = 120.0;
-  static const cardWMd = 180.0;
+  //card
   static const cardH = 80.0;
-  static const cardcatW = 50.0; //image card category width
-  static const cardcatH = 24.0; //image card category height
 }

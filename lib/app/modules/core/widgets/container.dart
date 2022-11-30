@@ -7,6 +7,9 @@ class AppContainer extends StatelessWidget {
   final bool leftRadius;
   final bool rightRadius;
   final bool noShadow;
+  final bool selected;
+  final bool? noBorder;
+  final BoxBorder? customBorder;
   final BorderRadiusGeometry? customRadius;
   final Gradient? gradient;
   final double? borderRadius;
@@ -20,7 +23,10 @@ class AppContainer extends StatelessWidget {
     Key? key,
     this.leftRadius = false,
     this.rightRadius = false,
+    this.selected = false,
     this.noShadow = true,
+    this.noBorder = true,
+    this.customBorder,
     this.customRadius,
     this.gradient,
     this.borderRadius,
@@ -38,6 +44,10 @@ class AppContainer extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: gradient,
         color: gradient == null ? background ?? AppTheme.of(context).color.container : null,
+        border: customBorder ??
+            Border.all(
+              color: AppTheme.of(context).color.idle.withOpacity(selected ? 0.5 : 0.1),
+            ),
         borderRadius: customRadius ??
             (leftRadius
                 ? BorderRadius.only(
@@ -52,7 +62,7 @@ class AppContainer extends StatelessWidget {
                     : BorderRadius.all(
                         Radius.circular(borderRadius ?? AppSize.sm),
                       )),
-        boxShadow: noShadow ? null : [shadow ?? AppThemeMiscs.shadow1],
+        boxShadow: noShadow ? null : [shadow ?? AppThemeMiscs.shadow2],
       ),
       child: SizedBox(
         width: width,

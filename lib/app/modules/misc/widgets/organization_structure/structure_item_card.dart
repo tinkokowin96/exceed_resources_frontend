@@ -65,6 +65,7 @@ class StructureItemCard extends StatelessWidget {
       onTap: onPressed,
       child: AppContainer(
         width: App.width(context) * 0.7,
+        noBorder: false,
         padding: 0,
         noShadow: false,
         shadow: AppThemeMiscs.shadow3,

@@ -5,8 +5,8 @@ class AppAnimatedPress extends StatefulWidget {
   final Widget child;
   const AppAnimatedPress({
     Key? key,
-    required this.child,
     required this.onPressed,
+    required this.child,
   }) : super(key: key);
 
   @override

@@ -114,8 +114,6 @@ enum EPermission {
   changeColleaguePermission,
   @JsonValue('ViewColleagueDetail')
   viewColleagueDetail,
-  @JsonValue('AddColleague')
-  addColleague,
   @JsonValue('CreateDepartment')
   createDepartment,
   @JsonValue('CreatePosition')

@@ -65,7 +65,7 @@ class AppThemeData extends ChangeNotifier {
       secondaryBackground: Color.fromARGB(255, 255, 222, 178),
       background: Colors.white,
       error: Color(0xFFD1512D),
-      container: Color(0xFFFBFBFB),
+      container: Color(0xFFF9F9F9),
       body: Colors.black,
       category: Color(0xFF8C90F0),
       idle: Color(0xFF565656),

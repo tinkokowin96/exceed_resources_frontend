@@ -22,6 +22,7 @@ class PayriseCard extends StatelessWidget {
       children: [
         AppContainer(
           width: width,
+          noBorder: false,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
