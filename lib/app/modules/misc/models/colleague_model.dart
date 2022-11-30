@@ -4,6 +4,7 @@ import 'package:exceed_resources_frontend/app/modules/misc/models/bank_model.dar
 import 'package:exceed_resources_frontend/app/modules/misc/models/colleague_comment_model.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/models/colleague_status_model.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/models/department_model.dart';
+import 'package:exceed_resources_frontend/app/modules/misc/models/leave_allowance_model.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/models/position_model.dart';
 import 'package:exceed_resources_frontend/app/modules/report/models/report_category_model.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/comment_model.dart';
@@ -34,6 +35,7 @@ class MColleague with _$MColleague {
     @Default(0) @JsonKey(name: 'total_current_month_earning') double totalCurrentMonthEarning,
     @Default([]) @JsonKey(name: 'current_month_deduction') List<MReportCategory> currentMonthDeduction,
     @Default(0) @JsonKey(name: 'total_current_month_deduction') double totalCurrentMonthDeduction,
+    @Default([]) List<MLeaveAllowance> leaves,
     @Default([]) List<MAttachment> resources,
     @Default([]) List<MComment> reviews,
     @JsonKey(name: 'earning_history') Map<String, List<MReportCategory>>? earningHistory,

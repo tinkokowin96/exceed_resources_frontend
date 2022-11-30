@@ -8,6 +8,7 @@ part 'leave_allowance_model.g.dart';
 class MLeaveAllowance with _$MLeaveAllowance {
   factory MLeaveAllowance({
     @Default(0) @JsonKey(name: 'allowed') int allowed,
+    @Default(0) @JsonKey(name: 'remaining_allowance') int remainingAllowance,
     MLeave? leave,
   }) = _MLeaveAllowance;
 

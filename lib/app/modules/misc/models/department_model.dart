@@ -1,5 +1,6 @@
-import 'package:exceed_resources_frontend/app/modules/core/models/permission_model.dart';
+import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/models/colleague_model.dart';
+import 'package:exceed_resources_frontend/app/modules/misc/models/colleague_permission_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'department_model.freezed.dart';
@@ -14,9 +15,10 @@ class MDepartment with _$MDepartment {
     @Default([]) List<MColleague> executives,
     @Default([]) List<MColleague> colleagues,
     @Default([]) List<MDepartment> departments,
-    @Default([]) List<MPermission> permissions,
+    @Default([]) List<EPermission> permissions,
     @Default([]) List<String> resources,
     @Default('') String remark,
+    MColleaguePermission? colleaguePermission,
   }) = _MDepartment;
 
   factory MDepartment.fromJson(Map<String, dynamic> json) => _$MDepartmentFromJson(json);
