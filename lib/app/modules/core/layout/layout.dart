@@ -44,6 +44,7 @@ class AppLayout {
     required AppController controller,
     required Widget content,
     bool hasAdminMode = false,
+    bool bottomSafeArea = true,
     Widget? headerTail,
     Function()? backAction,
     Function()? containerAction,
@@ -51,6 +52,7 @@ class AppLayout {
       Layout(
         containerAction: containerAction,
         controller: controller,
+        bottomSafeArea: bottomSafeArea,
         child: Column(
           children: [
             PageHeader(
@@ -75,11 +77,13 @@ class Layout extends StatelessWidget {
   final Widget child;
   final Function()? containerAction;
   final AppController controller;
+  final bool bottomSafeArea;
   const Layout({
     Key? key,
     required this.child,
     required this.controller,
     this.containerAction,
+    this.bottomSafeArea = true,
   }) : super(key: key);
 
   @override
@@ -101,6 +105,7 @@ class Layout extends StatelessWidget {
                             ? true
                             : false,
                     child: SafeArea(
+                      bottom: bottomSafeArea,
                       child: child,
                     ),
                   ),

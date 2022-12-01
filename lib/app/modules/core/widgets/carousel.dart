@@ -10,10 +10,11 @@ import 'package:flutter/material.dart';
 class AppCarousel extends StatefulWidget {
   final List<Widget> data;
   final int startPage;
-  final double? width;
-  final double? height;
   final double fraction;
   final bool showIndicator;
+  final bool sameHeight;
+  final double? width;
+  final double? height;
   final Function(int index)? onChange;
 
   const AppCarousel({
@@ -22,6 +23,7 @@ class AppCarousel extends StatefulWidget {
     this.fraction = 1.0,
     this.showIndicator = true,
     this.startPage = 0,
+    this.sameHeight = true,
     this.width,
     this.height,
     this.onChange,
@@ -96,7 +98,7 @@ class _AppCarouselState extends State<AppCarousel> {
                                 });
                               }
                             },
-                            report: _height == 0,
+                            report: widget.sameHeight ? _height == 0 : true,
                             child: widget.data[page],
                           ),
                         ),

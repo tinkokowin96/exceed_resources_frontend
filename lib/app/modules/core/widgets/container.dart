@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 class AppContainer extends StatelessWidget {
   final bool leftRadius;
   final bool rightRadius;
+  final bool topRadius;
   final bool noShadow;
   final bool selected;
   final bool? noBorder;
@@ -23,6 +24,7 @@ class AppContainer extends StatelessWidget {
     Key? key,
     this.leftRadius = false,
     this.rightRadius = false,
+    this.topRadius = false,
     this.selected = false,
     this.noShadow = true,
     this.noBorder = true,
@@ -59,9 +61,14 @@ class AppContainer extends StatelessWidget {
                         topRight: Radius.circular(borderRadius ?? AppSize.sm),
                         bottomRight: Radius.circular(borderRadius ?? AppSize.sm),
                       )
-                    : BorderRadius.all(
-                        Radius.circular(borderRadius ?? AppSize.sm),
-                      )),
+                    : topRadius
+                        ? BorderRadius.only(
+                            topLeft: Radius.circular(borderRadius ?? AppSize.sm),
+                            topRight: Radius.circular(borderRadius ?? AppSize.sm),
+                          )
+                        : BorderRadius.all(
+                            Radius.circular(borderRadius ?? AppSize.sm),
+                          )),
         boxShadow: noShadow ? null : [shadow ?? AppThemeMiscs.shadow2],
       ),
       child: SizedBox(
