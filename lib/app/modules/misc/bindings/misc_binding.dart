@@ -1,6 +1,5 @@
 import 'package:exceed_resources_frontend/app/modules/misc/controllers/add_event_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/controllers/article_controller.dart';
-import 'package:exceed_resources_frontend/app/modules/misc/controllers/calender_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/controllers/colleague_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/controllers/colleague_detail_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/controllers/colleague_detail_permission_controller.dart';
@@ -30,7 +29,6 @@ class MiscBinding extends Bindings {
     Get.lazyPut<CreateArticleController>(() => CreateArticleController());
     Get.lazyPut<PayriseController>(() => PayriseController());
     Get.lazyPut<AddEventController>(() => AddEventController());
-    Get.lazyPut<CalenderController>(() => CalenderController());
     Get.lazyPut<ColleagueController>(() => ColleagueController());
     Get.lazyPut<ColleagueDetailController>(() => ColleagueDetailController());
     Get.lazyPut<ColleagueDetailPermissionController>(() => ColleagueDetailPermissionController());

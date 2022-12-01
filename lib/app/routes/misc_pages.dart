@@ -1,6 +1,5 @@
 import 'package:exceed_resources_frontend/app/modules/misc/views/add_event_view.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/views/article_view.dart';
-import 'package:exceed_resources_frontend/app/modules/misc/views/calender_view.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/views/colleague_detail_permission_view.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/views/colleague_detail_view.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/views/colleague_permission_view.dart';
@@ -49,12 +48,6 @@ final List<GetPage<dynamic>> miscRoutes = [
   GetPage(
     name: MiscRoutes.addEvent,
     page: () => const AddEventView(),
-    binding: MiscBinding(),
-    transitionDuration: Duration.zero,
-  ),
-  GetPage(
-    name: MiscRoutes.calender,
-    page: () => const CalenderView(),
     binding: MiscBinding(),
     transitionDuration: Duration.zero,
   ),

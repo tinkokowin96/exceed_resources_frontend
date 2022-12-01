@@ -10,8 +10,8 @@ import 'package:lottie/lottie.dart';
 
 class AppLayout {
   static Widget core({
-    required AppController controller,
     required EMenu currentMenu,
+    required AppController controller,
     required Widget content,
     double? topPadding,
     bool noPadding = false,
@@ -40,9 +40,9 @@ class AppLayout {
       );
 
   static Widget fullscreen({
-    required Widget content,
-    required AppController controller,
     required String title,
+    required AppController controller,
+    required Widget content,
     bool hasAdminMode = false,
     Widget? headerTail,
     Function()? backAction,
@@ -61,10 +61,11 @@ class AppLayout {
               controller: controller,
             ),
             Expanded(
-                child: Padding(
-              padding: const EdgeInsets.only(top: AppSize.sm),
-              child: content,
-            ))
+              child: Padding(
+                padding: const EdgeInsets.only(top: AppSize.sm),
+                child: content,
+              ),
+            )
           ],
         ),
       );
@@ -93,17 +94,14 @@ class Layout extends StatelessWidget {
                     ? 0.5
                     : 1,
                 child: GestureDetector(
-                  onTap: controller.drawer.value != null ? controller.exitDrawerRequest : null,
+                  onTap: controller.drawer.value != null ? controller.exitDrawerRequest : containerAction,
                   child: AbsorbPointer(
                     absorbing:
                         controller.popup.value != null || controller.drawer.value != null || controller.loading.value
                             ? true
                             : false,
                     child: SafeArea(
-                      child: GestureDetector(
-                        onTap: containerAction,
-                        child: child,
-                      ),
+                      child: child,
                     ),
                   ),
                 ),

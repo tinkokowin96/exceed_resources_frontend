@@ -11,7 +11,7 @@ class MAttachment with _$MAttachment {
     @Default('') String name,
     @Default('') String thumbnail,
     @Default('') String url,
-    dynamic data, //null on data comes from api
+    dynamic data,
   }) = _MAttachment;
 
   factory MAttachment.fromJson(Map<String, dynamic> json) => _$MAttachmentFromJson(json);

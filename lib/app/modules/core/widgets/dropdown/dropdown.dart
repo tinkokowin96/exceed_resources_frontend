@@ -65,9 +65,9 @@ class _AppDropdownState extends State<AppDropdown> {
   late final OverlayState? _overlay;
   late final OverlayEntry? _entry;
   late final List<String> _selected = widget.selected ?? [];
+  late MOption _selectedOption = widget.defaultOption ?? widget.items[0];
   String searchedText = '';
   bool _showDropdown = false;
-  MOption? _selectedDropdown;
   Timer? _timer;
 
   void debounceSearch(String search) {
@@ -87,8 +87,9 @@ class _AppDropdownState extends State<AppDropdown> {
         if (widget.dropdownController != null) {
           widget.dropdownController!.text = value.text;
         }
-        _selectedDropdown = value;
+        _selectedOption = value;
         _focusNode.unfocus();
+        showDropdown(false);
       } else {
         if (checked) {
           final isAlreadySelected = _selected.contains(value.text);
@@ -122,21 +123,28 @@ class _AppDropdownState extends State<AppDropdown> {
       final renderBox = context.findRenderObject() as RenderBox;
       final position = renderBox.localToGlobal(Offset.zero);
       final screenHeight = MediaQuery.of(context).size.height;
+      const dropdownPadding =
+          2 * AppSize.sm + 2 * AppSize.md; //dropdown option padding + add some space for longer text
+      final dropdownWidth = renderBox.size.width + dropdownPadding;
+      final rightPosition = position.dx + renderBox.size.width;
+      final overScreen = rightPosition - rightPosition + dropdownPadding;
+
       _overlay = Overlay.of(context)!;
       _entry = OverlayEntry(
         builder: (context) => Positioned(
-          width: renderBox.size.width,
+          width: dropdownWidth,
           child: CompositedTransformFollower(
             link: _layerLink,
             showWhenUnlinked: false,
             offset: Offset(
-              0,
+              overScreen > 0 ? -overScreen : 0,
               position.dy / screenHeight < 0.7 ? renderBox.size.height + AppSize.sm : -(AppSize.dH + AppSize.md),
             ),
             child: DopdownItems(
               items: !widget.loading && widget.initialItems != null && searchedText.isEmpty
                   ? widget.initialItems!
                   : widget.items,
+              selectedOption: _selectedOption,
               loading: widget.loading,
               noPadding: widget.noPadding,
               focus: _focusNode,
@@ -160,17 +168,17 @@ class _AppDropdownState extends State<AppDropdown> {
     _showDropdown = show;
     if (show) {
       _overlay!.insert(_entry!);
-      setState(() {
-        _selectedDropdown = null;
-      });
+      // setState(() {
+      //   _selectedOption = null;
+      // });
     } else {
       if (widget.searchable && widget.dropdownController != null) {
         widget.dropdownController!.text = '';
       }
       _entry!.remove();
-      if (_selectedDropdown == null) {
-        widget.onChanged();
-      }
+      // if (_selectedOption == null) {
+      widget.onChanged();
+      // }
     }
   }
 
@@ -179,6 +187,8 @@ class _AppDropdownState extends State<AppDropdown> {
     _focusNode = FocusNode();
     if (widget.defaultOption != null && widget.dropdownController != null) {
       widget.dropdownController!.text = widget.defaultOption!.text;
+    } else if (widget.dropdownController != null) {
+      widget.dropdownController!.text = widget.items.first.text;
     }
     WidgetsBinding.instance.addPostFrameCallback((_) => executeAfterBuild(false));
     super.initState();
@@ -234,6 +244,7 @@ class _AppDropdownState extends State<AppDropdown> {
 class DopdownItems extends StatelessWidget {
   final bool loading;
   final List<MOption> items;
+  final MOption selectedOption;
   final FocusNode focus;
   final Function({required MOption value, bool? checked}) selectDropdownHandler;
   final bool noPadding;
@@ -246,6 +257,7 @@ class DopdownItems extends StatelessWidget {
     Key? key,
     required this.loading,
     required this.items,
+    required this.selectedOption,
     required this.selectDropdownHandler,
     required this.focus,
     required this.noPadding,
@@ -295,7 +307,12 @@ class DopdownItems extends StatelessWidget {
                                       ),
                                       child: AppContainer(
                                         borderRadius: 0,
-                                        background: AppTheme.of(context).color.secondary.withOpacity(0.05),
+                                        customBorder: each.value == selectedOption.value
+                                            ? Border.all(color: AppTheme.of(context).color.secondary.withOpacity(0.3))
+                                            : null,
+                                        background: each.value == selectedOption.value
+                                            ? AppTheme.of(context).color.secondary.withOpacity(0.1)
+                                            : Colors.transparent,
                                         child: Row(
                                           mainAxisAlignment: MainAxisAlignment.center,
                                           children: [
@@ -305,8 +322,8 @@ class DopdownItems extends StatelessWidget {
                                                     each.category != null ? Alignment.centerLeft : Alignment.center,
                                                 child: Text(
                                                   each.text,
-                                                  style: AppTheme.text(
-                                                      context: context, size: textSize, type: ETextType.primary),
+                                                  overflow: TextOverflow.ellipsis,
+                                                  style: AppTheme.text(context: context, size: textSize),
                                                 ),
                                               ),
                                             ),

@@ -1,5 +1,7 @@
+import 'package:exceed_resources_frontend/app/modules/core/bindings/core_binding.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/config.dart';
 import 'package:exceed_resources_frontend/app/modules/core/views/attachment_fullscreen_view.dart';
+import 'package:exceed_resources_frontend/app/modules/core/views/calender_view.dart';
 import 'package:exceed_resources_frontend/app/modules/core/views/fullscreen_view.dart';
 import 'package:exceed_resources_frontend/app/modules/home/bindings/home_binding.dart';
 import 'package:exceed_resources_frontend/app/routes/chat_pages.dart';
@@ -17,7 +19,8 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static final initial = permissionResponse.granted ? HomeRoutes.home : ErrorRoutes.permissionDenied;
+//   static final initial = permissionResponse.granted ? HomeRoutes.home : ErrorRoutes.permissionDenied;
+  static const initial = AppRoutes.calender;
 
   static final routes = [
     ...errorRoutes,
@@ -34,7 +37,13 @@ class AppPages {
     GetPage(
       name: AppRoutes.attachmentFullscreen,
       page: () => const AttachmentFullscreenView(),
-      binding: HomeBinding(),
+      binding: CoreBinding(),
+      transitionDuration: Duration.zero,
+    ),
+    GetPage(
+      name: AppRoutes.calender,
+      page: () => const CalenderView(),
+      binding: CoreBinding(),
       transitionDuration: Duration.zero,
     ),
   ];

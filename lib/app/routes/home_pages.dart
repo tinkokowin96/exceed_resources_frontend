@@ -1,6 +1,5 @@
 import 'package:exceed_resources_frontend/app/modules/home/bindings/home_binding.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/views/colleague_permission_view.dart';
-import 'package:exceed_resources_frontend/app/modules/misc/views/colleague_view.dart';
 import 'package:exceed_resources_frontend/app/routes/home_routes.dart';
 import 'package:get/get.dart';
 

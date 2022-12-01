@@ -2,13 +2,15 @@ import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/sizebox.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/config.dart';
+import 'package:exceed_resources_frontend/app/modules/core/utils/helper.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/circle.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/report_size.dart';
 import 'package:flutter/material.dart';
 
 class AppCarousel extends StatefulWidget {
   final List<Widget> data;
-  final double width;
+  final int startPage;
+  final double? width;
   final double? height;
   final double fraction;
   final bool showIndicator;
@@ -17,10 +19,11 @@ class AppCarousel extends StatefulWidget {
   const AppCarousel({
     Key? key,
     required this.data,
-    required this.width,
-    this.height,
     this.fraction = 1.0,
     this.showIndicator = true,
+    this.startPage = 0,
+    this.width,
+    this.height,
     this.onChange,
   }) : super(key: key);
 
@@ -29,13 +32,12 @@ class AppCarousel extends StatefulWidget {
 }
 
 class _AppCarouselState extends State<AppCarousel> {
+  late int _currentPage = widget.startPage;
   late PageController _pageController;
-  late int _currentPage;
   late double _height = widget.height ?? 0;
 
   @override
   void initState() {
-    _currentPage = 0;
     _pageController = PageController(
       viewportFraction: widget.fraction,
       initialPage: _currentPage,
@@ -50,9 +52,19 @@ class _AppCarouselState extends State<AppCarousel> {
   }
 
   @override
+  void didUpdateWidget(AppCarousel oldWidget) {
+    if (oldWidget.startPage != widget.startPage) {
+      WidgetsBinding.instance.addPostFrameCallback(
+        (_) => _pageController.jumpToPage(widget.startPage),
+      );
+    }
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: widget.width,
+      width: widget.width ?? App.width(context),
       height: _height,
       child: Column(
         children: [
@@ -84,7 +96,7 @@ class _AppCarouselState extends State<AppCarousel> {
                                 });
                               }
                             },
-                            report: page == 0,
+                            report: _height == 0,
                             child: widget.data[page],
                           ),
                         ),

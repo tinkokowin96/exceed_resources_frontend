@@ -5,7 +5,6 @@ abstract class MiscRoutes {
   static const onboardingPermission = '/onboardingPermission';
   static const article = '/article';
   static const addEvent = '/addEvent';
-  static const calender = '/calender';
   static const colleague = '/colleague';
   static const colleagueDetail = '/colleagueDetail';
   static const colleagueDetailPermission = '/colleagueDetailPermission';

@@ -171,3 +171,74 @@ enum EPermission {
   @JsonValue('CreateCurrency')
   createCurrency,
 }
+
+enum ETypeCategory {
+  @JsonValue('Event')
+  event,
+  @JsonValue('PaymentType')
+  paymentType,
+}
+
+enum ERepeat {
+  @JsonValue('Daily')
+  daily,
+  @JsonValue('WeekDay')
+  weekDay,
+  @JsonValue('NumDay')
+  numDay,
+  @JsonValue('MonthDay')
+  monthDay,
+}
+
+enum EWeekDay {
+  @JsonValue('Mon')
+  mon,
+  @JsonValue('Tue')
+  tue,
+  @JsonValue('Wed')
+  wed,
+  @JsonValue('Thurs')
+  thurs,
+  @JsonValue('Fri')
+  fri,
+  @JsonValue('Sat')
+  sat,
+  @JsonValue('Sun')
+  sun,
+}
+
+enum EMonthDay {
+  @JsonValue('FirstMonthDay')
+  firstMonthDay,
+  @JsonValue('LastMonthDay')
+  lastMonthDay,
+  @JsonValue('HalfMonthDay')
+  halfMonthDay,
+}
+
+enum EMonth {
+  @JsonValue('January')
+  january,
+  @JsonValue('February')
+  february,
+  @JsonValue('March')
+  march,
+  @JsonValue('April')
+  april,
+  @JsonValue('May')
+  may,
+  @JsonValue('June')
+  june,
+  @JsonValue('July')
+  july,
+  @JsonValue('August')
+  august,
+  @JsonValue('September')
+  september,
+  @JsonValue('October')
+  october,
+  @JsonValue('November')
+  november,
+  @JsonValue('December')
+  december,
+}
