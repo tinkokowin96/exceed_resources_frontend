@@ -130,11 +130,8 @@ class _AppPopupState extends State<AppPopup> with SingleTickerProviderStateMixin
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            AppButton(onPressed: () => exit(), text: widget.confirmText),
-                            AppSizeBox.md,
-                            widget.cancel
-                                ? AppButton(onPressed: () => exit(confirm: false), text: 'Cancel')
-                                : AppSizeBox.zero,
+                            AppButton(onPressed: exit, text: widget.confirmText),
+                            if (widget.cancel) AppButton(onPressed: () => exit(confirm: false), text: 'Cancel')
                           ],
                         ),
                       ),

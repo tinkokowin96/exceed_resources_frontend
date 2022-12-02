@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 class DetailSection extends StatelessWidget {
   final String title;
+  final double titlePercent;
   final EdgeInsets? detailPadding;
   final String? detailText;
   final ETextType? detailType;
@@ -13,6 +14,7 @@ class DetailSection extends StatelessWidget {
   const DetailSection({
     Key? key,
     required this.title,
+    this.titlePercent = 0.4,
     this.direction = Axis.horizontal,
     this.detailPadding,
     this.detailText,
@@ -30,7 +32,7 @@ class DetailSection extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              width: constraint.maxWidth * 0.4,
+              width: constraint.maxWidth * titlePercent,
               child: Text(
                 title,
                 textAlign: TextAlign.start,

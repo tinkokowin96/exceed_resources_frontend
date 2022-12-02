@@ -3,8 +3,10 @@ import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/carousel.dart';
+import 'package:exceed_resources_frontend/app/modules/core/widgets/circle.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/column.dart';
 import 'package:exceed_resources_frontend/app/modules/core/extensions/string_extension.dart';
+import 'package:exceed_resources_frontend/app/modules/core/widgets/row.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
@@ -49,31 +51,29 @@ class CalenderDays extends GetView<CalenderController> {
                       (each) => AppColumn(
                         spacing: AppSize.md,
                         children: List.generate(
-                          (each.value.values.length / 7).round(),
+                          (each.value.length / 7).round(),
                           (index) => Row(
                             children: List.from(
-                              each.value.entries.toList().sublist(index * 7, (index * 7) + 7).map(
+                              each.value.sublist(index * 7, (index * 7) + 7).map(
                                 (day) {
                                   final date = DateTime(
-                                    day.key.contains('p') || day.key.contains('n')
+                                    day.prev || day.next
                                         ? controller.getDisabledMonthYear(
-                                            prefix: day.key.contains('p') ? 'p' : 'n',
-                                            checkMonth: each.key,
-                                            month: false,
-                                          )
+                                            prev: day.prev, checkMonth: each.key, month: false)
                                         : controller.selectedYear.value,
-                                    day.key.contains('p') || day.key.contains('n')
-                                        ? controller.getDisabledMonthYear(
-                                            prefix: day.key.contains('p') ? 'p' : 'n',
-                                            checkMonth: each.key,
-                                          )
+                                    day.prev || day.next
+                                        ? controller.getDisabledMonthYear(prev: day.prev, checkMonth: each.key)
                                         : each.key + 1,
-                                    int.parse(
-                                      day.key.replaceFirst('p', '').replaceFirst('n', ''),
-                                    ),
+                                    day.day,
                                   );
 
-                                  final inRange = controller.rangePicker ? controller.checkDateInRange(date) : false;
+                                  final inRange = controller.rangePicker
+                                      ? controller.checkDateInRange(
+                                          date,
+                                          controller.rangeStartDate.value,
+                                          controller.rangeEndDate.value,
+                                        )
+                                      : false;
                                   final dateSelected =
                                       (controller.rangeStartDate.value == null && date == controller.selected.value) ||
                                           inRange ||
@@ -81,43 +81,58 @@ class CalenderDays extends GetView<CalenderController> {
                                               date == controller.rangeStartDate.value);
                                   return Expanded(
                                     child: GestureDetector(
-                                      onTap: () => day.value
+                                      onTap: () => day.prev == false && day.next == false
                                           ? (controller.rangePicker
                                               ? controller.pickRange(date)
-                                              : controller.selectDate(date))
+                                              : controller.selectDate(date, day.events))
                                           : null,
-                                      child: Center(
-                                        child: DecoratedBox(
-                                          decoration: BoxDecoration(
-                                            color: dateSelected
-                                                ? AppTheme.of(context).color.secondary
-                                                : Colors.transparent,
-                                            borderRadius: BorderRadius.circular(AppSize.lg),
-                                            border: Border.all(
-                                              color: controller.today != controller.selected.value &&
-                                                      date == controller.today
+                                      child: Stack(
+                                        alignment: Alignment.center,
+                                        children: [
+                                          DecoratedBox(
+                                            decoration: BoxDecoration(
+                                              color: dateSelected
                                                   ? AppTheme.of(context).color.secondary
                                                   : Colors.transparent,
-                                              width: 1.5,
+                                              borderRadius: BorderRadius.circular(AppSize.lg),
+                                              border: Border.all(
+                                                color: controller.today != controller.selected.value &&
+                                                        date == controller.today
+                                                    ? AppTheme.of(context).color.secondary
+                                                    : Colors.transparent,
+                                                width: 1.5,
+                                              ),
                                             ),
-                                          ),
-                                          child: SizedBox(
-                                            width: AppSize.lg,
-                                            height: AppSize.lg,
-                                            child: Center(
-                                              child: Text(
-                                                day.key.replaceFirst('p', '').replaceFirst('n', ''),
-                                                textAlign: TextAlign.center,
-                                                style: AppTheme.text(
-                                                  context: context,
-                                                  type: day.value
-                                                      ? (dateSelected ? ETextType.white : ETextType.body)
-                                                      : ETextType.disabled,
+                                            child: SizedBox(
+                                              width: AppSize.lg,
+                                              height: AppSize.lg,
+                                              child: Center(
+                                                child: Text(
+                                                  day.day.toString(),
+                                                  textAlign: TextAlign.center,
+                                                  style: AppTheme.text(
+                                                    context: context,
+                                                    type: day.prev == false && day.next == false
+                                                        ? (dateSelected ? ETextType.white : ETextType.body)
+                                                        : ETextType.disabled,
+                                                  ),
                                                 ),
                                               ),
                                             ),
                                           ),
-                                        ),
+                                          if (!controller.picker && !controller.rangePicker)
+                                            Positioned(
+                                              bottom: 0,
+                                              child: AppRow(
+                                                spacing: 2,
+                                                children: List.from(
+                                                  day.events.map(
+                                                    (evt) => AppCircle.container(width: 6, color: evt.color),
+                                                  ),
+                                                ),
+                                              ),
+                                            )
+                                        ],
                                       ),
                                     ),
                                   );

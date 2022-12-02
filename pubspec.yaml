@@ -30,6 +30,7 @@ dependencies:
     simple_animations: ^5.0.0+2
     chewie: ^1.3.5
     video_player: ^2.4.7
+    webview_flutter: ^3.0.4
 
 dev_dependencies:
     flutter_test:
@@ -49,6 +50,9 @@ flutter:
                 weight: 500
               - asset: assets/fonts/Barlow/Barlow-Bold.ttf
                 weight: 700
+        - family: Barlow Italic
+          fonts:
+              - asset: assets/fonts/Barlow/Barlow-Italic.ttf
         - family: Lobster
           fonts:
               - asset: assets/fonts/Lobster/Lobster-Regular.ttf

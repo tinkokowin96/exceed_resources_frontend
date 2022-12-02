@@ -7,6 +7,7 @@ import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/helper.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/button/text_button.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/carousel.dart';
+import 'package:exceed_resources_frontend/app/modules/core/widgets/url.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/video_player.dart';
 import 'package:exceed_resources_frontend/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
@@ -59,20 +60,7 @@ class DetailAttachment extends StatelessWidget {
               attachments.map(
                 (each) {
                   if (each.type == EAttachment.url) {
-                    return Center(
-                      child: TextButton(
-                        onPressed: () => Get.toNamed(AppRoutes.webview, arguments: each),
-                        child: Text(
-                          each.url,
-                          style: AppTheme.text(
-                            context: context,
-                            type: ETextType.primary,
-                          ).copyWith(
-                            decoration: TextDecoration.underline,
-                          ),
-                        ),
-                      ),
-                    );
+                    return Center(child: AppUrl(url: each.url, title: each.name));
                   }
                   return InkWell(
                     onTap: () {

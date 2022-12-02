@@ -1,11 +1,13 @@
 import 'package:exceed_resources_frontend/app/modules/core/controllers/app_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/core/mock/event.dart';
+import 'package:exceed_resources_frontend/app/modules/core/models/calender_day_model.dart';
 import 'package:exceed_resources_frontend/app/modules/core/models/option_model.dart';
+import 'package:exceed_resources_frontend/app/modules/core/widgets/calender/calender_event_popup.dart';
+import 'package:exceed_resources_frontend/app/modules/core/widgets/popup.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/models/event_model.dart';
 import 'package:get/state_manager.dart';
 
 class CalenderController extends AppController {
-  final events = m_events;
   final startYear = 2000;
   final endYear = DateTime.now().year + 10;
   final showEvents = true;
@@ -17,12 +19,10 @@ class CalenderController extends AppController {
   late final List<MOption> yearOptions;
   final today = DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
   final selected = Rx<DateTime>(DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day));
-  late final currentMonthEvents = Rx<List<MEvent>>(events);
-  late final selectedDayEvents = Rxn<List<MEvent>>();
+  final selectedDayEvents = Rx<List<MEvent>>([]);
   late final selectedYear = Rx<int>(DateTime.now().year);
   late final selectedMonth = Rx<int>(DateTime.now().month);
-  late final selectedDay = Rx<int>(DateTime.now().day);
-  late final monthDays = Rx<List<Map<String, bool>>>([]);
+  late final monthDays = Rx<List<List<MCalenderDay>>>([]);
 
   void updateYear(MOption? option) {
     if (option != null) {
@@ -31,9 +31,7 @@ class CalenderController extends AppController {
         selectedMonth.value = 1;
         selectedMonth.refresh();
       }
-      selectedDay.value = 1;
       selectedYear.refresh();
-      selectedDay.refresh();
       getDays();
     }
   }
@@ -43,10 +41,11 @@ class CalenderController extends AppController {
     selectedMonth.refresh();
   }
 
-  void selectDate(DateTime date) {
+  void selectDate(DateTime date, List<MEvent> selectedEvents) {
     selected.value = date;
+    selectedDayEvents.value = selectedEvents;
     selected.refresh();
-    if (!picker && !rangePicker) {}
+    selectedDayEvents.refresh();
   }
 
   void pickRange(DateTime date) {
@@ -63,10 +62,10 @@ class CalenderController extends AppController {
     }
   }
 
-  bool checkDateInRange(DateTime date) {
-    if (rangeStartDate.value != null && rangeEndDate.value != null) {
-      final rangeStart = rangeStartDate.value!.millisecondsSinceEpoch;
-      final rangeEnd = rangeEndDate.value!.millisecondsSinceEpoch;
+  bool checkDateInRange(DateTime date, DateTime? startDate, DateTime? endDate) {
+    if (startDate != null && endDate != null) {
+      final rangeStart = startDate.millisecondsSinceEpoch;
+      final rangeEnd = endDate.millisecondsSinceEpoch;
       final check = date.millisecondsSinceEpoch;
       final start = rangeStart < rangeEnd ? rangeStart : rangeEnd;
       final end = rangeStart > rangeEnd ? rangeStart : rangeEnd;
@@ -79,18 +78,18 @@ class CalenderController extends AppController {
   }
 
   int getDisabledMonthYear({
-    required String prefix,
     required int checkMonth,
+    required bool prev,
     bool month = true,
   }) {
     if (month) {
-      if (prefix == 'p') {
+      if (prev) {
         return checkMonth == 0 ? 12 : checkMonth;
       } else {
         return checkMonth == 11 ? 1 : checkMonth + 2;
       }
     } else {
-      if (prefix == 'p') {
+      if (prev) {
         return checkMonth == 0 ? selectedYear.value - 1 : selectedYear.value;
       } else {
         return checkMonth == 11 ? selectedYear.value + 1 : selectedYear.value;
@@ -98,10 +97,22 @@ class CalenderController extends AppController {
     }
   }
 
+  List<MEvent> getEvents(DateTime date) => m_events
+      .where(
+        (each) =>
+            each.effectiveDate == selected.value ||
+            checkDateInRange(
+              date,
+              each.effectiveDate,
+              each.endDate,
+            ),
+      )
+      .toList();
+
   void getDays() {
     monthDays.value = [];
     for (int month = 1; month < 13; month++) {
-      final Map<String, bool> days = {};
+      final List<MCalenderDay> days = [];
       DateTime? prevLastDayDate;
       final firstDayDate = DateTime(selectedYear.value, month, 1);
       final lastDayDate = DateTime(selectedYear.value, month + 1, 0);
@@ -113,20 +124,20 @@ class CalenderController extends AppController {
         final prevYear = month == 1 ? selectedYear.value - 1 : selectedYear.value;
         prevLastDayDate = DateTime(prevYear, prevMonth + 1, 0);
         for (int i = firstDayWeekday - 1; i > 0; i--) {
-          days['${prevLastDayDate.day - i}p'] = false;
+          days.add(MCalenderDay(day: prevLastDayDate.day - i, events: [], prev: true));
         }
       }
       for (int i = 1; i < lastDayDate.day + 1; i++) {
-        days[i.toString()] = true;
+        final events = getEvents(DateTime(selectedYear.value, month + 1, i));
+        days.add(MCalenderDay(day: i, events: events));
       }
       if (lastDayWeekday != 7) {
         for (int i = 1; i < 8 - lastDayWeekday; i++) {
-          days['${i}n'] = false;
+          days.add(MCalenderDay(day: i, events: [], next: true));
         }
       }
       monthDays.value.add(days);
     }
-
     monthDays.refresh();
   }
 
@@ -140,6 +151,7 @@ class CalenderController extends AppController {
       },
     );
     getDays();
+
     super.onInit();
   }
 }
