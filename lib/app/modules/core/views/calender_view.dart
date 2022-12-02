@@ -4,10 +4,11 @@ import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/button/button.dart';
+import 'package:exceed_resources_frontend/app/modules/core/widgets/calender/calender_days.dart';
+import 'package:exceed_resources_frontend/app/modules/core/widgets/calender/calender_events.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/carousel.dart';
 import 'package:exceed_resources_frontend/app/modules/core/extensions/string_extension.dart';
-import 'package:exceed_resources_frontend/app/modules/core/widgets/column.dart';
-import 'package:exceed_resources_frontend/app/modules/core/widgets/container.dart';
+import 'package:exceed_resources_frontend/app/modules/core/extensions/datetime_extension.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/dropdown/dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
@@ -59,83 +60,55 @@ class CalenderView extends GetView<CalenderController> {
               showIndicator: false,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(AppSize.md),
-            child: AppColumn(
-              spacing: AppSize.sm,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: List.from(
-                    EWeekDay.values.map(
-                      (each) => Text(
-                        each.name.firstCapitalize(),
-                        textAlign: TextAlign.center,
-                        style: AppTheme.text(
-                          context: context,
-                          weight: FontWeight.w500,
-                          type: ETextType.subtitle,
-                        ),
-                      ),
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
-          Obx(
-            () => AppCarousel(
-              data: List.from(
-                List.from(
-                  controller.monthDays.value.map(
-                    (each) => AppColumn(
-                      spacing: AppSize.md,
-                      children: List.generate(
-                        (each.values.length / 7).round(),
-                        (index) => Row(
-                          children: List.from(
-                            each.entries.toList().sublist(index * 7, (index * 7) + 7).map(
-                                  (row) => Expanded(
-                                    child: Text(
-                                      row.key.replaceFirst('a', ''),
-                                      textAlign: TextAlign.center,
-                                      style: AppTheme.text(
-                                        context: context,
-                                        type: row.value ? ETextType.body : ETextType.disabled,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              onChange: (index) => controller.updateMonth(index + 1),
-              startPage: controller.selectedMonth.value - 1,
-              showIndicator: false,
-              sameHeight: false,
-            ),
-          ),
+          const CalenderDays(),
           Flexible(
-            flex: controller.picker ? 0 : 1,
+            flex: controller.picker || controller.rangePicker ? 0 : 1,
             child: Padding(
               padding: EdgeInsets.only(
-                  top: controller.picker ? AppSize.md : AppSize.lg, right: controller.picker ? AppSize.md : 0),
-              child: controller.picker
-                  ? Align(
-                      alignment: Alignment.centerRight,
-                      child: AppButton(onPressed: () {}, text: 'Pick'),
+                top: controller.picker || controller.rangePicker ? AppSize.md : AppSize.lg,
+                right: controller.picker || controller.rangePicker ? AppSize.md : 0,
+              ),
+              child: controller.picker || controller.rangePicker
+                  ? Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Obx(
+                          () => RichText(
+                            text: TextSpan(
+                              text: controller.rangeStartDate.value?.formatDate() ??
+                                  controller.selected.value.formatDate(short: controller.rangePicker),
+                              style: AppTheme.text(
+                                context: context,
+                                weight: FontWeight.w500,
+                                size: EText.h2,
+                                type: ETextType.subtitle,
+                              ),
+                              children: controller.rangePicker
+                                  ? [
+                                      TextSpan(
+                                        text:
+                                            ' - ${controller.rangeEndDate.value == null ? '' : controller.rangeEndDate.value!.formatDate()}',
+                                        style: AppTheme.text(
+                                          context: context,
+                                          weight: FontWeight.w500,
+                                          size: EText.h2,
+                                          type: ETextType.subtitle,
+                                        ),
+                                      )
+                                    ]
+                                  : null,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: AppSize.sm),
+                          child: AppButton(onPressed: () {}, text: 'Pick'),
+                        ),
+                      ],
                     )
-                  : AppContainer(
-                      topRadius: true,
-                      borderRadius: AppSize.md,
-                      child: Container(),
-                    ),
+                  : const CalenderEvents(),
             ),
-          )
+          ),
         ],
       ),
     );
