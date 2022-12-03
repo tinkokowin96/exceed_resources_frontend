@@ -7,7 +7,8 @@ import 'package:exceed_resources_frontend/app/modules/core/widgets/reorderable_c
 import 'package:exceed_resources_frontend/app/modules/misc/controllers/dynamic_unordered_list_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:get/instance_manager.dart';
 
 class DynamicUnorderedList extends GetView<DynamicUnorderedListController> {
   final int id;

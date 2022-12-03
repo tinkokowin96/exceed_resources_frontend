@@ -5,7 +5,7 @@ import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/carousel.dart';
 import 'package:exceed_resources_frontend/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/route_manager.dart';
 
 class TaskAttachments extends StatelessWidget {
   final List<MAttachment> attachments;

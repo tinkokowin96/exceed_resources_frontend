@@ -8,9 +8,7 @@ import 'package:exceed_resources_frontend/app/modules/core/widgets/seperated_sec
 import 'package:exceed_resources_frontend/app/modules/core/widgets/table.dart';
 import 'package:exceed_resources_frontend/app/modules/salary/widgets/salary_heading.dart';
 import 'package:flutter/material.dart';
-
-import 'package:get/get.dart';
-
+import 'package:get/get_state_manager/get_state_manager.dart';
 import '../controllers/salary_controller.dart';
 
 class SalaryView extends GetView<SalaryController> {
@@ -33,7 +31,7 @@ class SalaryView extends GetView<SalaryController> {
                       padding: const EdgeInsets.only(top: AppSize.md),
                       child: Obx(
                         () => Column(children: [
-                          if (controller.deduction.isFalse)
+                          if (!controller.deduction.value)
                             SeperatedSection(
                               data: [
                                 MOption(text: 'Basic Salary', value: controller.report.value.basicSalary),
@@ -80,7 +78,7 @@ class SalaryView extends GetView<SalaryController> {
             () => SeperatedSection(
               data: [
                 MOption(text: 'Total Deduction', value: controller.report.value.totalDeduction),
-                if (controller.deduction.isFalse) ...[
+                if (!controller.deduction.value) ...[
                   MOption(text: 'Total Earning', value: controller.report.value.totalEarning),
                   MOption(
                     text: 'Paid',

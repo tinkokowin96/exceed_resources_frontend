@@ -6,7 +6,8 @@ import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/helper.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/animated/animated_press.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:get/instance_manager.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class AttachmentFullscreenView extends GetView<AttachmentFullscreenController> {

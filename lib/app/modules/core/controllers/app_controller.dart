@@ -5,7 +5,8 @@ import 'package:exceed_resources_frontend/app/modules/core/widgets/popup.dart';
 import 'package:exceed_resources_frontend/app/routes/app_pages.dart';
 import 'package:exceed_resources_frontend/app/modules/core/extensions/datetime_extension.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/state_manager.dart';
+import 'package:get/route_manager.dart';
 import 'package:video_player/video_player.dart';
 
 class AppController extends GetxController {

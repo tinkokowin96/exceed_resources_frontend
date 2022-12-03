@@ -10,7 +10,7 @@ import 'package:exceed_resources_frontend/app/modules/core/widgets/dropdown/drop
 import 'package:exceed_resources_frontend/app/modules/misc/controllers/payrise_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 
 class PayriseForm extends GetView<PayriseController> {
   const PayriseForm({Key? key}) : super(key: key);
@@ -70,7 +70,7 @@ class PayriseForm extends GetView<PayriseController> {
                                   ],
                                   decoration: AppThemeMiscs.inputStyle(
                                     context: context,
-                                    hintText: controller.isPerformanceRise.isTrue
+                                    hintText: controller.isPerformanceRise.value
                                         ? 'Performance Point *'
                                         : 'Tenure In Month *',
                                   ),
@@ -108,7 +108,7 @@ class PayriseForm extends GetView<PayriseController> {
                       ],
                       decoration: AppThemeMiscs.inputStyle(
                         context: context,
-                        hintText: controller.isAbsolute.isTrue ? 'Enter Rise Amount *' : 'Enter Rise Percent (0-100) *',
+                        hintText: controller.isAbsolute.value ? 'Enter Rise Amount *' : 'Enter Rise Percent (0-100) *',
                       ),
                     ),
                   ),
@@ -117,7 +117,7 @@ class PayriseForm extends GetView<PayriseController> {
                   padding: const EdgeInsets.only(left: AppSize.md),
                   child: Obx(
                     () => AppCheckbox(
-                      selected: controller.isAbsolute.isTrue,
+                      selected: controller.isAbsolute.value,
                       onChanged: controller.updateAbsolute,
                     ),
                   ),

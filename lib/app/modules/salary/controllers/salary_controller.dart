@@ -6,7 +6,7 @@ import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/salary/models/salary_model.dart';
 import 'package:flutter/material.dart';
 import 'package:exceed_resources_frontend/app/modules/core/extensions/datetime_extension.dart';
-import 'package:get/get.dart';
+import 'package:get/state_manager.dart';
 
 class SalaryController extends AppController {
   final deduction = false.obs;

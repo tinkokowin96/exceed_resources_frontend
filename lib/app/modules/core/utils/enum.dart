@@ -22,6 +22,8 @@ enum EInputColor { primary, transparent, background }
 
 enum EStructure { ceo, topManagement, department, executive }
 
+enum EHistory { leave, late, overtime, salary, task, report }
+
 enum EAttachment {
   @JsonValue('Video')
   video,

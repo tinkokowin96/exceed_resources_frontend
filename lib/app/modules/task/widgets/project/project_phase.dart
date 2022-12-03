@@ -8,7 +8,7 @@ import 'package:exceed_resources_frontend/app/modules/task/controllers/project_c
 import 'package:exceed_resources_frontend/app/modules/task/widgets/project/phase_expend.dart';
 import 'package:exceed_resources_frontend/app/modules/task/widgets/project/phase_form.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 
 class ProjectPhase extends GetView<ProjectController> {
   final double maxWidth;

@@ -5,11 +5,14 @@ import 'package:exceed_resources_frontend/app/modules/core/theme/miscs.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/upload_attachment.dart';
+import 'package:exceed_resources_frontend/app/modules/core/extensions/string_extension.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/controllers/dynamic_unordered_list_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/widgets/dynamic_unordered_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
+import 'package:get/state_manager.dart';
+import 'package:get/instance_manager.dart';
+import 'package:get/route_manager.dart';
 
 class CreateArticleController extends AppController with DynamicListMixin {
   final TextEditingController titleController = TextEditingController();
@@ -67,7 +70,7 @@ class CreateArticleController extends AppController with DynamicListMixin {
               decoration: AppThemeMiscs.inputStyle(
                 context: Get.context!,
                 hintText: 'Add text *',
-                suffix: type.name.capitalizeFirst,
+                suffix: type.name.firstCapitalize(),
               ),
             ),
             Positioned(

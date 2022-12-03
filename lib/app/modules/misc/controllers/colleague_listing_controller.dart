@@ -4,7 +4,7 @@ import 'package:exceed_resources_frontend/app/modules/core/models/option_model.d
 import 'package:exceed_resources_frontend/app/modules/misc/models/colleague_model.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/models/department_model.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/state_manager.dart';
 
 class ColleagueListingController extends AppController {
   final selectedColleagues = Rx<Map<String, List<MColleague>>>({});

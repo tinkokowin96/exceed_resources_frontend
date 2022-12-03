@@ -7,7 +7,7 @@ import 'package:exceed_resources_frontend/app/modules/core/widgets/toggle.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/upload_attachment.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/controllers/onboarding_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 
 class CreateOnboardingAttachmentPopup extends GetView<OnboardingController> {
   const CreateOnboardingAttachmentPopup({Key? key}) : super(key: key);

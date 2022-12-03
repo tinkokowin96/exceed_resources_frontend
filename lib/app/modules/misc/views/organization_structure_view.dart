@@ -6,7 +6,7 @@ import 'package:exceed_resources_frontend/app/modules/core/widgets/carousel.dart
 import 'package:exceed_resources_frontend/app/modules/misc/controllers/organization_structure_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/widgets/organization_structure/structure_item_card.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 
 class OrganizationStructureView extends GetView<OrganizationStructureController> {
   const OrganizationStructureView({Key? key}) : super(key: key);

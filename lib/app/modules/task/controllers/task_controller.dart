@@ -2,7 +2,8 @@ import 'package:exceed_resources_frontend/app/modules/core/controllers/app_contr
 import 'package:exceed_resources_frontend/app/modules/core/models/option_model.dart';
 import 'package:exceed_resources_frontend/app/modules/task/controllers/task_table_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/project_model.dart';
-import 'package:get/get.dart';
+import 'package:get/instance_manager.dart';
+import 'package:get/state_manager.dart';
 
 class TaskController extends AppController {
   final tableController = Get.find<TaskTableController>(tag: 'task');

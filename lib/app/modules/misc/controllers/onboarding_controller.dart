@@ -9,7 +9,8 @@ import 'package:exceed_resources_frontend/app/modules/core/widgets/popup.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/widgets/onboarding/create_onboarding_attachment_popup.dart';
 import 'package:exceed_resources_frontend/app/routes/misc_routes.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/route_manager.dart';
+import 'package:get/state_manager.dart';
 
 class OnboardingController extends AppController with AttachmentMixin {
   final data = m_onbardings.obs;

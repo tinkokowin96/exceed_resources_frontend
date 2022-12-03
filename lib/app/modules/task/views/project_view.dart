@@ -10,7 +10,7 @@ import 'package:exceed_resources_frontend/app/modules/task/controllers/project_c
 import 'package:exceed_resources_frontend/app/modules/task/widgets/project/project_phase.dart';
 import 'package:exceed_resources_frontend/app/modules/task/widgets/project/project_quotation.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 
 class ProjectView extends GetView<ProjectController> {
   const ProjectView({Key? key}) : super(key: key);

@@ -3,7 +3,8 @@ import 'package:exceed_resources_frontend/app/modules/core/mock/event.dart';
 import 'package:exceed_resources_frontend/app/modules/core/models/calender_day_model.dart';
 import 'package:exceed_resources_frontend/app/modules/core/models/option_model.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/models/event_model.dart';
-import 'package:get/get.dart';
+import 'package:get/route_manager.dart';
+import 'package:get/state_manager.dart';
 
 class CalenderController extends AppController {
   final startYear = 2000;

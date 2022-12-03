@@ -6,7 +6,7 @@ import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
+import 'package:get/route_manager.dart';
 
 class DynamicUnorderedListController extends AppController with DynamicListMixin {
   void addField(EDynamicField type) {

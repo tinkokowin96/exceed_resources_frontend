@@ -3,7 +3,8 @@ import 'package:exceed_resources_frontend/app/modules/core/mock/payrises.dart';
 import 'package:exceed_resources_frontend/app/modules/core/models/option_model.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/models/colleague_model.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/state_manager.dart';
+import 'package:get/route_manager.dart';
 
 class PayriseController extends AppController {
   final colleagues = Rx<List<MColleague>>(Get.arguments);

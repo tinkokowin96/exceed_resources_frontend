@@ -8,7 +8,8 @@ import 'package:exceed_resources_frontend/app/modules/misc/controllers/onboardin
 import 'package:exceed_resources_frontend/app/modules/misc/widgets/colleague_listing.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/widgets/onboarding/onboarding_permission_card.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:get/instance_manager.dart';
 
 class OnboardingPermissionView extends GetView<OnboardingPermissionController> {
   const OnboardingPermissionView({Key? key}) : super(key: key);

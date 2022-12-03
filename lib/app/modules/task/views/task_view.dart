@@ -10,7 +10,8 @@ import 'package:exceed_resources_frontend/app/modules/task/widgets/project_card.
 import 'package:exceed_resources_frontend/app/modules/task/widgets/task_table.dart';
 import 'package:exceed_resources_frontend/app/routes/task_routes.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:get/route_manager.dart';
 
 class TaskView extends GetView<TaskController> {
   const TaskView({Key? key}) : super(key: key);

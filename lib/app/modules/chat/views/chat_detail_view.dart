@@ -12,7 +12,7 @@ import 'package:exceed_resources_frontend/app/modules/core/widgets/column.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/container.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/expandable.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 
 class ChatDetailView extends GetView<ChatDetailController> {
   const ChatDetailView({Key? key}) : super(key: key);

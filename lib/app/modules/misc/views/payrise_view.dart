@@ -5,7 +5,7 @@ import 'package:exceed_resources_frontend/app/modules/misc/controllers/payrise_c
 import 'package:exceed_resources_frontend/app/modules/misc/widgets/payrise/payrise_card.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/widgets/payrise/payrise_form.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 
 class PayriseView extends GetView<PayriseController> {
   const PayriseView({Key? key}) : super(key: key);

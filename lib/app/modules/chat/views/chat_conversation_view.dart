@@ -9,7 +9,7 @@ import 'package:exceed_resources_frontend/app/modules/core/theme/size.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/message_input.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 
 class ChatConversationView extends GetView<ChatConversationController> {
   const ChatConversationView({Key? key}) : super(key: key);

@@ -8,7 +8,7 @@ import 'package:exceed_resources_frontend/app/modules/task/widgets/project/quota
 import 'package:exceed_resources_frontend/app/modules/task/widgets/project/quotation_form.dart';
 import 'package:exceed_resources_frontend/app/modules/task/widgets/project/quotation_minimize.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 
 class ProjectQuotation extends GetView<ProjectController> {
   final double maxWidth;

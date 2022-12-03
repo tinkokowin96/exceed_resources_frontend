@@ -4,7 +4,7 @@ import 'package:exceed_resources_frontend/app/modules/core/widgets/button/add_bu
 import 'package:exceed_resources_frontend/app/modules/core/widgets/button/item_button.dart';
 import 'package:exceed_resources_frontend/app/modules/task/controllers/project_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 
 class PhaseExpand extends GetView<ProjectController> {
   const PhaseExpand({Key? key}) : super(key: key);

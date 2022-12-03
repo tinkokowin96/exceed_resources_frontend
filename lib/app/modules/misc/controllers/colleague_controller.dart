@@ -1,6 +1,6 @@
 import 'package:exceed_resources_frontend/app/modules/core/controllers/app_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/models/colleague_model.dart';
-import 'package:get/get.dart';
+import 'package:get/state_manager.dart';
 
 class ColleagueController extends AppController {
   final selected = Rx<List<MColleague>>([]);

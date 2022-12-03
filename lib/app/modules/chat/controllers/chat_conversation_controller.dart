@@ -6,7 +6,7 @@ import 'package:exceed_resources_frontend/app/modules/core/mock/message.dart';
 import 'package:exceed_resources_frontend/app/modules/core/models/attachment_field_model.dart';
 import 'package:exceed_resources_frontend/app/modules/core/extensions/datetime_extension.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/state_manager.dart';
 
 class ChatConversationController extends AppController with AttachmentMixin {
   final scrollController = ScrollController();

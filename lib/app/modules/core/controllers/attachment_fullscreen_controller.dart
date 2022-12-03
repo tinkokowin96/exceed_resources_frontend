@@ -3,7 +3,8 @@ import 'package:exceed_resources_frontend/app/modules/core/models/attachment_mod
 import 'package:exceed_resources_frontend/app/modules/core/services/byte_response_service.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:flutter/foundation.dart';
-import 'package:get/get.dart';
+import 'package:get/route_manager.dart';
+import 'package:get/state_manager.dart';
 
 class AttachmentFullscreenController extends AppController {
   final MAttachment attachment = Get.arguments;

@@ -16,7 +16,7 @@ import 'package:exceed_resources_frontend/app/modules/task/widgets/task_detail/c
 import 'package:exceed_resources_frontend/app/routes/misc_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 
 class ColleagueDetailView extends GetView<ColleagueDetailController> {
   const ColleagueDetailView({Key? key}) : super(key: key);

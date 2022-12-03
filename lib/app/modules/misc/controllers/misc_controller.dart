@@ -1,5 +1,5 @@
 import 'package:exceed_resources_frontend/app/modules/core/controllers/app_controller.dart';
-import 'package:get/get.dart';
+import 'package:get/state_manager.dart';
 
 class MiscController extends AppController {
   final selectedLanguage = [true, false].obs;

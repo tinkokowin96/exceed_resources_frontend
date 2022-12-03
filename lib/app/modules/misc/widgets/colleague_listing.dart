@@ -13,7 +13,8 @@ import 'package:exceed_resources_frontend/app/modules/misc/models/colleague_mode
 import 'package:exceed_resources_frontend/app/modules/misc/widgets/colleague_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:get/instance_manager.dart';
 
 class ColleagueListing extends GetView<ColleagueListingController> {
   final bool exportable;

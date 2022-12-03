@@ -12,9 +12,7 @@ import 'package:exceed_resources_frontend/app/modules/misc/models/misc_action_mo
 import 'package:exceed_resources_frontend/app/modules/misc/widgets/misc_action.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/widgets/misc_action_section.dart';
 import 'package:flutter/material.dart';
-
-import 'package:get/get.dart';
-
+import 'package:get/get_state_manager/get_state_manager.dart';
 import '../controllers/misc_controller.dart';
 
 class MiscView extends GetView<MiscController> {
@@ -121,10 +119,10 @@ class MiscView extends GetView<MiscController> {
                           Obx(
                             () => AppSwitch(
                               data: MSwitch(
-                                activeIcon: controller.darkMode.isTrue ? Icons.dark_mode : Icons.light_mode,
-                                idleIcon: controller.darkMode.isTrue ? Icons.light_mode : Icons.dark_mode,
+                                activeIcon: controller.darkMode.value ? Icons.dark_mode : Icons.light_mode,
+                                idleIcon: controller.darkMode.value ? Icons.light_mode : Icons.dark_mode,
                               ),
-                              active: controller.darkMode.isTrue,
+                              active: controller.darkMode.value,
                               toggleSwitch: controller.toggleDarkMode,
                               inactiveBackground: Colors.black,
                               inactiveBorder: Colors.black,

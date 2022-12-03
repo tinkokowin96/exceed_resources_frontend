@@ -2,7 +2,7 @@ import 'package:exceed_resources_frontend/app/modules/core/controllers/app_contr
 import 'package:exceed_resources_frontend/app/modules/core/utils/config.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/models/department_model.dart';
-import 'package:get/get.dart';
+import 'package:get/state_manager.dart';
 
 class OrganizationStructureController extends AppController {
   late final data = Rx<Map<int, Map<int, Map<EStructure, dynamic>>>>({

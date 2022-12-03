@@ -17,7 +17,8 @@ import 'package:exceed_resources_frontend/app/routes/app_pages.dart';
 import 'package:exceed_resources_frontend/app/routes/misc_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:get/route_manager.dart';
 
 class OnboardingView extends GetView<OnboardingController> {
   const OnboardingView({Key? key}) : super(key: key);
@@ -32,7 +33,7 @@ class OnboardingView extends GetView<OnboardingController> {
       hasAdminMode: true,
       content: Obx(
         () {
-          final adminMode = controller.adminMode.isTrue;
+          final adminMode = controller.adminMode.value;
           return AppColumn(
             spacing: AppSize.md,
             mainAxisSize: MainAxisSize.max,
@@ -71,7 +72,7 @@ class OnboardingView extends GetView<OnboardingController> {
                                                 borderRadius: BorderRadius.circular(AppSize.xs),
                                                 border: Border.all(color: AppTheme.of(context).color.secondary),
                                               ),
-                                              child:  SizedBox(
+                                              child: SizedBox(
                                                 width: App.cardSize(context: context, numCol: 3),
                                                 height: App.cardSize(context: context, numCol: 3),
                                               ),
@@ -101,10 +102,10 @@ class OnboardingView extends GetView<OnboardingController> {
                                               image: image,
                                               name: name,
                                               category: type,
-                                              selected: controller.adminMode.isTrue
+                                              selected: controller.adminMode.value
                                                   ? controller.selectedOnboardings.value[each.id] != null
                                                   : null,
-                                              onChanged: controller.adminMode.isTrue
+                                              onChanged: controller.adminMode.value
                                                   ? (value) => controller.updateOnboardingSelect(
                                                         each.id,
                                                         value,

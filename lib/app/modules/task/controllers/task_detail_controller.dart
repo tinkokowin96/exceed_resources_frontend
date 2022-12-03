@@ -6,7 +6,8 @@ import 'package:exceed_resources_frontend/app/modules/core/models/attachment_mod
 import 'package:exceed_resources_frontend/app/modules/task/controllers/task_table_controller.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/priority_model.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/status_model.dart';
-import 'package:get/get.dart';
+import 'package:get/instance_manager.dart';
+import 'package:get/state_manager.dart';
 
 class TaskDetailController extends AppController with AttachmentMixin, MessageInputMixin {
   final tableController = Get.find<TaskTableController>();

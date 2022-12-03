@@ -15,7 +15,7 @@ import 'package:exceed_resources_frontend/app/modules/core/extensions/datetime_e
 import 'package:exceed_resources_frontend/app/modules/core/widgets/detail/detail_section.dart';
 import 'package:exceed_resources_frontend/app/routes/task_routes.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 
 class TaskDetailView extends GetView<TaskDetailController> {
   const TaskDetailView({Key? key}) : super(key: key);

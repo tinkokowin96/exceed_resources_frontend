@@ -13,7 +13,8 @@ import 'package:exceed_resources_frontend/app/modules/core/mock/status.dart' as 
 import 'package:exceed_resources_frontend/app/modules/core/mock/priority.dart' as mp;
 import 'package:exceed_resources_frontend/app/modules/core/extensions/datetime_extension.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/state_manager.dart';
+import 'package:get/route_manager.dart';
 
 class TaskTableController extends AppController {
   final statusController = TextEditingController();
