@@ -83,11 +83,11 @@ class PayriseForm extends GetView<PayriseController> {
               ),
             ),
             TextFormField(
-              controller: controller.pickedDateController,
+              controller: controller.dateController,
               textAlignVertical: TextAlignVertical.center,
               style: AppTheme.text(context: context),
               readOnly: true,
-              onTap: controller.showPicker,
+              onTap: () => controller.showDatePicker(controller: controller.dateController),
               decoration: AppThemeMiscs.inputStyle(
                 context: context,
                 hintText: 'Pick Effective Date *',

@@ -1,15 +1,15 @@
 import 'package:exceed_resources_frontend/app/modules/core/controllers/app_controller.dart';
-import 'package:exceed_resources_frontend/app/modules/core/mixins/datepicker_mixin.dart';
 import 'package:exceed_resources_frontend/app/modules/core/mock/payrises.dart';
 import 'package:exceed_resources_frontend/app/modules/core/models/option_model.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/models/colleague_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class PayriseController extends AppController with DatePickerMixin {
+class PayriseController extends AppController {
   final colleagues = Rx<List<MColleague>>(Get.arguments);
   final payrises = m_payrises;
   final formKey = GlobalKey<FormState>();
+  final dateController = TextEditingController();
   final thresholdController = TextEditingController();
   final thrAmountController = TextEditingController();
   final amountController = TextEditingController();
@@ -36,8 +36,8 @@ class PayriseController extends AppController with DatePickerMixin {
 
   @override
   void onClose() {
-    pickedDateController.dispose();
     thresholdController.dispose();
+    dateController.dispose();
     thrAmountController.dispose();
     amountController.dispose();
     super.onClose();

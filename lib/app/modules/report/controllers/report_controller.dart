@@ -1,5 +1,5 @@
 import 'package:exceed_resources_frontend/app/modules/core/controllers/app_controller.dart';
-import 'package:exceed_resources_frontend/app/modules/core/mixins/daterangepicker_mixin.dart';
+
 import 'package:exceed_resources_frontend/app/modules/core/mock/report.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
@@ -8,8 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:exceed_resources_frontend/app/modules/core/extensions/datetime_extension.dart';
 import 'package:get/get.dart';
 
-class ReportController extends AppController with DateRangePickerMixin {
+class ReportController extends AppController {
   final deduction = false.obs;
+  final dateRangeController = TextEditingController();
   final report = Rx<MReport>(
     MReport(
       basicSalary: reports[0].basicSalary,
@@ -88,5 +89,11 @@ class ReportController extends AppController with DateRangePickerMixin {
     }
     expandables.refresh();
     super.onInit();
+  }
+
+  @override
+  void onClose() {
+    dateRangeController.dispose();
+    super.onClose();
   }
 }

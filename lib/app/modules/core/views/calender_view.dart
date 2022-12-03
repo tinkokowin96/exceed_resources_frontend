@@ -102,7 +102,21 @@ class CalenderView extends GetView<CalenderController> {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: AppSize.sm),
-                          child: AppButton(onPressed: () {}, text: 'Pick'),
+                          child: AppButton(
+                            onPressed: () {
+                              controller.picked(
+                                controller.rangePicker &&
+                                        controller.rangeStartDate.value != null &&
+                                        controller.rangeEndDate.value != null
+                                    ? DateTimeRange(
+                                        start: controller.rangeStartDate.value!,
+                                        end: controller.rangeEndDate.value!,
+                                      )
+                                    : controller.selected.value,
+                              );
+                            },
+                            text: 'Pick',
+                          ),
                         ),
                       ],
                     )

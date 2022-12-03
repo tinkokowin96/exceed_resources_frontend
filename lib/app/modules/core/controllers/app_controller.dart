@@ -2,6 +2,8 @@ import 'package:chewie/chewie.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/config.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/drawer.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/popup.dart';
+import 'package:exceed_resources_frontend/app/routes/app_pages.dart';
+import 'package:exceed_resources_frontend/app/modules/core/extensions/datetime_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
@@ -16,6 +18,8 @@ class AppController extends GetxController {
   final drawer = Rxn<AppDrawer>();
   final confirmCallback = Rxn<Function()>();
   final cancelCallback = Rxn<Function()>();
+  DateTime? date;
+  DateTimeRange? dateRange;
   VideoPlayerController? playerController;
   ChewieController? chewieController;
 
@@ -30,6 +34,23 @@ class AppController extends GetxController {
       }
     }
     loading.refresh();
+  }
+
+  void showDatePicker({required TextEditingController controller, bool range = false}) {
+    Get.toNamed(AppRoutes.calender, arguments: {
+      'picker': !range,
+      'rangePicker': range,
+      'picked': (dynamic picked) {
+        if (range) {
+          dateRange = picked;
+          controller.text = '${dateRange!.start.formatDate()} - ${dateRange!.end.formatDate()}';
+        } else {
+          date = picked;
+          controller.text = date!.formatDate(short: false);
+        }
+        Get.back();
+      },
+    });
   }
 
   void updateError(String? updatedError) {

@@ -54,7 +54,10 @@ class ReportHeading extends GetView<ReportController> {
         Align(
           alignment: Alignment.centerRight,
           child: IconButton(
-            onPressed: controller.showPicker,
+            onPressed: () => controller.showDatePicker(
+              controller: controller.dateRangeController,
+              range: true,
+            ),
             icon: const Icon(Icons.date_range),
           ),
         )

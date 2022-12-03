@@ -2,17 +2,15 @@ import 'package:exceed_resources_frontend/app/modules/core/controllers/app_contr
 import 'package:exceed_resources_frontend/app/modules/core/mock/event.dart';
 import 'package:exceed_resources_frontend/app/modules/core/models/calender_day_model.dart';
 import 'package:exceed_resources_frontend/app/modules/core/models/option_model.dart';
-import 'package:exceed_resources_frontend/app/modules/core/widgets/calender/calender_event_popup.dart';
-import 'package:exceed_resources_frontend/app/modules/core/widgets/popup.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/models/event_model.dart';
-import 'package:get/state_manager.dart';
+import 'package:get/get.dart';
 
 class CalenderController extends AppController {
   final startYear = 2000;
   final endYear = DateTime.now().year + 10;
-  final showEvents = true;
-  final picker = false;
-  final rangePicker = false;
+  final picker = Get.arguments['picker'] ?? false;
+  final rangePicker = Get.arguments['rangePicker'] ?? false;
+  final picked = Get.arguments['picked'];
   final rangeStartPicked = false.obs;
   final rangeStartDate = Rxn<DateTime>();
   final rangeEndDate = Rxn<DateTime>();
