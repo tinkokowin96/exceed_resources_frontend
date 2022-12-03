@@ -10,7 +10,7 @@ import 'package:exceed_resources_frontend/app/routes/error_routes.dart';
 import 'package:exceed_resources_frontend/app/routes/home_pages.dart';
 import 'package:exceed_resources_frontend/app/routes/home_routes.dart';
 import 'package:exceed_resources_frontend/app/routes/misc_pages.dart';
-import 'package:exceed_resources_frontend/app/routes/report_pages.dart';
+import 'package:exceed_resources_frontend/app/routes/salary_pages.dart';
 import 'package:exceed_resources_frontend/app/routes/task_pages.dart';
 import 'package:get/get.dart';
 

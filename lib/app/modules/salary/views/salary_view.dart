@@ -6,19 +6,19 @@ import 'package:exceed_resources_frontend/app/modules/core/utils/helper.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/expandable.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/seperated_section.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/table.dart';
-import 'package:exceed_resources_frontend/app/modules/report/widgets/report_heading.dart';
+import 'package:exceed_resources_frontend/app/modules/salary/widgets/salary_heading.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../controllers/report_controller.dart';
+import '../controllers/salary_controller.dart';
 
-class ReportView extends GetView<ReportController> {
-  const ReportView({Key? key}) : super(key: key);
+class SalaryView extends GetView<SalaryController> {
+  const SalaryView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return AppLayout.core(
-      currentMenu: EMenu.report,
+      currentMenu: EMenu.salary,
       controller: controller,
       content: Column(
         children: [
@@ -28,7 +28,7 @@ class ReportView extends GetView<ReportController> {
                 padding: const EdgeInsets.only(top: AppSize.sm),
                 child: Column(
                   children: [
-                    const ReportHeading(),
+                    const SalaryHeading(),
                     Padding(
                       padding: const EdgeInsets.only(top: AppSize.md),
                       child: Obx(

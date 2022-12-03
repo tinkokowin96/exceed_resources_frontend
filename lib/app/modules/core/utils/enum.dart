@@ -4,7 +4,7 @@ enum ETextType { body, error, primary, white, subtitle, disabled, disabledPrimar
 
 enum EText { h1, h2, h3, h4, h5 }
 
-enum EMenu { home, task, chat, report, misc }
+enum EMenu { home, task, chat, salary, misc }
 
 enum EDevice { mobile, tablet, desktop }
 
@@ -102,10 +102,10 @@ enum EPermission {
   createProjectQuotation,
   @JsonValue('CreateChatGroup')
   createChatGroup,
-  @JsonValue('AdminReportView')
-  adminReportView,
-  @JsonValue('ColleagueReportView')
-  colleagueReportView,
+  @JsonValue('AdminSalaryView')
+  adminSalaryView,
+  @JsonValue('ColleagueSalaryView')
+  colleagueSalaryView,
   @JsonValue('OnboardingPermission')
   onboardingPermission,
   @JsonValue('ViewStructure')

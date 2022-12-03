@@ -1,18 +1,18 @@
 import 'package:exceed_resources_frontend/app/modules/core/controllers/app_controller.dart';
 
-import 'package:exceed_resources_frontend/app/modules/core/mock/report.dart';
+import 'package:exceed_resources_frontend/app/modules/core/mock/salary.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
-import 'package:exceed_resources_frontend/app/modules/report/models/report_model.dart';
+import 'package:exceed_resources_frontend/app/modules/salary/models/salary_model.dart';
 import 'package:flutter/material.dart';
 import 'package:exceed_resources_frontend/app/modules/core/extensions/datetime_extension.dart';
 import 'package:get/get.dart';
 
-class ReportController extends AppController {
+class SalaryController extends AppController {
   final deduction = false.obs;
   final dateRangeController = TextEditingController();
-  final report = Rx<MReport>(
-    MReport(
+  final report = Rx<MSalary>(
+    MSalary(
       basicSalary: reports[0].basicSalary,
       totalEarning: reports[0].totalEarning,
       totalDeduction: reports[0].totalDeduction,
@@ -32,7 +32,7 @@ class ReportController extends AppController {
   void toggleSection() {
     deduction.value = !deduction.value;
     if (deduction.value) {
-      report.value = MReport(
+      report.value = MSalary(
         basicSalary: reports[0].basicSalary,
         totalEarning: reports[0].totalEarning,
         totalDeduction: reports[0].totalDeduction,
@@ -41,7 +41,7 @@ class ReportController extends AppController {
         ),
       );
     } else {
-      report.value = MReport(
+      report.value = MSalary(
         basicSalary: reports[0].basicSalary,
         totalEarning: reports[0].totalEarning,
         totalDeduction: reports[0].totalDeduction,

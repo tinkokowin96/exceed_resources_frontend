@@ -66,6 +66,7 @@ class SectionHeading extends StatelessWidget {
                               child: Center(
                                 child: Text(
                                   each.value,
+                                  textAlign: TextAlign.center,
                                   style: AppTheme.text(context: context, weight: FontWeight.w500).copyWith(
                                     color: each.key == prevIndex && each.key != activeIndex
                                         ? value.get('prevColor')

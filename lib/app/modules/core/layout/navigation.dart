@@ -68,7 +68,7 @@ class _AppNavigationState extends State<AppNavigation> with SingleTickerProvider
     MMenuSection(text: "Home", icon: "assets/icons/home.svg", type: EMenu.home),
     MMenuSection(text: "Task", icon: "assets/icons/task.svg", type: EMenu.task),
     MMenuSection(text: "Chat", icon: "assets/icons/chat.svg", type: EMenu.chat),
-    MMenuSection(text: "Report", icon: "assets/icons/report.svg", type: EMenu.report),
+    MMenuSection(text: "Salary", icon: "assets/icons/salary.svg", type: EMenu.salary),
     MMenuSection(text: "Misc", icon: "assets/icons/misc.svg", type: EMenu.misc),
   ];
 
