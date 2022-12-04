@@ -66,6 +66,12 @@ enum EChat {
 enum EField {
   @JsonValue('Colleague')
   colleague,
+  @JsonValue('Department')
+  department,
+  @JsonValue('Position')
+  position,
+  @JsonValue('Report')
+  report,
   @JsonValue('Date')
   date,
   @JsonValue('String')
@@ -216,6 +222,15 @@ enum EMonthDay {
   lastMonthDay,
   @JsonValue('HalfMonthDay')
   halfMonthDay,
+}
+
+enum EExtra {
+  @JsonValue('Salary')
+  salary,
+  @JsonValue('Absolute')
+  absolute,
+  @JsonValue('Percent')
+  percent,
 }
 
 enum EMonth {

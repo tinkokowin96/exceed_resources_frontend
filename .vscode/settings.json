@@ -9,6 +9,6 @@
         "**/Thumbs.db": true,
         "**/*.freezed.dart": true,
         "**/*.g.dart": true,
-        "node_modules/": true
+        "node_modules/": false
     }
 }

@@ -1,19 +1,17 @@
 import 'package:exceed_resources_frontend/app/modules/core/controllers/app_controller.dart';
-import 'package:exceed_resources_frontend/app/modules/core/mock/salary.dart';
+import 'package:exceed_resources_frontend/app/modules/core/mock/colleague_salary.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
-import 'package:exceed_resources_frontend/app/modules/salary/models/salary_model.dart';
+import 'package:exceed_resources_frontend/app/modules/salary/models/salary_category_model.dart';
 import 'package:flutter/material.dart';
 import 'package:exceed_resources_frontend/app/modules/core/extensions/datetime_extension.dart';
 import 'package:get/state_manager.dart';
 
 class SalaryController extends AppController {
   final deduction = false.obs;
-  final basicSalary = 4000;
-  final totalEarning = 2000;
-  final totalDeduction = 3500;
+  final salary = m_collleague_salaries[0];
   final dateRangeController = TextEditingController();
-  final salaries = Rx<List<MSalary>>(m_salaries);
+  late final categories = Rx<List<MSalaryCategory>>(salary.categories);
   final expandables = Rx<Map<String, Rx<EExpandable>>>({});
 
   void toggleExpandable({required String name}) {
@@ -25,12 +23,12 @@ class SalaryController extends AppController {
   void toggleSection() {
     deduction.value = !deduction.value;
     if (deduction.value) {
-      salaries.value = salaries.value.where((each) => each.category!.earning == false).toList();
+      categories.value = categories.value.where((each) => each.earning == false).toList();
     } else {
-      salaries.value = salaries.value.where((each) => each.category!.earning).toList();
+      categories.value = categories.value.where((each) => each.earning).toList();
     }
     deduction.refresh();
-    salaries.refresh();
+    categories.refresh();
   }
 
   Map<String, List<Widget>> transformRows({
@@ -63,8 +61,8 @@ class SalaryController extends AppController {
 
   @override
   void onInit() {
-    for (final salary in salaries.value) {
-      expandables.value[salary.category!.name] = EExpandable.minimize.obs;
+    for (final category in categories.value) {
+      expandables.value[category.name] = EExpandable.minimize.obs;
     }
     expandables.refresh();
     super.onInit();

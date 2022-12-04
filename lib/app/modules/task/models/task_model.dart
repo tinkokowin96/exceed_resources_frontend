@@ -1,3 +1,4 @@
+import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/json_serializer.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/collaborator_model.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/comment_model.dart';
@@ -29,6 +30,7 @@ class MTask with _$MTask {
     @Default([]) List<String> urls,
     MPhase? phase,
     MQuotation? quotation,
+    EExtra? reward,
   }) = _MTask;
 
   factory MTask.fromJson(Map<String, dynamic> json) => _$MTaskFromJson(json);

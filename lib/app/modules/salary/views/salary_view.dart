@@ -34,25 +34,25 @@ class SalaryView extends GetView<SalaryController> {
                           if (!controller.deduction.value)
                             SeperatedSection(
                               data: [
-                                MOption(text: 'Basic Salary', value: controller.basicSalary),
+                                MOption(text: 'Basic Salary', value: controller.salary.basicSalary),
                               ],
                             ),
                           ...List.from(
-                            controller.salaries.value.map(
+                            controller.categories.value.map(
                               (each) => Expandable(
-                                name: each.category!.name,
-                                toggleExpand: () => controller.toggleExpandable(name: each.category!.name),
-                                height: controller.expandables.value[each.category!.name]!.value == EExpandable.expand
+                                name: each.name,
+                                toggleExpand: () => controller.toggleExpandable(name: each.name),
+                                height: controller.expandables.value[each.name]!.value == EExpandable.expand
                                     ? App.height(context) * 0.6
                                     : null,
-                                expand: controller.expandables.value[each.category!.name]!.value == EExpandable.expand,
-                                content: controller.expandables.value[each.category!.name]!.value == EExpandable.expand
+                                expand: controller.expandables.value[each.name]!.value == EExpandable.expand,
+                                content: controller.expandables.value[each.name]!.value == EExpandable.expand
                                     ? Padding(
                                         padding: const EdgeInsets.only(top: AppSize.md),
                                         child: AppTable(
-                                          key: ValueKey('${each.category!.name}_expand'),
-                                          columns: List.from(each.category!.fields[0].map((field) => field.name)),
-                                          data: each.category!.fields,
+                                          key: ValueKey('${each.name}_expand'),
+                                          columns: List.from(each.fields[0].map((field) => field.name)),
+                                          data: each.fields,
                                           transformRows: (context, data) => controller.transformRows(
                                             context: context,
                                             data: data,
@@ -60,7 +60,7 @@ class SalaryView extends GetView<SalaryController> {
                                         ),
                                       )
                                     : SizedBox(
-                                        key: ValueKey('${each.category!.name}_minimize'),
+                                        key: ValueKey('${each.name}_minimize'),
                                         width: 0,
                                       ),
                               ),
@@ -77,12 +77,12 @@ class SalaryView extends GetView<SalaryController> {
           Obx(
             () => SeperatedSection(
               data: [
-                MOption(text: 'Total Deduction', value: controller.totalDeduction),
+                MOption(text: 'Total Deduction', value: controller.salary.totalDeduction),
                 if (!controller.deduction.value) ...[
-                  MOption(text: 'Total Earning', value: controller.totalEarning),
+                  MOption(text: 'Total Earning', value: controller.salary.totalEarning),
                   MOption(
                     text: 'Paid',
-                    value: controller.totalEarning - controller.totalDeduction,
+                    value: controller.salary.totalEarning - controller.salary.totalDeduction,
                   ),
                 ],
               ],
