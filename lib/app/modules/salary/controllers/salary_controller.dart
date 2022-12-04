@@ -1,5 +1,4 @@
 import 'package:exceed_resources_frontend/app/modules/core/controllers/app_controller.dart';
-
 import 'package:exceed_resources_frontend/app/modules/core/mock/salary.dart';
 import 'package:exceed_resources_frontend/app/modules/core/theme/index.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
@@ -10,17 +9,11 @@ import 'package:get/state_manager.dart';
 
 class SalaryController extends AppController {
   final deduction = false.obs;
+  final basicSalary = 4000;
+  final totalEarning = 2000;
+  final totalDeduction = 3500;
   final dateRangeController = TextEditingController();
-  final report = Rx<MSalary>(
-    MSalary(
-      basicSalary: reports[0].basicSalary,
-      totalEarning: reports[0].totalEarning,
-      totalDeduction: reports[0].totalDeduction,
-      categories: List.from(
-        reports[0].categories.where((each) => each.earning == true),
-      ),
-    ),
-  );
+  final salaries = Rx<List<MSalary>>(m_salaries);
   final expandables = Rx<Map<String, Rx<EExpandable>>>({});
 
   void toggleExpandable({required String name}) {
@@ -32,26 +25,12 @@ class SalaryController extends AppController {
   void toggleSection() {
     deduction.value = !deduction.value;
     if (deduction.value) {
-      report.value = MSalary(
-        basicSalary: reports[0].basicSalary,
-        totalEarning: reports[0].totalEarning,
-        totalDeduction: reports[0].totalDeduction,
-        categories: List.from(
-          reports[0].categories.where((each) => each.earning == false),
-        ),
-      );
+      salaries.value = salaries.value.where((each) => each.category!.earning == false).toList();
     } else {
-      report.value = MSalary(
-        basicSalary: reports[0].basicSalary,
-        totalEarning: reports[0].totalEarning,
-        totalDeduction: reports[0].totalDeduction,
-        categories: List.from(
-          reports[0].categories.where((each) => each.earning == true),
-        ),
-      );
+      salaries.value = salaries.value.where((each) => each.category!.earning).toList();
     }
     deduction.refresh();
-    report.refresh();
+    salaries.refresh();
   }
 
   Map<String, List<Widget>> transformRows({
@@ -84,8 +63,8 @@ class SalaryController extends AppController {
 
   @override
   void onInit() {
-    for (final category in reports[0].categories) {
-      expandables.value[category.name] = EExpandable.minimize.obs;
+    for (final salary in salaries.value) {
+      expandables.value[salary.category!.name] = EExpandable.minimize.obs;
     }
     expandables.refresh();
     super.onInit();
