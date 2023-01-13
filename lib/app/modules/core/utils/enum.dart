@@ -102,8 +102,12 @@ enum EPermission {
   createStatus,
   @JsonValue('CreateTask')
   createTask,
+  @JsonValue('PayPointPerTask')
+  payPointPerTask,
   @JsonValue('CreateProject')
   createProject,
+  @JsonValue('PayPointPerProject')
+  payPointPerProject,
   @JsonValue('CreateProjectPhase')
   createProjectPhase,
   @JsonValue('CreateProjectQuotation')
