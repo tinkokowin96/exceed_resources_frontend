@@ -8,11 +8,12 @@ import 'package:exceed_resources_frontend/app/modules/core/extensions/int_extens
 import 'package:exceed_resources_frontend/app/modules/core/widgets/column.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/row.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/comment_model.dart';
+import 'package:exceed_resources_frontend/app/modules/task/models/review_model.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class AppComment extends StatefulWidget {
-  final MComment comment;
+  final MReview comment;
   final bool divider;
   final bool showLike;
   const AppComment({

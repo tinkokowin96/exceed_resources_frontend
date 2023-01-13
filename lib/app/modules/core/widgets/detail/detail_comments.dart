@@ -6,11 +6,12 @@ import 'package:exceed_resources_frontend/app/modules/core/widgets/column.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/comment.dart';
 import 'package:exceed_resources_frontend/app/modules/core/widgets/detail/detail_section.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/comment_model.dart';
+import 'package:exceed_resources_frontend/app/modules/task/models/review_model.dart';
 import 'package:flutter/material.dart';
 
 class DetailComments extends StatelessWidget {
   final AppController controller;
-  final List<MComment> comments;
+  final List<MReview> comments;
   final Widget allComments;
   final bool showLike;
   const DetailComments({

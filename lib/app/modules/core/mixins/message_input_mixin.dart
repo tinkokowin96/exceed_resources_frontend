@@ -7,6 +7,7 @@ import 'package:exceed_resources_frontend/app/modules/core/widgets/comment.dart'
 import 'package:exceed_resources_frontend/app/modules/core/widgets/message_input.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/comment_model.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/comment_text_model.dart';
+import 'package:exceed_resources_frontend/app/modules/task/models/review_model.dart';
 import 'package:exceed_resources_frontend/app/modules/task/widgets/task_detail/comment_input.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -112,7 +113,7 @@ mixin MessageInputMixin on AppController {
 
   Future<void> updateMessageAttachment({String? name}) async {}
 
-  Widget getAllCommentsWidget(List<MComment> comments, BuildContext context, showLike) {
+  Widget getAllCommentsWidget(List<MReview> comments, BuildContext context, showLike) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [

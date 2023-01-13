@@ -8,6 +8,7 @@ import 'package:exceed_resources_frontend/app/modules/misc/models/leave_allowanc
 import 'package:exceed_resources_frontend/app/modules/misc/models/position_model.dart';
 import 'package:exceed_resources_frontend/app/modules/salary/models/salary_category_model.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/comment_model.dart';
+import 'package:exceed_resources_frontend/app/modules/task/models/review_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'colleague_model.freezed.dart';
@@ -29,15 +30,13 @@ class MColleague with _$MColleague {
     @Default([]) List<MDepartment> departments,
     @Default(false) @JsonKey(name: 'top_management') bool topManagement,
     @Default([]) @JsonKey(name: 'department_executive') List<bool> departmentExecutive,
-    @Default([]) @JsonKey(name: 'commented_by') List<MColleagueComment> commentedBy,
-    @Default([]) @JsonKey(name: 'commented_to') List<MColleagueComment> commentedTo,
     @Default([]) @JsonKey(name: 'current_month_earning') List<MSalaryCategory> currentMonthEarning,
     @Default(0) @JsonKey(name: 'total_current_month_earning') double totalCurrentMonthEarning,
     @Default([]) @JsonKey(name: 'current_month_deduction') List<MSalaryCategory> currentMonthDeduction,
     @Default(0) @JsonKey(name: 'total_current_month_deduction') double totalCurrentMonthDeduction,
     @Default([]) List<MLeaveAllowance> leaves,
     @Default([]) List<MAttachment> resources,
-    @Default([]) List<MComment> reviews,
+    @Default([]) List<MReview> reviews,
     @JsonKey(name: 'earning_history') Map<String, List<MSalaryCategory>>? earningHistory,
     @JsonKey(name: 'deduction_history') Map<String, List<MSalaryCategory>>? deductionHistory,
     ColleagueStatusM? status,
