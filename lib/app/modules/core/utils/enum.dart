@@ -76,7 +76,7 @@ enum EField {
   date,
   @JsonValue('String')
   string,
-  @JsonValue('number')
+  @JsonValue('Number')
   number,
 }
 
@@ -226,15 +226,6 @@ enum EMonthDay {
   lastMonthDay,
   @JsonValue('HalfMonthDay')
   halfMonthDay,
-}
-
-enum EExtra {
-  @JsonValue('Salary')
-  salary,
-  @JsonValue('Absolute')
-  absolute,
-  @JsonValue('Percent')
-  percent,
 }
 
 enum EMonth {

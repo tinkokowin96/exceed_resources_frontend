@@ -11,11 +11,11 @@ part 'review_model.g.dart';
 class MReview with _$MReview {
   factory MReview({
     @Default('') String id,
-    @Default([]) @JsonKey(name: 'comment_attachments') List<MAttachment> commentAttachments,
+    @Default([]) List<MAttachment> attachments,
     @JsonKey(name: 'updated_at', fromJson: dateFromJson, toJson: dateToJson) DateTime? updatedAt,
-    @Default([]) @JsonKey(name: 'comment_texts') List<MCommentText> commentTexts,
-    @JsonKey(name: 'commented_by') MColleague? commentedBy,
-    @JsonKey(name: 'commented_to') MColleague? commentedTo,
+    @Default([]) @JsonKey(name: 'review_text') List<MCommentText> reviewText,
+    @JsonKey(name: 'review_by') MColleague? reviewBy,
+    @JsonKey(name: 'review_to') MColleague? reviewTo,
     @Default(0) @JsonKey(name: 'num_like') int numLike,
     @Default(0) @JsonKey(name: 'num_dislike') int numDislike,
   }) = _MReview;

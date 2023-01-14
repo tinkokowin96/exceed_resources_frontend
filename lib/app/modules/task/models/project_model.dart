@@ -1,3 +1,5 @@
+import 'package:exceed_resources_frontend/app/modules/core/models/attachment_model.dart';
+import 'package:exceed_resources_frontend/app/modules/misc/models/extra_model.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/collaborator_model.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/phase_model.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/quotation_model.dart';
@@ -19,8 +21,9 @@ class MProject with _$MProject {
     @Default(0) @JsonKey(name: 'num_completed_task') int numCompletedTask,
     @Default([]) List<MQuotation> quotations,
     @Default([]) List<MCollaborator> collaborators,
-    @Default([]) List<String> resources,
+    @Default([]) List<MAttachment> attachments,
     @Default([]) List<MTask> tasks,
+    MExtra? reward,
     @Default('') String remark,
   }) = _MProject;
 

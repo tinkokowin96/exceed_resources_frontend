@@ -1,3 +1,4 @@
+import 'package:exceed_resources_frontend/app/modules/core/models/attachment_model.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/json_serializer.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/collaborator_model.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/role_model.dart';
@@ -15,9 +16,8 @@ class MQuotation with _$MQuotation {
     @Default(0) double expense,
     @Default([]) List<MRole> roles,
     @Default([]) List<MCollaborator> collaborators,
-    @Default([]) List<String> resources,
-    @JsonKey(name: 'start_date', fromJson: dateFromJson, toJson: dateToJson) DateTime? startDate,
-    @JsonKey(name: 'end_date', fromJson: dateFromJson, toJson: dateToJson) DateTime? endDate,
+    @Default([]) List<MAttachment> attachments,
+    @Default(0) @JsonKey(name: 'expected_manday') double expectedManday,
     @Default('') String remark,
   }) = _MQuotation;
 

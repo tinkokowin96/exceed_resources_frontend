@@ -20,7 +20,7 @@ class MOrganization with _$MOrganization {
     @Default('') String ceoPhone,
     @Default([]) List<MDepartment> departments,
     @Default([]) List<MColleague> topManagements,
-    @Default([]) List<MAttachment> resources,
+    @Default([]) List<MAttachment> attachments,
     @Default('') String ceoPositionShort,
     @Default('') String description,
   }) = _MOrganization;

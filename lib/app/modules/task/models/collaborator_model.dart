@@ -1,3 +1,4 @@
+import 'package:exceed_resources_frontend/app/modules/core/models/attachment_model.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/models/colleague_model.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/role_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -11,7 +12,7 @@ class MCollaborator with _$MCollaborator {
     @Default('') String id,
     MColleague? colleague,
     MRole? role,
-    @Default([]) @JsonKey(name: 'allowed_resources') List<String> allowedResources,
+    @Default([]) List<MAttachment> attachments,
     @Default('') String remark,
   }) = _MCollaborator;
 

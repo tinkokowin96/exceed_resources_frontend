@@ -1,4 +1,6 @@
+import 'package:exceed_resources_frontend/app/modules/core/models/attachment_model.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/json_serializer.dart';
+import 'package:exceed_resources_frontend/app/modules/misc/models/extra_model.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/collaborator_model.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/role_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -13,9 +15,10 @@ class MPhase with _$MPhase {
     @Default('') String name,
     @Default([]) List<MRole> roles,
     @Default([]) List<MCollaborator> collaborators,
-    @Default([]) List<String> resources,
+    @Default([]) List<MAttachment> attachments,
     @JsonKey(name: 'start_date', fromJson: dateFromJson, toJson: dateToJson) DateTime? startDate,
     @JsonKey(name: 'end_date', fromJson: dateFromJson, toJson: dateToJson) DateTime? endDate,
+    MExtra? reward,
     @Default('') String remark,
   }) = _MPhase;
 

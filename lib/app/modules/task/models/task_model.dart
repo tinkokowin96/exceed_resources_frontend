@@ -1,5 +1,6 @@
-import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
+import 'package:exceed_resources_frontend/app/modules/core/models/attachment_model.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/json_serializer.dart';
+import 'package:exceed_resources_frontend/app/modules/misc/models/extra_model.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/collaborator_model.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/comment_model.dart';
 import 'package:exceed_resources_frontend/app/modules/task/models/phase_model.dart';
@@ -25,12 +26,12 @@ class MTask with _$MTask {
     @JsonKey(name: 'assigned_by') MCollaborator? assignedBy,
     @JsonKey(name: 'assigned_date', fromJson: dateFromJson, toJson: dateToJson) DateTime? assignedDate,
     @JsonKey(name: 'due_date', fromJson: dateFromJson, toJson: dateToJson) DateTime? dueDate,
-    @Default([]) List<String> attachments,
+    @Default([]) List<MAttachment> attachments,
     @Default([]) List<MComment> comments,
     @Default([]) List<String> urls,
     MPhase? phase,
     MQuotation? quotation,
-    EExtra? reward,
+    MExtra? reward,
   }) = _MTask;
 
   factory MTask.fromJson(Map<String, dynamic> json) => _$MTaskFromJson(json);

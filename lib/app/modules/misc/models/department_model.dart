@@ -1,3 +1,4 @@
+import 'package:exceed_resources_frontend/app/modules/core/models/attachment_model.dart';
 import 'package:exceed_resources_frontend/app/modules/core/utils/enum.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/models/colleague_model.dart';
 import 'package:exceed_resources_frontend/app/modules/misc/models/colleague_permission_model.dart';
@@ -16,7 +17,7 @@ class MDepartment with _$MDepartment {
     @Default([]) List<MColleague> colleagues,
     @Default([]) List<MDepartment> departments,
     @Default([]) List<EPermission> permissions,
-    @Default([]) List<String> resources,
+    @Default([]) List<MAttachment> attachments,
     @Default('') String remark,
     MColleaguePermission? colleaguePermission,
   }) = _MDepartment;
